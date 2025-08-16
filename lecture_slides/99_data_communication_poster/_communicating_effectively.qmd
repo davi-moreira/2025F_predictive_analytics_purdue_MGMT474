@@ -1,0 +1,816 @@
+---
+title: "<span style = 'font-size: 100%;'> Communicating Data Effectively </span>"
+subtitle: "<span style = 'font-size: 150%;'>Transforming Insights into Purposeful Data Storytelling</span>"
+author: "Professor: Davi Moreira"
+date: ""
+date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: figs/quarto.png
+    footer: ""
+    theme: [simple,custom.scss]
+---
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Motivation
+
+-   The Importance of Context
+
+-   Six General Principals
+
+-   Choosing the Chart
+
+-   Less is More
+
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+
+-   Hierarchy Among Data
+
+-   Not All Data Are Equally Important
+
+-   Telling Your Story
+
+-   Dashboards
+:::
+:::::
+::::::
+
+# Motivation {background-color="#cfb991"}
+
+## Motivation
+
+<center>
+
+![Covid-19](figs/motivacao.png){width="70%"}
+
+</center>
+
+## The Forest and the Trees
+
+<center>
+
+![Forest](figs/floresta.jpg){width="400"}
+
+</center>
+
+We have explored many implementation details in recent days, focusing on individual aspects of each analysis.
+
+Today, we want to take a step back to think **less about the detail** and **more about the process**.
+
+After all, every data analysis has a purpose. How can we achieve it more effectively?
+
+## Essential Elements of Data Communication
+
+Let's break down the data communication process into six general principles:
+
+1.  Context matters
+2.  Visualization derives from data
+3.  Separate signal from noise
+4.  Impose hierarchy among data
+5.  Beauty also counts
+6.  Your analysis should tell a story
+
+# Context {background-color="#cfb991"}
+
+## Context
+
+Every analysis has a goal and an audience.
+
+-   It's important to separate data exploration from the final analysis. Don't fall into the temptation of showing everything you did.
+
+-   Adapt the report to your audience. Decision-makers aren't always interested in execution details.
+
+-   *So what?* Keep a specific learning objective in mind. It will guide which information is relevant for your report.
+
+:::{.fragment}
+
+Isolated numbers don't tell us much. To make evidence-based decisions, it's necessary to establish an appropriate **basis for comparison** for the goal of your report.
+
+:::
+
+## Context Can Come from New Information...
+
+<center>
+
+![Context Add](figs/contexto-add.png){width="55%"}
+
+</center>
+
+## ...or Reinforce Existing Information
+
+<center>
+
+![Context Obs](figs/contexto-obs.png){width="60%"}
+
+</center>
+
+# Choosing the Chart {background-color="#cfb991"}
+
+## Choosing the Chart
+
+-   [Use graphs instead of tables!](https://scholar.princeton.edu/sites/default/files/jkastellec/files/graphs.pdf)
+
+-   What type of data?
+
+-   How many dimensions?
+
+-   Most reports are consumed in 2D media. Showing more than that can confuse the reader.
+
+-   Be careful with scales!
+
+## Scales Can Be Misleading
+
+<center>
+
+![Scale Fail](figs/escala-fail.png){width="60%"}
+
+</center>
+
+## Avoid Dual Axes
+
+<center>
+
+![Dual Axis](figs/eixo-duplo.png){width="50%"}
+
+</center>
+
+## Or Triple Axes!
+
+<center>
+
+![Triple Axis](figs/eixo-triplo.png){width="60%"}
+
+</center>
+
+## Fewer Pie Charts...
+
+<center>
+
+![Pie vs Bar](figs/pie-vs-bar.png){width="80%"}
+
+</center>
+
+## What?!
+
+<center>
+
+<img src="figs/steve-jobs-pie.jpg" width="950px"/>
+
+[About Pie Charts](https://stats.stackexchange.com/questions/8974/problems-with-pie-charts){target="_blank"}
+
+</center>
+
+## Oof
+
+<center>
+
+![Chart Fail](figs/chart-fail.png){width="50%"}
+
+</center>
+
+# Less Is More {background-color="#cfb991"}
+
+## Eliminating Noise
+
+<br>
+
+- The more information in your visualization, the greater the cognitive load. 
+
+- **Your objective** must be to reduce your audience cognitive costs.
+
+<br>
+
+:::{.fragment}
+
+**Data-Ink Ratio Formula**
+
+$$
+\text{Data-Ink Ratio} = \frac{\text{Data-Ink}}{\text{Total ink used to print the graphic}}
+$$
+
+:::
+
+## Data-Ink Ratio
+
+<br>
+
+**Your objective** must be to reduce your audience cognitive costs.
+
+<br>
+
+<center>
+
+![Data-Ink](figs/data-ink.png){width="70%"}
+
+</center>
+
+## Step-by-Step Cleanup
+
+<br>
+
+<center>
+
+![Cleanup 1](figs/limpeza-1.png)
+
+</center>
+
+## Eliminating the Border
+
+<br>
+
+<center>
+
+![Cleanup 2](figs/limpeza-2.png)
+
+</center>
+
+## Cleaning the Grids
+
+<br>
+
+<center>
+
+![Cleanup 3](figs/limpeza-3.png)
+
+</center>
+
+## Removing the Points
+
+<br>
+
+<center>
+
+![Cleanup 4](figs/limpeza-4.png)
+
+</center>
+
+## Processing the Axes
+
+<br>
+
+<center>
+
+![Cleanup 5](figs/limpeza-5.png)
+
+</center>
+
+## Adjusting the Label
+
+<br>
+
+<center>
+
+![Cleanup 6](figs/limpeza-6.png)
+
+</center>
+
+## Adjusting Colors
+
+<center>
+
+![Cleanup 7](figs/limpeza-7.png)
+
+</center>
+
+## Before and After
+
+<br>
+
+<center>
+
+![Before and After](figs/limpeza-8.png){width="100%"}
+
+</center>
+
+# Hierarchy Among Data {background-color="#cfb991"}
+
+## Count the Number 3s
+
+<center>
+
+![Hierarchy 1](figs/hierarquia-1.PNG){width="60%"}
+
+</center>
+
+## Count the Number 3s
+
+<center>
+
+![Hierarchy 2](figs/hierarquia-2.PNG){width="60%"}
+
+</center>
+
+## Ways to Draw Attention
+
+<center>
+
+![Hierarchy 3](figs/hierarquia-3.PNG){width="70%"}
+
+</center>
+
+## Highlighting with Colors
+
+<center>
+
+![Hierarchy Colors](figs/h-cores.PNG)
+
+</center>
+
+## Returning to Our Example
+
+<center>
+
+![Cleanup 9](figs/limpeza-9.png)
+
+</center>
+
+## Returning to Our Example
+
+<center>
+
+![Cleanup 10](figs/limpeza-10.png)
+
+</center>
+
+## Use Colors Strategically
+
+<center>
+
+![Colors](figs/cores.png)
+
+</center>
+
+# Not All Data Are Equally Important {background-color="#cfb991"}
+
+## Emphasizing the Main Point
+
+<center>
+
+![Emphasis 1](figs/enfase.png)
+
+</center>
+
+## Emphasizing the Main Point
+
+:::: {.columns}
+::: {.column width="50%"}
+
+<center>
+
+![Emphasis 2](figs/enfase-2.png){width="90%"}
+
+</center>
+
+
+:::
+
+::: {.column width="50%"}
+
+:::{.fragment}
+
+<center>
+
+![Emphasis 3](figs/enfase-3.png){width="90%"}
+
+</center>
+
+:::
+
+:::
+::::
+
+
+# Telling Your Story {background-color="#cfb991"}
+
+## Bringing It All Together
+
+Let's tell a story starting from the chart below, making step-by-step adaptations we've discussed. What is it telling you?
+
+<center>
+
+![Final 1](figs/final-1.png){width="50%"}
+
+</center>
+
+## Bringing It All Together
+
+<center>
+
+![Final 2](figs/final-2.png)
+
+</center>
+
+## Bringing It All Together
+
+<center>
+
+![Final 3](figs/final-3.png)
+
+</center>
+
+## Bringing It All Together
+
+<center>
+
+![Final 4](figs/final-4.png)
+
+</center>
+
+## Bringing It All Together
+
+<center>
+
+![Final 5](figs/final-5.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 1](figs/hist-1.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 2](figs/hist-2.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 3](figs/hist-3.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 4](figs/hist-4.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 5](figs/hist-5.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 6](figs/hist-6.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 7](figs/hist-7.png)
+
+</center>
+
+## Final Narrative
+
+<center>
+
+![Story 8](figs/hist-8.png)
+
+</center>
+
+## Before and After
+
+<center>
+
+![Story 9](figs/hist-9.png)
+
+</center>
+
+# Application: COVID-19 Evolution {background-color="#cfb991"}
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+# remotes::install_github("kjhealy/covdata")
+# library(covdata)
+library(tidyverse)
+library(ggrepel)
+#library(Cairo)
+library(slider)
+library(ggforce)
+library(here)
+
+covnat <- read_csv(here("lecture_slides/15_lesson_m3dm/data","covdata.csv"))
+load(here("lecture_slides/15_lesson_m3dm/data","nytexcess.rda"))
+```
+
+## [COVID-19 Evolution](https://kjhealy.github.io/covdata/)
+
+```{r echo=FALSE, message=FALSE,  warning=FALSE, fig.align='center'}
+## Not In function
+"%nin%" <- function(x, y) {
+  return(!(x %in% y))
+}
+
+focus_cn <- c("CHN", "DEU", "GBR", "USA", "IRN", "JPN",
+              "KOR", "ITA", "FRA", "ESP", "CHE", "TUR")
+
+cgroup_cols <- c("#195F90FF", "#D76500FF", "#238023FF", "#AB1F20FF", "#7747A3FF", 
+                 "#70453CFF", "#D73EA8FF", "#666666FF", "#96971BFF", "#1298A6FF", "#6F9BD6FF", 
+                 "#FF952DFF", "gray70")
+
+covnat %>%
+  filter(cu_cases > 99) %>%
+  mutate(days_elapsed = date - min(date),
+         end_label = ifelse(date == max(date), cname, NA),
+         end_label = recode(end_label, `United States` = "USA",
+                            `Iran, Islamic Republic of` = "Iran",
+                            `Korea, Republic of` = "South Korea",
+                            `United Kingdom` = "UK"),
+         cname = recode(cname, `United States` = "USA",
+                        `Iran, Islamic Republic of` = "Iran",
+                        `Korea, Republic of` = "South Korea",
+                        `United Kingdom` = "UK"),
+         end_label = case_when(iso3 %in% focus_cn ~ end_label,
+                               TRUE ~ NA_character_), 
+         cgroup = case_when(iso3 %in% focus_cn ~ iso3, 
+                            TRUE ~ "ZZOTHER")) %>%
+  ggplot(mapping = aes(x = days_elapsed, y = cu_cases, 
+                       color = cgroup, label = end_label, 
+                       group = cname)) + 
+  geom_line(size = 0.5) + 
+  geom_text_repel(nudge_x = 0.75,
+                  segment.color = NA) + 
+  guides(color = FALSE) + 
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_continuous(labels = scales::comma_format(accuracy = 1), 
+                     breaks = 2^seq(4, 20, 1),
+                     trans = "log2") + 
+  labs(x = "Days Since 100th Confirmed Case", 
+       y = "Cumulative Number of Reported Cases (log2 scale)", 
+       title = "Cumulative Reported Cases of COVID-19, Selected Countries", 
+       subtitle = paste("ECDC data as of", format(max(covnat$date), "%A, %B %e, %Y")), 
+       caption = "Kieran Healy @kjhealy / Data: https://www.ecdc.europa.eu/") +
+  theme_minimal()
+```
+
+## Moving Average
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+covnat %>%
+  mutate(cname = recode(cname, `United States` = "USA",
+                        `Iran, Islamic Republic of` = "Iran",
+                        `Korea, Republic of` = "South Korea",
+                        `United Kingdom` = "UK"),
+         cgroup = case_when(iso3 %in% focus_cn ~ iso3, 
+                            TRUE ~ "ZZOTHER")) %>%
+  mutate(cases7 = slider::slide_dbl((deaths/pop)*1e6, mean, .before = 7, .after = 0, na.rm = TRUE),
+         deaths7 = slider::slide_dbl((deaths/pop)*1e6, mean, .before = 7, .after = 0, na.rm = TRUE)) %>%
+  filter(iso3 %in% focus_cn) %>%
+  ggplot(mapping = aes(x = date, y = deaths7)) + 
+  geom_line(size = 0.5) + 
+  facet_wrap(~ cname) +
+  labs(x = "Date", 
+       y = "Deaths per Million Population (Seven-Day Rolling Average)", 
+       title = "Deaths from COVID-19, Selected Countries", 
+       subtitle = paste("ECDC data as of", format(max(covnat$date), "%A, %B %e, %Y")), 
+       caption = "Kieran Healy @kjhealy / Data: https://www.ecdc.europa.eu/") +
+  theme_minimal()
+```
+
+## Deaths in New York
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+nytexcess %>%
+  filter(placename == "New York City") %>%
+  group_by(year, week) %>%
+  mutate(yr_ind = year %in% 2020) %>%
+  ggplot(aes(x = week, y = deaths, color = yr_ind, group = year)) + 
+  geom_line(size = 0.9) + 
+  scale_color_manual(values = c("gray70", "red"), labels = c("2017-2019", "2020")) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(x = "Week of the Year", 
+       y = "Total Deaths", 
+       color = "Year",
+       title = "Weekly Recorded Deaths in New York City, 2017-2020") + 
+  theme_minimal() + 
+  theme(legend.position = "top")
+```
+
+## Additional Material
+
+-   [Flowing Data](https://flowingdata.com/)
+-   [Information is Beautiful](https://informationisbeautiful.net/blog/)
+-   [The Functional Art](http://www.thefunctionalart.com/)
+-   [COVID in the Financial Times](https://www.ft.com/content/a2901ce8-5eb7-4633-b89c-cbdf5b386938)
+
+# Dashboards  {background-color="#cfb991"}
+
+## Dashboards
+
+<center>
+
+![Flexdashboard](figs/flexdashboard_logo.png){width="250"}
+
+</center>
+
+The goal of [`flexdashboard`](https://pkgs.rstudio.com/flexdashboard/index.html) is to facilitate the creation of interactive dashboards with `R Markdown`.
+
+## Flexdashboard: Features
+
+-   Support for a wide variety of components, including `htmlwidgets`; base graphics, structure, and grid; tabular data; gauges and value boxes; and text annotations.
+
+-   Flexible and easy to specify layouts based on rows and columns. Components are intelligently resized to fill the browser and adapted for mobile display.
+
+-   Storyboard layouts to present sequences of visualizations and related commentary.
+
+## Flexdashboard: Installation and Use
+
+After installing the package, to create a `flexdashboard` simply open a new `R Markdown` document with the output format `flexdashboard::flex_dashboard`. You can do this from within RStudio using: `File > New File > R Markdown...`:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, eval = FALSE}
+install.packages("flexdashboard")
+```
+
+<center>
+
+```{r  echo=FALSE, out.width = "40%",fig.align="center"}
+knitr::include_graphics("figs/flexdashboard_template.png") 
+```
+
+
+</center>
+
+## Flexdashboard: Layout
+
+:::: {.columns}
+::: {.column width="60%"}
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/flexdashboard_layout_01.png") 
+```
+
+
+:::
+::: {.column width="40%"}
+
+<br>
+
+- Dashboards are divided into columns and rows, with output components delineated using level 3 `markdown` headers (`###`). 
+
+- By default, dashboards are laid out in a single column, with charts stacked vertically and sized to fill the available height of the browser.
+
+:::
+::::
+
+## Flexdashboard: Layout
+
+:::: {.columns}
+::: {.column width="60%"}
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/flexdashboard_layout_02.png") 
+```
+
+
+:::
+::: {.column width="40%"}
+
+<br>
+
+- Depending on the nature of your dashboard (number of components, ideal component height, etc.), you might prefer a scrolling layout where components occupy their natural height and the browser scrolls when additional vertical space is needed. 
+
+- You can specify this attribute via the `vertical_layout: scroll` option.
+
+:::
+::::
+
+
+## Flexdashboard: Layout
+
+
+:::: {.columns}
+::: {.column width="60%"}
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/flexdashboard_layout_03.png") 
+```
+
+
+:::
+::: {.column width="40%"}
+
+<br>
+
+- You can also choose to orient the dashboards by row instead of by column by specifying `orientation: rows`.
+
+:::
+::::
+
+## Flexdashboard: Storyboard
+
+
+:::: {.columns}
+::: {.column width="60%"}
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/storyboard_template.png") 
+```
+
+
+:::
+::: {.column width="40%"}
+
+<br>
+
+- Storyboards are an alternative to the row and column-based layout schemes. 
+
+- They are suitable for presenting a sequence of data visualizations and related commentary. 
+
+- To create a storyboard layout, add `storyboard: true` to the dashboard's preamble. This option includes a set of level 3 dashboard components (`###`). Each component will receive its own frame in the storyboard, with the section title used as a navigation caption.
+
+:::
+::::
+
+## Dashboard: Additional Material
+
+-   [Flexdashboard Sample Layouts](https://pkgs.rstudio.com/flexdashboard/articles/layouts.html)
+
+-   [Flexdashboard Examples](https://pkgs.rstudio.com/flexdashboard/articles/examples.html)
+
+-   [Using Flexdashboard](https://pkgs.rstudio.com/flexdashboard/articles/using.html)
+
+-   [Interactive Web-Based Data Visualization with R](https://plotly-r.com/)
+
+-   [Quarto Dashboards](https://quarto.org/docs/dashboards/)
+
+-   [Shiny Dashboards](https://shiny.rstudio.com/gallery/)
+
+# Summary {background-color="#cfb991"}
+
+## Summary
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+
+Main Takeaways from this lecture:
+
+- **Data Communication Principles**:
+
+    - Context matters: Tailor your analysis to the audience and goal.
+    - Focus on the story: Highlight insights, not the process.
+    - Beauty and clarity: Simplify visuals, use appropriate colors, and remove unnecessary elements.
+
+- **Visualization Best Practices**:
+
+    - Use graphs instead of tables where possible.
+    - Avoid misleading scales and excessive dimensions.
+    - Prioritize hierarchy and emphasize key data points.
+
+- **Effective Dashboards**:
+  
+    - Utilize tools like `flexdashboard` to create interactive layouts.
+    - Structure information logically, adapting to mobile and web use.
+    - Storyboard layouts help narrate data insights step-by-step.
+
+- **Final Message**:
+
+    - Less is more. Reduce complexity to communicate data effectively.
+    - Always keep your audience's decision-making needs at the forefront.
+
+:::
+::::
+
+# Thank you! {background-color="#cfb991"}

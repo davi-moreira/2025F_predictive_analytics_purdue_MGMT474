@@ -1,0 +1,888 @@
+---
+title: "<span style = 'font-size: 100%;'> MGMT 47400: Predictive Analytics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Support Vector Machines </span>"
+author: "Professor: Davi Moreira"
+# date: "2024-08-01"
+date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Predictive Analytics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Support Vector Classifier
+-   SVM with Nonlinear Boundary
+-   Nonlinearities and Kernels
+
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+-   SVMs: More Than 2 Classes
+-   Support Vector versus Logistic Regression
+:::
+:::::
+::::::
+
+<br>
+
+::: aside
+*This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
+:::
+
+
+# Support Vector Machines {background-color="#cfb991"}
+
+## Support Vector Machines
+
+Here we approach the two-class classification problem in a direct way:
+
+- *We try and find a plane that separates the classes in feature space.*
+
+- If we cannot, we get creative in two ways:
+
+    -   We soften what we mean by "separates", and
+    
+    -   We enrich and enlarge the feature space so that separation is possible.
+
+## What is a Hyperplane?
+
+A hyperplane in $p$ dimensions is a flat affine subspace of dimension $p - 1$.
+
+In general, the equation for a hyperplane has the form
+
+$$
+  \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p = 0
+$$
+
+-   In $p = 2$ dimensions, a hyperplane is a line.
+
+-   If $\beta_0 = 0$, the hyperplane goes through the origin; otherwise, it does not.
+
+-   The vector $\beta = (\beta_1, \beta_2, \dots, \beta_p)$ is called the normal vector — it points in a direction orthogonal to the surface of the hyperplane.
+
+## Hyperplane in 2 Dimensions
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_1_1-1.png") 
+```
+
+## Hyperplane in 2 Dimensions: Details
+
+:::::::: {style="font-size: 50%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+```{r  echo=FALSE, out.width = "55%", fig.align="center"}
+knitr::include_graphics("figs/9_1_1-1.png") 
+```
+
+The figure demonstrates how hyperplanes separate data in classification or regression contexts: each point’s location relative to the hyperplane is captured by the *signed distance*.
+
+1. **Hyperplane in 2D (Blue Line)**  
+   - In two dimensions, a *hyperplane* is simply a straight line.  
+   - The blue line in the figure is defined by the equation  
+$$
+     \beta_1 x_1 + \beta_2 x_2 - 6 = 0.
+$$  
+   
+   - All points $(x_1, x_2)$ satisfying this equation lie *exactly* on the hyperplane.
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+
+2. **[Normal Vector](https://en.wikipedia.org/wiki/Normal_(geometry)) (Red Arrow)**  
+   - The red arrow represents the **normal vector** $\beta = (\beta_1, \beta_2)$.  
+   - This vector is **orthogonal** (perpendicular) to the hyperplane, meaning it points in the direction that is shortest from the line to any point off the line.
+   - The values **$\beta_1 = 0.8$** and **$\beta_2 = 0.6$** are displayed in the bottom right corner.  
+   - Since the sum of their squares equals one ($0.8^2 + 0.6^2 = 1$), this vector is a **unit vector**.
+
+3. **Role of the Normal Vector in Classification**
+- The normal vector determines:
+    - **The orientation of the hyperplane** (i.e., which way it is "tilted" in space).
+    - **Which side of the hyperplane a point belongs to**.
+    - **The shortest distance of a point from the hyperplane**.
+
+  - If we substitute a point $X = (X_1, X_2, ..., X_p)$ into the hyperplane equation:
+$$
+     f(X) = \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p - 6
+$$
+
+- If **$f(X) > 0$** → The point is on **one side** of the hyperplane.
+- If **$f(X) < 0$** → The point is on the **opposite side**.
+- If **$f(X) = 0$** → The point **lies on the hyperplane**.
+
+4. **Illustrated Examples**  
+   - One point is **1.6**, meaning it is 1.6 units away from the hyperplane *in the direction of* the normal vector.  
+   - Another point is **-4**, indicating it is 4 units away on the *opposite* side of the hyperplane.  
+   - Points *on* the blue line always have a function value of **0** because they satisfy $\beta_1 x_1 + \beta_2 x_2 - 6 = 0$.
+
+5. **Key Insight**  
+<!---   
+- Because $\beta$ is chosen as a unit vector, the value $\beta_1 x_1 + \beta_2 x_2 - 6$ can be directly interpreted as the *Euclidean distance* (with sign) from any point to the hyperplane.  
+--->
+
+   - In higher dimensions, the same idea generalizes: a hyperplane is a $(p-1)$-dimensional flat surface in $p$-dimensional space, and its normal vector determines both orientation and distance computations.
+
+
+::::::::
+::::::: 
+::::: 
+
+
+<!---
+let's have a look at the picture and see what we mean by that so in this picture the blue the blue line is the hyperplane we've got some points in the picture and we've got there's the origin over here and we've got this red line which is the normal to the hyperplane so it's orthogonal to the surface of the hyperplane and the way you understand what's going on is as follows for any given point so for example take this point over here we can project it onto the normal so here you see the orthogonal projection little right angle showing that we projecting orthogonal fungally onto this normal over here right and so we get the distance from the origin where this point projects well in this case that the value that you get is 1.6 well that's actually the value of the function yeah for the points beyond the hyperplane the value of the function should end up to be zero so which points are going to project onto this normal and have a value zero well they're going to be all points on the hyperplane because you can see there's a right angle there too so if we project this point it's going to project over over here if we project this point it's going to project over here and the value of the function is 0 over here so all these points end up having the function value zero and so they on the hyperplane these points on the other hand don't in this example the direction the beta1 and beta2 are given by 0.8 and 0.6 in the bottom corner here those are the two values for beta1 and beta2 that that define this this normal well if you check you'll see that the sum of squares of beta1 and beta2 adds up to one that means that this beta is a unit vector and so the direction vector is a unit vector and when that's the case there's something special happens and that is that when you evaluate the function the value that get you get is actually the distance the euclidean distance of the point from the hyperplane now that's not too hard to prove but we won't do that here but for those of you who for those of you who can do a little bit of calculus and no bit of geometry see if you can try and show that it's not that hard so this point is 1.6 units from the hyperplane this point over here is -4 units from the hyperplane so there's a sign in the in the distance it's one side of the hyperplane that's going to be negative the other side positive all points on this side would end up having a positive distance or points on this side a negative distance and of course all the points on the hyper plane are a distance zero so that's a little tutorial on hyper planes
+--->
+
+## Separating Hyperplanes
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_2-1.png") 
+```
+
+-   If $f(X) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$, then $f(X) > 0$ for points on one side of the hyperplane, and $f(X) < 0$ for points on the other.
+
+-   If we code the colored points as $Y_i = +1$ for blue and $Y_i = -1$ for purple, then if $Y_i \cdot f(X_i) >0$ for all $i$, $f(X) = 0$ defines a separating hyperplane.
+
+## Separating Hyperplanes: Details
+
+
+:::::::: {style="font-size: 50%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_2-1.png") 
+```
+
+- **Left Plot:**  
+ - The dataset contains **two classes** (blue and mauve points).
+ - Multiple **candidate hyperplanes** are shown as black lines.
+ - These hyperplanes attempt to separate the two classes, but not all do so **optimally**.
+
+- **Right Plot:**  
+ - A **single separating hyperplane** is shown.
+ - The background is shaded to indicate **decision regions**:
+   - The **blue-shaded region** contains points classified as blue.
+   - The **mauve-shaded region** contains points classified as mauve.
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+1. A **general equation of a hyperplane** in a $p$-dimensional space:
+$$
+     f(X) = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
+$$
+
+   - This function $f(X)$ determines **which side of the hyperplane** a data point falls on:
+     - If **$f(X) > 0$** → The point lies on one side of the hyperplane.
+     - If **$f(X) < 0$** → The point lies on the other side.
+     - If **$f(X) = 0$** → The point lies **exactly on the hyperplane**.
+
+3. **Defining a Separating Hyperplane in Classification**
+   - In **SVM classification**, each data point $X_i$ has a corresponding label $Y_i$, where:
+     - $Y_i = +1$ for one class (blue).
+     - $Y_i = -1$ for the other class (mauve).
+
+   - A **perfectly separating hyperplane** must satisfy the condition:
+$$
+     Y_i \cdot f(X_i) > 0 \quad \text{for all } i
+$$
+
+   - This means:
+     - If $Y_i = +1$, then $f(X_i)$ must be **positive** (point is on the correct side).
+     - If $Y_i = -1$, then $f(X_i)$ must be **negative** (point is on the correct side).
+     - If this condition holds for **all points**, then the hyperplane **separates** the two classes.
+
+<!---
+### **How This Relates to SVM**
+- **SVM aims to find the **optimal** separating hyperplane**:  
+  - Unlike arbitrary separating hyperplanes (left plot), SVM finds the one that **maximizes the margin** (the distance between the hyperplane and the closest points from each class).
+  
+- **Margin and Support Vectors**:  
+  - In SVM, only a few critical data points (called **support vectors**) determine the optimal hyperplane.
+  - These **support vectors** lie **on the margin boundaries**.
+
+- **Hard vs. Soft Margin Classification**:  
+  - If data is **perfectly separable**, SVM finds a hyperplane where no points violate the separation rule.
+  - If data **overlaps**, SVM introduces a **soft margin**, allowing some misclassification while still maximizing the margin.
+
+---
+
+### **Conclusion**
+This slide introduces the **concept of separating hyperplanes** in classification. In **SVM**, the goal is to find the **best possible hyperplane** that **maximizes the margin** between classes while ensuring that points are correctly classified. The right plot suggests a hyperplane that successfully separates the two classes, similar to what SVM aims to achieve. 
+
+Would you like a step-by-step demonstration of how SVM finds the optimal hyperplane? 🚀
+--->
+
+:::::::: 
+::::::: 
+::::: 
+
+
+<!---
+planes so with that in place we can now talk of separating hyper planes so in these two pictures what we show a set of points some are colored blue some have covered a pinky mauve color okay and we've got three lines in in this picture over here and you'll notice that each of these three lines separates the blues from the purples from the moves this one does because there's all blue points on one side all purple points on this side so does this one and so does the other one so all three of them separate the two classes so in terms of making a classifier in principle all three of those would do if we pick one of them we can say well that's going to define the classifier it separates the two classes anything to this side we classify as blue anything to this side will classify as purple from what we've seen before we know that on one side of the hyperplane the function is going to be positive and on the other side it's going to be negative okay so what we can do is code the colored points and those that are blue say we make them one and those that are move we make them minus one and then we can we can say that if the y that we've made y is plus or minus 1 times the value of the function is positive then we classify each of the points perfectly because they're on the right side of the hyperplane and the the function itself evaluated as zero is called the separate in hyperplane so so that helps us define what we mean by separating hyperplane if this product is always positive where we've coded the points as plus one and minus one
+--->
+
+## Maximal Margin Classifier
+
+**The idea is**: Among all separating hyperplanes, find the one that makes the biggest gap or margin between the two classes.
+
+:::::::: {style="font-size: 70%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_3-1.png") 
+```
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+**Constrained optimization problem:**
+
+$$
+\text{maximize } M \quad \beta_0, \beta_1, \dots, \beta_p
+$$
+
+subject to:
+
+$$
+\sum_{j=1}^p \beta_j^2 = 1,
+$$ 
+
+$$
+y_i (\beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip}) \geq M \quad \text{for all } i = 1, \dots, N.
+$$
+
+Thus, we determine the hyperplane parameters that yield the **largest possible margin $m$** while ensuring that every data point lies at least $m$ units away from the hyperplane. This guarantees a **maximum separation** between the two classes, leading to a robust classification model.
+
+<!---
+This can be rephrased as a convex quadratic program and solved efficiently. The function `svm()` in the **e1071** package solves this problem efficiently.
+
+We aim to find the **optimal hyperplane** that maximizes the **minimum distance** between the hyperplane and the closest data points from each class. Specifically, we seek a hyperplane where the distances of all points to the decision boundary are **at least** some margin $m$, and our objective is to **maximize** this margin. 
+
+--->
+
+::::::::
+::::::: 
+::::: 
+
+## Non-separable Data
+
+```{r  echo=FALSE, out.width = "45%", fig.align="center"}
+knitr::include_graphics("figs/9_4-1.png") 
+```
+
+The data are not separable by a linear boundary. This is often the case, unless $N < p$.
+
+<br>
+
+## Noisy Data
+
+```{r  echo=FALSE, out.width = "55%", fig.align="center"}
+knitr::include_graphics("figs/9_5-1.png") 
+```
+
+Sometimes the data are separable, but noisy. In the right plot we add only one new data point in it results in a big change in the hyperplane that separates the two classes. This can lead to a poor solution for the maximal-margin classifier.
+
+- The **support vector classifier** maximizes a *soft margin* and is a good option to deal both with non-separable and noisy data.
+
+<br>
+<br>
+
+# Support Vector Classifier {background-color="#cfb991"}
+
+## Support Vector Classifier - Ilustration
+
+```{r  echo=FALSE, out.width = "45%", fig.align="center"}
+knitr::include_graphics("figs/9_6-1.png") 
+```
+
+:::::::: {style="font-size: 60%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+- **Left Plot: Data is Separable, but Soft Margin is Used**
+- Instead of using the **narrowest possible margin**, a **wider margin** has been enforced.
+  - Some points end up **on the wrong side** of their margin.
+  - Specifically, **point 8 (blue) and another pink point** violate their respective margin constraints.
+- This illustrates the **trade-off** of using a **soft margin**: a **wider margin** often improves **generalization** but allows for some **classification errors**.
+  - The margin is **determined by more than just the closest support vectors**, incorporating the influence of points slightly beyond the margin.
+
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+- **Right Plot: Data is Not Linearly Separable**
+- A soft-margin classifier is essential, as we **must** allow some misclassification.
+  - Some **blue points** are **inside the margin** or even **misclassified** (wrong side of the decision boundary).
+  - Some **pink points** also violate the margin.
+- The **soft margin formulation** enables **a balance between margin width and classification accuracy**, allowing the model to find a reasonable decision boundary even when perfect separation is not possible.
+
+:::::::: 
+::::::: 
+::::: 
+
+
+<!---
+
+we've got two pictures here both of them have soft margins 
+Left plot: in the left picture the data actually are separable but we've made the margin wider than we need to and so we've got two points on the wrong side of their margins amongst the blue guys this point here number eight is on the wrong side of the margin this one right and amongst the the pink guys this guy is on the wrong side of the margin but by getting the the margin wider we've had to put up with those two those two so-called errors and so we call this a soft margin and the idea is that making the soft margin wider or smaller is a is a way of of kind of regularizing because once you allow some points to be on the wrong side of the margin the margin gets determined by more than just the closest points 
+Right plot: the right plot it's essential to have a soft margin because we cannot get a separate in hyperplane and so here we have a candidate hyper plane with its margins and we see that there's several points on the wrong side we've got a blue point on the wrong side of its margin over here we've got a blue point on the wrong side of the decision boundary and on the wrong side of the margin likewise there's a move point on the wrong side of of the decision boundary also wrong side of the margin 
+so these are called soft margins and we need to modify the the formulation of the problem to accommodate it
+Formula: so the part of the problem is the same we're going to maximize n subject to the beta's summing squares 1 so that's a unit vector now we want all the points the distance of all the points be bigger than m but discounted by a discount factor 1 minus epsilon i so we allow some slack some points needn't be exactly bigger than the margin but there can be some slack and how do we account for all the slack we give ourselves a budget we give ourselves a budget for the total amount of slack which in this case is c so the epsilons tell us how much each point is allowed to be on the wrong side of its margin it's a relative amount relative to the margin and we give ourselves a number c a total amount of overlap and then subject to that we're going to make the margin as wide as possible to get on either side of the margin 
+
+okay again convex optimization problem we can solve using the svm package in r c is now tuning parameter and as we change c the soft margin is going to get wider or smaller 
+
+--->
+
+## Support Vector Classifier - Ilustration Details
+
+:::::::: {style="font-size: 65%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+- **Mathematical Formulation of the Soft-Margin SVM**
+$$
+\max_{β_0, β_1, ..., β_p, \epsilon_1, ..., \epsilon_n} M
+$$
+
+- **Subject to the 3 constraints:**
+1. **Normalization Constraint**:  
+$$
+   \sum_{j=1}^{p} \beta_j^2 = 1
+$$
+   - Ensures that the normal vector **$\beta$** is a **unit vector**, standardizing the optimization process.
+
+2. **Margin Constraint with Slack Variables**:  
+$$
+   y_i (\beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip}) \geq M(1 - \epsilon_i)
+$$
+   - Normally, we require that each point lies **at least $M$ units away from the hyperplane**.
+   - However, the **slack variables** $\epsilon_i$ allow some flexibility:
+     - If $\epsilon_i = 0$, the point is correctly classified **outside the margin**.
+     - If $0 < \epsilon_i < 1$, the point is **inside the margin** but still on the correct side.
+     - If $\epsilon_i \geq 1$, the point is **misclassified**.
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+3. **Total Slack Budget Constraint**:  
+$$
+   \sum_{i=1}^{n} \epsilon_i \leq C, \quad \epsilon_i \geq 0
+$$
+   - The parameter $C$ **controls the total amount of slack** allowed in the model:
+     - **Large $C$** → Less tolerance for margin violations (closer to hard-margin SVM).
+     - **Small $C$** → More tolerance for misclassification and margin violations.
+
+- **Intuition Behind Soft Margins:**
+  - In a **hard-margin SVM**, **no points are allowed inside the margin**.
+  - In **soft-margin SVM**, we introduce **slack variables** $\epsilon_i$ to allow **some violations** of the margin.
+  - This provides a **regularization effect**:
+    - Prevents **overfitting** in cases where a perfect separation exists but may be too rigid.
+    - Allows classification in **non-linearly separable** cases by **balancing misclassification and margin width**.
+
+:::::::: 
+::::::: 
+::::: 
+
+## $C$ is a Regularization Parameter - Ilustration
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_7-1.png") 
+```
+
+
+<!---
+so as i said it's a regularization parameter and so here we've got four scenarios where we've changed c here's (top left) the bigger c and in fact it's the biggest a possible c that that's needed because now all points on the wrong side of the margin okay and and so there's an epsilon for every single point um so these epsilons you can think of as let's do it in this picture over here you can draw arrows which which tells you the distance of each point from the margin okay so there's one for this guy and the length of these is proportional to to to the epsilons and likewise for these guys okay and as we tighten c the margin gets tighter because we're allowing less and less overlap and so that becomes a tuning parameter we'll see a little bit later that in effect the number of points that are on the wrong side of the margin in other side with all the points inside the margin or on the wrong side of the margin become the effective points that are controlling the orientation of the margin so in some sense the more points that are involved in the orientation of the margin the more stable it becomes and that means as c gets bigger the more stable the margin becomes and so there's going to be a kind of a bias variance trade-off as we change c so it's really sorry regular organization permit 
+
+rob well it's not a question actually yeah thinking i mean we're taking the euclidean distance and all these pictures is does it matter if i standardize the variables first should i standardize the variables first oh that's a good point yes you know i think i think you you're right rob um the the sport vector machine treats all the variables as equals in a way and so the units count so good point the variable should be standardized if you remember when we did the lasso and ridge regression we said that was important there too well the same for the same reasons it's important here well so we've come up with a compromise when when the points overlap but in some cases no matter how much we try that compromise isn't going to help and so here's a there's a fake situation but it's a
+--->
+
+## $C$ is a Regularization Parameter - Ilustration Details
+
+:::::::: {style="font-size: 60%;"}
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+The four plots illustrate different values of $C$, showing the trade-off between margin width and classification flexibility.
+
+- **Top-Left Plot (Largest $C$)**  
+  - Here, $C$ is **very large**, meaning the model **strongly penalizes misclassified points**.
+  - As a result, the decision boundary is **rigid**, and **only a few points violate the margin**.
+  - Many points are **on the wrong side of their respective margins**, but the model still prioritizes keeping the margin as wide as possible while satisfying the constraint.
+
+- **Top-Right & Bottom-Left Plots (Intermediate $C$)**  
+  - As $C$ is **decreased**, the model **allows more margin violations** (misclassified or within-margin points).
+  - The **margin becomes tighter** because the optimization prioritizes **correcting misclassified points** rather than maximizing margin width.
+  - More points now **contribute to determining the decision boundary**, leading to **increased stability**.
+
+- **Bottom-Right Plot (Smallest $C$)**  
+  - With **a small $C$**, the model **tolerates many margin violations** and allows points to be misclassified.
+  - The decision boundary **adjusts** to **reduce the number of misclassified points**, even at the cost of a **narrower margin**.
+  - This results in a **more flexible model** that is less sensitive to small variations in data.
+
+::::: 
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+
+- **The Bias-Variance Trade-off in SVM**
+- **Large $C$ (Less Regularization, Harder Margin) → Low Bias, High Variance**
+  - Fewer margin violations → **Less flexibility**, but possibly **overfitting**.
+  - Model depends on a **few critical support vectors**, making it more sensitive to small changes in data.
+- **Small $C$ (More Regularization, Softer Margin) → High Bias, Low Variance**
+  - More margin violations → **More flexibility**, but possibly **underfitting**.
+  - Many points influence the decision boundary, leading to **a more stable model**.
+
+- **Standardizing Variables is Important in SVM**
+- **SVM treats all variables equally**, meaning **features with different scales** can disproportionately influence the margin.
+- **Standardizing** (e.g., transforming variables to have **zero mean and unit variance**) ensures that:
+  - The **distance metric** (Euclidean distance) is **meaningful**.
+  - The **optimization process** does not favor one feature due to its larger magnitude.
+- This is the **same reason** why **standardization is important in Ridge and Lasso regression**.
+
+
+- **Conclusion**
+- $C$ **controls the trade-off between margin width and misclassification tolerance**.
+- A **higher $C$** enforces a **stricter margin** (less regularization) but may **overfit** the data.
+- A **lower $C$** allows **more misclassification** (more regularization) but may **generalize better**.
+- **Standardization is crucial** for SVM to ensure fair treatment of all variables.
+
+:::::::: 
+::::::: 
+::::: 
+
+
+# SVM with Nonlinear Boundary {background-color="#cfb991"}
+
+## Linear Boundary Can Fail
+
+Sometimes a linear boundary simply won’t work, no matter what value of $C$. What to do?
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_1_2-1.png") 
+```
+
+
+## Feature Expansion
+
+-   Enlarge the space of features by including transformations; e.g. $X_1^2, X_1^3, X_1X_2, X_1X_2^2, \dots$. Hence go from a $p$-dimensional space to a $M > p$-dimensional space (not the same $M$ as we used for margin).
+
+-   Fit a support-vector classifier in the enlarged space.
+
+-   This results in non-linear decision boundaries in the original space.
+
+- **Example:** Suppose we use $(X_1, X_2, X_1^2, X_2^2, X_1X_2)$ instead of just $(X_1, X_2)$. Then the decision boundary would be of the form:
+  $$
+  \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1^2 + \beta_4 X_2^2 + \beta_5 X_1X_2 = 0
+  $$
+  
+  - This leads to nonlinear decision boundaries in the original space (quadratic conic sections).
+
+## Cubic Polynomials
+
+Here we use a basis expansion of cubic polynomials. From 2 variables to 9:
+
+$$
+\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1^2 + \beta_4 X_2^2 + \beta_5 X_1 X_2 + \beta_6 X_1^3 + \beta_7 X_2^3 + \beta_8 X_1^2 X_2 + \beta_9 X_1 X_2^2 = 0
+$$
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_1_3-1.png") 
+```
+
+-   The support-vector classifier in the enlarged space solves the problem in the lower-dimensional space.
+
+# Nonlinearities and Kernels {background-color="#cfb991"}
+
+## Nonlinearities and Kernels
+
+-   Polynomials are not always the greatest choice (especially high-dimensional ones) as they get wild rather fast.
+
+-   There is a more elegant and controlled way to introduce nonlinearities in support-vector classifiers — through the use of **kernels**.
+
+-   Before we discuss these, we must understand the role of **inner products** in support-vector classifiers.
+
+
+## Inner Products
+
+:::::::: {style="font-size: 70%;"}
+
+The **inner product (dot product) between two vectors** $x_i$ and $x_i'$:
+
+$$
+\langle x_i, x_i' \rangle = \sum_{j=1}^{p} x_{ij} x_{i'j}
+$$
+
+where:
+
+- $x_i$ and $x_i'$ are two vectors in **$p$-dimensional space**.
+- The **summation** runs over all dimensions $j$ from **1 to $p$**.
+- Each term $x_{ij} x_{i'j}$ represents the product of corresponding components of the two vectors.
+
+- **Interpretation**: The **inner product (dot product)** measures the **similarity** between two vectors in a given space. It is computed by multiplying corresponding elements of the two vectors and summing up the results.
+
+- **If $x_i$ and $x_i'$ are aligned (pointing in the same direction)** → The inner product is **large and positive**.
+
+- **If $x_i$ and $x_i'$ are perpendicular (orthogonal)** → The inner product is **zero**.
+
+- **If $x_i$ and $x_i'$ point in opposite directions** → The inner product is **negative**.
+
+<!---
+## **Why is this Important?**
+
+  - In **Support Vector Machines (SVM)**, the inner product appears in the **decision function**, helping to classify points by computing distances and similarities.
+
+  - It is the foundation for **Kernel Methods**, where the dot product is replaced by **nonlinear transformations** to find complex decision boundaries.
+
+- **Linear Algebra**: The inner product is fundamental in **projections, vector decomposition, and orthogonality** in high-dimensional spaces.
+
+--->
+
+::::::::
+
+
+## Inner Products and Support Vectors
+
+:::::::: {style="font-size: 70%;"}
+
+
+The **decision function** of a **Linear SVC** is expressed as:
+
+$$
+f(x) = \beta_0 + \sum_{i=1}^{n} \alpha_i \langle x, x_i \rangle
+$$
+
+where:
+
+- $f(x)$ represents the classification function that determines whether a new point $x$ belongs to one class or another.
+- $\beta_0$ is the **intercept (bias term)**.
+- $\alpha_i$ are the **Lagrange multipliers**, which determine the influence of each training example on the decision boundary.
+- $x_i$: Training Data Points**: $x_i$ represents a **training example**, which is one of the points in the training dataset.
+  - Each $x_i$ is a **feature vector** in a $p$-dimensional space $x_i = (x_{i1}, x_{i2}, \dots, x_{ip})$
+
+- $x$: A New Input Example (Test Point)**: $x$ is a **new data point** (not necessarily in the training set) for which we want to make a prediction.
+  - Like $x_i$, it is also a **feature vector** in the same $p$-dimensional space $x = (x_1, x_2, \dots, x_p)$
+  - The classifier evaluates $f(x)$ to determine the class of $x$.
+  - The decision function $f(x)$ compares this new point to all training points $x_i$ using their **inner products**.
+
+- $\langle x, x_i \rangle$ represents the **inner product** (dot product) between the input vector $x$ and each training point $x_i$, which captures the similarity between them.
+- $n$ is the total number of training points.
+
+::::::::
+
+
+## Computational Efficiency: Using Inner Products
+
+
+Instead of directly computing **$\beta$ coefficients** for each feature, the SVC relies only on **pairwise inner products** between training points. This reduces the complexity of parameter estimation.
+
+- To estimate $\alpha_1, \dots, \alpha_n$ and $\beta_0$, we only need the **$\binom{n}{2}$ pairwise inner products** $\langle x_i, x_i \rangle$.
+
+- This simplifies the optimization problem, making it computationally feasible even for high-dimensional datasets.
+
+
+## The Role of Support Vectors
+
+:::::::: {style="font-size: 70%;"}
+
+- One of the key properties of **Support Vector Machines (SVMs)** is **sparsity** in the solution. 
+- **Most** of the $\hat{\alpha}_i$ values will be **zero**, because the **SVM optimization process ignores non-critical points**. 
+    - Only a **small subset of training points (the support vectors) have $\alpha_i > 0$** and influence the decision boundary. This **sparsity property** makes SVMs both **efficient and interpretable**.
+
+- Thus, the decision function simplifies to:
+$$
+f(x) = \beta_0 + \sum_{i \in S} \hat{\alpha}_i \langle x, x_i \rangle
+$$
+
+- where:
+  - $S$ is the **support set**, the set of indices **$i$** such that $\hat{\alpha}_i > 0$.
+  - These points, called **support vectors**, are the **only points** that determine the optimal hyperplane.
+
+- This means that **most training points do not influence the classifier**, making SVMs **computationally efficient** because only a small subset of training points (the support vectors) needs to be stored and used for classification.
+
+- **Why is This Important?**
+  - **Sparsity**: Since only **a few points contribute to the final decision boundary**, SVMs are efficient and **robust to noise**.
+  - **Computational Simplicity**: Instead of solving for $n$ parameters explicitly, we only compute the inner products for **support vectors**, making the method scalable to large datasets.
+  - **Extensibility to Nonlinear SVMs**: This formulation is the foundation for **Kernel SVMs**, where the inner product $\langle x, x_i \rangle$ is replaced by a **nonlinear kernel function** to allow **nonlinear decision boundaries**.
+
+::::::::
+
+<!---
+## Inner Products and Support Vectors
+
+:::: {style="font-size: 80%;"}
+
+The linear support vector classifier can be represented as:
+
+$$
+  f(x) = \beta_0 + \sum_{i=1}^n \alpha_i \langle x, x_i \rangle \quad \text{— $n$ parameters}
+$$
+
+- To estimate the parameters $\alpha_1, \dots, \alpha_n$ and $\beta_0$, all we need are the $\binom{n}{2}$ inner products $\langle x_i, x_{i'} \rangle$ between all pairs of training observations.
+
+- It turns out that most of the $\hat{\alpha}_i$ can be zero:
+$$
+f(x) = \beta_0 + \sum_{i \in S} \hat{\alpha}_i \langle x, x_i \rangle
+$$
+
+- $\mathbf{S}$ is the **support set** of indices $i$ such that $\hat{\alpha}_i > 0$. 
+
+::::
+
+--->
+
+## Kernels and Support Vector Machines
+
+-   If we can compute inner products between observations, we can fit a SV classifier. 
+
+-   Some special *kernel functions* can do this for us. E.g., $$
+    K(x_i, x_{i'}) = \left(1 + \sum_{j=1}^p x_{ij} x_{i'j}\right)^d
+    $$ computes the inner products needed for $d$-dimensional polynomials — $\binom{p+d}{d}$ basis functions!
+
+-   The solution has the form: $$
+    f(x) = \beta_0 + \sum_{i \in S} \hat{\alpha}_i K(x, x_i).
+    $$
+
+## Radial Kernel
+
+:::::::: {style="font-size: 75%;"}
+
+One of the most popular kernel!
+
+$$
+K(x_i, x_{i'}) = \exp\left(-\gamma \sum_{j=1}^p (x_{ij} - x_{i'j})^2 \right).
+$$
+
+where $\gamma$ is a tuning parameter.
+
+::::::: columns
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_1_4-1.png") 
+```
+
+:::::
+::::: {.column width="50%" style="justify-content: center; align-items: center;"}
+
+<br>
+
+$$
+f(x) = \beta_0 + \sum_{i \in S} \hat{\alpha}_i K(x, x_i).
+$$
+- The **solid black line** encloses a region classified as one class (pink points).
+
+- The **dashed lines** in the image represent **decision boundaries** created by the **Radial Basis Function (RBF) kernel** in a Support Vector Machine (SVM). These boundaries separate different regions of classification based on the nonlinear transformation performed by the **Radial Kernel**.
+
+-   Implicit feature space; very high dimensional.
+
+-   Controls variance by squashing down most dimensions severely.
+
+
+
+:::::::: 
+::::::: 
+::::: 
+
+# Example: Heart Data {background-color="#cfb991"}
+
+## Example: Heart Data
+
+:::::::: {style="font-size: 70%;"}
+
+Here we see ROC curves **on training data**.
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_10-1.png") 
+```
+
+- **Left**: We compare a Linear Suport Vector Machine with Linear Discriminant Analysis (LDA).
+- **Right**: We compare a Linear Suport Vector Machine with the SVM using a radial kernel with different values of $\gamma$.The larger $\gamma$ the more wiggly the decision boundary. 
+
+::::::::
+
+## Example: Heart Data
+
+Here we see ROC curves **on testing data**.
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_11-1.png") 
+```
+
+<br>
+
+<br>
+
+# SVMs: More Than 2 Classes {background-color="#cfb991"}
+
+## SVMs: More Than 2 Classes?
+
+The SVM as defined works for $K = 2$ classes. What do we do if we have $K > 2$ classes?
+
+- There are two famous options:
+
+    - **OVA** (*One versus All*): Fit $K$ different 2-class SVM classifiers $\hat{f}_k(x)$, $k = 1, \dots, K$; each class versus the rest. Classify $x^*$ to the class for which $\hat{f}_k(x^*)$ is largest.
+
+    - **OVO** (One versus One): Fit all $\binom{K}{2}$ pairwise classifiers $\hat{f}_{k\ell}(x)$. Classify $x^*$ to the class that wins the most pairwise competitions.
+
+- Which to choose? 
+    - If $K$ is not too large, use OVO.
+
+# Support Vector versus Logistic Regression {background-color="#cfb991"}
+
+## Support Vector versus Logistic Regression
+
+:::::::: {style="font-size: 80%;"}
+
+With $f(X) = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p$, we can rephrase support-vector classifier optimization as:
+
+$$
+\text{minimize}_{\beta_0, \beta_1, \dots, \beta_p} \left\{ \sum_{i=1}^n \max \big[ 0, 1 - y_i f(x_i) \big] + \lambda \sum_{j=1}^p \beta_j^2 \right\}
+$$
+
+where:
+
+- $f(X) = \beta_0 + \beta_1X_1 + \dots + \beta_pX_p$ represents the **linear decision function**.
+- $y_i$ is the class label ($+1$ or $-1$).
+- The term **$\max [0, 1 - y_i f(x_i)]$** is the **hinge loss**, which **penalizes misclassified or margin-violating points**.
+- The term **$\lambda \sum_{j=1}^{p} \beta_j^2$** is a **regularization term** (often L2 regularization), which helps control the model complexity and prevent overfitting.
+
+- This structure is **loss plus penalty**, meaning SVM aims to **minimize classification errors** while maintaining a **large margin** between classes.
+
+:::::::: 
+
+## Support Vector versus Logistic Regression
+
+:::::::: {style="font-size: 70%;"}
+::::::: columns
+::::: {.column width="70%" style="justify-content: center; align-items: center;"}
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/9_12-1.png") 
+```
+
+- The plot compares the loss functions of **SVM (hinge loss)** and **logistic regression (negative log-likelihood loss)**.
+
+- **SVM hinge loss** (black line):
+
+  - **Zero loss** when $y_i f(x_i) \geq 1$ (correctly classified with a sufficient margin).
+  - **Linear penalty** for points within the margin ($0 < y_i f(x_i) < 1$).
+  - **Constant penalty** for misclassified points ($y_i f(x_i) < 0$).
+
+:::::
+::::: {.column width="30%" style="justify-content: center; align-items: center;"}
+
+- **Logistic Regression loss** (green line):
+
+  - **Smooth, continuously decreasing** function.
+  - Assigns **nonzero loss** to all points, meaning it **never fully ignores** correctly classified points.
+
+- **The key difference**:
+  
+  - **SVM loss is piecewise linear** and focuses on **margin violations**.
+  - **Logistic regression loss is smooth** and **penalizes all points** proportionally.
+
+- **Main Takeaway**
+  
+  - Both **SVM and Logistic Regression** use a **loss function + regularization** framework.
+  - **SVM uses hinge loss**, which **only cares about points inside or outside the margin**.
+  - **Logistic regression uses log-likelihood loss**, which **penalizes all points, even well-classified ones**.
+  - **SVM is more robust to outliers** because it **ignores well-classified points beyond the margin**.
+  - **Logistic Regression is probabilistic**, while **SVM is geometric**, focusing on maximizing the margin.
+
+::::::::
+::::::: 
+::::: 
+
+
+
+
+## Which to Use: SVM or Logistic Regression
+
+-   When classes are (nearly) separable, SVM does better than Logistic Regression. So does LDA.
+
+-   When not, Logistic Regression (with ridge penalty) and SVM are very similar.
+
+-   If you wish to estimate probabilities, Logistic Regression is the choice.
+
+-   For nonlinear boundaries, kernel SVMs are popular. Can use kernels with Logistic Regression and LDA as well, but computations are more expensive.
+
+## Summary
+
+:::::::: nonincremental
+::::::: columns
+:::: {.column width="50%"}
+::: {style="font-size: 70%;"}
+
+- **Hyperplanes and Normal Vectors**  
+  - A hyperplane is a $(p-1)$-dimensional boundary in $p$-dimensional space.  
+  - Its orientation is determined by the **normal vector** $\beta$, which is orthogonal to the hyperplane.
+
+- **Maximal Margin and Soft Margins**  
+  - The **maximal margin classifier** seeks the widest possible gap between classes.  
+  - **Soft margins** allow some misclassifications (via slack variables $\epsilon_i$) when data are not perfectly separable.
+
+- **$C$ as a Regularization Parameter**  
+  - **Large $C$** → Strict margin (less regularization), fewer misclassifications, but higher risk of overfitting.  
+  - **Small $C$** → Softer margin (more regularization), more misclassifications allowed, but often better generalization.
+
+- **Kernels for Nonlinear Boundaries**  
+  - **Kernel functions** (e.g., polynomial, radial basis) map data into higher-dimensional spaces for nonlinear decision boundaries.  
+  - The **inner product** $\langle x, x_i \rangle$ becomes $K(x, x_i)$ in kernel SVMs, enabling complex separations.
+
+
+:::
+::::
+
+:::: {.column width="50%"}
+::: {style="font-size: 65%;"}
+
+- **Support Vectors and Sparsity**  
+  - Only a subset of training points (support vectors) have $\alpha_i > 0$.  
+  - This **sparsity** makes SVMs computationally efficient and robust to outliers.
+
+- **SVM vs. Logistic Regression**  
+  - **SVM uses hinge loss** (piecewise linear), focusing on margin violations.  
+  - **Logistic Regression uses log-likelihood loss**, penalizing all misclassifications smoothly.  
+  - When classes are nearly separable, **SVM** often outperforms logistic regression (and LDA).  
+  - Logistic regression provides **probabilistic outputs**; SVM is more geometric.
+
+- **Multiclass Extensions**  
+  - Implemented via **One-vs-All (OVA)** or **One-vs-One (OVO)** schemes for $K>2$ classes.
+
+- **Standardization**  
+  - Standardize features so that no single variable dominates the margin.  
+  - Similar to Ridge and Lasso, SVM is sensitive to feature scales.
+
+**Key Message**:  
+SVMs excel at maximizing margins and can handle complex decision boundaries via kernels. The choice of $C$, kernel, and feature scaling profoundly affects performance and generalization.
+
+:::
+::::
+:::::::
+::::::::
+
+# Thank you! {background-color="#cfb991"}
