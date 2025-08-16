@@ -1,0 +1,122 @@
+[
+  {
+    "objectID": "index.html#course-description-and-objectives",
+    "href": "index.html#course-description-and-objectives",
+    "title": "MGMT 47400: Predictive Analytics",
+    "section": "Course Description and Objectives",
+    "text": "Course Description and Objectives\nThe course enables students to navigate the entire predictive analytics pipeline skillfully—from data preparation and exploration to modeling, assessment, and interpretation. Throughout the course, learners engage with real-world examples and hands-on labs emphasizing essential programming and analytical skills. By exploring topics such as linear and logistic regression, classification, resampling methods, regularization techniques, tree-based approaches, support vector machines, and advanced learning paradigms (including neural networks and unsupervised methods), participants gain a robust theoretical understanding and practical experience. Ultimately, students will leave the course equipped to apply predictive models to data-driven problems, communicate their findings to diverse audiences, and critically evaluate model performance to inform strategic decision-making across various business contexts.\nCourse Website: https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/\n\nInstructor: Professor Davi Moreira\n\nEmail: dmoreira@purdue.edu\nOffice: Young Hall 1007\nVirtual Office hours: Zoom link in your Course Brightspace Page\nIndividual Appointments: Book time with me through the link in the course syllabus on your Course Brightspace Page or by appointment.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "MGMT 47400: Predictive Analytics",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the conclusion of this course, students will be able to:\n\nExplain Core Predictive Analytics Concepts: Articulate key principles of statistical learning and predictive analytics, including fundamental terminology, modeling strategies, and the role of data-driven insights in business contexts.\nPrepare and Explore Data Effectively: Demonstrate proficiency in cleaning, organizing, and exploring datasets, applying tools and techniques for data preprocessing, feature engineering, and exploratory analysis.\nImplement Diverse Modeling Techniques: Construct predictive models using linear and logistic regression, classification methods, resampling procedures, and regularization techniques.\nAssess and Interpret Model Performance: Evaluate the accuracy, robustness, and interpretability of predictive models, critically examining issues such as overfitting, bias-variance trade-offs, and cross-validation results.\nCommunicate Analytical Findings: Present analytical outcomes and model interpretations to technical and non-technical audiences, crafting clear, concise, and visually effective reports or presentations.\nIntegrate Predictive Analytics into Decision-Making: Recommend actionable strategies based on model findings, demonstrating the ability to align analytical results with organizational objectives and inform evidence-based decision processes.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#course-materials",
+    "href": "index.html#course-materials",
+    "title": "MGMT 47400: Predictive Analytics",
+    "section": "Course Materials",
+    "text": "Course Materials\n\nTextbooks (Required): ISLP James, G., Witten, D., Hastie, T., & Tibshirani, R. (2023). An Introduction to Statistical Learning with Applications in Python. Springer. https://doi.org/10.1007/978-1-0716-2926-2. Download here: https://www.statlearning.com/\nComputing (Required): A laptop or desktop with internet access and the capability to run Python code through Google Colab: https://colab.research.google.com/.\nSoftware (Required): Google Colab is a cloud-based platform that requires no software installation on your local machine; it is accessible through a modern web browser such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari. To use Google Colab, you need a Google account and a stable internet connection. While optional, having tools like a local Python installation (e.g., Anaconda) or a Python IDE (e.g., Jupyter Notebook or VS Code) can be helpful for offline development. Additionally, browser extensions, such as those for VS Code integration, can enhance your experience but are not required. This makes Google Colab convenient and easy for Python programming and data science tasks.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#course-infra-structure",
+    "href": "index.html#course-infra-structure",
+    "title": "MGMT 47400: Predictive Analytics",
+    "section": "Course Infra-structure",
+    "text": "Course Infra-structure\nBrightspace: The Course Brightspace Page https://purdue.brightspace.com/ should be checked on a regular basis for announcements and course material.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-description-and-objectives",
+    "href": "syllabus.html#course-description-and-objectives",
+    "title": "Syllabus",
+    "section": "Course Description and Objectives",
+    "text": "Course Description and Objectives\nThe course enables students to navigate the entire predictive analytics pipeline skillfully—from data preparation and exploration to modeling, assessment, and interpretation. Throughout the course, learners engage with real-world examples and hands-on labs emphasizing essential programming and analytical skills. By exploring topics such as linear and logistic regression, classification, resampling methods, regularization techniques, tree-based approaches, support vector machines, and advanced learning paradigms (including neural networks and unsupervised methods), participants gain a robust theoretical understanding and practical experience. Ultimately, students will leave the course equipped to apply predictive models to data-driven problems, communicate their findings to diverse audiences, and critically evaluate model performance to inform strategic decision-making across various business contexts.\nCourse Website: https://davi-moreira.github.io/2025S_predictive_analytics_MGMT474/",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#instructor",
+    "href": "syllabus.html#instructor",
+    "title": "Syllabus",
+    "section": "Instructor",
+    "text": "Instructor\n\nInstructor: Professor Davi Moreira\n\nEmail: dmoreira@purdue.edu\nOffice: Young Hall 414\nVirtual Office hours: Zoom link in your Course Brightspace Page\nIndividual Appointments: Book time with me through the link in the course syllabus on your Course Brightspace Page or by appointment.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#learning-outcomes",
+    "href": "syllabus.html#learning-outcomes",
+    "title": "Syllabus",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the conclusion of this course, students will be able to:\n\nExplain Core Predictive Analytics Concepts: Articulate key principles of statistical learning and predictive analytics, including fundamental terminology, modeling strategies, and the role of data-driven insights in business contexts.\nPrepare and Explore Data Effectively: Demonstrate proficiency in cleaning, organizing, and exploring datasets, applying tools and techniques for data preprocessing, feature engineering, and exploratory analysis.\nImplement Diverse Modeling Techniques: Construct predictive models using linear and logistic regression, classification methods, resampling procedures, and regularization techniques.\nAssess and Interpret Model Performance: Evaluate the accuracy, robustness, and interpretability of predictive models, critically examining issues such as overfitting, bias-variance trade-offs, and cross-validation results.\nCommunicate Analytical Findings: Present analytical outcomes and model interpretations to technical and non-technical audiences, crafting clear, concise, and visually effective reports or presentations.\nIntegrate Predictive Analytics into Decision-Making: Recommend actionable strategies based on model findings, demonstrating the ability to align analytical results with organizational objectives and inform evidence-based decision processes.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-materials",
+    "href": "syllabus.html#course-materials",
+    "title": "Syllabus",
+    "section": "Course Materials",
+    "text": "Course Materials\n\nTextbooks (Required): ISLP James, G., Witten, D., Hastie, T., & Tibshirani, R. (2023). An Introduction to Statistical Learning with Applications in Python. Springer. https://doi.org/10.1007/978-1-0716-2926-2. Download here: https://www.statlearning.com/\nComputing (Required): A laptop or desktop with internet access and the capability to run Python code through Google Colab: https://colab.research.google.com/.\nSoftware (Required): Google Colab is a cloud-based platform that requires no software installation on your local machine; it is accessible through a modern web browser such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari. To use Google Colab, you need a Google account and a stable internet connection. While optional, having tools like a local Python installation (e.g., Anaconda) or a Python IDE (e.g., Jupyter Notebook or VS Code) can be helpful for offline development. Additionally, browser extensions, such as those for VS Code integration, can enhance your experience but are not required. This makes Google Colab convenient and easy for Python programming and data science tasks.\n\n\nCourse Infra-structure\nBrightspace: The Course Brightspace Page https://purdue.brightspace.com/ should be checked on a regular basis for announcements and course material.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#assessments",
+    "href": "syllabus.html#assessments",
+    "title": "Syllabus",
+    "section": "Assessments",
+    "text": "Assessments\nAs part of a university-wide initiative, the Business School has adopted an Official Grading Policy that caps the overall class GPA at 3.3. Final letter grades are determined by curving final percentages, subject to any extra-credit exceptions discussed in this syllabus. While you will see your final percentage in Brightspace, individual grade thresholds will not be disclosed before official submissions.\n\n\n\nAssessment\nWeight\n\n\n\n\nAttendance/Participation\n10%\n\n\nQuizzes\n20%\n\n\nHomework\n30%\n\n\nFinal Project\n40%\n\n\n\n\nAttendance and Participation\nAttend class, participate in activities, and complete any participatory exercises. Random attendance checks will be used to measure involvement. According to Purdue regulations, students are expected to attend every class/lab meeting for which they are registered.\n\n\nQuizzes\nRegular quizzes based on lecture material will be administered, with no drops. Due dates and details will be on Brightspace. Quizzes help reinforce content and maintain steady engagement.\n\n\nHomework\nHomework assignments offer practical, hands-on exposure to data mining tasks. Expect multiple-choice questions requiring analysis of provided results. Deadlines will be posted in Brightspace. These assignments are crucial for building technical and analytical skills.\n\n\nFinal Project\nIn groups, students will complete a practical predictive analytics project culminating in a poster presentation at the Undergraduate Research Conference. A comprehensive set of project guidelines will be provided, and the assessment structure will adhere to the following criteria:\n\nMilestone Deliverables (40%): Students will submit incremental project components on specific due dates. These deliverables allow for early feedback and ensure steady progress throughout the semester. Grades will reflect each milestone’s clarity, completeness, and timely submission.\nPeer Evaluation (20%): To encourage accountability and productive teamwork, students will evaluate their peers’ contributions. These assessments help ensure balanced participation and measure collaborative effectiveness.\nPoster Presentation at the Purdue Undergraduate Research Conference (40%): A poster template and assessment rubric will be shared, and you are encouraged to review previous award-winning student posters for inspiration. Your final posters must be submitted by the due date indicated in the syllabus, after which they will be printed and distributed during a dedicated Poster Presentation Preparation class. Additional details on the conference can be found at https://www.purdue.edu/undergrad-research/conferences/index.php. As the event may not coincide with our regular class time, please communicate with your other course instructors in advance regarding potential scheduling conflicts. If any issues arise, please let me know. We will not hold our usual class immediately following the Poster Presentation, allowing you time to rest and catch up on other coursework. Consult the course schedule for further details.\n\n\n\nGrade Challenges\nGrades and solutions will be posted soon after each assignment deadline. Students have 7 calendar days from the grade posting to submit any challenge (3 days for the final two quizzes and homework assignments). Challenges must be based on legitimate discrepancies regarding data mining principles or grading accuracy.\n\nReview posted solutions thoroughly.\n\nIf you suspect an error, email Dr. Moreira with:\n\nCourse name, section, and lecture day/time\n\nYour name and Student ID\n\nAssignment/Exam Title or Number\n\nSpecific deduction questioned\n\nClear rationale referencing solutions or rubrics\n\n\n\nNo grades will be discussed in-class. Please use office hours for clarifications. After the 7-day (or 3-day) window, grades are final.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-policies-and-additional-details",
+    "href": "syllabus.html#course-policies-and-additional-details",
+    "title": "Syllabus",
+    "section": "Course Policies and Additional Details",
+    "text": "Course Policies and Additional Details\n\nExtra Credit Opportunities\n\nCheck the Course Syllabus document on Brightspace for details.\n\n\n\nAI Policy\n\nYou may use AI tools to support your learning (e.g., clarifying concepts, generating examples), but:\n\nDo not use AI for requesting solutions or exams.\n\nPractice refining prompts to get better AI outputs.\n\nVerify all AI-generated content for accuracy.\n\nCite any AI usage in your documents.\n\n\n\n\nAdditional Information\nRefer to Brightspace for deadlines, academic integrity policies, accommodations, CAPS information, and non-discrimination statements.\n\n\nSubject to Change Policy\nWhile we will endeavor to maintain the course schedule, the syllabus may be adjusted to accommodate the learning pace and needs of the class.",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#schedule",
+    "href": "syllabus.html#schedule",
+    "title": "Syllabus",
+    "section": "Schedule",
+    "text": "Schedule",
+    "crumbs": [
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "Week\nTopic\nReadings ISLP\nMaterial*\nSupplementary Materials\n\n\n\n\nWeek 1\nSyllabus, Logistics, and Introduction.\nCh. 1; Ch. 2;\nslidesbook lab\n- Video: Statistical Learning: 2.1 Introduction to Regression Models- Video: Statistical Learning: 2.2 Dimensionality and Structured Models- Video: Statistical Learning: 2.3 Model Selection and Bias Variance Tradeoff- Video: Statistical Learning: 2.4 Classification- Video: Statistical Learning: 2.Py Data Types, Arrays, and Basics - 2023- Video: Statistical Learning: 2.Py.3 Graphics - 2023- Video: Statistical Learning: 2.Py Indexing and Dataframes - 2023\n\n\nWeek 2\nLinear Regression\nCh. 3.\nslidesbook lab\n- Video: Statistical Learning: 3.1 Simple linear regression- Video: Statistical Learning: 3.2 Hypothesis Testing and Confidence Intervals- Video: Statistical Learning: 3.3 Multiple Linear Regression- Video: Statistical Learning: 3.4 Some important questions- Video: Statistical Learning: 3.5 Extensions of the Linear Model- Video: Statistical Learning: 3.Py Linear Regression and statsmodels Package - 2023- Video: Statistical Learning: 3.Py Multiple Linear Regression Package - 2023- Video: Statistical Learning: 3.Py Interactions, Qualitative Predictors and Other Details I 2023\n\n\nWeek 3\nClassification\nCh. 4\nslidesbook lab\n- Video: Statistical Learning: 4.1 Introduction to Classification Problems- Video: Statistical Learning: 4.2 Logistic Regression- Video: Statistical Learning: 4.3 Multivariate Logistic Regression- Video: Statistical Learning: 4.4 Logistic Regression Case Control Sampling and Multiclass- Video: Statistical Learning: 4.5 Discriminant Analysis- Video: Statistical Learning: 4.6 Gaussian Discriminant Analysis (One Variable)- Video: Statistical Learning: 4.7 Gaussian Discriminant Analysis (Many Variables)- Video: Statistical Learning: 4.8 Generalized Linear Models- Video: Statistical Learning: 4.9 Quadratic Discriminant Analysis and Naive Bayes- Video: Statistical Learning: 4.Py Logistic Regression I 2023- Video: Statistical Learning: 4.Py Linear Discriminant Analysis (LDA) I 2023- Video: Statistical Learning: 4.Py K-Nearest Neighbors (KNN) I 2023\n\n\nWeek 4\nResampling Methods\nCh. 5\nslidesbook lab\n- Video: Statistical Learning: 5.1 Cross Validation- Video: Statistical Learning: 5.2 K-fold Cross Validation- Video: Statistical Learning: 5.3 Cross Validation the wrong and right way- Video: Statistical Learning: 5.4 The Bootstrap- Video: Statistical Learning: 5.5 More on the Bootstrap- Video: Statistical Learning: 5.Py Cross-Validation I 2023- Video: Statistical Learning: 5.Py Bootstrap I 2023- Book Chapter: Modern Dive -Bootstrapping and Confidence Intervals\n\n\nWeek 5\nLinear Model Selection & Regularization\nCh. 6\nslidesbook lab\n- Video: Statistical Learning: 6.1 Introduction and Best Subset Selection- Video: Statistical Learning: 6.2 Stepwise Selection- Video: Statistical Learning: 6.3 Backward stepwise selection- Video: Statistical Learning: 6.4 Estimating test error- Video: Statistical Learning: 6.5 Validation and cross validation- Video: Statistical Learning: 6.6 Shrinkage methods and ridge regression- Video: Statistical Learning: 6.7 The Lasso- Video: Statistical Learning: 6.8 Tuning parameter selection- Video: Statistical Learning: 6.9 Dimension Reduction Methods- Video: Statistical Learning: 6.10 Principal Components Regression and Partial Least Squares- Video: Statistical Learning: 6.Py Stepwise Regression I 2023- Video: Statistical Learning: 6.Py Ridge Regression and the Lasso I 2023\n\n\nWeek 6\nBeyond Linearity\nCh. 7\nslidesbook lab\n- Video: Statistical Learning: 7.1 Polynomials and Step Functions- Video: Statistical Learning: 7.2 Piecewise Polynomials and Splines- Video: Statistical Learning: 7.3 Smoothing Splines- Video: Statistical Learning: 7.4 Generalized Additive Models and Local Regression- Video: Statistical Learning: 7.Py Polynomial Regressions and Step Functions I 2023- Video: Statistical Learning: 7.Py Splines I 2023- Video: Statistical Learning: 7.Py Generalized Additive Models (GAMs) I 2023\n\n\nWeek 7\nTree-Based Methods\nCh. 8\nslidesbook lab\n- Video: Statistical Learning: 8.1 Tree based methods- Video: Statistical Learning: 8.2 More details on Trees- Video: Statistical Learning: 8.3 Classification Trees- Video: Statistical Learning: 8.4 Bagging- Video: Statistical Learning: 8.5 Boosting- Video: Statistical Learning: 8.6 Bayesian Additive Regression Trees- Video: Statistical Learning: 8.Py Tree-Based Methods I 2023\n\n\nWeek 8\nSupport Vector Machines\nCh. 9\nslidesbook lab\n- Video: Statistical Learning: 9.1 Optimal Separating Hyperplane- Video: Statistical Learning: 9.2.Support Vector Classifier- Video: Statistical Learning: 9.3 Feature Expansion and the SVM- Video: Statistical Learning: 9.4 Example and Comparison with Logistic Regression- Video: Statistical Learning: 9.Py Support Vector Machines I 2023- Video: Statistical Learning: 9.Py ROC Curves I 2023\n\n\nWeek 09\nUnsupervised Learning\nCh. 12\nslidesbook lab\n- Video: Statistical Learning: 12.1 Principal Components- Video: Statistical Learning: 12.2 Higher order principal components- Video: Statistical Learning: 12.3 k means Clustering- Video: Statistical Learning: 12.4 Hierarchical Clustering- Video: Statistical Learning: 12.5 Matrix Completion- Video: Statistical Learning: 12.6 Breast Cancer Example- Video: Statistical Learning: 12.Py Principal Components I 2023- Video: Statistical Learning: 12.Py Clustering I 2023- Video: Statistical Learning: 12.Py Application: NCI60 Data I 2023\n\n\nWeek 10\nElements of Data Communication\n.\nslides\nPoster TemplateRubricVideo: Creating a Professional Poster\n\n\nWeek 11\nFinal Project\n.\n.\n.\n\n\nWeek 12\nFinal Project\n.\n.\n.\n\n\nWeek 13\nDeep Learning\nCh. 10\nslidesbook labcourse lab\n- Video: Statistical Learning: 10.1 Introduction to Neural Networks- Video: Statistical Learning: 10.2 Convolutional Neural Networks- Video: Statistical Learning: 10.3 Document Classification- Video: Statistical Learning: 10.4 Recurrent Neural Networks- Video: Statistical Learning: 10.6 Fitting Neural Networks- Video: Statistical Learning: 10.7 Interpolation and Double Descent- Video: Statistical Learning: 10.Py Single Layer Model: Hitters Data I 2023- Video: Statistical Learning: 10.Py Multilayer Model: MNIST Digit Data I 2023- Video: Statistical Learning: 10.Py Convolutional Neural Network: CIFAR Image Data I 2023- Video: Statistical Learning: 10.Py Document Classification and Recurrent Neural Networks I 2023\n\n\nWeek 14\nDeep Learning\nCh. 10\n.\n.\n\n\nWeek 15\nDeep Learning\nCh. 10\n.\n.\n\n\n\n* The majority of the course slides and labs are based on the ISLP book, “An Introduction to Statistical Learning with Applications in Python” by James, G., Witten, D., Hastie, T., and Tibshirani, R., and have been adapted to suit the specific needs of our course.",
+    "crumbs": [
+      "Schedule and Material"
+    ]
+  }
+]
