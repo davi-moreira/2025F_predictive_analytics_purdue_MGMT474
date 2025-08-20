@@ -121,28 +121,59 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
--   It is your turn! - 5 minutes
+-   It is your turn! - 10 minutes
 
 <br>
 
--   Present yourself to your left/right colleague and tell her/him what are the current two main passions in your life.
+-   Present yourself to your left/right colleague and ask: What you expect from this Predictive Analytics course?
+
+-   Collect her/his answer amd submit your first Participation Assignment!
 
 # Course Overview and Logistics {background-color="#cfb991"}
 
 ## Course Overview and Logistics
 
--   **Materials**:
+::: {style="font-size: 80%;"}
 
-    -   Brightspace
+:::: {.columns}
+::: {.column width="50%"}
 
-    -   [Course Webpage](https://davi-moreira.github.io/2025S_predictive_analytics_MGMT474/){target="_blank"}
+- **Course Info**:
+  - Brightspace - Official.
+  - [Course Webpage - Supplementary.](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}
 
--   [**Syllabus**](https://davi-moreira.github.io/2025S_predictive_analytics_MGMT474/){target="_blank"}
+- [**Syllabus**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}  
+  - **Class Times & Location:** check the course syllabus.  
+  - **Office Hours:** check the course syllabus for group and individual appointments.
 
-      - **Class Times & Location:**  check the course syllabus.
-      - **Office Hours:** check the course syllabus for group and individual appointments. 
+- [**Schedule and Materials**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/schedule.html){target="_blank"}:
+  - Podcast (before class)  
+  - Required Readings (before class)  
+  - Lecture Slides (before class)  
+  - Lecture Video (during class)  
+  - Book labs (during/after class)  
+  - Supplementary Material (after class)
 
--   [**Schedule**](https://davi-moreira.github.io/2025S_predictive_analytics_MGMT474/){target="_blank"}
+:::
+
+::: {.column width="50%"}
+
+- **Course Tracks**
+  - Standard Track  
+  - External Case Competition (bonus)
+
+- **Assessments**
+  - Attendance  
+  - Participation  
+  - Quizzes  
+  - Homework  
+  - Course Case Competition  
+  - Final Project  
+
+:::
+::::
+
+::: 
 
 # Motivation {background-color="#cfb991"}
 

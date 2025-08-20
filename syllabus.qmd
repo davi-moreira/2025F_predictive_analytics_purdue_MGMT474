@@ -42,7 +42,7 @@ The course enables students to navigate the entire predictive analytics pipeline
 ### Instructor: [Professor Davi Moreira](https://davi-moreira.github.io)
 
 -   Email: [dmoreira@purdue.edu](mailto:dmoreira@purdue.edu)
--   Office: Young Hall 414
+-   Office: Young Hall 1007
 -   Virtual Office hours: _Zoom link in your Course Brightspace Page_
 -   Individual Appointments: _Book time with me through the link in the course syllabus on your Course Brightspace Page or by appointment._
 
@@ -68,7 +68,10 @@ By the conclusion of this course, students will be able to:
 
 - **Computing (Required):** A laptop or desktop with internet access and the capability to run Python code through Google Colab: [https://colab.research.google.com/](https://colab.research.google.com/){target="_blank"}. 
 
-- **Software (Required):** [Google Colab](https://colab.research.google.com/){target="_blank"} is a cloud-based platform that requires no software installation on your local machine; it is accessible through a modern web browser such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari. To use Google Colab, you need a Google account and a stable internet connection. While optional, having tools like a local Python installation (e.g., Anaconda) or a Python IDE (e.g., Jupyter Notebook or VS Code) can be helpful for offline development. Additionally, browser extensions, such as those for VS Code integration, can enhance your experience but are not required. This makes Google Colab convenient and easy for Python programming and data science tasks.
+- **Software (Required):** 
+
+    - [Google Colab](https://colab.research.google.com/){target="_blank"} is a cloud-based platform that requires no software installation on your local machine; it is accessible through a modern web browser such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari. To use Google Colab, you need a Google account and a stable internet connection. While optional, having tools like a local Python installation (e.g., Anaconda) or a Python IDE (e.g., Jupyter Notebook or VS Code) can be helpful for offline development. Additionally, browser extensions, such as those for VS Code integration, can enhance your experience but are not required. This makes Google Colab convenient and easy for Python programming and data science tasks.
+    - [Microsoft Copilot](https://copilot.microsoft.com/){target="_blank"}: is an AI-powered assistant designed to enhance productivity and streamline workflows across various applications and services. It utilizes large language models and is integrated within Microsoft 365 apps like Word, Excel, PowerPoint, Outlook, and Teams, providing real-time, context-aware assistance for tasks such as drafting documents, analyzing data, managing projects, and communicating more efficiently. Users can leverage Copilot to automate repetitive tasks, generate ideas, summarize information, and access data across their work environment and the web, all within a secure and privacy-conscious framework.   
 
 ### Course Infra-structure
 
@@ -80,14 +83,21 @@ As part of a university-wide initiative, the Business School has adopted an **Of
 
 | **Assessment**             | **Weight** |
 |----------------------------|-----------:|
-| Attendance/Participation   | 10%        |
-| Quizzes                    | 20%        |
+| Attendance                 | 3%        |
+| Participation              | 7%        |
+| Quizzes                    | 10%        |
 | Homework                   | 30%        |
-| Final Project              | 40%        |
+| Course Case Competition    | 20%        |
+| Final Project              | 30%        |
 
-### Attendance and Participation
 
-Attend class, participate in activities, and complete any participatory exercises. Random attendance checks will be used to measure involvement. According to Purdue regulations, students are expected to attend every class/lab meeting for which they are registered.
+### Attendance
+
+Attend your classes. If you do not attend class, you will likely not succeed. The instructor will take attendance and keep the attendance record.
+
+### Participation
+
+Participate in activities, and complete any participatory exercises. Almost every class the instructor you will be required to take participatory activities. Your participation grade will be based on this record.
 
 ### Quizzes
 
@@ -97,16 +107,20 @@ Regular quizzes based on lecture material will be administered, with no drops. D
 
 Homework assignments offer practical, hands-on exposure to data mining tasks. Expect multiple-choice questions requiring analysis of provided results. Deadlines will be posted in Brightspace. These assignments are crucial for building technical and analytical skills.
 
+### Course Case Competition 
+
+Wwe will have a semester-long, team-based predictive analytics competition hosted on Kaggle. Students must work in teams and will be allowed up to five submissions per day. The Kaggle platform will automatically evaluate submissions and maintain a leaderboard throughout the competition period. 
+
 ### Final Project
 
 In groups, students will complete a practical predictive analytics project culminating in a poster presentation at the Undergraduate Research Conference. A comprehensive set of project guidelines will be provided, and the assessment structure will adhere to the following criteria:
 
-1.	Milestone Deliverables (40%): Students will submit incremental project components on specific due dates. These deliverables allow for early feedback and ensure steady progress throughout the semester. Grades will reflect each milestone's clarity, completeness, and timely submission.
-
+1.	Milestone Deliverables (30%): Students will submit incremental project components on specific due dates. These deliverables allow for early feedback and ensure steady progress throughout the semester. Grades will reflect each milestone's clarity, completeness, and timely submission.
 2.	Peer Evaluation (20%): To encourage accountability and productive teamwork, students will evaluate their peers' contributions. These assessments help ensure balanced participation and measure collaborative effectiveness.
-
-3.	Poster Presentation at the Purdue Undergraduate Research Conference (40%): A poster template and assessment rubric will be shared, and you are encouraged to review previous award-winning student posters for inspiration. Your final posters must be submitted by the due date indicated in the syllabus, after which they will be printed and distributed during a dedicated Poster Presentation Preparation class. Additional details on the conference can be found at [https://www.purdue.edu/undergrad-research/conferences/index.php](https://www.purdue.edu/undergrad-research/conferences/index.php){target="_blank"}.
+3.	Peer Review (10%): Each group will review and provide constructive feedback on other teams’ posters. This process encourages engagement, enhances critical analysis skills, and promotes a culture of constructive critique.
+4. Poster Presentation at the Purdue Undergraduate Research Conference (20%): A poster template and assessment rubric will be shared, and you are encouraged to review previous award-winning student posters for inspiration. Your final posters must be submitted by the due date indicated in the syllabus, after which they will be printed and distributed during a dedicated Poster Presentation Preparation class. Additional details on the conference can be found at [https://www.purdue.edu/undergrad-research/conferences/index.php](https://www.purdue.edu/undergrad-research/conferences/index.php){target="_blank"}.
 As the event may not coincide with our regular class time, please communicate with your other course instructors in advance regarding potential scheduling conflicts. If any issues arise, please let me know. We will not hold our usual class immediately following the Poster Presentation, allowing you time to rest and catch up on other coursework. Consult the course schedule for further details.
+5.	Instructor/TA Evaluation (20%): After the Undergraduate Research Conference your instructor and the TA will evaluate your final submission based on a rubric that will be shared.
 
 ### Grade Challenges
 
