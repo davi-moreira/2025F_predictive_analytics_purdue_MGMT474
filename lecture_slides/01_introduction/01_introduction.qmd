@@ -121,13 +121,19 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
--   It is your turn! - 10 minutes
+<center>
+**What do you expect to gain from this Predictive Analytics course?**
+</center>
 
 <br>
 
--   Present yourself to your left/right colleague and ask: What you expect from this Predictive Analytics course?
+-   It is your turn! - 10 minutes
 
--   Collect her/his answer amd submit your first Participation Assignment!
+
+-   Present yourself to your left/right colleague and ask: 
+
+
+-   Collect her/his answer and submit your first Participation Assignment!
 
 # Course Overview and Logistics {background-color="#cfb991"}
 
