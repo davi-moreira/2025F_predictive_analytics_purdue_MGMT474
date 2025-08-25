@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Professor: Davi Moreira">
+  <title>MGMT 47400: Predictive Analytics –  MGMT 47400: Predictive Analytics </title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5b60505eb0a2c59e7e66c4d06532a844.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+  <p class="subtitle"><span style="font-size: 150%;"> Classification </span></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Professor: Davi Moreira 
+</div>
+</div>
+</div>
+
+</section>
+<section id="overview" class="slide level2 center">
+<h2>Overview</h2>
+<div>
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Introduction to Classification</li>
+<li>Linear versus Logistic Regression</li>
+<li>Making Predictions</li>
+<li>Multinomial Logistic Regression</li>
+</ul>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Discriminant Analysis</li>
+<li>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></li>
+<li>Types of errors</li>
+<li>Other Forms of Discriminant Analysis</li>
+<li>Naive Bayes</li>
+<li>Generalized Linear Models</li>
+</ul>
+</div></div>
+</div>
+<p><br></p>
+
+<aside><div>
+<p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
+</div></aside></section>
+<section>
+<section id="motivation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Motivation</h1>
+
+</section>
+<section id="what-is-a-classification-problem" class="slide level2 center">
+<h2>What is a classification problem?</h2>
+<center>
+<p><br></p>
+<p><img src="https://raw.githubusercontent.com/davi-moreira/naive_bayes/main/figs/boxes.gif" width="800"></p>
+<p><br></p>
+<p>Classification involves categorizing data into predefined classes or groups based on their features.</p>
+</center>
+</section>
+<section id="classification" class="slide level2 center">
+<h2>Classification</h2>
+<ul>
+<li class="fragment"><p><strong>Qualitative variables</strong> take values in an unordered set <span class="math inline">\(C\)</span>, such as:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\text{eye color} \in \{\text{brown}, \text{blue}, \text{green}\}\)</span></li>
+<li class="fragment"><span class="math inline">\(\text{email} \in \{\text{spam}, \text{ham}\}\)</span></li>
+</ul></li>
+<li class="fragment"><p>Given a feature vector <span class="math inline">\(X\)</span> and a qualitative response <span class="math inline">\(Y\)</span> taking values in the set <span class="math inline">\(C\)</span>, the classification task is to build a function <span class="math inline">\(C(X)\)</span> that takes as input the feature vector <span class="math inline">\(X\)</span> and predicts its value for <span class="math inline">\(Y\)</span>; i.e.&nbsp;<span class="math inline">\(C(X) \in C\)</span>.</p></li>
+<li class="fragment"><p>Often, we are more interested in estimating the <strong>probabilities</strong> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(C\)</span>.</p>
+<ul>
+<li class="fragment">For example, it is more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification as fraudulent or not.</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-credit-card-default" class="slide level2 center">
+<h2>Example: Credit Card Default</h2>
+<div>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_1a-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Scatter plot of income vs.&nbsp;balance with markers indicating whether a person defaulted (e.g., “+” for defaulted, “o” for not defaulted).</p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_1b-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Boxplots comparing balance and income for default (“Yes”) vs.&nbsp;no default (“No”).</p>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<section id="can-we-use-linear-regression" class="slide level2 center">
+<h2>Can we use Linear Regression?</h2>
+<p>Suppose for the <strong>Default</strong> classification task that we code:</p>
+<p><span class="math display">\[
+Y =
+\begin{cases}
+0 &amp; \text{if No} \\
+1 &amp; \text{if Yes.}
+\end{cases}
+\]</span></p>
+<p>Can we simply perform a linear regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> and classify as <strong>Yes</strong> if <span class="math inline">\(\hat{Y} &gt; 0.5\)</span>?</p>
+<ul>
+<li class="fragment">In this case of a binary outcome, <strong>linear regression</strong> does a good job as a classifier and is equivalent to <strong>linear discriminant analysis</strong>, which we discuss later.</li>
+<li class="fragment">Since in the population <span class="math inline">\(E(Y|X = x) = \Pr(Y = 1|X = x)\)</span>, we might think that regression is perfect for this task.</li>
+<li class="fragment">However, <strong>linear regression</strong> might produce probabilities less than zero or greater than one. <strong>Logistic regression</strong> is more appropriate.</li>
+</ul>
+</section>
+<section id="linear-versus-logistic-regression-probability-of-default" class="slide level2 center">
+<h2>Linear versus Logistic Regression: Probability of Default</h2>
+<p><br></p>
+<div>
+<div style="font-size: 90%;">
+<p><strong>The orange marks</strong> indicate the response <span class="math inline">\(Y\)</span>, either 0 or 1.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_2-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<center>
+<strong>Linear regression</strong> does not estimate <span class="math inline">\(\Pr(Y = 1|X)\)</span> well.
+</center>
+</div><div class="column" style="width:50%;">
+<center>
+<strong>Logistic regression</strong> seems well-suited to the task.
+</center>
+</div></div>
+</div>
+</div>
+</section>
+<section id="linear-regression-continued" class="slide level2 center">
+<h2>Linear Regression continued</h2>
+<p><br></p>
+<div>
+<div style="font-size: 90%;">
+<p>Now suppose we have a response variable with three possible values. A patient presents at the emergency room, and we must classify them according to their symptoms.</p>
+<p><span class="math display">\[
+Y =
+\begin{cases}
+1 &amp; \text{if stroke;} \\
+2 &amp; \text{if drug overdose;} \\
+3 &amp; \text{if epileptic seizure.}
+\end{cases}
+\]</span></p>
+<p>This coding suggests an ordering, and in fact implies that the difference between <strong>stroke</strong> and <strong>drug overdose</strong> is the same as between <strong>drug overdose</strong> and <strong>epileptic seizure</strong>.</p>
+<p>Linear regression is not appropriate here. <strong>Multiclass Logistic Regression</strong> or <strong>Discriminant Analysis</strong> are more appropriate.</p>
+</div>
+</div>
+</section>
+<section id="logistic-regression" class="slide level2 center">
+<h2>Logistic Regression</h2>
+<p>Let’s write <span class="math inline">\(p(X) = \Pr(Y = 1|X)\)</span> for short and consider using <strong>balance</strong> to predict <strong>default</strong>. Logistic regression uses the form:</p>
+<p><span class="math display">\[
+p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
+\]</span></p>
+<p><span class="math inline">\((e \approx 2.71828)\)</span> is a mathematical constant <em>Euler’s number</em>.</p>
+<p>It is easy to see that no matter what values <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, or <span class="math inline">\(X\)</span> take, <span class="math inline">\(p(X)\)</span> will have values between 0 and 1.</p>
+<div class="fragment">
+<p>A bit of rearrangement gives:</p>
+<p><span class="math display">\[
+\log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X.
+\]</span></p>
+<p>This monotone transformation is called the <strong>log odds</strong> or <strong>logit</strong> transformation of <span class="math inline">\(p(X)\)</span>. (By <strong>log</strong>, we mean <strong>natural log</strong>: <span class="math inline">\(\ln\)</span>.)</p>
+</div>
+</section>
+<section id="logistic-regression-transformation" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
+<div style="font-size: 80%;">
+<p><strong>Step 1: Express</strong> <span class="math inline">\(1 - p(X)\)</span></p>
+<p><br></p>
+<p>Since <span class="math inline">\(p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}\)</span>, we can write:</p>
+<p><span class="math display">\[
+1 - p(X) = 1 - \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+1 - p(X) = \frac{1 + e^{\beta_0 + \beta_1 X} - e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}} = \frac{1}{1 + e^{\beta_0 + \beta_1 X}}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="logistic-regression-transformation-1" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
+<div style="font-size: 80%;">
+<p><strong>Step 2: Compute the Odds</strong></p>
+<p><br></p>
+<p>The odds are defined as:</p>
+<p><span class="math display">\[
+\frac{p(X)}{1 - p(X)}
+\]</span></p>
+<p>Substitute <span class="math inline">\(p(X)\)</span> and <span class="math inline">\(1 - p(X)\)</span>:</p>
+<p><span class="math display">\[
+\frac{p(X)}{1 - p(X)} =
+\frac{\dfrac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}}
+{\dfrac{1}{1 + e^{\beta_0 + \beta_1 X}}}
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1 X}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="logistic-regression-transformation-2" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
+<div style="font-size: 80%;">
+<p><strong>Step 3: Take the Log of the Odds</strong></p>
+<p><br></p>
+<p>Taking the natural logarithm:</p>
+<p><span class="math display">\[
+\log\!\Bigl(\frac{p(X)}{1 - p(X)}\Bigr) = \log\!\Bigl(e^{\beta_0 + \beta_1 X}\Bigr)
+\]</span></p>
+<p>Simplify using the log property <span class="math inline">\(\log(e^x) = x\)</span>:</p>
+<p><span class="math display">\[
+\log\!\Bigl(\frac{p(X)}{1 - p(X)}\Bigr) = \beta_0 + \beta_1 X
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="logistic-regression-transformation-3" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
+<div style="font-size: 80%;">
+<p><strong>Conclusion</strong></p>
+<p><br></p>
+<p>The final transformation shows that the <strong>log-odds (logit)</strong> of <span class="math inline">\(p(X)\)</span> is a linear function of <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\log\!\Bigl(\frac{p(X)}{1 - p(X)}\Bigr) = \beta_0 + \beta_1 X
+\]</span></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="linear-versus-logistic-regression" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Linear versus Logistic Regression</h1>
+
+</section>
+<section id="linear-versus-logistic-regression-1" class="slide level2 center">
+<h2>Linear versus Logistic Regression</h2>
+<div>
+<div style="font-size: 80%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_2-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Logistic regression</strong> ensures that our estimate for <span class="math inline">\(p(X)\)</span> lies between 0 and 1.</p>
+</div>
+</div>
+</section>
+<section id="maximum-likelihood" class="slide level2 center">
+<h2>Maximum Likelihood</h2>
+<div>
+<div style="font-size: 80%;">
+<p>We use <strong>maximum likelihood</strong> to estimate the parameters.</p>
+<p><span class="math display">\[
+\ell(\beta_0, \beta) = \prod_{i:y_i=1} p(x_i) \prod_{i:y_i=0} (1 - p(x_i)).
+\]</span></p>
+<ul>
+<li>The <strong>Maximum Likelihood Estimation (MLE)</strong> is a method used to estimate the parameters of a model by maximizing the likelihood function, which measures how likely the observed data is given the parameters.</li>
+</ul>
+<p><strong>The likelihood function</strong> is based on the <strong>probability distribution</strong> of the data. If you assume that the data points are independent, the likelihood function is the product of the probabilities of each observation.</p>
+<ul>
+<li><p>Considering a data series of observed zeros and ones, and a model for the probabilities involving parameters (e.g., <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), for any specific parameter values, we can compute the probability of observing the data.</p></li>
+<li><p>Since the observations are assumed to be independent, the joint probability of the observed sequence is the product of the probabilities for each observation. For each “1,” we use the model’s predicted probability, <span class="math inline">\(p(x_i)\)</span>, and for each “0,” we use <span class="math inline">\(1 - p(x_i)\)</span>.</p></li>
+<li><p>The goal of MLE is to find the parameter values that maximize this joint probability, as they make the observed data most likely to have occurred.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<p>Suppose you are flipping a coin, and you observe 5 heads out of 10 flips. The coin’s bias (the probability of heads) is <span class="math inline">\(p\)</span>, and you want to estimate <span class="math inline">\(p\)</span>.</p>
+<p>The probability of observing a single outcome (heads or tails) follows the <strong>Bernoulli distribution</strong>:</p>
+<p><span class="math display">\[
+P(\text{Heads or Tails}) = p^x (1-p)^{1-x}, \quad \text{where } x = 1 \text{ for heads, } x = 0 \text{ for tails.}
+\]</span></p>
+<p>For 10 independent flips, the likelihood function is:</p>
+<p><span class="math display">\[
+L(p) = P(\text{data} \mid p) = \prod_{i=1}^{10} p^{x_i}(1-p)^{1-x_i}.
+\]</span></p>
+<p>If there are 5 heads (<span class="math inline">\(x=1\)</span>) and 5 tails (<span class="math inline">\(x=0\)</span>):</p>
+<p><span class="math display">\[
+L(p) = p^5 (1-p)^5.
+\]</span></p>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-1" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<p><strong>Simplify with the Log-Likelihood</strong></p>
+<p>Since multiplying probabilities can result in very small numbers, we take the <strong>logarithm</strong> of the likelihood (log-likelihood). The logarithm simplifies the product into a sum:</p>
+<p><span class="math display">\[
+\ell(p) = \log L(p) = \log \left(p^5 (1-p)^5\right) = 5\log(p) + 5\log(1-p).
+\]</span></p>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-2" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<p><strong>Maximize the Log-Likelihood</strong></p>
+<p>To find the value of <span class="math inline">\(p\)</span> that maximizes <span class="math inline">\(\ell(p)\)</span>, take the <strong>derivative</strong> of the log-likelihood with respect to <span class="math inline">\(p\)</span> and set it to zero:</p>
+<p><span class="math display">\[
+\frac{\partial\ell(p)}{\partial p} = \frac{5}{p} - \frac{5}{1-p} = 0.
+\]</span></p>
+<p>Simplify:</p>
+<p><span class="math display">\[
+\frac{5}{p} = \frac{5}{1-p}.
+\]</span></p>
+<p>Solve for <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+1 - p = p \quad \Rightarrow \quad 1 = 2p \quad \Rightarrow \quad p = 0.5.
+\]</span></p>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-3" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<p>To confirm that <span class="math inline">\(p = 0.5\)</span> is the maximum, you can check the second derivative of the log-likelihood (concavity) or use numerical methods.</p>
+<p>In our example, <span class="math inline">\(p = 0.5\)</span> makes sense intuitively because the data (5 heads out of 10 flips) suggests the coin is unbiased.</p>
+<p>The <strong>maximum likelihood estimate</strong> of <span class="math inline">\(p\)</span> is <span class="math inline">\(0.5\)</span>. The MLE method finds the parameter values that make the observed data most likely, given the assumed probability model.</p>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<div>
+<div style="font-size: 95%;">
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>Data <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> are drawn from a normal distribution with:</li>
+</ul>
+<p><span class="math display">\[
+  f(x | \mu, \sigma) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+\]</span></p>
+<ul>
+<li>Assume <span class="math inline">\(\sigma\)</span> is known (say, <span class="math inline">\(\sigma = 1\)</span>) and we want to estimate <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<p>The likelihood for <span class="math inline">\(n\)</span> independent observations is:</p>
+<p><span class="math display">\[
+L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
+\]</span></p>
+<p>Taking the natural log:</p>
+<p><span class="math display">\[
+\ell(\mu) = \log L(\mu) = \sum_{i=1}^n \left[ -\frac{1}{2} \log(2\pi) - \frac{(x_i - \mu)^2}{2} \right]
+\]</span></p>
+<p>Simplify (since <span class="math inline">\(-\frac{1}{2} \log(2\pi)\)</span> is constant):</p>
+<p><span class="math display">\[
+\ell(\mu) = -\frac{n}{2} \log(2\pi) - \frac{1}{2} \sum_{i=1}^n (x_i - \mu)^2
+\]</span></p>
+</section>
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<div>
+<div style="font-size: 80%;">
+<p>Differentiate with respect to <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial \ell(\mu)}{\partial \mu} = -\sum_{i=1}^n (x_i - \mu)
+\]</span> Set this to zero:</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (x_i - \mu) = 0
+\]</span></p>
+<p>Solve for <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\mu = \frac{1}{n} \sum_{i=1}^n x_i
+\]</span></p>
+<p>The MLE for the mean <span class="math inline">\(\mu\)</span> is simply the sample mean:</p>
+<p><span class="math display">\[
+\hat{\mu} = \frac{1}{n} \sum_{i=1}^n x_i
+\]</span></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="making-predictions" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Making Predictions</h1>
+
+</section>
+<section id="making-predictions-1" class="slide level2 center">
+<h2>Making Predictions</h2>
+<p>Most statistical packages can fit linear logistic regression models by maximum likelihood.</p>
+<p><strong>Logistic Regression Coefficients</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Coefficient</th>
+<th>Std. Error</th>
+<th>Z-statistic</th>
+<th>P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intercept</strong></td>
+<td>-10.6513</td>
+<td>0.3612</td>
+<td>-29.5</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr class="even">
+<td><strong>balance</strong></td>
+<td>0.0055</td>
+<td>0.0002</td>
+<td>24.9</td>
+<td>&lt; 0.0001</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p>What is our estimated probability of <strong>default</strong> for someone with a credit card balance of $1000?</p>
+<p><span class="math display">\[
+\hat{p}(X) = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1 X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}} = \frac{e^{-10.6513 + 0.0055 \times 1000}}{1 + e^{-10.6513 + 0.0055 \times 1000}} = 0.006
+\]</span></p>
+<p>With a a credit card balance of $2000?</p>
+<p><span class="math display">\[
+\hat{p}(X) = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1 X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}} = \frac{e^{-10.6513 + 0.0055 \times 2000}}{1 + e^{-10.6513 + 0.0055 \times 2000}} = 0.586
+\]</span></p>
+</div>
+</section>
+<section id="logistic-regression-with-student-predictor" class="slide level2 center">
+<h2>Logistic Regression with Student Predictor</h2>
+<p>Let’s do it again, using <strong>student</strong> as the predictor.</p>
+<p><strong>Logistic Regression Coefficients</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Coefficient</th>
+<th>Std. Error</th>
+<th>Z-statistic</th>
+<th>P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intercept</strong></td>
+<td>-3.5041</td>
+<td>0.0707</td>
+<td>-49.55</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr class="even">
+<td><strong>student</strong> <span class="math inline">\(Yes\)</span></td>
+<td>0.4049</td>
+<td>0.1150</td>
+<td>3.52</td>
+<td>0.0004</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><strong>Predicted Probabilities</strong></p>
+<p><span class="math display">\[
+\hat{\Pr}(\text{default} = \text{Yes} \mid \text{student} = \text{Yes}) = \frac{e^{-3.5041 + 0.4049 \times 1}}{1 + e^{-3.5041 + 0.4049 \times 1}} = 0.0431,
+\]</span></p>
+<p><span class="math display">\[
+\hat{\Pr}(\text{default} = \text{Yes} \mid \text{student} = \text{No}) = \frac{e^{-3.5041 + 0.4049 \times 0}}{1 + e^{-3.5041 + 0.4049 \times 0}} = 0.0292.
+\]</span></p>
+</div>
+</section>
+<section id="logistic-regression-with-several-variables" class="slide level2 center">
+<h2>Logistic Regression with Several Variables</h2>
+<p><span class="math display">\[
+\log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
+\]</span></p>
+<p><span class="math display">\[
+p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}
+\]</span></p>
+<div class="fragment">
+<p><strong>Logistic Regression Coefficients</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Coefficient</th>
+<th>Std. Error</th>
+<th>Z-statistic</th>
+<th>P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intercept</strong></td>
+<td>-10.8690</td>
+<td>0.4923</td>
+<td>-22.08</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr class="even">
+<td><strong>balance</strong></td>
+<td>0.0057</td>
+<td>0.0002</td>
+<td>24.74</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr class="odd">
+<td><strong>income</strong></td>
+<td>0.0030</td>
+<td>0.0082</td>
+<td>0.37</td>
+<td>0.7115</td>
+</tr>
+<tr class="even">
+<td><strong>student <em>Yes</em></strong></td>
+<td>-0.6468</td>
+<td>0.2362</td>
+<td>-2.74</td>
+<td>0.0062</td>
+</tr>
+</tbody>
+</table>
+<p>Why is the coefficient for <strong>student</strong> negative, while it was positive before?</p>
+</div>
+</section>
+<section id="confounding" class="slide level2 center">
+<h2>Confounding</h2>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/animation_control.gif" style="width:40.0%"></p>
+<figcaption>Relationship between Y and X controlled for W</figcaption>
+</figure>
+</div>
+<div style="font-size: 50%;">
+<p>Source: <a href="https://nickchk.com/causalgraphs.html">Causal Inference Animated Plots</a></p>
+</div>
+</center>
+</section>
+<section id="confounding-1" class="slide level2 center">
+<h2>Confounding</h2>
+
+<img data-src="figs/4_3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Students tend to have higher balances than non-students, so their marginal default rate is higher than for non-students.</p></li>
+<li class="fragment"><p>But for each level of balance, students default less than non-students.</p></li>
+<li class="fragment"><p>Multiple logistic regression can tease this out.</p></li>
+</ul>
+<!---
+
+# Example: South African Heart Disease
+
+## Example: South African Heart Disease
+
+-   160 cases of MI (myocardial infarction) and 302 controls (all male in age range 15–64), from Western Cape, South Africa, in the early 80s.
+
+-   Overall prevalence very high in this region: **5.1%**.
+
+-   Measurements on seven predictors (risk factors), shown in a scatterplot matrix.
+
+-   Goal is to identify relative strengths and directions of risk factors.
+
+-   This was part of an intervention study aimed at educating the public on healthier diets.
+
+## Scatterplot Matrix of South African Heart Disease Data
+
+::::: columns
+::: {.column width="70%"}
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/4_3_1-1.png){fig-align='center' width=75%}
+:::
+:::
+:::
+
+::: {.column width="30%"}
+
+<br>
+
+-   Scatterplot matrix of the **South African Heart Disease** data.
+-   The response is color-coded:
+    -   The cases (MI) are **red**.
+    -   The controls are **turquoise**.
+-   **famhist** is a binary variable, with 1 indicating family history of MI.
+:::
+:::::
+
+## Case-control Sampling and Logistic Regression
+
+-   In South African data, there are 160 cases, 302 controls — $\tilde{\pi} = 0.35$ are cases. Yet the prevalence of MI in this region is $\pi = 0.05$.
+-   With case-control samples, we can estimate the regression parameters $\beta_j$ accurately (if our model is correct); the constant term $\beta_0$ is incorrect.
+-   We can correct the estimated intercept by a simple transformation:
+
+$$
+\hat{\beta}_0^* = \hat{\beta}_0 + \log\left(\frac{\pi}{1-\pi}\right) - \log\left(\frac{\tilde{\pi}}{1-\tilde{\pi}}\right)
+$$
+
+-   Often cases are rare, and we take them all; up to five times that number of controls is sufficient. See the next frame.
+
+## Diminishing Returns in Unbalanced Binary Data
+
+::::: columns
+::: {.column width="60%"}
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/4_3_2-1.png){fig-align='center' width=65%}
+:::
+:::
+:::
+
+::: {.column width="40%"}
+-   Sampling more controls than cases reduces the variance of the parameter estimates.
+-   However, after a ratio of about **5 to 1**, the variance reduction flattens out.
+:::
+:::::
+
+
+# Logistic Regression with More than Two Classes
+
+## Logistic Regression with More than Two Classes
+
+So far, we have discussed logistic regression with two classes. It is easily generalized to more than two classes. One version (used in the R package **glmnet**) has the symmetric form:
+
+$$
+\Pr(Y = k \mid X) = \frac{e^{\beta_{0k} + \beta_{1k}X_1 + \cdots + \beta_{pk}X_p}}{\sum_{\ell=1}^{K} e^{\beta_{0\ell} + \beta_{1\ell}X_1 + \cdots + \beta_{p\ell}X_p}}
+$$
+
+Here there is a linear function for **each** class.
+
+(The mathier students will recognize that some cancellation is possible, and only $K - 1$ linear functions are needed as in 2-class logistic regression.)
+
+Multiclass logistic regression is also referred to as **multinomial regression**.
+
+--->
+</section></section>
+<section>
+<section id="multinomial-logistic-regression" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Multinomial Logistic Regression</h1>
+
+</section>
+<section id="multinomial-logistic-regression-1" class="slide level2 center">
+<h2>Multinomial Logistic Regression</h2>
+<p>Logistic regression is frequently used when the response is binary, or <span class="math inline">\(K = 2\)</span> classes. We need a modification when there are <span class="math inline">\(K &gt; 2\)</span> classes. E.g. <strong>stroke</strong>, <strong>drug overdose</strong>, and <strong>epileptic seizure</strong> for the emergency room example.</p>
+<p>The simplest representation uses different linear functions for each class, combined with the <em>softmax</em> function to form probabilities:</p>
+<p><span class="math display">\[
+\Pr(Y = k | X = x) = \text{Softmax}(z_k) = \frac{e^{\beta_{k0} + \beta_{k1}x_1 + \cdots + \beta_{kp}x_p}}{\sum_{l=1}^{K} e^{\beta_{l0} + \beta_{l1}x_1 + \cdots + \beta_{lp}x_p}}.
+\]</span></p>
+<ul>
+<li class="fragment">We really only need <span class="math inline">\(K - 1\)</span> functions (see the book for details).</li>
+<li class="fragment">We fit by maximizing the <em>multinomial</em> log-likelihood (<em>cross-entropy</em>) — a generalization of the binomial.</li>
+<li class="fragment">An example will given later in the course, when we fit the 10-class model to the <strong>MNIST digit dataset</strong>.</li>
+</ul>
+</section>
+<section id="what-is-the-softmax-function" class="slide level2 center">
+<h2>What is the Softmax Function?</h2>
+<div>
+<div style="font-size: 80%;">
+<p>The <strong>softmax function</strong> is used in multinomial logistic regression to convert raw scores (<strong>logits</strong>) into probabilities for multiple classes.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Logits</strong> are the raw, untransformed output of the linear component in logistic regression. For a given class <span class="math inline">\(k\)</span>, the logit is defined as:</p>
+<p><span class="math display">\[
+z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(z_k\)</span>: The logit for class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(\beta_{k0}\)</span>: Intercept term.</li>
+<li><span class="math inline">\(\beta_{kj}\)</span>: Coefficients for predictor <span class="math inline">\(x_j\)</span>.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Softmax Definition:</strong></p>
+<p>For <span class="math inline">\(K\)</span> classes and input <span class="math inline">\(x\)</span>, the softmax function is defined as:</p>
+<p><span class="math display">\[
+\text{Softmax}(z_k) = \frac{e^{z_k}}{\sum_{l=1}^K e^{z_l}}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p\)</span>: The linear score (logit) for class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(\beta_{k0}, \beta_{k1}, \dots, \beta_{kp}\)</span>: Coefficients for class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(e^{z_k}\)</span>: Exponentiated score for class <span class="math inline">\(k\)</span>, ensuring all values are positive.</li>
+</ul>
+</div>
+</div></div>
+<div class="fragment">
+<p><strong>Key Features of the Softmax Function</strong></p>
+<ol type="1">
+<li><p><strong>Probability Distribution</strong>: Outputs probabilities that sum to 1 across all <span class="math inline">\(K\)</span> classes. <span class="math inline">\(\text{Pr}(Y = k \mid X = x) = \text{Softmax}(z_k)\)</span>.</p></li>
+<li><p><strong>Normalization</strong>: Normalizes logits by dividing each exponentiated logit by the sum of all exponentiated logits.</p></li>
+<li><p><strong>Handles Multiclass Classification</strong>: Extends binary logistic regression to <span class="math inline">\(K &gt; 2\)</span> classes.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="example-of-softmax-in-action" class="slide level2 center">
+<h2>Example of Softmax in Action</h2>
+<div>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Imagine classifying three emergency room conditions: <strong>Stroke</strong>, <strong>Drug Overdose</strong>, and <strong>Epileptic Seizure</strong>.</p>
+<p>Suppose the logits are: <span class="math inline">\(z_{\text{stroke}} = 2.5, \quad z_{\text{drug overdose}} = 1.0, \quad z_{\text{epileptic seizure}} = 0.5\)</span></p>
+<p>The probabilities are:</p>
+<p><span class="math display">\[
+\text{Softmax}(z_k) = \frac{e^{z_k}}{e^{2.5} + e^{1.0} + e^{0.5}}
+\]</span></p>
+<div class="fragment">
+<p><strong>Step 1: Exponentiate the Logits</strong></p>
+<p><span class="math inline">\(e^{z_{\text{stroke}}} = e^{2.5} \approx 12.182\)</span></p>
+<p><span class="math inline">\(e^{z_{\text{drug overdose}}} = e^{1.0} \approx 2.718\)</span></p>
+<p><span class="math inline">\(e^{z_{\text{epileptic seizure}}} = e^{0.5} \approx 1.649\)</span></p>
+</div>
+<div class="fragment">
+<p><strong>Step 2: Compute the Denominator</strong></p>
+<p><span class="math inline">\(\sum_{l=1}^K e^{z_l} = e^{2.5} + e^{1.0} + e^{0.5}\)</span></p>
+<p><span class="math inline">\(\sum_{l=1}^K e^{z_l} \approx 12.182 + 2.718 + 1.649 = 16.549\)</span></p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Step 3: Calculate the Probabilities</strong></p>
+<p><span class="math inline">\(\text{Pr}(\text{stroke}) = \frac{e^{z_{\text{stroke}}}}{\sum_{l=1}^K e^{z_l}} = \frac{12.182}{16.549} \approx 0.7366\)</span></p>
+<p><span class="math inline">\(\text{Pr}(\text{drug overdose}) = \frac{e^{z_{\text{drug overdose}}}}{\sum_{l=1}^K e^{z_l}} = \frac{2.718}{16.549} \approx 0.1642\)</span></p>
+<p><span class="math inline">\(\text{Pr}(\text{epileptic seizure}) = \frac{e^{z_{\text{epileptic seizure}}}}{\sum_{l=1}^K e^{z_l}} = \frac{1.649}{16.549} \approx 0.0996\)</span></p>
+<p>The output probabilities represent the likelihood of each condition, ensuring:</p>
+<p><span class="math display">\[
+\sum_{k=1}^3 \text{Pr}(Y = k) = 1
+\]</span></p>
+<p>We have:</p>
+<p><span class="math display">\[
+   0.7366 + 0.1642 + 0.0996 \approx 1.000
+\]</span></p>
+</div>
+<div class="fragment">
+<p><strong>Conclusion</strong></p>
+<ul>
+<li><p>The <strong>softmax function</strong> translates raw scores into probabilities, making it essential for <strong>multiclass classification</strong>.</p></li>
+<li><p>It ensures a probabilistic interpretation while maintaining normalization across all classes.</p></li>
+</ul>
+</div>
+</div></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="discriminant-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Discriminant Analysis</h1>
+
+</section>
+<section id="discriminant-analysis-1" class="slide level2 center">
+<h2>Discriminant Analysis</h2>
+<p><br></p>
+<p>Here the approach is to model the distribution of <span class="math inline">\(X\)</span> in each of the classes separately, and then use <strong>Bayes theorem</strong> to flip things around and obtain <span class="math inline">\(\Pr(Y \mid X)\)</span>.</p>
+<p>When we use normal (Gaussian) distributions for each class, this leads to <strong>linear</strong> or <strong>quadratic discriminant analysis</strong>.</p>
+<p>However, this approach is quite general, and other distributions can be used as well. We will focus on normal distributions as input for <span class="math inline">\(f_k(x)\)</span>.</p>
+</section>
+<section id="bayes-theorem-for-classification" class="slide level2 center">
+<h2>Bayes Theorem for Classification</h2>
+<p>Thomas Bayes was a famous mathematician whose name represents a big subfield of statistical and probabilistic modeling. Here we focus on a simple result, known as <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes theorem</a>:</p>
+<p><span class="math display">\[
+\Pr(Y = k \mid X = x) = \frac{\Pr(X = x \mid Y = k) \cdot \Pr(Y = k)}{\Pr(X = x)}
+\]</span></p>
+<p>One writes this slightly differently for discriminant analysis:</p>
+<p><span class="math display">\[
+\Pr(Y = k \mid X = x) = \frac{\pi_k f_k(x)}{\sum_{\ell=1}^K \pi_\ell f_\ell(x)}, \quad \text{where}
+\]</span></p>
+<ul>
+<li class="fragment"><p><span class="math inline">\(f_k(x) = \Pr(X = x \mid Y = k)\)</span> is the <strong>density</strong> for <span class="math inline">\(X\)</span> in class <span class="math inline">\(k\)</span>. Here we will use normal densities for these, separately in each class.</p></li>
+<li class="fragment"><p><span class="math inline">\(\pi_k = \Pr(Y = k)\)</span> is the marginal or <strong>prior</strong> probability for class <span class="math inline">\(k\)</span>.</p></li>
+</ul>
+</section>
+<section id="bayes-theorem-explanation" class="slide level2 center">
+<h2>Bayes’ Theorem: Explanation</h2>
+<p>It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\]</span></p>
+<ul>
+<li class="fragment"><p><span class="math inline">\(P(A|B)\)</span>: <strong>Posterior probability</strong> - Probability of event <span class="math inline">\(A\)</span> occurring given that <span class="math inline">\(B\)</span> is true — updated probability after the evidence is considered.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(A)\)</span>: <strong>Prior probability</strong> - Initial probability of event <span class="math inline">\(A\)</span> — the probability before the evidence is considered.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(B|A)\)</span>: <strong>Likelihood</strong> - Probability of observing event <span class="math inline">\(B\)</span> given that <span class="math inline">\(A\)</span> is true.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(B)\)</span>: <strong>Marginal probability</strong> - Total probability of the evidence, event <span class="math inline">\(B\)</span>.</p></li>
+</ul>
+</section>
+<section id="understanding-conditional-probability" class="slide level2 center">
+<h2>Understanding Conditional Probability</h2>
+<p>Conditional probability is the probability of an event occurring given that another event has already occurred.</p>
+<p><strong>Definition</strong>:</p>
+<p><span class="math display">\[
+  P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]</span></p>
+<p>is the probability of event <span class="math inline">\(A\)</span> occurring given that <span class="math inline">\(B\)</span> is true.</p>
+<ul>
+<li class="fragment"><strong>Interpretation</strong>: How likely is <span class="math inline">\(A\)</span> if we know that <span class="math inline">\(B\)</span> happens?</li>
+</ul>
+</section>
+<section id="what-is-joint-probability" class="slide level2 center">
+<h2>What is Joint Probability?</h2>
+<p>Joint probability refers to the probability of two events occurring together.</p>
+<p><strong>Definition</strong>: <span class="math inline">\(P(A \cap B)\)</span> is the probability that both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur.</p>
+<div class="fragment">
+<p><strong>Connection to Conditional Probability</strong>:</p>
+<p><span class="math display">\[
+  P(A \cap B) = P(A|B) \cdot P(B)
+\]</span></p>
+<p><span class="math display">\[
+  P(B \cap A) = P(B|A) \cdot P(A)
+\]</span></p>
+<p>This formula is crucial for understanding Bayes’ Theorem.</p>
+</div>
+</section>
+<section id="symmetry-in-joint-events" class="slide level2 center">
+<h2>Symmetry in Joint Events</h2>
+<p>Joint probability is symmetric, meaning:</p>
+<p><span class="math display">\[
+P(A \cap B) = P(B \cap A)
+\]</span></p>
+<p>Thus, we can also express it as:</p>
+<p><span class="math display">\[
+P(A \cap B) = P(B|A) \cdot P(A)
+\]</span></p>
+<p>This symmetry is the key to deriving Bayes’ Theorem.</p>
+</section>
+<section id="deriving-bayes-theorem" class="slide level2 center">
+<h2>Deriving Bayes’ Theorem</h2>
+<div>
+<div style="font-size: 60%;">
+<p>Given that the definition of Conditional Probability is:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]</span></p>
+<div class="fragment">
+<ol type="1">
+<li><strong>Using the Definition of Joint Probability:</strong></li>
+</ol>
+<p><span class="math display">\[
+   P(A \cap B) = P(A|B) \cdot P(B)
+\]</span></p>
+<p><span class="math display">\[
+   P(B \cap A) = P(B|A) \cdot P(A)
+\]</span></p>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li><strong>Symmetry of Joint Probability:</strong></li>
+</ol>
+<p><span class="math display">\[
+   P(A \cap B) = P(B \cap A)
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Thus, we can express the joint probability as:</p>
+<p><span class="math display">\[
+P(A \cap B) = P(B|A) \cdot P(A)
+\]</span></p>
+<ol start="3" type="1">
+<li><strong>The Bayes’ Theorem!</strong></li>
+</ol>
+<p>Substitute this back into the conditional probability definition:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="why-bayes-theorem-matters" class="slide level2 center">
+<h2>Why Bayes’ Theorem Matters?</h2>
+<div>
+<div style="font-size: 80%;">
+<p>Bayes’ Theorem is a foundational principle in probability theory and statistics, enabling:</p>
+<ul>
+<li><p><strong>Incorporation of Prior Knowledge</strong>:<br>
+It allows for the integration of prior knowledge or beliefs when making statistical inferences.</p></li>
+<li><p><strong>Beliefs Update</strong>:<br>
+It provides a systematic way to update the probability estimates as new evidence or data becomes available.</p></li>
+<li><p><strong>Probabilistic Thinking</strong>:<br>
+Encourages a probabilistic approach to decision-making, quantifying uncertainty, and reasoning under uncertainty.</p></li>
+<li><p><strong>Versatility in Applications</strong>:<br>
+From medical diagnosis to spam filtering, Bayes’ Theorem is pivotal in areas requiring probabilistic assessment.</p></li>
+</ul>
+<p><a href="https://www.sciencedirect.com/topics/mathematics/bayesian-paradigm#:~:text=Bayesian%20Methodology%20in%20Statistics&amp;text=By%20using%20probability%20distributions%20to,coherence%20of%20the%20proposed%20solutions.">Bayes’ Theorem is a paradigm</a> that shapes the way we interpret and interact with data, offering a powerful tool for learning from information and making decisions in an uncertain world.</p>
+</div>
+</div>
+</section>
+<section id="classify-to-the-highest-density" class="slide level2 center">
+<h2>Classify to the Highest Density</h2>
+
+<img data-src="figs/4_3_3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-hand plot: single variable X and <span class="math inline">\(\pi_k f_k(x)\)</span> in the vertical axis for both classes <span class="math inline">\(k\)</span> equals 1 and <span class="math inline">\(k\)</span> equals 2. In this case the the pies are the same for both, so anything to the left of zero we classify as as green and anything to the right we classify as as purple.</p></li>
+<li class="fragment"><p>Right-hand plot: here we have different priors. The probability of <span class="math inline">\(k = 2\)</span> is 0.7 and and of of <span class="math inline">\(k= 1\)</span> is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.</p></li>
+</ul>
+</section>
+<section id="why-discriminant-analysis" class="slide level2 center">
+<h2>Why Discriminant Analysis?</h2>
+<ul>
+<li class="fragment"><p>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</p></li>
+<li class="fragment"><p>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</p></li>
+<li class="fragment"><p>Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.</p></li>
+</ul>
+</section>
+<section id="linear-discriminant-analysis-when-p-1" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p = 1\)</span></h2>
+<p>The Gaussian density has the form:</p>
+<p><span class="math display">\[
+f_k(x) = \frac{1}{\sqrt{2\pi\sigma_k}} e^{-\frac{1}{2} \left( \frac{x - \mu_k}{\sigma_k} \right)^2}
+\]</span></p>
+<p>Here <span class="math inline">\(\mu_k\)</span> is the mean, and <span class="math inline">\(\sigma_k^2\)</span> the variance (in class <span class="math inline">\(k\)</span>). We will assume that all the <span class="math inline">\(\sigma_k = \sigma\)</span> are the same.</p>
+<div class="fragment">
+<p>Plugging this into Bayes formula, we get a rather complex expression for <span class="math inline">\(p_k(x) = \Pr(Y = k \mid X = x)\)</span>:</p>
+<p><span class="math display">\[
+p_k(x) = \frac{\pi_k \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{1}{2} \left( \frac{x - \mu_k}{\sigma} \right)^2}}{\sum_{\ell=1}^K \pi_\ell \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{1}{2} \left( \frac{x - \mu_\ell}{\sigma} \right)^2}}
+\]</span></p>
+<p>Happily, there are simplifications and cancellations.</p>
+</div>
+</section>
+<section id="discriminant-functions" class="slide level2 center">
+<h2>Discriminant Functions</h2>
+<p>To classify one observation at the value <span class="math inline">\(X = x\)</span> into a class, we need to see which of the <span class="math inline">\(p_k(x)\)</span> is largest. Taking logs, and discarding terms that do not depend on <span class="math inline">\(k\)</span>, we see that this is equivalent to assigning <span class="math inline">\(x\)</span> to the class with the largest <strong>discriminant score</strong>:</p>
+<p><span class="math display">\[
+\delta_k(x) = x \cdot \frac{\mu_k}{\sigma^2} - \frac{\mu_k^2}{2\sigma^2} + \log(\pi_k)
+\]</span></p>
+<p>Note that <span class="math inline">\(\delta_k(x)\)</span> is a <strong>linear</strong> function of <span class="math inline">\(x\)</span>.</p>
+<div class="fragment">
+<p>If there are <span class="math inline">\(K = 2\)</span> classes and <span class="math inline">\(\pi_1 = \pi_2 = 0.5\)</span>, then one can see that the <strong>decision boundary</strong> is at:</p>
+<p><span class="math display">\[
+x = \frac{\mu_1 + \mu_2}{2}.
+\]</span></p>
+</div>
+</section>
+<section id="example-estimating-parameters-for-discriminant-analysis" class="slide level2 center">
+<h2>Example: Estimating Parameters for Discriminant Analysis</h2>
+
+<img data-src="figs/4_4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-Panel: Synthetic population data with <span class="math inline">\(\mu_1 = -1.5\)</span>, <span class="math inline">\(\mu_2 = 1.5\)</span>, <span class="math inline">\(\pi_1 = \pi_2 = 0.5\)</span>, and <span class="math inline">\(\sigma^2 = 1\)</span>.</p></li>
+<li class="fragment"><p>Typically, we don’t know these parameters; we just have the training data. In that case, we simply estimate the parameters and plug them into the rule.</p></li>
+<li class="fragment"><p>Right-Panel: histograms of the sample. We see that the estimation provided a decision boundary (black solid line) pretty close to the correct one, the one of the population.</p></li>
+</ul>
+</section>
+<section id="estimating-the-parameters" class="slide level2 center">
+<h2>Estimating the Parameters</h2>
+<div>
+<div style="font-size: 80%;">
+<p>The prior is the number in each class divided by the total number:</p>
+<p><span class="math display">\[
+\hat{\pi}_k = \frac{n_k}{n}
+\]</span></p>
+<p>The means in each class is the sample mean:</p>
+<p><span class="math display">\[
+\hat{\mu}_k = \frac{1}{n_k} \sum_{i: y_i = k} x_i
+\]</span></p>
+<p>We assume that the variance is the same in each of the classes and so we assume a <em>pooled variance estimate</em>:</p>
+<p><span class="math display">\[
+\hat{\sigma}^2 = \frac{1}{n - K} \sum_{k=1}^K \sum_{i: y_i = k} (x_i - \hat{\mu}_k)^2
+\]</span></p>
+<p><span class="math display">\[
+= \sum_{k=1}^K \frac{n_k - 1}{n - K} \cdot \hat{\sigma}_k^2
+\]</span></p>
+<p>where <span class="math inline">\(\hat{\sigma}_k^2 = \frac{1}{n_k - 1} \sum_{i: y_i = k} (x_i - \hat{\mu}_k)^2\)</span> is the usual formula for the estimated variance in the <span class="math inline">\(k\)</span>-th class.</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="linear-discriminant-analysis-when-p-1-1" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h1>
+
+</section>
+<section id="linear-discriminant-analysis-when-p-1-2" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
+<div style="font-size: 80%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Gaussian density in two Dimensions, two variables <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>. On the Left-panel, we have a bell function and this is the case when the two variables are uncorrelated. On the Right-panel, there is correlation between the two predictors and it is like a stretched bell.</p>
+<p><strong>Density:</strong></p>
+<p><span class="math display">\[f(x) = \frac{1}{(2\pi)^{p/2} |\Sigma|^{1/2}} e^{-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu)}\]</span> where <span class="math inline">\(\Sigma\)</span> is the covariance matrix.</p>
+</div>
+</div>
+</section>
+<section id="covariance-matrix" class="slide level2 center">
+<h2>Covariance Matrix</h2>
+<div>
+<div style="font-size: 80%;">
+<p>The <strong>covariance matrix</strong> is a square matrix that summarizes the covariance (a measure of how much two random variables vary together) between multiple variables in a dataset.</p>
+<p><strong>Definition:</strong></p>
+<p>For a random vector <span class="math inline">\(X = [X_1, X_2, \dots, X_p]^\top\)</span> with <span class="math inline">\(p\)</span> variables, the covariance matrix <span class="math inline">\(\Sigma\)</span> is defined as:</p>
+<p><span class="math display">\[
+\Sigma =
+\begin{bmatrix}
+\text{Var}(X_1) &amp; \text{Cov}(X_1, X_2) &amp; \cdots &amp; \text{Cov}(X_1, X_p) \\
+\text{Cov}(X_2, X_1) &amp; \text{Var}(X_2) &amp; \cdots &amp; \text{Cov}(X_2, X_p) \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\text{Cov}(X_p, X_1) &amp; \text{Cov}(X_p, X_2) &amp; \cdots &amp; \text{Var}(X_p)
+\end{bmatrix}
+\]</span></p>
+<div class="fragment">
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li><span class="math inline">\(\text{Var}(X_i)\)</span>: Variance of variable <span class="math inline">\(X_i\)</span>.</li>
+<li><span class="math inline">\(\text{Cov}(X_i, X_j)\)</span>: Covariance between variables <span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_j\)</span>.</li>
+<li><span class="math inline">\(\Sigma\)</span> is symmetric: <span class="math inline">\(\text{Cov}(X_i, X_j) = \text{Cov}(X_j, X_i)\)</span>.</li>
+<li>Diagonal elements represent variances, and off-diagonal elements represent covariances.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-discriminant-analysis-when-p-1-3" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
+<div style="font-size: 80%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Discriminant function:</strong> after simplifying the density function we can find</p>
+<p><span class="math display">\[\delta_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^T \Sigma^{-1} \mu_k + \log \pi_k\]</span></p>
+<p>Note that it is a linear function where the first component, <span class="math inline">\(x^T \Sigma^{-1} \mu_k\)</span>, has the <span class="math inline">\(x\)</span> variable multiplied by a coefficient vector and, the second component, <span class="math inline">\(\frac{1}{2} \mu_k^T \Sigma^{-1} \mu_k + \log \pi_k\)</span>, is a constant.</p>
+</div>
+</div>
+</section>
+<section id="linear-discriminant-analysis-when-p-1-4" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
+<div style="font-size: 80%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Discriminant function can be written as</p>
+<p><span class="math display">\[\delta_k(x) = c_{k0} + c_{k1}x_1 + c_{k2}x_2 + \cdots + c_{kp}x_p\]</span></p>
+<p>a linear function. That is a function for class <span class="math inline">\(k\)</span>, where <span class="math inline">\(c_{k0}\)</span> represents the constant we find in the second component of the Discriminant function and <span class="math inline">\(c_{k1}x_1 + c_{k2}x_2 + \cdots + c_{kp}x_p\)</span> come from the first component of the Discriminant function. We compute <span class="math inline">\(\delta_k(x)\)</span> for each of the classes and then you classify to the class for which it is largest.</p>
+</div>
+</div>
+</section>
+<section id="illustration-p-2-and-k-3-classes" class="slide level2 center">
+<h2>Illustration: <span class="math inline">\(p = 2\)</span> and <span class="math inline">\(K = 3\)</span> classes</h2>
+
+<img data-src="figs/4_6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-panel: The circle presents the countor of the density of a particular level of probability for the blue, green, and the orange class. Here <span class="math inline">\(\pi_1 = \pi_2 = \pi_3 = \frac{1}{3}\)</span>. The dashed lines are known as the <strong>Bayes decision boundaries</strong>. They are the “True” decision boundaries, were they known, they would yield the fewest misclassification errors, among all possible classifiers.</p></li>
+<li class="fragment"><p>Right-panel: We compute the mean for <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="example-fishers-iris-data" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Example: Fisher’s Iris Data</h1>
+
+</section>
+<section id="example-fishers-iris-data-1" class="slide level2 center">
+<h2>Example: Fisher’s Iris Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_6_1-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><strong>4 variables</strong></li>
+<li class="fragment"><strong>3 species</strong></li>
+<li class="fragment"><strong>50 samples/class</strong>
+<ul>
+<li class="fragment">🟦 Setosa</li>
+<li class="fragment">🟧 Versicolor</li>
+<li class="fragment">🟩 Virginica</li>
+</ul></li>
+<li class="fragment"><strong>LDA classifies all but 3 of the 150 training samples correctly.</strong></li>
+</ul>
+</div></div>
+</section>
+<section id="example-fishers-discriminant-plot" class="slide level2 center">
+<h2>Example: Fisher’s Discriminant Plot</h2>
+
+<img data-src="figs/4_6_2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">Discriminant variables 1 and 2 are <strong>linear combinations</strong> of the original variables.</li>
+<li class="fragment">LDA classifies points based on their <strong>proximity to centroids</strong> in discriminant space.</li>
+<li class="fragment">The centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).</li>
+<li class="fragment">For <span class="math inline">\(K\)</span> classes:
+<ul>
+<li class="fragment">LDA can be visualized in <span class="math inline">\(K - 1\)</span>-dimensional space.</li>
+<li class="fragment">For <span class="math inline">\(K &gt; 3\)</span>, the “best” 2D plane can be chosen for visualization.</li>
+</ul></li>
+</ul>
+</section>
+<section id="from-delta_kx-to-probabilities" class="slide level2 center">
+<h2>From <span class="math inline">\(\delta_k(x)\)</span> to Probabilities</h2>
+<div>
+<div style="font-size: 90%;">
+<ul>
+<li>Once we have estimates of the Discriminat Functions, <span class="math inline">\(\hat{\delta}_k(x)\)</span>, we can turn these into estimates for class probabilities:</li>
+</ul>
+<p><span class="math display">\[
+\hat{\Pr}(Y = k | X = x) = \frac{e^{\hat{\delta}_k(x)}}{\sum_{l=1}^K e^{\hat{\delta}_l(x)}}.
+\]</span></p>
+<ul>
+<li><p>So classifying to the largest <span class="math inline">\(\hat{\delta}_k(x)\)</span> amounts to classifying to the class for which <span class="math inline">\(\hat{\Pr}(Y = k | X = x)\)</span> is largest.</p></li>
+<li><p>When <span class="math inline">\(K = 2\)</span>, we classify to class 2 if <span class="math inline">\(\hat{\Pr}(Y = 2 | X = x) \geq 0.5\)</span>, else to class 1.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="lda-on-credit-data" class="slide level2 center">
+<h2>LDA on Credit Data</h2>
+<div>
+<div style="font-size: 80%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-style: italic;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+True Default Status
+</div></th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; font-style: italic;">Predicted Default Status</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; font-style: italic;">No</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; font-style: italic;">Yes</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold; font-style: italic;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">No</td>
+<td style="text-align: center;">9644</td>
+<td style="text-align: center;">252</td>
+<td style="text-align: center;">9896</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; font-weight: bold;">Yes</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">81</td>
+<td style="text-align: center;">104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; font-weight: bold;">Total</td>
+<td style="text-align: center;">9667</td>
+<td style="text-align: center;">333</td>
+<td style="text-align: center;">10000</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\frac{23 + 252}{10000}\)</span> errors — a <strong>2.75% misclassification rate!</strong></li>
+</ul>
+<div class="fragment">
+<p><strong>Some caveats:</strong></p>
+<ul>
+<li><p>This is <strong>training error</strong>, and we may be overfitting.</p></li>
+<li><p>If we classified to the prior, the proportion of cases in the classes (e.g.&nbsp;always assuming the class <strong>No</strong> default). We would make <span class="math inline">\(\frac{333}{10000}\)</span> errors, or only <strong>3.33%</strong>. This is what we call the <em>null rate</em>.</p></li>
+<li><p>We can break the errors into different kinds: of the true <strong>No</strong>’s, we make <span class="math inline">\(\frac{23}{9667} = 0.2\%\)</span> errors; of the true <strong>Yes</strong>’s, we make <span class="math inline">\(\frac{252}{333} = 75.7\%\)</span> errors!</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="types-of-errors" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Types of errors</h1>
+
+</section>
+<section id="types-of-errors-1" class="slide level2 center">
+<h2>Types of errors</h2>
+<div>
+<div style="font-size: 80%;">
+<p><strong>False positive rate:</strong> The fraction of negative examples that are classified as positive — <strong>0.2% in example</strong>.</p>
+<p><strong>False negative rate:</strong> The fraction of positive examples that are classified as negative — <strong>75.7% in example</strong>.</p>
+<p>We produced this table by classifying to class <strong>Yes</strong> if:</p>
+<p><span class="math display">\[
+\hat{P}(\text{Default} = \text{Yes} \mid \text{Balance}, \text{Student}) \geq 0.5
+\]</span></p>
+<p>We can change the two error rates by changing the threshold from <span class="math inline">\(0.5\)</span> to some other value in <span class="math inline">\([0, 1]\)</span>:</p>
+<p><span class="math display">\[
+\hat{P}(\text{Default} = \text{Yes} \mid \text{Balance}, \text{Student}) \geq \text{threshold},
+\]</span></p>
+<p>and vary <span class="math inline">\(\text{threshold}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="varying-the-threshold" class="slide level2 center">
+<h2>Varying the <em>threshold</em></h2>
+
+<img data-src="figs/4_7_1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"><p>In order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less.</p>
+<p><br></p>
+</section>
+<section id="roc-curve" class="slide level2 center">
+<h2>ROC Curve</h2>
+
+<img data-src="figs/4_8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p>The <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><em>ROC plot</em></a> displays both simultaneously.</p>
+<p>Sometimes we use the <em>AUC</em> or <em>area under the curve</em> to summarize the overall performance. Higher <em>AUC</em> is good.</p>
+<p><br></p>
+</section></section>
+<section>
+<section id="other-forms-of-discriminant-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Other Forms of Discriminant Analysis</h1>
+
+</section>
+<section id="other-forms-of-discriminant-analysis-1" class="slide level2 center">
+<h2>Other Forms of Discriminant Analysis</h2>
+<div style="font-size: 80%;">
+<p>When <span class="math inline">\(f_k(x)\)</span> are Gaussian densities, with the same covariance matrix <span class="math inline">\(\Sigma\)</span> in each class, this leads to <strong>linear discriminant analysis</strong>.</p>
+<p><span class="math display">\[
+\Pr(Y = k|X = x) = \frac{\pi_k f_k(x)}{\sum_{l=1}^{K} \pi_l f_l(x)}
+\]</span></p>
+<p>By altering the forms for <span class="math inline">\(f_k(x)\)</span>, we get different classifiers:</p>
+<ul>
+<li class="fragment">With Gaussians but different <span class="math inline">\(\Sigma_k\)</span> in each class, we get <strong>quadratic discriminant analysis</strong>.</li>
+<li class="fragment">With <span class="math inline">\(f_k(x) = \prod_{j=1}^{p} f_{jk}(x_j)\)</span> (conditional independence model) in each class, we get <strong>naive Bayes</strong>. For Gaussians, this means <span class="math inline">\(\Sigma_k\)</span> are diagonal.</li>
+<li class="fragment">Many other forms, by proposing specific density models for <span class="math inline">\(f_k(x)\)</span>, including <strong>nonparametric approaches</strong>.</li>
+</ul>
+</div>
+</section>
+<section id="quadratic-discriminant-analysis" class="slide level2 center">
+<h2>Quadratic Discriminant Analysis</h2>
+<div style="font-size: 70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_9-1.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+\delta_k(x) = -\frac{1}{2}(x - \mu_k)^T \Sigma_k^{-1}(x - \mu_k) + \log \pi_k - \frac{1}{2} \log |\Sigma_k|
+\]</span></p>
+<p>In the Left-plot we see a case when the true boundary should be linear. In the Right-plot, covariances were different in the true data. It is possible to see that the bayes decision boundary is curved and the quadratic discriminant analysis is also curved whereas the linear discriminant analysis gives a different boundary.</p>
+<p>Whether each class has the same or different covariance matrices significantly impacts how boundaries between the classes are defined. The <strong>covariance matrix</strong> describes the spread or variability of data points within each class and how the features in that class relate to each other.</p>
+<ul>
+<li class="fragment"><strong>Key Insight</strong>: If <span class="math inline">\(\Sigma_k\)</span> are different for each class, the <strong>quadratic terms</strong> matter significantly.</li>
+<li class="fragment">QDA allows for <strong>non-linear decision boundaries</strong> due to unique covariance matrices for each class.</li>
+<li class="fragment">Example: Suppose we are classifying plants based on two features (e.g., height and leaf width). If one type of plant has a tall and narrow spread of data, while another type has a short and wide spread, QDA can handle these differences and draw curved boundaries to separate the groups.</li>
+</ul>
+</div>
+</section>
+<section id="assess-the-covariance-matrices" class="slide level2 center">
+<h2>Assess the Covariance Matrices</h2>
+<div style="font-size: 90%;">
+<p>LDA assumes the covariance matrices of all classes are the same, while QDA allows each class to have its own. To determine which assumption is better:</p>
+<ol type="1">
+<li class="fragment"><strong>Hypothesys test</strong>: we can perform a Test for Equality of Covariance Matrices (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Box%27s_M_test">Box’s M Test</a>). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.</li>
+<li class="fragment"><strong>Visual Inspection</strong>: Plot the data in two dimensions (e.g., using scatterplots). Check if the spread, shape, or orientation of data points differs significantly between classes. If they are similar, LDA might work well. If they are visibly different, QDA is likely better.</li>
+<li class="fragment"><strong>Compare Model Performance</strong>: run both models and choose the model that performs better on unseen data (test set).</li>
+<li class="fragment"><strong>Consider the Number of Features and Data Size</strong>: LDA performs well with smaller datasets because it estimates a single covariance matrix across all classes (fewer parameters). QDA requires a larger dataset because it estimates a separate covariance matrix for each class (more parameters).</li>
+<li class="fragment"><strong>Domain Knowledge</strong>: Use your understanding of the data to decide.</li>
+</ol>
+</div>
+</section>
+<section id="logistic-regression-versus-lda" class="slide level2 center">
+<h2>Logistic Regression versus LDA</h2>
+<div style="font-size: 80%;">
+<p>For a two-class problem, one can show that for LDA:</p>
+<p><span class="math display">\[
+\log \left( \frac{p_1(x)}{1 - p_1(x)} \right) = \log \left( \frac{p_1(x)}{p_2(x)} \right) = c_0 + c_1 x_1 + \dots + c_p x_p
+\]</span></p>
+<p>if we take the log odds, <span class="math inline">\(\log \left( \frac{p_1(x)}{1 - p_1(x)}\right)\)</span>, which is the log of the probability for class 1 versus the probability for class two, we endup with a linear function of <span class="math inline">\(x\)</span>, <span class="math inline">\(c_0 + c_1 x_1 + \dots + c_p x_p\)</span>. So it has the same form as logistic regression.</p>
+<p>The difference lies in how the parameters are estimated.</p>
+<ul>
+<li class="fragment"><p>Logistic regression uses the conditional likelihood based on <span class="math inline">\(\text{Pr}(Y|X)\)</span>. In Machine Learning, it is known as <em>discriminative learning</em>.</p></li>
+<li class="fragment"><p>LDA uses the full likelihood based on the joint distributions of <span class="math inline">\(x's\)</span> and <span class="math inline">\(y's\)</span>, <span class="math inline">\(\text{Pr}(X, Y)\)</span>, whereas logistic regression was only using the distribution of <span class="math inline">\(y's\)</span>. It is known as <em>generative learning</em>.</p></li>
+<li class="fragment"><p>Despite these differences, in practice, the results are often very similar.</p>
+<ul>
+<li class="fragment">Logistic regression can also fit quadratic boundaries like QDA by explicitly including quadratic terms in the model.</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="naive-bayes" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Naive Bayes</h1>
+
+</section>
+<section id="naive-bayes-1" class="slide level2 center">
+<h2>Naive Bayes</h2>
+<div>
+<div style="font-size: 70%;">
+<ul>
+<li>Assumes features are independent in each class.</li>
+<li>Useful when <span class="math inline">\(p\)</span> is large, and so multivariate methods like QDA and even LDA break down.</li>
+</ul>
+<p><strong>Gaussian Naive Bayes</strong> assumes each <span class="math inline">\(\Sigma_k\)</span> is diagonal:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\delta_k(x) &amp;\propto \log \left[ \pi_k \prod_{j=1}^p f_{kj}(x_j) \right] \\
+            &amp;= -\frac{1}{2} \sum_{j=1}^p \left[ \frac{(x_j - \mu_{kj})^2}{\sigma_{kj}^2} + \log \sigma_{kj}^2 \right] + \log \pi_k
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>Can be used for <strong>mixed feature vectors</strong> (qualitative and quantitative). If <span class="math inline">\(X_j\)</span> is qualitative, replace <span class="math inline">\(f_{kj}(x_j)\)</span> with the probability mass function (histogram) over discrete categories.</p></li>
+<li><p><strong>Key Point:</strong> Despite strong assumptions, naive Bayes often produces good classification results.</p></li>
+</ul>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><span class="math inline">\(\pi_k\)</span>: Prior probability of class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(f_{kj}(x_j)\)</span>: Density function for feature <span class="math inline">\(j\)</span> in class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(\mu_{kj}\)</span>: Mean of feature <span class="math inline">\(j\)</span> in class <span class="math inline">\(k\)</span>.</li>
+<li><span class="math inline">\(\sigma_{kj}^2\)</span>: Variance of feature <span class="math inline">\(j\)</span> in class <span class="math inline">\(k\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="diagonal-covariance-matrix" class="slide level2 center">
+<h2>Diagonal Covariance Matrix</h2>
+<div>
+<div style="font-size: 80%;">
+<p>A <strong>diagonal covariance matrix</strong> is a special case of the covariance matrix where all off-diagonal elements are zero. This implies that the variables are uncorrelated.</p>
+<p><strong>General Form:</strong></p>
+<p>For <span class="math inline">\(p\)</span> variables, a diagonal covariance matrix <span class="math inline">\(\Sigma\)</span> is represented as:</p>
+<p><span class="math display">\[
+\Sigma =
+\begin{bmatrix}
+\sigma_1^2 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \sigma_2^2 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \sigma_p^2
+\end{bmatrix}
+\]</span></p>
+<p><strong>Properties:</strong></p>
+<ul>
+<li><p><strong>Diagonal Elements</strong> (<span class="math inline">\(\sigma_i^2\)</span>): Represent the variance of each variable <span class="math inline">\(X_i\)</span>.</p></li>
+<li><p><strong>Off-Diagonal Elements</strong>: All equal to zero (<span class="math inline">\(\text{Cov}(X_i, X_j) = 0\)</span> for <span class="math inline">\(i \neq j\)</span>), indicating no linear relationship between variables.</p></li>
+<li><p>A diagonal covariance matrix assumes <strong>independence</strong> between variables. Each variable varies independently without influencing the others.</p></li>
+<li><p>Commonly used in simpler models, such as <strong>Naive Bayes</strong>, where independence is assumed.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="generative-models-and-naïve-bayes" class="slide level2 center">
+<h2>Generative Models and Naïve Bayes</h2>
+<div>
+<div style="font-size: 80%;">
+<ul>
+<li><p>Logistic regression models <span class="math inline">\(\Pr(Y = k | X = x)\)</span> directly, via the logistic function. Similarly, the multinomial logistic regression uses the softmax function. These all model the <em>conditional distribution</em> of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>.</p></li>
+<li><p>By contrast, <em>generative models</em> start with the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y\)</span>, and then use <em>Bayes formula</em> to turn things around:</p></li>
+</ul>
+<p><span class="math display">\[
+\Pr(Y = k | X = x) = \frac{\pi_k f_k(x)}{\sum_{l=1}^{K} \pi_l f_l(x)}.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(f_k(x)\)</span> is the density of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y = k\)</span>;</li>
+<li><span class="math inline">\(\pi_k = \Pr(Y = k)\)</span> is the marginal probability that <span class="math inline">\(Y\)</span> is in class <span class="math inline">\(k\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="generative-models-and-naïve-bayes-1" class="slide level2 center">
+<h2>Generative Models and Naïve Bayes</h2>
+<div>
+<div style="font-size: 80%;">
+<ul>
+<li>Linear and quadratic discriminant analysis derive from generative models, where <span class="math inline">\(f_k(x)\)</span> are Gaussian.</li>
+<li>Useful if some classes are well separated. A situation where logistic regression is unstable.</li>
+<li>Naïve Bayes assumes that the densities <span class="math inline">\(f_k(x)\)</span> in each class <em>factor</em>:</li>
+</ul>
+<p><span class="math display">\[
+f_k(x) = f_{k1}(x_1) \times f_{k2}(x_2) \times \cdots \times f_{kp}(x_p)
+\]</span></p>
+<ul>
+<li>Equivalently, this assumes that the features are <em>independent</em> within each class.</li>
+<li>Then using Bayes formula:</li>
+</ul>
+<p><span class="math display">\[
+\Pr(Y = k | X = x) = \frac{\pi_k \times f_{k1}(x_1) \times f_{k2}(x_2) \times \cdots \times f_{kp}(x_p)}{\sum_{l=1}^{K} \pi_l \times f_{l1}(x_1) \times f_{l2}(x_2) \times \cdots \times f_{lp}(x_p)}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="naïve-bayes-details" class="slide level2 center">
+<h2>Naïve Bayes — Details</h2>
+<p><strong>Why the independence assumption?</strong></p>
+<ul>
+<li class="fragment"><p>Difficult to specify and model high-dimensional densities.<br>
+Much easier to specify one-dimensional densities.</p></li>
+<li class="fragment"><p>Can handle <em>mixed</em> features:</p>
+<ul>
+<li class="fragment">If feature <span class="math inline">\(j\)</span> is quantitative, can model as univariate Gaussian, for example: <span class="math inline">\(X_j \mid Y = k \sim N(\mu_{jk}, \sigma_{jk}^2).\)</span> We estimate <span class="math inline">\(\mu_{jk}\)</span> and <span class="math inline">\(\sigma_{jk}^2\)</span> from the data, and then plug into Gaussian density formula for <span class="math inline">\(f_{jk}(x_j)\)</span>.</li>
+<li class="fragment">Alternatively, can use a <em>histogram</em> estimate of the density, and directly estimate <span class="math inline">\(f_{jk}(x_j)\)</span> by the proportion of observations in the bin into which <span class="math inline">\(x_j\)</span> falls.</li>
+<li class="fragment">If feature <span class="math inline">\(j\)</span> is qualitative, can simply model the proportion in each category.</li>
+</ul></li>
+<li class="fragment"><p>Somewhat unrealistic but extremely useful in many cases.<br>
+Despite its simplicity, often shows good classification performance due to reduced variance.</p></li>
+</ul>
+</section>
+<section id="naïve-bayes-toy-example" class="slide level2 center">
+<h2>Naïve Bayes — Toy Example</h2>
+<div>
+<div style="font-size: 60%;">
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_10_1-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><br></p>
+<p>This toy example demonstrates the working of the <strong>Naïve Bayes classifier</strong> for two classes (<span class="math inline">\(k = 1\)</span> and <span class="math inline">\(k = 2\)</span>) and three features (<span class="math inline">\(X_1, X_2, X_3\)</span>). The goal is to compute the posterior probabilities <span class="math inline">\(\Pr(Y = 1 \mid X = x^*)\)</span> and <span class="math inline">\(\Pr(Y = 2 \mid X = x^*)\)</span> for a given observation <span class="math inline">\(x^* = (0.4, 1.5, 1)\)</span>.</p>
+<div class="fragment">
+<p>The prior probabilities for each class are:</p>
+<p><span class="math inline">\(\hat{\pi}_1 = \hat{\pi}_2 = 0.5\)</span></p>
+</div>
+<div class="fragment">
+<p>For each feature (<span class="math inline">\(X_1, X_2, X_3\)</span>), we estimate the class-conditional density functions:</p>
+<ul>
+<li><span class="math inline">\(\hat{f}_{11}, \hat{f}_{12}, \hat{f}_{13}\)</span>: Densities for <span class="math inline">\(k = 1\)</span> (class 1).</li>
+</ul>
+<p><span class="math inline">\(\hat{f}_{11}(0.4) = 0.368 \\\)</span></p>
+<p><span class="math inline">\(\hat{f}_{12}(1.5) = 0.484 \\\)</span></p>
+<p><span class="math inline">\(\hat{f}_{13}(1) = 0.226 \\\)</span></p>
+<ul>
+<li><span class="math inline">\(\hat{f}_{21}, \hat{f}_{22}, \hat{f}_{23}\)</span>: Densities for <span class="math inline">\(k = 2\)</span> (class 2).</li>
+</ul>
+<p><span class="math inline">\(\hat{f}_{21}(0.4) = 0.030 \\\)</span></p>
+<p><span class="math inline">\(\hat{f}_{22}(1.5) = 0.130 \\\)</span></p>
+<p><span class="math inline">\(\hat{f}_{23}(1) = 0.616 \\\)</span></p>
+</div>
+</div></div>
+<!---
+<center>
+$Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
+</center>
+--->
+<p><br></p>
+</div>
+</div>
+</section>
+<section id="naïve-bayes-toy-example-1" class="slide level2 center">
+<h2>Naïve Bayes — Toy Example</h2>
+<div>
+<div style="font-size: 60%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ol type="1">
+<li><strong>Compute Class-Conditional Likelihoods</strong> for each class <span class="math inline">\(k\)</span>, the likelihood is computed as the product of the conditional densities for each feature:</li>
+</ol>
+<p><span class="math display">\[
+   \hat{f}_k(x^*) = \prod_{j=1}^3 \hat{f}_{kj}(x_j^*)
+\]</span></p>
+<ul>
+<li>For <span class="math inline">\(k = 1\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+     \hat{f}_{11}(0.4) = 0.368, \quad \hat{f}_{12}(1.5) = 0.484, \quad \hat{f}_{13}(1) = 0.226
+\]</span></p>
+<p><span class="math display">\[
+     \hat{f}_1(x^*) = 0.368 \times 0.484 \times 0.226 \approx 0.0402
+\]</span></p>
+<ul>
+<li>For <span class="math inline">\(k = 2\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+     \hat{f}_{21}(0.4) = 0.030, \quad \hat{f}_{22}(1.5) = 0.130, \quad \hat{f}_{23}(1) = 0.616
+\]</span></p>
+<p><span class="math display">\[
+     \hat{f}_2(x^*) = 0.030 \times 0.130 \times 0.616 \approx 0.0024
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<ol start="2" type="1">
+<li><strong>Compute Posterior Probabilities</strong> using Bayes’ theorem:</li>
+</ol>
+<p><span class="math display">\[
+   \Pr(Y = k \mid X = x^*) = \frac{\hat{\pi}_k \hat{f}_k(x^*)}{\sum_{k=1}^2 \hat{\pi}_k \hat{f}_k(x^*)}
+\]</span></p>
+<ul>
+<li><p>For <span class="math inline">\(k = 1\)</span>: <span class="math display">\[
+\Pr(Y = 1 \mid X = x^*) = \frac{0.5 \times 0.0402}{(0.5 \times 0.0402) + (0.5 \times 0.0024)} \approx 0.944
+\]</span></p></li>
+<li><p>For <span class="math inline">\(k = 2\)</span>: <span class="math display">\[
+\Pr(Y = 2 \mid X = x^*) = \frac{0.5 \times 0.0024}{(0.5 \times 0.0402) + (0.5 \times 0.0024)} \approx 0.056
+\]</span></p></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Key Takeaways:</strong></p>
+<ol type="1">
+<li><p><strong>Naïve Bayes Assumption</strong>: The assumption of feature independence simplifies computation by allowing the class-conditional densities to be computed separately for each feature.</p></li>
+<li><p><strong>Posterior Probabilities</strong>: The posterior probability combines the prior (<span class="math inline">\(\pi_k\)</span>) and the likelihood (<span class="math inline">\(\hat{f}_k(x^*)\)</span>).</p></li>
+<li><p><strong>Classification</strong>: The observation <span class="math inline">\(x^*\)</span> is classified as the class with the highest posterior probability (<span class="math inline">\(Y = 1\)</span>).</p></li>
+</ol>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<section id="naïve-bayes-and-gams" class="slide level2 center">
+<h2>Naïve Bayes and GAMs</h2>
+<div>
+<div style="font-size: 80%;">
+<p>Naïve Bayes classifier can be understood as a special case of a GAM.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right)
+&amp;= \log \left( \frac{\pi_k f_k(x)}{\pi_K f_K(x)} \right) \\
+&amp;= \log \left( \frac{\pi_k \prod_{j=1}^p f_{kj}(x_j)}{\pi_K \prod_{j=1}^p f_{Kj}(x_j)} \right) \\
+&amp;= \log \left( \frac{\pi_k}{\pi_K} \right) + \sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right) \\
+&amp;= a_k + \sum_{j=1}^p g_{kj}(x_j),
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(a_k = \log \left( \frac{\pi_k}{\pi_K} \right)\)</span> and <span class="math inline">\(g_{kj}(x_j) = \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)\)</span>.</p>
+<p>Hence, the Naïve Bayes model is a <strong>Generalized Additive Model (GAM)</strong>:</p>
+<ul>
+<li>The log-odds are expressed as a sum of additive terms.</li>
+<li><span class="math inline">\(a_k\)</span>: Represents prior influence.</li>
+<li><span class="math inline">\(g_{kj}(x_j)\)</span>: Represents feature contributions.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="naïve-bayes-and-gams-details" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
+<p><strong>Log-Odds of Posterior Probabilities</strong></p>
+<p>The Naïve Bayes classifier starts with the <strong>log-odds</strong> of the posterior probabilities:</p>
+<p><span class="math display">\[
+\log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right)
+\]</span></p>
+<p>This is the log of the ratio of the probabilities of class <span class="math inline">\(k\)</span> and a reference class <span class="math inline">\(K\)</span>, given the feature vector <span class="math inline">\(X = x\)</span>.</p>
+</section>
+<section id="naïve-bayes-and-gams-details-1" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
+<p><strong>Bayes’ Theorem</strong></p>
+<p>Using Bayes’ theorem, the posterior probabilities can be expressed as:</p>
+<p><span class="math display">\[
+\log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = \log \left( \frac{\pi_k f_k(x)}{\pi_K f_K(x)} \right)
+\]</span></p>
+<ul>
+<li class="fragment"><span class="math inline">\(\pi_k\)</span>: Prior probability of class <span class="math inline">\(k\)</span>.</li>
+<li class="fragment"><span class="math inline">\(f_k(x)\)</span>: Class-conditional density for class <span class="math inline">\(k\)</span>.</li>
+</ul>
+</section>
+<section id="naïve-bayes-and-gams-details-2" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
+<p><strong>Naïve Bayes Assumption</strong></p>
+<p>The Naïve Bayes assumption states that features are <strong>conditionally independent</strong> given the class:</p>
+<p><span class="math display">\[
+f_k(x) = \prod_{j=1}^p f_{kj}(x_j)
+\]</span></p>
+<p>Substituting this into the equation:</p>
+<p><span class="math display">\[
+\log \left( \frac{\pi_k f_k(x)}{\pi_K f_K(x)} \right) = \log \left( \frac{\pi_k \prod_{j=1}^p f_{kj}(x_j)}{\pi_K \prod_{j=1}^p f_{Kj}(x_j)} \right)
+\]</span></p>
+</section>
+<section id="naïve-bayes-and-gams-details-3" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
+<p><strong>Separate the Terms</strong></p>
+<p>The terms can now be separated:</p>
+<p><span class="math display">\[
+\log \left( \frac{\pi_k \prod_{j=1}^p f_{kj}(x_j)}{\pi_K \prod_{j=1}^p f_{Kj}(x_j)} \right)
+= \log \left( \frac{\pi_k}{\pi_K} \right) + \sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)
+\]</span></p>
+<ul>
+<li class="fragment"><span class="math inline">\(\log \left( \frac{\pi_k}{\pi_K} \right)\)</span>: Influence of prior probabilities.</li>
+<li class="fragment"><span class="math inline">\(\sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)\)</span>: Contribution from each feature.</li>
+</ul>
+</section>
+<section id="naïve-bayes-and-gams-details-4" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
+<p><strong>Additive Form</strong></p>
+<p>Define:</p>
+<p><span class="math display">\[
+a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)
+\]</span></p>
+<p>The equation becomes:</p>
+<p><span class="math display">\[
+\log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = a_k + \sum_{j=1}^p g_{kj}(x_j)
+\]</span></p>
+</section></section>
+<section>
+<section id="generalized-linear-models" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Generalized Linear Models</h1>
+
+</section>
+<section id="generalized-linear-models-1" class="slide level2 center">
+<h2>Generalized Linear Models</h2>
+<ul>
+<li class="fragment"><strong>Linear regression</strong> is used for quantitative responses.</li>
+<li class="fragment"><strong>Linear logistic regression</strong> is the counterpart for a binary response and models the logit of the probability as a linear model.</li>
+<li class="fragment">Other response types exist, such as non-negative responses, skewed distributions, and more.</li>
+<li class="fragment"><em>Generalized linear models</em> provide a unified framework for dealing with many different response types.</li>
+</ul>
+</section>
+<section id="example-bikeshare-data" class="slide level2 center">
+<h2>Example: Bikeshare Data</h2>
+<div>
+<div style="font-size: 65%;">
+<p>Linear regression with response <strong>bikers</strong>: number of hourly users in the bikeshare program in Washington, DC.</p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Predictor</th>
+<th>Coefficient</th>
+<th>Std. error</th>
+<th>z-statistic</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intercept</strong></td>
+<td>73.60</td>
+<td>5.13</td>
+<td>14.34</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>workingday</strong></td>
+<td>1.27</td>
+<td>1.78</td>
+<td>0.71</td>
+<td>0.48</td>
+</tr>
+<tr class="odd">
+<td><strong>temp</strong></td>
+<td>157.21</td>
+<td>10.26</td>
+<td>15.32</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>weathersit</strong> <span class="math inline">\(cloudy/misty\)</span></td>
+<td>-12.89</td>
+<td>1.96</td>
+<td>-6.56</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td><strong>weathersit</strong> <span class="math inline">\(light rain/snow\)</span></td>
+<td>-66.49</td>
+<td>2.97</td>
+<td>-22.43</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>weathersit</strong> <span class="math inline">\(heavy rain/snow\)</span></td>
+<td>-109.75</td>
+<td>76.67</td>
+<td>-1.43</td>
+<td>0.15</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_13-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="example-meanvariance-relationship" class="slide level2 center">
+<h2>Example: Mean/Variance Relationship</h2>
+
+<img data-src="figs/4_14-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">Left plot: we see that the variance mostly increases with the mean.</li>
+<li class="fragment">10% of a linear model predictions are negative! (not shown here.). However, we know that the response variable, <code>bikers</code>, is always positive.</li>
+<li class="fragment">Taking <code>log(bikers)</code> alleviates this, but is not a good solution. It has its own problems: e.g.&nbsp;predictions are on the wrong scale, and some counts are zero!</li>
+</ul>
+</section>
+<section id="poisson-regression-model" class="slide level2 center">
+<h2>Poisson Regression Model</h2>
+<p><strong>Poisson distribution</strong> is useful for modeling counts:</p>
+<p><span class="math display">\[
+  Pr(Y = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \, \text{for } k = 0, 1, 2, \ldots
+\]</span></p>
+<p><strong>Mean/variance relationship</strong>: <span class="math inline">\(\lambda = \mathbb{E}(Y) = \text{Var}(Y)\)</span> i.e., there is a mean/variance dependence. When the mean is higher, the variance is higher.</p>
+<p><strong>Model with Covariates</strong>:</p>
+<p><span class="math display">\[
+  \log(\lambda(X_1, \ldots, X_p)) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
+\]</span></p>
+<p>Or equivalently:</p>
+<p><span class="math display">\[
+  \lambda(X_1, \ldots, X_p) = e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}
+\]</span></p>
+<p><strong>Automatic positivity</strong>: The model ensures that predictions are non-negative by construction.</p>
+</section>
+<section id="example-poisson-regression-on-bikeshare-data" class="slide level2 center">
+<h2>Example: Poisson Regression on Bikeshare Data</h2>
+<div>
+<div style="font-size: 65%;">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Coefficient</th>
+<th>Std. error</th>
+<th>z-statistic</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Intercept</strong></td>
+<td>4.12</td>
+<td>0.01</td>
+<td>683.96</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>workingday</strong></td>
+<td>0.01</td>
+<td>0.00</td>
+<td>7.50</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td><strong>temp</strong></td>
+<td>0.79</td>
+<td>0.01</td>
+<td>68.43</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>weathersit</strong> <span class="math inline">\(cloudy/misty\)</span></td>
+<td>-0.08</td>
+<td>0.00</td>
+<td>-34.53</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td><strong>weathersit</strong> <span class="math inline">\(light rain/snow\)</span></td>
+<td>-0.58</td>
+<td>0.00</td>
+<td>-141.91</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td><strong>weathersit</strong> <span class="math inline">\(heavy rain/snow\)</span></td>
+<td>-0.93</td>
+<td>0.17</td>
+<td>-5.55</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/4_15-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: in this case, the variance is somewhat larger than the mean — a situation known as <em>overdispersion</em>. As a result, the p-values may be misleadingly small.</p>
+<p><br></p>
+</div>
+</div>
+</section>
+<section id="generalized-linear-models-2" class="slide level2 center">
+<h2>Generalized Linear Models</h2>
+<div>
+<div style="font-size: 90%;">
+<ul>
+<li>We have covered three GLMs: <strong>Gaussian</strong>, <strong>binomial</strong>, and <strong>Poisson</strong>.</li>
+<li>They each have a characteristic <strong>link function</strong>. This is the transformation of the mean represented by a linear model:</li>
+</ul>
+<p><span class="math display">\[
+\eta(\mathbb{E}(Y|X_1, X_2, \ldots, X_p)) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p.
+\]</span></p>
+<ul>
+<li><p>The link functions for linear, logistic, and Poisson regression are <span class="math inline">\(\eta(\mu) = \mu\)</span>, <span class="math inline">\(\eta(\mu) = \log(\mu / (1 - \mu))\)</span>, <span class="math inline">\(\eta(\mu) = \log(\mu)\)</span>, respectively.</p></li>
+<li><p>Each GLM has a characteristic <strong>variance function</strong>.</p></li>
+<li><p>The models are fit by <strong>maximum likelihood</strong>, and model summaries are produced using <code>glm()</code> in R.</p></li>
+<li><p>Other GLMs include <strong>Gamma</strong>, <strong>Negative-binomial</strong>, <strong>Inverse Gaussian</strong>, and more.</p></li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Summary</h1>
+
+</section>
+<section id="summary-1" class="slide level2 center">
+<h2>Summary</h2>
+<div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Classification</strong> involves predicting categorical outcomes based on input features.</li>
+<li>Popular approaches include:
+<ul>
+<li><strong>Logistic Regression</strong>: Directly models probabilities; suitable for <span class="math inline">\(K=2\)</span> and extendable to <span class="math inline">\(K &gt; 2\)</span>.</li>
+<li><strong>Discriminant Analysis</strong>: Assumes Gaussian distributions; suitable for small datasets or when classes are well separated.</li>
+<li><strong>Naïve Bayes</strong>: Assumes feature independence; works well with large <span class="math inline">\(p\)</span> or mixed data types.</li>
+</ul></li>
+<li><strong>Thresholds and ROC Curves</strong> allow fine-tuning between false positive and false negative rates.</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<p><strong>Practical Insights</strong></p>
+<ul>
+<li><strong>Linear vs Logistic Regression</strong>: Logistic regression avoids issues with probabilities outside [0, 1].</li>
+<li><strong>Discriminant Analysis</strong>: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.</li>
+<li><strong>Naïve Bayes</strong>: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.</li>
+<li><strong>Generalized Linear Models (GLMs)</strong>: Extend regression to different types of responses with appropriate link and variance functions.</li>
+</ul>
+</div>
+</div></div>
+</div>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Predictive Analytics</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

@@ -1021,5 +1021,558 @@
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Summary",
     "text": "Summary\n\n\n\n\n\nLinear Regression:\n\nA foundational supervised learning method.\nAssumes a linear relationship between predictors (\\(X\\)) and the response (\\(Y\\)).\nUseful for both prediction and understanding relationships.\n\nSimple vs. Multiple Regression:\n\nSimple regression: one predictor.\nMultiple regression: multiple predictors.\n\nKey Metrics:\n\nResidual Standard Error (RSE), \\(R^2\\), and F-statistic.\nConfidence intervals and hypothesis testing for coefficients.\n\n\n\n\nQualitative Predictors:\n\nUse dummy variables for categorical predictors.\nInterpret results based on chosen baselines.\n\nInteractions:\n\nModels with interaction terms (e.g., \\(X_1 \\times X_2\\)) capture synergistic effects.\n\nNon-linear Effects:\n\nPolynomial regression accounts for curvature in data.\n\nChallenges:\n\nMulticollinearity, outliers, high leverage points.\nOverfitting vs. underfitting: balance flexibility and interpretability."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#overview",
+    "href": "lecture_slides/03_classification/03_classification.html#overview",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Overview",
+    "text": "Overview\n\n\n\n\nIntroduction to Classification\nLinear versus Logistic Regression\nMaking Predictions\nMultinomial Logistic Regression\n\n\n\nDiscriminant Analysis\nLinear Discriminant Analysis when \\(p &gt; 1\\)\nTypes of errors\nOther Forms of Discriminant Analysis\nNaive Bayes\nGeneralized Linear Models\n\n\n\n\n\n\nThis lecture content is inspired by and replicates the material from An Introduction to Statistical Learning."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#what-is-a-classification-problem",
+    "href": "lecture_slides/03_classification/03_classification.html#what-is-a-classification-problem",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "What is a classification problem?",
+    "text": "What is a classification problem?\n\n\n\n\nClassification involves categorizing data into predefined classes or groups based on their features."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#classification",
+    "href": "lecture_slides/03_classification/03_classification.html#classification",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Classification",
+    "text": "Classification\n\nQualitative variables take values in an unordered set \\(C\\), such as:\n\n\\(\\text{eye color} \\in \\{\\text{brown}, \\text{blue}, \\text{green}\\}\\)\n\\(\\text{email} \\in \\{\\text{spam}, \\text{ham}\\}\\)\n\nGiven a feature vector \\(X\\) and a qualitative response \\(Y\\) taking values in the set \\(C\\), the classification task is to build a function \\(C(X)\\) that takes as input the feature vector \\(X\\) and predicts its value for \\(Y\\); i.e. \\(C(X) \\in C\\).\nOften, we are more interested in estimating the probabilities that \\(X\\) belongs to each category in \\(C\\).\n\nFor example, it is more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification as fraudulent or not."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-credit-card-default",
+    "href": "lecture_slides/03_classification/03_classification.html#example-credit-card-default",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Credit Card Default",
+    "text": "Example: Credit Card Default\n\n\n\n\n\n\n\n\n\n\n\n\n\nScatter plot of income vs. balance with markers indicating whether a person defaulted (e.g., “+” for defaulted, “o” for not defaulted).\n\n\n\n\n\n\n\n\n\n\n\nBoxplots comparing balance and income for default (“Yes”) vs. no default (“No”)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#can-we-use-linear-regression",
+    "href": "lecture_slides/03_classification/03_classification.html#can-we-use-linear-regression",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Can we use Linear Regression?",
+    "text": "Can we use Linear Regression?\nSuppose for the Default classification task that we code:\n\\[\nY =\n\\begin{cases}\n0 & \\text{if No} \\\\\n1 & \\text{if Yes.}\n\\end{cases}\n\\]\nCan we simply perform a linear regression of \\(Y\\) on \\(X\\) and classify as Yes if \\(\\hat{Y} &gt; 0.5\\)?\n\nIn this case of a binary outcome, linear regression does a good job as a classifier and is equivalent to linear discriminant analysis, which we discuss later.\nSince in the population \\(E(Y|X = x) = \\Pr(Y = 1|X = x)\\), we might think that regression is perfect for this task.\nHowever, linear regression might produce probabilities less than zero or greater than one. Logistic regression is more appropriate."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-versus-logistic-regression-probability-of-default",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-versus-logistic-regression-probability-of-default",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear versus Logistic Regression: Probability of Default",
+    "text": "Linear versus Logistic Regression: Probability of Default\n\n\n\nThe orange marks indicate the response \\(Y\\), either 0 or 1.\n\n\n\n\n\n\n\n\n\n\n\n\nLinear regression does not estimate \\(\\Pr(Y = 1|X)\\) well.\n\n\n\nLogistic regression seems well-suited to the task."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-regression-continued",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-regression-continued",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear Regression continued",
+    "text": "Linear Regression continued\n\n\n\nNow suppose we have a response variable with three possible values. A patient presents at the emergency room, and we must classify them according to their symptoms.\n\\[\nY =\n\\begin{cases}\n1 & \\text{if stroke;} \\\\\n2 & \\text{if drug overdose;} \\\\\n3 & \\text{if epileptic seizure.}\n\\end{cases}\n\\]\nThis coding suggests an ordering, and in fact implies that the difference between stroke and drug overdose is the same as between drug overdose and epileptic seizure.\nLinear regression is not appropriate here. Multiclass Logistic Regression or Discriminant Analysis are more appropriate."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\nLet’s write \\(p(X) = \\Pr(Y = 1|X)\\) for short and consider using balance to predict default. Logistic regression uses the form:\n\\[\np(X) = \\frac{e^{\\beta_0 + \\beta_1 X}}{1 + e^{\\beta_0 + \\beta_1 X}}.\n\\]\n\\((e \\approx 2.71828)\\) is a mathematical constant Euler’s number.\nIt is easy to see that no matter what values \\(\\beta_0\\), \\(\\beta_1\\), or \\(X\\) take, \\(p(X)\\) will have values between 0 and 1.\n\nA bit of rearrangement gives:\n\\[\n\\log\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X.\n\\]\nThis monotone transformation is called the log odds or logit transformation of \\(p(X)\\). (By log, we mean natural log: \\(\\ln\\).)"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression Transformation",
+    "text": "Logistic Regression Transformation\n\n\nStep 1: Express \\(1 - p(X)\\)\n\nSince \\(p(X) = \\frac{e^{\\beta_0 + \\beta_1 X}}{1 + e^{\\beta_0 + \\beta_1 X}}\\), we can write:\n\\[\n1 - p(X) = 1 - \\frac{e^{\\beta_0 + \\beta_1 X}}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]\nSimplify:\n\\[\n1 - p(X) = \\frac{1 + e^{\\beta_0 + \\beta_1 X} - e^{\\beta_0 + \\beta_1 X}}{1 + e^{\\beta_0 + \\beta_1 X}} = \\frac{1}{1 + e^{\\beta_0 + \\beta_1 X}}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-1",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression Transformation",
+    "text": "Logistic Regression Transformation\n\n\nStep 2: Compute the Odds\n\nThe odds are defined as:\n\\[\n\\frac{p(X)}{1 - p(X)}\n\\]\nSubstitute \\(p(X)\\) and \\(1 - p(X)\\):\n\\[\n\\frac{p(X)}{1 - p(X)} =\n\\frac{\\dfrac{e^{\\beta_0 + \\beta_1 X}}{1 + e^{\\beta_0 + \\beta_1 X}}}\n{\\dfrac{1}{1 + e^{\\beta_0 + \\beta_1 X}}}\n\\]\nSimplify:\n\\[\n\\frac{p(X)}{1 - p(X)} = e^{\\beta_0 + \\beta_1 X}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-2",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression Transformation",
+    "text": "Logistic Regression Transformation\n\n\nStep 3: Take the Log of the Odds\n\nTaking the natural logarithm:\n\\[\n\\log\\!\\Bigl(\\frac{p(X)}{1 - p(X)}\\Bigr) = \\log\\!\\Bigl(e^{\\beta_0 + \\beta_1 X}\\Bigr)\n\\]\nSimplify using the log property \\(\\log(e^x) = x\\):\n\\[\n\\log\\!\\Bigl(\\frac{p(X)}{1 - p(X)}\\Bigr) = \\beta_0 + \\beta_1 X\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-3",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-transformation-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression Transformation",
+    "text": "Logistic Regression Transformation\n\n\nConclusion\n\nThe final transformation shows that the log-odds (logit) of \\(p(X)\\) is a linear function of \\(X\\):\n\\[\n\\log\\!\\Bigl(\\frac{p(X)}{1 - p(X)}\\Bigr) = \\beta_0 + \\beta_1 X\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-versus-logistic-regression-1",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-versus-logistic-regression-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear versus Logistic Regression",
+    "text": "Linear versus Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\nLogistic regression ensures that our estimate for \\(p(X)\\) lies between 0 and 1."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood",
+    "text": "Maximum Likelihood\n\n\nWe use maximum likelihood to estimate the parameters.\n\\[\n\\ell(\\beta_0, \\beta) = \\prod_{i:y_i=1} p(x_i) \\prod_{i:y_i=0} (1 - p(x_i)).\n\\]\n\nThe Maximum Likelihood Estimation (MLE) is a method used to estimate the parameters of a model by maximizing the likelihood function, which measures how likely the observed data is given the parameters.\n\nThe likelihood function is based on the probability distribution of the data. If you assume that the data points are independent, the likelihood function is the product of the probabilities of each observation.\n\nConsidering a data series of observed zeros and ones, and a model for the probabilities involving parameters (e.g., \\(\\beta_0\\) and \\(\\beta_1\\)), for any specific parameter values, we can compute the probability of observing the data.\nSince the observations are assumed to be independent, the joint probability of the observed sequence is the product of the probabilities for each observation. For each “1,” we use the model’s predicted probability, \\(p(x_i)\\), and for each “0,” we use \\(1 - p(x_i)\\).\nThe goal of MLE is to find the parameter values that maximize this joint probability, as they make the observed data most likely to have occurred."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping\nSuppose you are flipping a coin, and you observe 5 heads out of 10 flips. The coin’s bias (the probability of heads) is \\(p\\), and you want to estimate \\(p\\).\nThe probability of observing a single outcome (heads or tails) follows the Bernoulli distribution:\n\\[\nP(\\text{Heads or Tails}) = p^x (1-p)^{1-x}, \\quad \\text{where } x = 1 \\text{ for heads, } x = 0 \\text{ for tails.}\n\\]\nFor 10 independent flips, the likelihood function is:\n\\[\nL(p) = P(\\text{data} \\mid p) = \\prod_{i=1}^{10} p^{x_i}(1-p)^{1-x_i}.\n\\]\nIf there are 5 heads (\\(x=1\\)) and 5 tails (\\(x=0\\)):\n\\[\nL(p) = p^5 (1-p)^5.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-1",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping\nSimplify with the Log-Likelihood\nSince multiplying probabilities can result in very small numbers, we take the logarithm of the likelihood (log-likelihood). The logarithm simplifies the product into a sum:\n\\[\n\\ell(p) = \\log L(p) = \\log \\left(p^5 (1-p)^5\\right) = 5\\log(p) + 5\\log(1-p).\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-2",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping\nMaximize the Log-Likelihood\nTo find the value of \\(p\\) that maximizes \\(\\ell(p)\\), take the derivative of the log-likelihood with respect to \\(p\\) and set it to zero:\n\\[\n\\frac{\\partial\\ell(p)}{\\partial p} = \\frac{5}{p} - \\frac{5}{1-p} = 0.\n\\]\nSimplify:\n\\[\n\\frac{5}{p} = \\frac{5}{1-p}.\n\\]\nSolve for \\(p\\):\n\\[\n1 - p = p \\quad \\Rightarrow \\quad 1 = 2p \\quad \\Rightarrow \\quad p = 0.5.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-3",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-coin-flipping-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Coin Flipping\nTo confirm that \\(p = 0.5\\) is the maximum, you can check the second derivative of the log-likelihood (concavity) or use numerical methods.\nIn our example, \\(p = 0.5\\) makes sense intuitively because the data (5 heads out of 10 flips) suggests the coin is unbiased.\nThe maximum likelihood estimate of \\(p\\) is \\(0.5\\). The MLE method finds the parameter values that make the observed data most likely, given the assumed probability model."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution\n\n\nAssumptions:\n\nData \\(x_1, x_2, \\dots, x_n\\) are drawn from a normal distribution with:\n\n\\[\n  f(x | \\mu, \\sigma) = \\frac{1}{\\sqrt{2\\pi \\sigma^2}} e^{-\\frac{(x - \\mu)^2}{2\\sigma^2}}\n\\]\n\nAssume \\(\\sigma\\) is known (say, \\(\\sigma = 1\\)) and we want to estimate \\(\\mu\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution\nThe likelihood for \\(n\\) independent observations is:\n\\[\nL(\\mu) = \\prod_{i=1}^n \\frac{1}{\\sqrt{2\\pi}} e^{-\\frac{(x_i - \\mu)^2}{2}}\n\\]\nTaking the natural log:\n\\[\n\\ell(\\mu) = \\log L(\\mu) = \\sum_{i=1}^n \\left[ -\\frac{1}{2} \\log(2\\pi) - \\frac{(x_i - \\mu)^2}{2} \\right]\n\\]\nSimplify (since \\(-\\frac{1}{2} \\log(2\\pi)\\) is constant):\n\\[\n\\ell(\\mu) = -\\frac{n}{2} \\log(2\\pi) - \\frac{1}{2} \\sum_{i=1}^n (x_i - \\mu)^2\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2",
+    "href": "lecture_slides/03_classification/03_classification.html#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution",
+    "text": "Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution\n\n\nDifferentiate with respect to \\(\\mu\\):\n\\[\n\\frac{\\partial \\ell(\\mu)}{\\partial \\mu} = -\\sum_{i=1}^n (x_i - \\mu)\n\\] Set this to zero:\n\\[\n\\sum_{i=1}^n (x_i - \\mu) = 0\n\\]\nSolve for \\(\\mu\\):\n\\[\n\\mu = \\frac{1}{n} \\sum_{i=1}^n x_i\n\\]\nThe MLE for the mean \\(\\mu\\) is simply the sample mean:\n\\[\n\\hat{\\mu} = \\frac{1}{n} \\sum_{i=1}^n x_i\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#making-predictions-1",
+    "href": "lecture_slides/03_classification/03_classification.html#making-predictions-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Making Predictions",
+    "text": "Making Predictions\nMost statistical packages can fit linear logistic regression models by maximum likelihood.\nLogistic Regression Coefficients\n\n\n\n\nCoefficient\nStd. Error\nZ-statistic\nP-value\n\n\n\n\nIntercept\n-10.6513\n0.3612\n-29.5\n&lt; 0.0001\n\n\nbalance\n0.0055\n0.0002\n24.9\n&lt; 0.0001\n\n\n\n\nWhat is our estimated probability of default for someone with a credit card balance of $1000?\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}} = \\frac{e^{-10.6513 + 0.0055 \\times 1000}}{1 + e^{-10.6513 + 0.0055 \\times 1000}} = 0.006\n\\]\nWith a a credit card balance of $2000?\n\\[\n\\hat{p}(X) = \\frac{e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}}{1 + e^{\\hat{\\beta}_0 + \\hat{\\beta}_1 X}} = \\frac{e^{-10.6513 + 0.0055 \\times 2000}}{1 + e^{-10.6513 + 0.0055 \\times 2000}} = 0.586\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-with-student-predictor",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-with-student-predictor",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression with Student Predictor",
+    "text": "Logistic Regression with Student Predictor\nLet’s do it again, using student as the predictor.\nLogistic Regression Coefficients\n\n\n\n\n\n\n\n\n\n\n\nCoefficient\nStd. Error\nZ-statistic\nP-value\n\n\n\n\nIntercept\n-3.5041\n0.0707\n-49.55\n&lt; 0.0001\n\n\nstudent \\(Yes\\)\n0.4049\n0.1150\n3.52\n0.0004\n\n\n\n\nPredicted Probabilities\n\\[\n\\hat{\\Pr}(\\text{default} = \\text{Yes} \\mid \\text{student} = \\text{Yes}) = \\frac{e^{-3.5041 + 0.4049 \\times 1}}{1 + e^{-3.5041 + 0.4049 \\times 1}} = 0.0431,\n\\]\n\\[\n\\hat{\\Pr}(\\text{default} = \\text{Yes} \\mid \\text{student} = \\text{No}) = \\frac{e^{-3.5041 + 0.4049 \\times 0}}{1 + e^{-3.5041 + 0.4049 \\times 0}} = 0.0292.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-with-several-variables",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-with-several-variables",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression with Several Variables",
+    "text": "Logistic Regression with Several Variables\n\\[\n\\log\\left(\\frac{p(X)}{1 - p(X)}\\right) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\n\\]\n\\[\np(X) = \\frac{e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}}{1 + e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}}\n\\]\n\nLogistic Regression Coefficients\n\n\n\n\n\n\n\n\n\n\n\nCoefficient\nStd. Error\nZ-statistic\nP-value\n\n\n\n\nIntercept\n-10.8690\n0.4923\n-22.08\n&lt; 0.0001\n\n\nbalance\n0.0057\n0.0002\n24.74\n&lt; 0.0001\n\n\nincome\n0.0030\n0.0082\n0.37\n0.7115\n\n\nstudent Yes\n-0.6468\n0.2362\n-2.74\n0.0062\n\n\n\nWhy is the coefficient for student negative, while it was positive before?"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#confounding",
+    "href": "lecture_slides/03_classification/03_classification.html#confounding",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Confounding",
+    "text": "Confounding\n\n\n\n\nRelationship between Y and X controlled for W\n\n\n\nSource: Causal Inference Animated Plots"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#confounding-1",
+    "href": "lecture_slides/03_classification/03_classification.html#confounding-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Confounding",
+    "text": "Confounding\n\n\nStudents tend to have higher balances than non-students, so their marginal default rate is higher than for non-students.\nBut for each level of balance, students default less than non-students.\nMultiple logistic regression can tease this out."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#multinomial-logistic-regression-1",
+    "href": "lecture_slides/03_classification/03_classification.html#multinomial-logistic-regression-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Multinomial Logistic Regression",
+    "text": "Multinomial Logistic Regression\nLogistic regression is frequently used when the response is binary, or \\(K = 2\\) classes. We need a modification when there are \\(K &gt; 2\\) classes. E.g. stroke, drug overdose, and epileptic seizure for the emergency room example.\nThe simplest representation uses different linear functions for each class, combined with the softmax function to form probabilities:\n\\[\n\\Pr(Y = k | X = x) = \\text{Softmax}(z_k) = \\frac{e^{\\beta_{k0} + \\beta_{k1}x_1 + \\cdots + \\beta_{kp}x_p}}{\\sum_{l=1}^{K} e^{\\beta_{l0} + \\beta_{l1}x_1 + \\cdots + \\beta_{lp}x_p}}.\n\\]\n\nWe really only need \\(K - 1\\) functions (see the book for details).\nWe fit by maximizing the multinomial log-likelihood (cross-entropy) — a generalization of the binomial.\nAn example will given later in the course, when we fit the 10-class model to the MNIST digit dataset."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#what-is-the-softmax-function",
+    "href": "lecture_slides/03_classification/03_classification.html#what-is-the-softmax-function",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "What is the Softmax Function?",
+    "text": "What is the Softmax Function?\n\n\nThe softmax function is used in multinomial logistic regression to convert raw scores (logits) into probabilities for multiple classes.\n\n\nLogits are the raw, untransformed output of the linear component in logistic regression. For a given class \\(k\\), the logit is defined as:\n\\[\nz_k = \\beta_{k0} + \\beta_{k1}x_1 + \\beta_{k2}x_2 + \\cdots + \\beta_{kp}x_p\n\\]\nWhere:\n\n\\(z_k\\): The logit for class \\(k\\).\n\\(\\beta_{k0}\\): Intercept term.\n\\(\\beta_{kj}\\): Coefficients for predictor \\(x_j\\).\n\n\n\nSoftmax Definition:\nFor \\(K\\) classes and input \\(x\\), the softmax function is defined as:\n\\[\n\\text{Softmax}(z_k) = \\frac{e^{z_k}}{\\sum_{l=1}^K e^{z_l}}\n\\]\nWhere:\n\n\\(z_k = \\beta_{k0} + \\beta_{k1}x_1 + \\beta_{k2}x_2 + \\cdots + \\beta_{kp}x_p\\): The linear score (logit) for class \\(k\\).\n\\(\\beta_{k0}, \\beta_{k1}, \\dots, \\beta_{kp}\\): Coefficients for class \\(k\\).\n\\(e^{z_k}\\): Exponentiated score for class \\(k\\), ensuring all values are positive.\n\n\n\n\nKey Features of the Softmax Function\n\nProbability Distribution: Outputs probabilities that sum to 1 across all \\(K\\) classes. \\(\\text{Pr}(Y = k \\mid X = x) = \\text{Softmax}(z_k)\\).\nNormalization: Normalizes logits by dividing each exponentiated logit by the sum of all exponentiated logits.\nHandles Multiclass Classification: Extends binary logistic regression to \\(K &gt; 2\\) classes."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-of-softmax-in-action",
+    "href": "lecture_slides/03_classification/03_classification.html#example-of-softmax-in-action",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example of Softmax in Action",
+    "text": "Example of Softmax in Action\n\n\n\n\nImagine classifying three emergency room conditions: Stroke, Drug Overdose, and Epileptic Seizure.\nSuppose the logits are: \\(z_{\\text{stroke}} = 2.5, \\quad z_{\\text{drug overdose}} = 1.0, \\quad z_{\\text{epileptic seizure}} = 0.5\\)\nThe probabilities are:\n\\[\n\\text{Softmax}(z_k) = \\frac{e^{z_k}}{e^{2.5} + e^{1.0} + e^{0.5}}\n\\]\n\nStep 1: Exponentiate the Logits\n\\(e^{z_{\\text{stroke}}} = e^{2.5} \\approx 12.182\\)\n\\(e^{z_{\\text{drug overdose}}} = e^{1.0} \\approx 2.718\\)\n\\(e^{z_{\\text{epileptic seizure}}} = e^{0.5} \\approx 1.649\\)\n\n\nStep 2: Compute the Denominator\n\\(\\sum_{l=1}^K e^{z_l} = e^{2.5} + e^{1.0} + e^{0.5}\\)\n\\(\\sum_{l=1}^K e^{z_l} \\approx 12.182 + 2.718 + 1.649 = 16.549\\)\n\n\n\nStep 3: Calculate the Probabilities\n\\(\\text{Pr}(\\text{stroke}) = \\frac{e^{z_{\\text{stroke}}}}{\\sum_{l=1}^K e^{z_l}} = \\frac{12.182}{16.549} \\approx 0.7366\\)\n\\(\\text{Pr}(\\text{drug overdose}) = \\frac{e^{z_{\\text{drug overdose}}}}{\\sum_{l=1}^K e^{z_l}} = \\frac{2.718}{16.549} \\approx 0.1642\\)\n\\(\\text{Pr}(\\text{epileptic seizure}) = \\frac{e^{z_{\\text{epileptic seizure}}}}{\\sum_{l=1}^K e^{z_l}} = \\frac{1.649}{16.549} \\approx 0.0996\\)\nThe output probabilities represent the likelihood of each condition, ensuring:\n\\[\n\\sum_{k=1}^3 \\text{Pr}(Y = k) = 1\n\\]\nWe have:\n\\[\n   0.7366 + 0.1642 + 0.0996 \\approx 1.000\n\\]\n\n\nConclusion\n\nThe softmax function translates raw scores into probabilities, making it essential for multiclass classification.\nIt ensures a probabilistic interpretation while maintaining normalization across all classes."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#discriminant-analysis-1",
+    "href": "lecture_slides/03_classification/03_classification.html#discriminant-analysis-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Discriminant Analysis",
+    "text": "Discriminant Analysis\n\nHere the approach is to model the distribution of \\(X\\) in each of the classes separately, and then use Bayes theorem to flip things around and obtain \\(\\Pr(Y \\mid X)\\).\nWhen we use normal (Gaussian) distributions for each class, this leads to linear or quadratic discriminant analysis.\nHowever, this approach is quite general, and other distributions can be used as well. We will focus on normal distributions as input for \\(f_k(x)\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#bayes-theorem-for-classification",
+    "href": "lecture_slides/03_classification/03_classification.html#bayes-theorem-for-classification",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Bayes Theorem for Classification",
+    "text": "Bayes Theorem for Classification\nThomas Bayes was a famous mathematician whose name represents a big subfield of statistical and probabilistic modeling. Here we focus on a simple result, known as Bayes theorem:\n\\[\n\\Pr(Y = k \\mid X = x) = \\frac{\\Pr(X = x \\mid Y = k) \\cdot \\Pr(Y = k)}{\\Pr(X = x)}\n\\]\nOne writes this slightly differently for discriminant analysis:\n\\[\n\\Pr(Y = k \\mid X = x) = \\frac{\\pi_k f_k(x)}{\\sum_{\\ell=1}^K \\pi_\\ell f_\\ell(x)}, \\quad \\text{where}\n\\]\n\n\\(f_k(x) = \\Pr(X = x \\mid Y = k)\\) is the density for \\(X\\) in class \\(k\\). Here we will use normal densities for these, separately in each class.\n\\(\\pi_k = \\Pr(Y = k)\\) is the marginal or prior probability for class \\(k\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#bayes-theorem-explanation",
+    "href": "lecture_slides/03_classification/03_classification.html#bayes-theorem-explanation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Bayes’ Theorem: Explanation",
+    "text": "Bayes’ Theorem: Explanation\nIt describes the probability of an event, based on prior knowledge of conditions that might be related to the event.\n\\[\nP(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}\n\\]\n\n\\(P(A|B)\\): Posterior probability - Probability of event \\(A\\) occurring given that \\(B\\) is true — updated probability after the evidence is considered.\n\\(P(A)\\): Prior probability - Initial probability of event \\(A\\) — the probability before the evidence is considered.\n\\(P(B|A)\\): Likelihood - Probability of observing event \\(B\\) given that \\(A\\) is true.\n\\(P(B)\\): Marginal probability - Total probability of the evidence, event \\(B\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#understanding-conditional-probability",
+    "href": "lecture_slides/03_classification/03_classification.html#understanding-conditional-probability",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Understanding Conditional Probability",
+    "text": "Understanding Conditional Probability\nConditional probability is the probability of an event occurring given that another event has already occurred.\nDefinition:\n\\[\n  P(A|B) = \\frac{P(A \\cap B)}{P(B)}\n\\]\nis the probability of event \\(A\\) occurring given that \\(B\\) is true.\n\nInterpretation: How likely is \\(A\\) if we know that \\(B\\) happens?"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#what-is-joint-probability",
+    "href": "lecture_slides/03_classification/03_classification.html#what-is-joint-probability",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "What is Joint Probability?",
+    "text": "What is Joint Probability?\nJoint probability refers to the probability of two events occurring together.\nDefinition: \\(P(A \\cap B)\\) is the probability that both \\(A\\) and \\(B\\) occur.\n\nConnection to Conditional Probability:\n\\[\n  P(A \\cap B) = P(A|B) \\cdot P(B)\n\\]\n\\[\n  P(B \\cap A) = P(B|A) \\cdot P(A)\n\\]\nThis formula is crucial for understanding Bayes’ Theorem."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#symmetry-in-joint-events",
+    "href": "lecture_slides/03_classification/03_classification.html#symmetry-in-joint-events",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Symmetry in Joint Events",
+    "text": "Symmetry in Joint Events\nJoint probability is symmetric, meaning:\n\\[\nP(A \\cap B) = P(B \\cap A)\n\\]\nThus, we can also express it as:\n\\[\nP(A \\cap B) = P(B|A) \\cdot P(A)\n\\]\nThis symmetry is the key to deriving Bayes’ Theorem."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#deriving-bayes-theorem",
+    "href": "lecture_slides/03_classification/03_classification.html#deriving-bayes-theorem",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Deriving Bayes’ Theorem",
+    "text": "Deriving Bayes’ Theorem\n\n\nGiven that the definition of Conditional Probability is:\n\\[\nP(A|B) = \\frac{P(A \\cap B)}{P(B)}\n\\]\n\n\nUsing the Definition of Joint Probability:\n\n\\[\n   P(A \\cap B) = P(A|B) \\cdot P(B)\n\\]\n\\[\n   P(B \\cap A) = P(B|A) \\cdot P(A)\n\\]\n\n\n\nSymmetry of Joint Probability:\n\n\\[\n   P(A \\cap B) = P(B \\cap A)\n\\]\n\n\nThus, we can express the joint probability as:\n\\[\nP(A \\cap B) = P(B|A) \\cdot P(A)\n\\]\n\nThe Bayes’ Theorem!\n\nSubstitute this back into the conditional probability definition:\n\\[\nP(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#why-bayes-theorem-matters",
+    "href": "lecture_slides/03_classification/03_classification.html#why-bayes-theorem-matters",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Why Bayes’ Theorem Matters?",
+    "text": "Why Bayes’ Theorem Matters?\n\n\nBayes’ Theorem is a foundational principle in probability theory and statistics, enabling:\n\nIncorporation of Prior Knowledge:\nIt allows for the integration of prior knowledge or beliefs when making statistical inferences.\nBeliefs Update:\nIt provides a systematic way to update the probability estimates as new evidence or data becomes available.\nProbabilistic Thinking:\nEncourages a probabilistic approach to decision-making, quantifying uncertainty, and reasoning under uncertainty.\nVersatility in Applications:\nFrom medical diagnosis to spam filtering, Bayes’ Theorem is pivotal in areas requiring probabilistic assessment.\n\nBayes’ Theorem is a paradigm that shapes the way we interpret and interact with data, offering a powerful tool for learning from information and making decisions in an uncertain world."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#classify-to-the-highest-density",
+    "href": "lecture_slides/03_classification/03_classification.html#classify-to-the-highest-density",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Classify to the Highest Density",
+    "text": "Classify to the Highest Density\n\n\nLeft-hand plot: single variable X and \\(\\pi_k f_k(x)\\) in the vertical axis for both classes \\(k\\) equals 1 and \\(k\\) equals 2. In this case the the pies are the same for both, so anything to the left of zero we classify as as green and anything to the right we classify as as purple.\nRight-hand plot: here we have different priors. The probability of \\(k = 2\\) is 0.7 and and of of \\(k= 1\\) is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#why-discriminant-analysis",
+    "href": "lecture_slides/03_classification/03_classification.html#why-discriminant-analysis",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Why Discriminant Analysis?",
+    "text": "Why Discriminant Analysis?\n\nWhen the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.\nIf \\(n\\) is small and the distribution of the predictors \\(X\\) is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.\nLinear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear Discriminant Analysis when \\(p = 1\\)",
+    "text": "Linear Discriminant Analysis when \\(p = 1\\)\nThe Gaussian density has the form:\n\\[\nf_k(x) = \\frac{1}{\\sqrt{2\\pi\\sigma_k}} e^{-\\frac{1}{2} \\left( \\frac{x - \\mu_k}{\\sigma_k} \\right)^2}\n\\]\nHere \\(\\mu_k\\) is the mean, and \\(\\sigma_k^2\\) the variance (in class \\(k\\)). We will assume that all the \\(\\sigma_k = \\sigma\\) are the same.\n\nPlugging this into Bayes formula, we get a rather complex expression for \\(p_k(x) = \\Pr(Y = k \\mid X = x)\\):\n\\[\np_k(x) = \\frac{\\pi_k \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{1}{2} \\left( \\frac{x - \\mu_k}{\\sigma} \\right)^2}}{\\sum_{\\ell=1}^K \\pi_\\ell \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{1}{2} \\left( \\frac{x - \\mu_\\ell}{\\sigma} \\right)^2}}\n\\]\nHappily, there are simplifications and cancellations."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#discriminant-functions",
+    "href": "lecture_slides/03_classification/03_classification.html#discriminant-functions",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Discriminant Functions",
+    "text": "Discriminant Functions\nTo classify one observation at the value \\(X = x\\) into a class, we need to see which of the \\(p_k(x)\\) is largest. Taking logs, and discarding terms that do not depend on \\(k\\), we see that this is equivalent to assigning \\(x\\) to the class with the largest discriminant score:\n\\[\n\\delta_k(x) = x \\cdot \\frac{\\mu_k}{\\sigma^2} - \\frac{\\mu_k^2}{2\\sigma^2} + \\log(\\pi_k)\n\\]\nNote that \\(\\delta_k(x)\\) is a linear function of \\(x\\).\n\nIf there are \\(K = 2\\) classes and \\(\\pi_1 = \\pi_2 = 0.5\\), then one can see that the decision boundary is at:\n\\[\nx = \\frac{\\mu_1 + \\mu_2}{2}.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-estimating-parameters-for-discriminant-analysis",
+    "href": "lecture_slides/03_classification/03_classification.html#example-estimating-parameters-for-discriminant-analysis",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Estimating Parameters for Discriminant Analysis",
+    "text": "Example: Estimating Parameters for Discriminant Analysis\n\n\nLeft-Panel: Synthetic population data with \\(\\mu_1 = -1.5\\), \\(\\mu_2 = 1.5\\), \\(\\pi_1 = \\pi_2 = 0.5\\), and \\(\\sigma^2 = 1\\).\nTypically, we don’t know these parameters; we just have the training data. In that case, we simply estimate the parameters and plug them into the rule.\nRight-Panel: histograms of the sample. We see that the estimation provided a decision boundary (black solid line) pretty close to the correct one, the one of the population."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#estimating-the-parameters",
+    "href": "lecture_slides/03_classification/03_classification.html#estimating-the-parameters",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Estimating the Parameters",
+    "text": "Estimating the Parameters\n\n\nThe prior is the number in each class divided by the total number:\n\\[\n\\hat{\\pi}_k = \\frac{n_k}{n}\n\\]\nThe means in each class is the sample mean:\n\\[\n\\hat{\\mu}_k = \\frac{1}{n_k} \\sum_{i: y_i = k} x_i\n\\]\nWe assume that the variance is the same in each of the classes and so we assume a pooled variance estimate:\n\\[\n\\hat{\\sigma}^2 = \\frac{1}{n - K} \\sum_{k=1}^K \\sum_{i: y_i = k} (x_i - \\hat{\\mu}_k)^2\n\\]\n\\[\n= \\sum_{k=1}^K \\frac{n_k - 1}{n - K} \\cdot \\hat{\\sigma}_k^2\n\\]\nwhere \\(\\hat{\\sigma}_k^2 = \\frac{1}{n_k - 1} \\sum_{i: y_i = k} (x_i - \\hat{\\mu}_k)^2\\) is the usual formula for the estimated variance in the \\(k\\)-th class."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-2",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear Discriminant Analysis when \\(p > 1\\)",
+    "text": "Linear Discriminant Analysis when \\(p &gt; 1\\)\n\n\n\n\n\n\n\n\n\n\n\nGaussian density in two Dimensions, two variables \\(x_1\\) and \\(x_2\\). On the Left-panel, we have a bell function and this is the case when the two variables are uncorrelated. On the Right-panel, there is correlation between the two predictors and it is like a stretched bell.\nDensity:\n\\[f(x) = \\frac{1}{(2\\pi)^{p/2} |\\Sigma|^{1/2}} e^{-\\frac{1}{2}(x - \\mu)^T \\Sigma^{-1} (x - \\mu)}\\] where \\(\\Sigma\\) is the covariance matrix."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#covariance-matrix",
+    "href": "lecture_slides/03_classification/03_classification.html#covariance-matrix",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Covariance Matrix",
+    "text": "Covariance Matrix\n\n\nThe covariance matrix is a square matrix that summarizes the covariance (a measure of how much two random variables vary together) between multiple variables in a dataset.\nDefinition:\nFor a random vector \\(X = [X_1, X_2, \\dots, X_p]^\\top\\) with \\(p\\) variables, the covariance matrix \\(\\Sigma\\) is defined as:\n\\[\n\\Sigma =\n\\begin{bmatrix}\n\\text{Var}(X_1) & \\text{Cov}(X_1, X_2) & \\cdots & \\text{Cov}(X_1, X_p) \\\\\n\\text{Cov}(X_2, X_1) & \\text{Var}(X_2) & \\cdots & \\text{Cov}(X_2, X_p) \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\n\\text{Cov}(X_p, X_1) & \\text{Cov}(X_p, X_2) & \\cdots & \\text{Var}(X_p)\n\\end{bmatrix}\n\\]\n\nKey Properties:\n\n\\(\\text{Var}(X_i)\\): Variance of variable \\(X_i\\).\n\\(\\text{Cov}(X_i, X_j)\\): Covariance between variables \\(X_i\\) and \\(X_j\\).\n\\(\\Sigma\\) is symmetric: \\(\\text{Cov}(X_i, X_j) = \\text{Cov}(X_j, X_i)\\).\nDiagonal elements represent variances, and off-diagonal elements represent covariances."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-3",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear Discriminant Analysis when \\(p > 1\\)",
+    "text": "Linear Discriminant Analysis when \\(p &gt; 1\\)\n\n\n\n\n\n\n\n\n\n\n\nDiscriminant function: after simplifying the density function we can find\n\\[\\delta_k(x) = x^T \\Sigma^{-1} \\mu_k - \\frac{1}{2} \\mu_k^T \\Sigma^{-1} \\mu_k + \\log \\pi_k\\]\nNote that it is a linear function where the first component, \\(x^T \\Sigma^{-1} \\mu_k\\), has the \\(x\\) variable multiplied by a coefficient vector and, the second component, \\(\\frac{1}{2} \\mu_k^T \\Sigma^{-1} \\mu_k + \\log \\pi_k\\), is a constant."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-4",
+    "href": "lecture_slides/03_classification/03_classification.html#linear-discriminant-analysis-when-p-1-4",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Linear Discriminant Analysis when \\(p > 1\\)",
+    "text": "Linear Discriminant Analysis when \\(p &gt; 1\\)\n\n\n\n\n\n\n\n\n\n\n\nThe Discriminant function can be written as\n\\[\\delta_k(x) = c_{k0} + c_{k1}x_1 + c_{k2}x_2 + \\cdots + c_{kp}x_p\\]\na linear function. That is a function for class \\(k\\), where \\(c_{k0}\\) represents the constant we find in the second component of the Discriminant function and \\(c_{k1}x_1 + c_{k2}x_2 + \\cdots + c_{kp}x_p\\) come from the first component of the Discriminant function. We compute \\(\\delta_k(x)\\) for each of the classes and then you classify to the class for which it is largest."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#illustration-p-2-and-k-3-classes",
+    "href": "lecture_slides/03_classification/03_classification.html#illustration-p-2-and-k-3-classes",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Illustration: \\(p = 2\\) and \\(K = 3\\) classes",
+    "text": "Illustration: \\(p = 2\\) and \\(K = 3\\) classes\n\n\nLeft-panel: The circle presents the countor of the density of a particular level of probability for the blue, green, and the orange class. Here \\(\\pi_1 = \\pi_2 = \\pi_3 = \\frac{1}{3}\\). The dashed lines are known as the Bayes decision boundaries. They are the “True” decision boundaries, were they known, they would yield the fewest misclassification errors, among all possible classifiers.\nRight-panel: We compute the mean for \\(x_1\\) and \\(x_2\\) for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-fishers-iris-data-1",
+    "href": "lecture_slides/03_classification/03_classification.html#example-fishers-iris-data-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Fisher’s Iris Data",
+    "text": "Example: Fisher’s Iris Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n4 variables\n3 species\n50 samples/class\n\n🟦 Setosa\n🟧 Versicolor\n🟩 Virginica\n\nLDA classifies all but 3 of the 150 training samples correctly."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-fishers-discriminant-plot",
+    "href": "lecture_slides/03_classification/03_classification.html#example-fishers-discriminant-plot",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Fisher’s Discriminant Plot",
+    "text": "Example: Fisher’s Discriminant Plot\n\n\nDiscriminant variables 1 and 2 are linear combinations of the original variables.\nLDA classifies points based on their proximity to centroids in discriminant space.\nThe centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).\nFor \\(K\\) classes:\n\nLDA can be visualized in \\(K - 1\\)-dimensional space.\nFor \\(K &gt; 3\\), the “best” 2D plane can be chosen for visualization."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#from-delta_kx-to-probabilities",
+    "href": "lecture_slides/03_classification/03_classification.html#from-delta_kx-to-probabilities",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "From \\(\\delta_k(x)\\) to Probabilities",
+    "text": "From \\(\\delta_k(x)\\) to Probabilities\n\n\n\nOnce we have estimates of the Discriminat Functions, \\(\\hat{\\delta}_k(x)\\), we can turn these into estimates for class probabilities:\n\n\\[\n\\hat{\\Pr}(Y = k | X = x) = \\frac{e^{\\hat{\\delta}_k(x)}}{\\sum_{l=1}^K e^{\\hat{\\delta}_l(x)}}.\n\\]\n\nSo classifying to the largest \\(\\hat{\\delta}_k(x)\\) amounts to classifying to the class for which \\(\\hat{\\Pr}(Y = k | X = x)\\) is largest.\nWhen \\(K = 2\\), we classify to class 2 if \\(\\hat{\\Pr}(Y = 2 | X = x) \\geq 0.5\\), else to class 1."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#lda-on-credit-data",
+    "href": "lecture_slides/03_classification/03_classification.html#lda-on-credit-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "LDA on Credit Data",
+    "text": "LDA on Credit Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTrue Default Status\n\n\n\nPredicted Default Status\nNo\nYes\nTotal\n\n\n\n\nNo\n9644\n252\n9896\n\n\nYes\n23\n81\n104\n\n\nTotal\n9667\n333\n10000\n\n\n\n\n\n\n\n\n\\(\\frac{23 + 252}{10000}\\) errors — a 2.75% misclassification rate!\n\n\nSome caveats:\n\nThis is training error, and we may be overfitting.\nIf we classified to the prior, the proportion of cases in the classes (e.g. always assuming the class No default). We would make \\(\\frac{333}{10000}\\) errors, or only 3.33%. This is what we call the null rate.\nWe can break the errors into different kinds: of the true No’s, we make \\(\\frac{23}{9667} = 0.2\\%\\) errors; of the true Yes’s, we make \\(\\frac{252}{333} = 75.7\\%\\) errors!"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#types-of-errors-1",
+    "href": "lecture_slides/03_classification/03_classification.html#types-of-errors-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Types of errors",
+    "text": "Types of errors\n\n\nFalse positive rate: The fraction of negative examples that are classified as positive — 0.2% in example.\nFalse negative rate: The fraction of positive examples that are classified as negative — 75.7% in example.\nWe produced this table by classifying to class Yes if:\n\\[\n\\hat{P}(\\text{Default} = \\text{Yes} \\mid \\text{Balance}, \\text{Student}) \\geq 0.5\n\\]\nWe can change the two error rates by changing the threshold from \\(0.5\\) to some other value in \\([0, 1]\\):\n\\[\n\\hat{P}(\\text{Default} = \\text{Yes} \\mid \\text{Balance}, \\text{Student}) \\geq \\text{threshold},\n\\]\nand vary \\(\\text{threshold}\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#varying-the-threshold",
+    "href": "lecture_slides/03_classification/03_classification.html#varying-the-threshold",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Varying the threshold",
+    "text": "Varying the threshold\n\nIn order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#roc-curve",
+    "href": "lecture_slides/03_classification/03_classification.html#roc-curve",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "ROC Curve",
+    "text": "ROC Curve\n\nThe ROC plot displays both simultaneously.\nSometimes we use the AUC or area under the curve to summarize the overall performance. Higher AUC is good."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#other-forms-of-discriminant-analysis-1",
+    "href": "lecture_slides/03_classification/03_classification.html#other-forms-of-discriminant-analysis-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Other Forms of Discriminant Analysis",
+    "text": "Other Forms of Discriminant Analysis\n\nWhen \\(f_k(x)\\) are Gaussian densities, with the same covariance matrix \\(\\Sigma\\) in each class, this leads to linear discriminant analysis.\n\\[\n\\Pr(Y = k|X = x) = \\frac{\\pi_k f_k(x)}{\\sum_{l=1}^{K} \\pi_l f_l(x)}\n\\]\nBy altering the forms for \\(f_k(x)\\), we get different classifiers:\n\nWith Gaussians but different \\(\\Sigma_k\\) in each class, we get quadratic discriminant analysis.\nWith \\(f_k(x) = \\prod_{j=1}^{p} f_{jk}(x_j)\\) (conditional independence model) in each class, we get naive Bayes. For Gaussians, this means \\(\\Sigma_k\\) are diagonal.\nMany other forms, by proposing specific density models for \\(f_k(x)\\), including nonparametric approaches."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#quadratic-discriminant-analysis",
+    "href": "lecture_slides/03_classification/03_classification.html#quadratic-discriminant-analysis",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Quadratic Discriminant Analysis",
+    "text": "Quadratic Discriminant Analysis\n\n\n\n\n\n\n\n\n\n\n\\[\n\\delta_k(x) = -\\frac{1}{2}(x - \\mu_k)^T \\Sigma_k^{-1}(x - \\mu_k) + \\log \\pi_k - \\frac{1}{2} \\log |\\Sigma_k|\n\\]\nIn the Left-plot we see a case when the true boundary should be linear. In the Right-plot, covariances were different in the true data. It is possible to see that the bayes decision boundary is curved and the quadratic discriminant analysis is also curved whereas the linear discriminant analysis gives a different boundary.\nWhether each class has the same or different covariance matrices significantly impacts how boundaries between the classes are defined. The covariance matrix describes the spread or variability of data points within each class and how the features in that class relate to each other.\n\nKey Insight: If \\(\\Sigma_k\\) are different for each class, the quadratic terms matter significantly.\nQDA allows for non-linear decision boundaries due to unique covariance matrices for each class.\nExample: Suppose we are classifying plants based on two features (e.g., height and leaf width). If one type of plant has a tall and narrow spread of data, while another type has a short and wide spread, QDA can handle these differences and draw curved boundaries to separate the groups."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#assess-the-covariance-matrices",
+    "href": "lecture_slides/03_classification/03_classification.html#assess-the-covariance-matrices",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Assess the Covariance Matrices",
+    "text": "Assess the Covariance Matrices\n\nLDA assumes the covariance matrices of all classes are the same, while QDA allows each class to have its own. To determine which assumption is better:\n\nHypothesys test: we can perform a Test for Equality of Covariance Matrices (e.g. Box’s M Test). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.\nVisual Inspection: Plot the data in two dimensions (e.g., using scatterplots). Check if the spread, shape, or orientation of data points differs significantly between classes. If they are similar, LDA might work well. If they are visibly different, QDA is likely better.\nCompare Model Performance: run both models and choose the model that performs better on unseen data (test set).\nConsider the Number of Features and Data Size: LDA performs well with smaller datasets because it estimates a single covariance matrix across all classes (fewer parameters). QDA requires a larger dataset because it estimates a separate covariance matrix for each class (more parameters).\nDomain Knowledge: Use your understanding of the data to decide."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#logistic-regression-versus-lda",
+    "href": "lecture_slides/03_classification/03_classification.html#logistic-regression-versus-lda",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Logistic Regression versus LDA",
+    "text": "Logistic Regression versus LDA\n\nFor a two-class problem, one can show that for LDA:\n\\[\n\\log \\left( \\frac{p_1(x)}{1 - p_1(x)} \\right) = \\log \\left( \\frac{p_1(x)}{p_2(x)} \\right) = c_0 + c_1 x_1 + \\dots + c_p x_p\n\\]\nif we take the log odds, \\(\\log \\left( \\frac{p_1(x)}{1 - p_1(x)}\\right)\\), which is the log of the probability for class 1 versus the probability for class two, we endup with a linear function of \\(x\\), \\(c_0 + c_1 x_1 + \\dots + c_p x_p\\). So it has the same form as logistic regression.\nThe difference lies in how the parameters are estimated.\n\nLogistic regression uses the conditional likelihood based on \\(\\text{Pr}(Y|X)\\). In Machine Learning, it is known as discriminative learning.\nLDA uses the full likelihood based on the joint distributions of \\(x's\\) and \\(y's\\), \\(\\text{Pr}(X, Y)\\), whereas logistic regression was only using the distribution of \\(y's\\). It is known as generative learning.\nDespite these differences, in practice, the results are often very similar.\n\nLogistic regression can also fit quadratic boundaries like QDA by explicitly including quadratic terms in the model."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naive-bayes-1",
+    "href": "lecture_slides/03_classification/03_classification.html#naive-bayes-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naive Bayes",
+    "text": "Naive Bayes\n\n\n\nAssumes features are independent in each class.\nUseful when \\(p\\) is large, and so multivariate methods like QDA and even LDA break down.\n\nGaussian Naive Bayes assumes each \\(\\Sigma_k\\) is diagonal:\n\\[\n\\begin{aligned}\n\\delta_k(x) &\\propto \\log \\left[ \\pi_k \\prod_{j=1}^p f_{kj}(x_j) \\right] \\\\\n            &= -\\frac{1}{2} \\sum_{j=1}^p \\left[ \\frac{(x_j - \\mu_{kj})^2}{\\sigma_{kj}^2} + \\log \\sigma_{kj}^2 \\right] + \\log \\pi_k\n\\end{aligned}\n\\]\n\nCan be used for mixed feature vectors (qualitative and quantitative). If \\(X_j\\) is qualitative, replace \\(f_{kj}(x_j)\\) with the probability mass function (histogram) over discrete categories.\nKey Point: Despite strong assumptions, naive Bayes often produces good classification results.\n\nExplanation:\n\n\\(\\pi_k\\): Prior probability of class \\(k\\).\n\\(f_{kj}(x_j)\\): Density function for feature \\(j\\) in class \\(k\\).\n\\(\\mu_{kj}\\): Mean of feature \\(j\\) in class \\(k\\).\n\\(\\sigma_{kj}^2\\): Variance of feature \\(j\\) in class \\(k\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#diagonal-covariance-matrix",
+    "href": "lecture_slides/03_classification/03_classification.html#diagonal-covariance-matrix",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Diagonal Covariance Matrix",
+    "text": "Diagonal Covariance Matrix\n\n\nA diagonal covariance matrix is a special case of the covariance matrix where all off-diagonal elements are zero. This implies that the variables are uncorrelated.\nGeneral Form:\nFor \\(p\\) variables, a diagonal covariance matrix \\(\\Sigma\\) is represented as:\n\\[\n\\Sigma =\n\\begin{bmatrix}\n\\sigma_1^2 & 0 & \\cdots & 0 \\\\\n0 & \\sigma_2^2 & \\cdots & 0 \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\n0 & 0 & \\cdots & \\sigma_p^2\n\\end{bmatrix}\n\\]\nProperties:\n\nDiagonal Elements (\\(\\sigma_i^2\\)): Represent the variance of each variable \\(X_i\\).\nOff-Diagonal Elements: All equal to zero (\\(\\text{Cov}(X_i, X_j) = 0\\) for \\(i \\neq j\\)), indicating no linear relationship between variables.\nA diagonal covariance matrix assumes independence between variables. Each variable varies independently without influencing the others.\nCommonly used in simpler models, such as Naive Bayes, where independence is assumed."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#generative-models-and-naïve-bayes",
+    "href": "lecture_slides/03_classification/03_classification.html#generative-models-and-naïve-bayes",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Generative Models and Naïve Bayes",
+    "text": "Generative Models and Naïve Bayes\n\n\n\nLogistic regression models \\(\\Pr(Y = k | X = x)\\) directly, via the logistic function. Similarly, the multinomial logistic regression uses the softmax function. These all model the conditional distribution of \\(Y\\) given \\(X\\).\nBy contrast, generative models start with the conditional distribution of \\(X\\) given \\(Y\\), and then use Bayes formula to turn things around:\n\n\\[\n\\Pr(Y = k | X = x) = \\frac{\\pi_k f_k(x)}{\\sum_{l=1}^{K} \\pi_l f_l(x)}.\n\\]\n\n\\(f_k(x)\\) is the density of \\(X\\) given \\(Y = k\\);\n\\(\\pi_k = \\Pr(Y = k)\\) is the marginal probability that \\(Y\\) is in class \\(k\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#generative-models-and-naïve-bayes-1",
+    "href": "lecture_slides/03_classification/03_classification.html#generative-models-and-naïve-bayes-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Generative Models and Naïve Bayes",
+    "text": "Generative Models and Naïve Bayes\n\n\n\nLinear and quadratic discriminant analysis derive from generative models, where \\(f_k(x)\\) are Gaussian.\nUseful if some classes are well separated. A situation where logistic regression is unstable.\nNaïve Bayes assumes that the densities \\(f_k(x)\\) in each class factor:\n\n\\[\nf_k(x) = f_{k1}(x_1) \\times f_{k2}(x_2) \\times \\cdots \\times f_{kp}(x_p)\n\\]\n\nEquivalently, this assumes that the features are independent within each class.\nThen using Bayes formula:\n\n\\[\n\\Pr(Y = k | X = x) = \\frac{\\pi_k \\times f_{k1}(x_1) \\times f_{k2}(x_2) \\times \\cdots \\times f_{kp}(x_p)}{\\sum_{l=1}^{K} \\pi_l \\times f_{l1}(x_1) \\times f_{l2}(x_2) \\times \\cdots \\times f_{lp}(x_p)}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-details",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-details",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes — Details",
+    "text": "Naïve Bayes — Details\nWhy the independence assumption?\n\nDifficult to specify and model high-dimensional densities.\nMuch easier to specify one-dimensional densities.\nCan handle mixed features:\n\nIf feature \\(j\\) is quantitative, can model as univariate Gaussian, for example: \\(X_j \\mid Y = k \\sim N(\\mu_{jk}, \\sigma_{jk}^2).\\) We estimate \\(\\mu_{jk}\\) and \\(\\sigma_{jk}^2\\) from the data, and then plug into Gaussian density formula for \\(f_{jk}(x_j)\\).\nAlternatively, can use a histogram estimate of the density, and directly estimate \\(f_{jk}(x_j)\\) by the proportion of observations in the bin into which \\(x_j\\) falls.\nIf feature \\(j\\) is qualitative, can simply model the proportion in each category.\n\nSomewhat unrealistic but extremely useful in many cases.\nDespite its simplicity, often shows good classification performance due to reduced variance."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-toy-example",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-toy-example",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes — Toy Example",
+    "text": "Naïve Bayes — Toy Example\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis toy example demonstrates the working of the Naïve Bayes classifier for two classes (\\(k = 1\\) and \\(k = 2\\)) and three features (\\(X_1, X_2, X_3\\)). The goal is to compute the posterior probabilities \\(\\Pr(Y = 1 \\mid X = x^*)\\) and \\(\\Pr(Y = 2 \\mid X = x^*)\\) for a given observation \\(x^* = (0.4, 1.5, 1)\\).\n\nThe prior probabilities for each class are:\n\\(\\hat{\\pi}_1 = \\hat{\\pi}_2 = 0.5\\)\n\n\nFor each feature (\\(X_1, X_2, X_3\\)), we estimate the class-conditional density functions:\n\n\\(\\hat{f}_{11}, \\hat{f}_{12}, \\hat{f}_{13}\\): Densities for \\(k = 1\\) (class 1).\n\n\\(\\hat{f}_{11}(0.4) = 0.368 \\\\\\)\n\\(\\hat{f}_{12}(1.5) = 0.484 \\\\\\)\n\\(\\hat{f}_{13}(1) = 0.226 \\\\\\)\n\n\\(\\hat{f}_{21}, \\hat{f}_{22}, \\hat{f}_{23}\\): Densities for \\(k = 2\\) (class 2).\n\n\\(\\hat{f}_{21}(0.4) = 0.030 \\\\\\)\n\\(\\hat{f}_{22}(1.5) = 0.130 \\\\\\)\n\\(\\hat{f}_{23}(1) = 0.616 \\\\\\)"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-toy-example-1",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-toy-example-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes — Toy Example",
+    "text": "Naïve Bayes — Toy Example\n\n\n\n\n\nCompute Class-Conditional Likelihoods for each class \\(k\\), the likelihood is computed as the product of the conditional densities for each feature:\n\n\\[\n   \\hat{f}_k(x^*) = \\prod_{j=1}^3 \\hat{f}_{kj}(x_j^*)\n\\]\n\nFor \\(k = 1\\):\n\n\\[\n     \\hat{f}_{11}(0.4) = 0.368, \\quad \\hat{f}_{12}(1.5) = 0.484, \\quad \\hat{f}_{13}(1) = 0.226\n\\]\n\\[\n     \\hat{f}_1(x^*) = 0.368 \\times 0.484 \\times 0.226 \\approx 0.0402\n\\]\n\nFor \\(k = 2\\):\n\n\\[\n     \\hat{f}_{21}(0.4) = 0.030, \\quad \\hat{f}_{22}(1.5) = 0.130, \\quad \\hat{f}_{23}(1) = 0.616\n\\]\n\\[\n     \\hat{f}_2(x^*) = 0.030 \\times 0.130 \\times 0.616 \\approx 0.0024\n\\]\n\n\n\nCompute Posterior Probabilities using Bayes’ theorem:\n\n\\[\n   \\Pr(Y = k \\mid X = x^*) = \\frac{\\hat{\\pi}_k \\hat{f}_k(x^*)}{\\sum_{k=1}^2 \\hat{\\pi}_k \\hat{f}_k(x^*)}\n\\]\n\nFor \\(k = 1\\): \\[\n\\Pr(Y = 1 \\mid X = x^*) = \\frac{0.5 \\times 0.0402}{(0.5 \\times 0.0402) + (0.5 \\times 0.0024)} \\approx 0.944\n\\]\nFor \\(k = 2\\): \\[\n\\Pr(Y = 2 \\mid X = x^*) = \\frac{0.5 \\times 0.0024}{(0.5 \\times 0.0402) + (0.5 \\times 0.0024)} \\approx 0.056\n\\]\n\n\n\nKey Takeaways:\n\nNaïve Bayes Assumption: The assumption of feature independence simplifies computation by allowing the class-conditional densities to be computed separately for each feature.\nPosterior Probabilities: The posterior probability combines the prior (\\(\\pi_k\\)) and the likelihood (\\(\\hat{f}_k(x^*)\\)).\nClassification: The observation \\(x^*\\) is classified as the class with the highest posterior probability (\\(Y = 1\\))."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs",
+    "text": "Naïve Bayes and GAMs\n\n\nNaïve Bayes classifier can be understood as a special case of a GAM.\n\\[\n\\begin{aligned}\n\\log \\left( \\frac{\\Pr(Y = k \\mid X = x)}{\\Pr(Y = K \\mid X = x)} \\right)\n&= \\log \\left( \\frac{\\pi_k f_k(x)}{\\pi_K f_K(x)} \\right) \\\\\n&= \\log \\left( \\frac{\\pi_k \\prod_{j=1}^p f_{kj}(x_j)}{\\pi_K \\prod_{j=1}^p f_{Kj}(x_j)} \\right) \\\\\n&= \\log \\left( \\frac{\\pi_k}{\\pi_K} \\right) + \\sum_{j=1}^p \\log \\left( \\frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \\right) \\\\\n&= a_k + \\sum_{j=1}^p g_{kj}(x_j),\n\\end{aligned}\n\\]\nwhere \\(a_k = \\log \\left( \\frac{\\pi_k}{\\pi_K} \\right)\\) and \\(g_{kj}(x_j) = \\log \\left( \\frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \\right)\\).\nHence, the Naïve Bayes model is a Generalized Additive Model (GAM):\n\nThe log-odds are expressed as a sum of additive terms.\n\\(a_k\\): Represents prior influence.\n\\(g_{kj}(x_j)\\): Represents feature contributions."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs: details",
+    "text": "Naïve Bayes and GAMs: details\nLog-Odds of Posterior Probabilities\nThe Naïve Bayes classifier starts with the log-odds of the posterior probabilities:\n\\[\n\\log \\left( \\frac{\\Pr(Y = k \\mid X = x)}{\\Pr(Y = K \\mid X = x)} \\right)\n\\]\nThis is the log of the ratio of the probabilities of class \\(k\\) and a reference class \\(K\\), given the feature vector \\(X = x\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-1",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs: details",
+    "text": "Naïve Bayes and GAMs: details\nBayes’ Theorem\nUsing Bayes’ theorem, the posterior probabilities can be expressed as:\n\\[\n\\log \\left( \\frac{\\Pr(Y = k \\mid X = x)}{\\Pr(Y = K \\mid X = x)} \\right) = \\log \\left( \\frac{\\pi_k f_k(x)}{\\pi_K f_K(x)} \\right)\n\\]\n\n\\(\\pi_k\\): Prior probability of class \\(k\\).\n\\(f_k(x)\\): Class-conditional density for class \\(k\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-2",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs: details",
+    "text": "Naïve Bayes and GAMs: details\nNaïve Bayes Assumption\nThe Naïve Bayes assumption states that features are conditionally independent given the class:\n\\[\nf_k(x) = \\prod_{j=1}^p f_{kj}(x_j)\n\\]\nSubstituting this into the equation:\n\\[\n\\log \\left( \\frac{\\pi_k f_k(x)}{\\pi_K f_K(x)} \\right) = \\log \\left( \\frac{\\pi_k \\prod_{j=1}^p f_{kj}(x_j)}{\\pi_K \\prod_{j=1}^p f_{Kj}(x_j)} \\right)\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-3",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs: details",
+    "text": "Naïve Bayes and GAMs: details\nSeparate the Terms\nThe terms can now be separated:\n\\[\n\\log \\left( \\frac{\\pi_k \\prod_{j=1}^p f_{kj}(x_j)}{\\pi_K \\prod_{j=1}^p f_{Kj}(x_j)} \\right)\n= \\log \\left( \\frac{\\pi_k}{\\pi_K} \\right) + \\sum_{j=1}^p \\log \\left( \\frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \\right)\n\\]\n\n\\(\\log \\left( \\frac{\\pi_k}{\\pi_K} \\right)\\): Influence of prior probabilities.\n\\(\\sum_{j=1}^p \\log \\left( \\frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \\right)\\): Contribution from each feature."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-4",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes-and-gams-details-4",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes and GAMs: details",
+    "text": "Naïve Bayes and GAMs: details\nAdditive Form\nDefine:\n\\[\na_k = \\log \\left( \\frac{\\pi_k}{\\pi_K} \\right), \\quad g_{kj}(x_j) = \\log \\left( \\frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \\right)\n\\]\nThe equation becomes:\n\\[\n\\log \\left( \\frac{\\Pr(Y = k \\mid X = x)}{\\Pr(Y = K \\mid X = x)} \\right) = a_k + \\sum_{j=1}^p g_{kj}(x_j)\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#generalized-linear-models-1",
+    "href": "lecture_slides/03_classification/03_classification.html#generalized-linear-models-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Generalized Linear Models",
+    "text": "Generalized Linear Models\n\nLinear regression is used for quantitative responses.\nLinear logistic regression is the counterpart for a binary response and models the logit of the probability as a linear model.\nOther response types exist, such as non-negative responses, skewed distributions, and more.\nGeneralized linear models provide a unified framework for dealing with many different response types."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-bikeshare-data",
+    "href": "lecture_slides/03_classification/03_classification.html#example-bikeshare-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Bikeshare Data",
+    "text": "Example: Bikeshare Data\n\n\nLinear regression with response bikers: number of hourly users in the bikeshare program in Washington, DC.\n\n\n\n\n\n\n\n\n\n\nPredictor\nCoefficient\nStd. error\nz-statistic\np-value\n\n\n\n\nIntercept\n73.60\n5.13\n14.34\n0.00\n\n\nworkingday\n1.27\n1.78\n0.71\n0.48\n\n\ntemp\n157.21\n10.26\n15.32\n0.00\n\n\nweathersit \\(cloudy/misty\\)\n-12.89\n1.96\n-6.56\n0.00\n\n\nweathersit \\(light rain/snow\\)\n-66.49\n2.97\n-22.43\n0.00\n\n\nweathersit \\(heavy rain/snow\\)\n-109.75\n76.67\n-1.43\n0.15"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-meanvariance-relationship",
+    "href": "lecture_slides/03_classification/03_classification.html#example-meanvariance-relationship",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Mean/Variance Relationship",
+    "text": "Example: Mean/Variance Relationship\n\n\nLeft plot: we see that the variance mostly increases with the mean.\n10% of a linear model predictions are negative! (not shown here.). However, we know that the response variable, bikers, is always positive.\nTaking log(bikers) alleviates this, but is not a good solution. It has its own problems: e.g. predictions are on the wrong scale, and some counts are zero!"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#poisson-regression-model",
+    "href": "lecture_slides/03_classification/03_classification.html#poisson-regression-model",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Poisson Regression Model",
+    "text": "Poisson Regression Model\nPoisson distribution is useful for modeling counts:\n\\[\n  Pr(Y = k) = \\frac{e^{-\\lambda} \\lambda^k}{k!}, \\, \\text{for } k = 0, 1, 2, \\ldots\n\\]\nMean/variance relationship: \\(\\lambda = \\mathbb{E}(Y) = \\text{Var}(Y)\\) i.e., there is a mean/variance dependence. When the mean is higher, the variance is higher.\nModel with Covariates:\n\\[\n  \\log(\\lambda(X_1, \\ldots, X_p)) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\n\\]\nOr equivalently:\n\\[\n  \\lambda(X_1, \\ldots, X_p) = e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}\n\\]\nAutomatic positivity: The model ensures that predictions are non-negative by construction."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#example-poisson-regression-on-bikeshare-data",
+    "href": "lecture_slides/03_classification/03_classification.html#example-poisson-regression-on-bikeshare-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Poisson Regression on Bikeshare Data",
+    "text": "Example: Poisson Regression on Bikeshare Data\n\n\n\n\n\n\n\n\n\n\n\n\n\nCoefficient\nStd. error\nz-statistic\np-value\n\n\n\n\nIntercept\n4.12\n0.01\n683.96\n0.00\n\n\nworkingday\n0.01\n0.00\n7.50\n0.00\n\n\ntemp\n0.79\n0.01\n68.43\n0.00\n\n\nweathersit \\(cloudy/misty\\)\n-0.08\n0.00\n-34.53\n0.00\n\n\nweathersit \\(light rain/snow\\)\n-0.58\n0.00\n-141.91\n0.00\n\n\nweathersit \\(heavy rain/snow\\)\n-0.93\n0.17\n-5.55\n0.00\n\n\n\n\n\n\n\n\n\n\n\n\nNote: in this case, the variance is somewhat larger than the mean — a situation known as overdispersion. As a result, the p-values may be misleadingly small."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#generalized-linear-models-2",
+    "href": "lecture_slides/03_classification/03_classification.html#generalized-linear-models-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Generalized Linear Models",
+    "text": "Generalized Linear Models\n\n\n\nWe have covered three GLMs: Gaussian, binomial, and Poisson.\nThey each have a characteristic link function. This is the transformation of the mean represented by a linear model:\n\n\\[\n\\eta(\\mathbb{E}(Y|X_1, X_2, \\ldots, X_p)) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p.\n\\]\n\nThe link functions for linear, logistic, and Poisson regression are \\(\\eta(\\mu) = \\mu\\), \\(\\eta(\\mu) = \\log(\\mu / (1 - \\mu))\\), \\(\\eta(\\mu) = \\log(\\mu)\\), respectively.\nEach GLM has a characteristic variance function.\nThe models are fit by maximum likelihood, and model summaries are produced using glm() in R.\nOther GLMs include Gamma, Negative-binomial, Inverse Gaussian, and more."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#summary-1",
+    "href": "lecture_slides/03_classification/03_classification.html#summary-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\nKey Concepts:\n\nClassification involves predicting categorical outcomes based on input features.\nPopular approaches include:\n\nLogistic Regression: Directly models probabilities; suitable for \\(K=2\\) and extendable to \\(K &gt; 2\\).\nDiscriminant Analysis: Assumes Gaussian distributions; suitable for small datasets or when classes are well separated.\nNaïve Bayes: Assumes feature independence; works well with large \\(p\\) or mixed data types.\n\nThresholds and ROC Curves allow fine-tuning between false positive and false negative rates.\n\n\n\n\nPractical Insights\n\nLinear vs Logistic Regression: Logistic regression avoids issues with probabilities outside [0, 1].\nDiscriminant Analysis: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.\nNaïve Bayes: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.\nGeneralized Linear Models (GLMs): Extend regression to different types of responses with appropriate link and variance functions."
   }
 ]
