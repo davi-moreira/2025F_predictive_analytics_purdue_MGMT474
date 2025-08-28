@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Professor: Davi Moreira">
+
+<title> MGMT 47400: Predictive Analytics  – MGMT 47400: Predictive Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-278f079c28f28dbf8752571db94a6592.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule and Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#tree-based-methods" id="toc-tree-based-methods" class="nav-link" data-scroll-target="#tree-based-methods">Tree-based Methods</a>
+  <ul class="collapse">
+  <li><a href="#tree-based-methods-1" id="toc-tree-based-methods-1" class="nav-link" data-scroll-target="#tree-based-methods-1">Tree-based Methods</a></li>
+  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons">Pros and Cons</a></li>
+  </ul></li>
+  <li><a href="#the-basics-of-decision-trees" id="toc-the-basics-of-decision-trees" class="nav-link" data-scroll-target="#the-basics-of-decision-trees">The Basics of Decision Trees</a>
+  <ul class="collapse">
+  <li><a href="#the-basics-of-decision-trees-1" id="toc-the-basics-of-decision-trees-1" class="nav-link" data-scroll-target="#the-basics-of-decision-trees-1">The Basics of Decision Trees</a></li>
+  <li><a href="#baseball-salary-hitters-data-how-would-you-stratify-it" id="toc-baseball-salary-hitters-data-how-would-you-stratify-it" class="nav-link" data-scroll-target="#baseball-salary-hitters-data-how-would-you-stratify-it">Baseball salary (Hitters) data: how would you stratify it?</a></li>
+  <li><a href="#decision-tree-for-these-data" id="toc-decision-tree-for-these-data" class="nav-link" data-scroll-target="#decision-tree-for-these-data">Decision tree for these data</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#terminology-for-trees" id="toc-terminology-for-trees" class="nav-link" data-scroll-target="#terminology-for-trees">Terminology for Trees</a></li>
+  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results">Interpretation of Results</a></li>
+  </ul></li>
+  <li><a href="#details-of-the-tree-building-process" id="toc-details-of-the-tree-building-process" class="nav-link" data-scroll-target="#details-of-the-tree-building-process">Details of the tree-building process</a>
+  <ul class="collapse">
+  <li><a href="#details-of-the-tree-building-process-1" id="toc-details-of-the-tree-building-process-1" class="nav-link" data-scroll-target="#details-of-the-tree-building-process-1">Details of the tree-building process</a></li>
+  <li><a href="#more-details-of-the-tree-building-process" id="toc-more-details-of-the-tree-building-process" class="nav-link" data-scroll-target="#more-details-of-the-tree-building-process">More details of the tree-building process</a></li>
+  <li><a href="#more-details-of-the-tree-building-process-1" id="toc-more-details-of-the-tree-building-process-1" class="nav-link" data-scroll-target="#more-details-of-the-tree-building-process-1">More details of the tree-building process</a></li>
+  <li><a href="#details-continued" id="toc-details-continued" class="nav-link" data-scroll-target="#details-continued">Details— Continued</a></li>
+  </ul></li>
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions">Predictions</a>
+  <ul class="collapse">
+  <li><a href="#predictions-1" id="toc-predictions-1" class="nav-link" data-scroll-target="#predictions-1">Predictions</a></li>
+  <li><a href="#predictions-example" id="toc-predictions-example" class="nav-link" data-scroll-target="#predictions-example">Predictions: Example</a></li>
+  <li><a href="#predictions-example-details" id="toc-predictions-example-details" class="nav-link" data-scroll-target="#predictions-example-details">Predictions: Example Details</a></li>
+  <li><a href="#pruning-a-tree" id="toc-pruning-a-tree" class="nav-link" data-scroll-target="#pruning-a-tree">Pruning a tree</a></li>
+  <li><a href="#choosing-the-best-subtree" id="toc-choosing-the-best-subtree" class="nav-link" data-scroll-target="#choosing-the-best-subtree">Choosing the best subtree</a></li>
+  <li><a href="#tree-algorithm" id="toc-tree-algorithm" class="nav-link" data-scroll-target="#tree-algorithm">Tree algorithm</a></li>
+  <li><a href="#baseball-example-continued" id="toc-baseball-example-continued" class="nav-link" data-scroll-target="#baseball-example-continued">Baseball example continued</a></li>
+  <li><a href="#baseball-example-the-full-tree-before-pruning" id="toc-baseball-example-the-full-tree-before-pruning" class="nav-link" data-scroll-target="#baseball-example-the-full-tree-before-pruning">Baseball example: The Full Tree Before Pruning</a></li>
+  <li><a href="#baseball-example-cross-validation-for-the-prune-tree" id="toc-baseball-example-cross-validation-for-the-prune-tree" class="nav-link" data-scroll-target="#baseball-example-cross-validation-for-the-prune-tree">Baseball example: Cross Validation for the Prune Tree</a></li>
+  </ul></li>
+  <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees">Classification Trees</a>
+  <ul class="collapse">
+  <li><a href="#classification-trees-1" id="toc-classification-trees-1" class="nav-link" data-scroll-target="#classification-trees-1">Classification Trees</a></li>
+  <li><a href="#classification-trees-2" id="toc-classification-trees-2" class="nav-link" data-scroll-target="#classification-trees-2">Classification Trees</a></li>
+  <li><a href="#gini-index-and-deviance" id="toc-gini-index-and-deviance" class="nav-link" data-scroll-target="#gini-index-and-deviance">Gini index and Deviance</a></li>
+  <li><a href="#example-heart-data" id="toc-example-heart-data" class="nav-link" data-scroll-target="#example-heart-data">Example: Heart data</a></li>
+  <li><a href="#example-heart-data-1" id="toc-example-heart-data-1" class="nav-link" data-scroll-target="#example-heart-data-1">Example: Heart data</a></li>
+  </ul></li>
+  <li><a href="#trees-versus-linear-models" id="toc-trees-versus-linear-models" class="nav-link" data-scroll-target="#trees-versus-linear-models">Trees Versus Linear Models</a>
+  <ul class="collapse">
+  <li><a href="#trees-versus-linear-models-1" id="toc-trees-versus-linear-models-1" class="nav-link" data-scroll-target="#trees-versus-linear-models-1">Trees Versus Linear Models</a></li>
+  <li><a href="#advantages-and-disadvantages-of-trees" id="toc-advantages-and-disadvantages-of-trees" class="nav-link" data-scroll-target="#advantages-and-disadvantages-of-trees">Advantages and Disadvantages of Trees</a></li>
+  </ul></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging">Bagging</a>
+  <ul class="collapse">
+  <li><a href="#bagging-1" id="toc-bagging-1" class="nav-link" data-scroll-target="#bagging-1">Bagging</a></li>
+  <li><a href="#bagging-2" id="toc-bagging-2" class="nav-link" data-scroll-target="#bagging-2">Bagging</a></li>
+  <li><a href="#bagging-the-heart-data" id="toc-bagging-the-heart-data" class="nav-link" data-scroll-target="#bagging-the-heart-data">Bagging the Heart data</a></li>
+  <li><a href="#out-of-bag-error-estimation" id="toc-out-of-bag-error-estimation" class="nav-link" data-scroll-target="#out-of-bag-error-estimation">Out-of-Bag Error Estimation</a></li>
+  <li><a href="#test-error-vs.-oob-error-in-bagging" id="toc-test-error-vs.-oob-error-in-bagging" class="nav-link" data-scroll-target="#test-error-vs.-oob-error-in-bagging">Test Error vs.&nbsp;OOB Error in Bagging</a></li>
+  </ul></li>
+  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests">Random Forests</a>
+  <ul class="collapse">
+  <li><a href="#random-forests-1" id="toc-random-forests-1" class="nav-link" data-scroll-target="#random-forests-1">Random Forests</a></li>
+  <li><a href="#example-gene-expression-data" id="toc-example-gene-expression-data" class="nav-link" data-scroll-target="#example-gene-expression-data">Example: Gene Expression Data</a></li>
+  <li><a href="#results-gene-expression-data" id="toc-results-gene-expression-data" class="nav-link" data-scroll-target="#results-gene-expression-data">Results: Gene Expression Data</a></li>
+  </ul></li>
+  <li><a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting">Boosting</a>
+  <ul class="collapse">
+  <li><a href="#boosting-1" id="toc-boosting-1" class="nav-link" data-scroll-target="#boosting-1">Boosting</a></li>
+  <li><a href="#boosting-algorithm-for-regression-trees" id="toc-boosting-algorithm-for-regression-trees" class="nav-link" data-scroll-target="#boosting-algorithm-for-regression-trees">Boosting Algorithm for Regression Trees</a></li>
+  <li><a href="#what-is-the-idea-behind-this-procedure" id="toc-what-is-the-idea-behind-this-procedure" class="nav-link" data-scroll-target="#what-is-the-idea-behind-this-procedure">What is the idea behind this procedure?</a></li>
+  <li><a href="#example-gene-expression-data-continued" id="toc-example-gene-expression-data-continued" class="nav-link" data-scroll-target="#example-gene-expression-data-continued">Example: Gene expression data continued</a></li>
+  <li><a href="#tuning-parameters-for-boosting" id="toc-tuning-parameters-for-boosting" class="nav-link" data-scroll-target="#tuning-parameters-for-boosting">Tuning Parameters for Boosting</a></li>
+  </ul></li>
+  <li><a href="#variable-importance-measure" id="toc-variable-importance-measure" class="nav-link" data-scroll-target="#variable-importance-measure">Variable Importance Measure</a>
+  <ul class="collapse">
+  <li><a href="#variable-importance-measure-1" id="toc-variable-importance-measure-1" class="nav-link" data-scroll-target="#variable-importance-measure-1">Variable Importance Measure</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#bart-bayesian-additive-regression-trees" id="toc-bart-bayesian-additive-regression-trees" class="nav-link" data-scroll-target="#bart-bayesian-additive-regression-trees">BART<br>Bayesian Additive Regression Trees</a>
+  <ul class="collapse">
+  <li><a href="#bart-bayesian-additive-regression-trees-1" id="toc-bart-bayesian-additive-regression-trees-1" class="nav-link" data-scroll-target="#bart-bayesian-additive-regression-trees-1">BART: Bayesian Additive Regression Trees</a></li>
+  <li><a href="#bart-algorithm-intuition" id="toc-bart-algorithm-intuition" class="nav-link" data-scroll-target="#bart-algorithm-intuition">BART Algorithm Intuition</a></li>
+  <li><a href="#bart-algorithm-intuition-1" id="toc-bart-algorithm-intuition-1" class="nav-link" data-scroll-target="#bart-algorithm-intuition-1">BART Algorithm Intuition</a></li>
+  <li><a href="#bayesian-additive-regression-trees-some-notation" id="toc-bayesian-additive-regression-trees-some-notation" class="nav-link" data-scroll-target="#bayesian-additive-regression-trees-some-notation">Bayesian Additive Regression Trees — Some Notation</a></li>
+  <li><a href="#bart-iterations" id="toc-bart-iterations" class="nav-link" data-scroll-target="#bart-iterations">BART Iterations</a></li>
+  <li><a href="#new-trees-are-chosen-by-perturbations" id="toc-new-trees-are-chosen-by-perturbations" class="nav-link" data-scroll-target="#new-trees-are-chosen-by-perturbations">New trees are chosen by perturbations</a></li>
+  <li><a href="#examples-of-possible-perturbations-to-a-tree" id="toc-examples-of-possible-perturbations-to-a-tree" class="nav-link" data-scroll-target="#examples-of-possible-perturbations-to-a-tree">Examples of possible perturbations to a tree</a></li>
+  <li><a href="#what-does-bart-deliver" id="toc-what-does-bart-deliver" class="nav-link" data-scroll-target="#what-does-bart-deliver">What does BART Deliver?</a></li>
+  <li><a href="#bart-applied-to-the-heart-data" id="toc-bart-applied-to-the-heart-data" class="nav-link" data-scroll-target="#bart-applied-to-the-heart-data">BART applied to the Heart data</a></li>
+  <li><a href="#bart-is-a-bayesian-method" id="toc-bart-is-a-bayesian-method" class="nav-link" data-scroll-target="#bart-is-a-bayesian-method">BART is a Bayesian Method</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
+  </ul></li>
+  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank you!</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07_tree_based_methods.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+<p class="subtitle lead"><span style="font-size: 150%;"> Tree Based Methods </span></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Professor: Davi Moreira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Tree-based Methods</li>
+<li>The Basics of Decision Trees</li>
+<li>Details of the tree-building process</li>
+<li>Predictions</li>
+<li>Classification Trees</li>
+</ul>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Trees Versus Linear Models</li>
+<li>Bagging</li>
+<li>Random Forests</li>
+<li>Boosting</li>
+<li>Variable Importance Measure</li>
+<li>BART</li>
+</ul>
+</div>
+</div>
+</div>
+<p><br></p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
+</div></div></section>
+<section id="tree-based-methods" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Tree-based Methods</h1>
+<section id="tree-based-methods-1" class="level2">
+<h2 class="anchored" data-anchor-id="tree-based-methods-1">Tree-based Methods</h2>
+<ul>
+<li><p>We will discuss <em>tree-based</em> methods for regression and classification.</p></li>
+<li><p>These involve <em>stratifying</em> or <em>segmenting</em> the predictor space into a number of simple regions.</p></li>
+<li><p>Since the set of splitting rules used to segment the predictor space can be summarized in a tree, these types of approaches are known as <em>decision-tree</em> methods.</p></li>
+</ul>
+</section>
+<section id="pros-and-cons" class="level2">
+<h2 class="anchored" data-anchor-id="pros-and-cons">Pros and Cons</h2>
+<ul>
+<li><p>Tree-based methods are simple and useful for interpretation.</p></li>
+<li><p>However, they typically are not competitive with the best supervised learning approaches in terms of prediction accuracy.</p></li>
+<li><p>Hence we also discuss <em>bagging</em>, <em>random forests</em>, and <em>boosting</em>. These methods grow multiple trees which are then combined to yield a single consensus prediction.</p></li>
+<li><p>Combining a large number of trees can often result in dramatic improvements in prediction accuracy, at the expense of some loss in interpretation.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-basics-of-decision-trees" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">The Basics of Decision Trees</h1>
+<section id="the-basics-of-decision-trees-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-basics-of-decision-trees-1">The Basics of Decision Trees</h2>
+<ul>
+<li><p>Decision trees can be applied to both regression and classification problems.</p></li>
+<li><p>We first consider regression problems, and then move on to classification.</p></li>
+</ul>
+</section>
+<section id="baseball-salary-hitters-data-how-would-you-stratify-it" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-salary-hitters-data-how-would-you-stratify-it">Baseball salary (Hitters) data: how would you stratify it?</h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Before examining the structure of a decision tree, let us begin by considering how to stratify the data.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_1_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, the response variable is player salary, which is color-coded in the figure from lower salaries (blue and green) to higher salaries (yellow and red).</p>
+</div><div class="column" style="width:50%;">
+<p>Our objective is to separate high-salary players from those with lower salaries.</p>
+<ul>
+<li><p>By inspecting the plot, we observe that players earning higher salaries tend to cluster in the upper portion, whereas players with lower salaries appear in an “L-shaped” cluster below.</p></li>
+<li><p>One straightforward approach is to establish a vertical threshold around five years of career experience, effectively isolating many of the higher-salary players.</p></li>
+<li><p>To refine the partitioning further, we might introduce a horizontal threshold slightly above 100 hits, creating three distinct segments of the feature space.</p></li>
+<li><p>This step-by-step segmentation process is precisely how decision trees operate. By recursively applying threshold-based rules, we isolate increasingly homogeneous subsets of players and, in turn, more accurately predict salary levels.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="decision-tree-for-these-data" class="level2">
+<h2 class="anchored" data-anchor-id="decision-tree-for-these-data">Decision tree for these data</h2>
+<div style="font-size: 57%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p>The <strong>top node</strong> represents the full dataset.</p></li>
+<li><p>The first split is based on <strong>years of experience</strong>:</p>
+<ul>
+<li>Players with <strong>less than 4.5 years</strong> → Left branch.</li>
+<li>Players with <strong>more than 4.5 years</strong> → Right branch.</li>
+</ul></li>
+<li><p>This split closely aligns with our initial estimate of 5 years.</p></li>
+<li><p>Among players with <strong>more than 4.5 years</strong>, the tree applies a <strong>second split</strong>:</p>
+<ul>
+<li><strong>Fewer than 117.5 hits</strong> → Left branch.</li>
+<li><strong>More than 117.5 hits</strong> → Right branch.</li>
+</ul></li>
+<li><p>This recursive splitting refines the salary prediction.</p></li>
+<li><p><strong>What Do the Numbers Represent?</strong></p></li>
+<li><p>The values at the bottom nodes indicate the <strong>average log salary</strong> of players in that group.</p></li>
+<li><p>Since a <strong>log transformation</strong> was applied, these values represent <strong>average log salaries</strong> rather than raw salaries.</p></li>
+<li><p><strong>Final Segmentation</strong></p></li>
+<li><p>The decision tree ultimately divides players into <strong>three distinct salary groups</strong>:</p></li>
+</ul>
+<ol type="1">
+<li><strong>Highest salary</strong></li>
+<li><strong>Medium salary</strong></li>
+<li><strong>Lowest salary</strong></li>
+</ol>
+<ul>
+<li><p>These categories closely match—though not exactly—the three regions we initially identified.</p></li>
+<li><p>By systematically applying these splits, <strong>decision trees segment data into meaningful, homogeneous groups</strong>.</p></li>
+<li><p>The final tree has two internal nodes and three terminal nodes (<strong>leaves</strong>). The number in each leaf is the mean of the response for the observations that fall there.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<!---
+
+## Details of previous figure
+
+-   For the Hitters data, a regression tree for predicting the log salary of a baseball player, based on the number of years that he has played in the major leagues and the number of hits that he made in the previous year.
+
+-   At a given internal node, the label (of the form $X_j < t_k$) indicates the left-hand branch emanating from that split, and the right-hand branch corresponds to $X_j \geq t_k$. For instance, the split at the top of the tree results in two large branches. The left-hand branch corresponds to $\text{Years} < 4.5$, and the right-hand branch corresponds to $\text{Years} \geq 4.5$.
+--->
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>The tree stratifies or segments the players into three regions of predictor space:</p>
+<p><span class="math display">\[
+R_1 = \{X \ | \ \text{Years} &lt; 4.5\}
+\]</span></p>
+<p><span class="math display">\[
+R_2 = \{X \ | \ \text{Years} \geq 4.5, \text{Hits} &lt; 117.5\}
+\]</span></p>
+<p><span class="math display">\[
+R_3 = \{X \ | \ \text{Years} \geq 4.5, \text{Hits} \geq 117.5\}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="terminology-for-trees" class="level2">
+<h2 class="anchored" data-anchor-id="terminology-for-trees">Terminology for Trees</h2>
+<ul>
+<li><p>In keeping with the <em>tree</em> analogy, the regions <span class="math inline">\(R_1\)</span>, <span class="math inline">\(R_2\)</span>, and <span class="math inline">\(R_3\)</span> are known as <em>terminal nodes</em>.</p></li>
+<li><p>Decision trees are typically drawn <em>upside down</em>, in the sense that the leaves are at the bottom of the tree.</p></li>
+<li><p>The points along the tree where the predictor space is split are referred to as <em>internal nodes</em>.</p></li>
+<li><p>In the Hitters tree, the two internal nodes are indicated by the text <span class="math inline">\(\text{Years} &lt; 4.5\)</span> and <span class="math inline">\(\text{Hits} &lt; 117.5\)</span>.</p></li>
+</ul>
+</section>
+<section id="interpretation-of-results" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-results">Interpretation of Results</h2>
+<ul>
+<li><p><em>Years</em> is the most important factor in determining <em>Salary</em>, and players with less experience earn lower salaries than more experienced players.</p></li>
+<li><p>Given that a player is less experienced, the number of <em>Hits</em> that he made in the previous year seems to play little role in his <em>Salary</em>.</p></li>
+<li><p>But among players who have been in the major leagues for five or more years, the number of <em>Hits</em> made in the previous year does affect <em>Salary</em>, and players who made more <em>Hits</em> last year tend to have higher salaries.</p></li>
+<li><p>Surely an over-simplification, but compared to a regression model, it is easy to display, interpret and explain.</p></li>
+</ul>
+</section>
+</section>
+<section id="details-of-the-tree-building-process" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Details of the tree-building process</h1>
+<section id="details-of-the-tree-building-process-1" class="level2">
+<h2 class="anchored" data-anchor-id="details-of-the-tree-building-process-1">Details of the tree-building process</h2>
+<ol type="1">
+<li><p>We divide the predictor space — that is, the set of possible values for <span class="math inline">\(X_1, X_2, \dots, X_p\)</span> — into <span class="math inline">\(J\)</span> distinct and non-overlapping regions, <span class="math inline">\(R_1, R_2, \dots, R_J\)</span>.</p></li>
+<li><p>For every observation that falls into the region <span class="math inline">\(R_j\)</span>, we make the same prediction, which is simply the mean of the response values for the training observations in <span class="math inline">\(R_j\)</span>.</p></li>
+</ol>
+</section>
+<section id="more-details-of-the-tree-building-process" class="level2">
+<h2 class="anchored" data-anchor-id="more-details-of-the-tree-building-process">More details of the tree-building process</h2>
+<ul>
+<li><p>In theory, the regions could have any shape. However, we choose to divide the predictor space into high-dimensional rectangles, or <em>boxes</em>, for simplicity and for ease of interpretation of the resulting predictive model.</p></li>
+<li><p>The goal is to find boxes <span class="math inline">\(R_1, \dots, R_J\)</span> that minimize the RSS, given by</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\sum_{j=1}^{J} \sum_{i \in R_j} \left( y_i - \hat{y}_{R_j} \right)^2,
+\]</span></p>
+<p>where <span class="math inline">\(\hat{y}_{R_j}\)</span> is the mean response for the training observations within the <span class="math inline">\(j\)</span>-th box.</p>
+</div>
+</section>
+<section id="more-details-of-the-tree-building-process-1" class="level2">
+<h2 class="anchored" data-anchor-id="more-details-of-the-tree-building-process-1">More details of the tree-building process</h2>
+<ul>
+<li><p>Unfortunately, it is computationally infeasible to consider every possible partition of the feature space into <span class="math inline">\(J\)</span> boxes.</p></li>
+<li><p>For this reason, we take a <em>top-down, greedy</em> approach that is known as recursive binary splitting.</p></li>
+<li><p>The approach is <em>top-down</em> because it begins at the top of the tree and then successively splits the predictor space; each split is indicated via two new branches further down on the tree.</p></li>
+<li><p>It is <em>greedy</em> because at each step of the tree-building process, the <em>best</em> split is made at that particular step, rather than looking ahead and picking a split that will lead to a better tree in some future step.</p></li>
+</ul>
+</section>
+<section id="details-continued" class="level2">
+<h2 class="anchored" data-anchor-id="details-continued">Details— Continued</h2>
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li><p>We first select the predictor <span class="math inline">\(X_j\)</span> and the cutpoint <span class="math inline">\(s\)</span> such that splitting the predictor space into the regions <span class="math inline">\(\{X | X_j &lt; s\}\)</span> and <span class="math inline">\(\{X | X_j \geq s\}\)</span> leads to the greatest possible reduction in RSS.</p></li>
+<li><p>Next, we repeat the process, looking for the best predictor and best cutpoint in order to split the data further so as to minimize the RSS within each of the resulting regions.</p></li>
+<li><p>However, this time, instead of splitting the entire predictor space, we split one of the two previously identified regions. We now have three regions.</p></li>
+<li><p>Again, we look to split one of these three regions further, so as to minimize the RSS. The process continues until a stopping criterion is reached; for instance, we may continue until no region contains more than five observations.</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="predictions" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Predictions</h1>
+<section id="predictions-1" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-1">Predictions</h2>
+<p>We predict the response for a given test observation using the mean of the training observations in the region to which that test observation belongs.</p>
+</section>
+<section id="predictions-example" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-example">Predictions: Example</h2>
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p>A five-region example</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p><strong>Top Left:</strong> A partition of two-dimensional feature space that could not result from recursive binary splitting.</p></li>
+<li><p><strong>Top Right:</strong> The output of recursive binary splitting on a two-dimensional example.</p></li>
+<li><p><strong>Bottom Left:</strong> A tree corresponding to the partition in the top right panel.</p></li>
+<li><p><strong>Bottom Right:</strong> A perspective plot of the prediction surface corresponding to that tree.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="predictions-example-details" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-example-details">Predictions: Example Details</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<p><strong>Top right &amp; Bottom left</strong>: Regions <strong>that can be achieved</strong> by a decision tree.</p>
+<p><strong>Step-by-step breakdown</strong>:</p>
+<ol type="1">
+<li><p>The first split occurs at <strong>t1</strong>, making a <strong>vertical</strong> partition at <span class="math inline">\(x_1\)</span>.</p></li>
+<li><p>The left region is further divided at <strong>t2</strong> (a split on <span class="math inline">\(x_2\)</span>), creating <strong>Region 1</strong> and <strong>Region 2</strong>.</p></li>
+<li><p>The right-hand partition is further split at <strong>t3</strong>, making another <strong>vertical split</strong>, forming <strong>Region 3</strong>.</p></li>
+<li><p>Finally, a horizontal split at <strong>t4</strong> on <span class="math inline">\(x_2\)</span> divides it into two new regions.</p></li>
+</ol>
+<ul>
+<li>At the end of this process, the space is divided into <strong>five distinct regions</strong>.</li>
+</ul>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<p><strong>Making Predictions with the Decision Tree</strong></p>
+<ul>
+<li><p>Each <strong>terminal node</strong> approximates the regression function by computing the <strong>mean</strong> of training observations in that region.</p></li>
+<li><p>To <strong>predict a test observation</strong>:</p></li>
+</ul>
+<ol type="1">
+<li><p>Start at the top and check its <span class="math inline">\(x_1\)</span> value.</p></li>
+<li><p>Move <strong>left</strong> if <span class="math inline">\(x_1 &lt; t1\)</span>, otherwise move <strong>right</strong>.</p></li>
+<li><p>Follow subsequent splits at <strong>each internal node</strong> until reaching a terminal region.</p></li>
+<li><p>The final prediction is the <strong>mean response value</strong> in that region.</p></li>
+</ol>
+<ul>
+<li>This results in a <strong>piecewise constant function</strong>, which is visualized in the plot on the <strong>bottom right</strong>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="pruning-a-tree" class="level2">
+<h2 class="anchored" data-anchor-id="pruning-a-tree">Pruning a tree</h2>
+<ul>
+<li>The process described above may produce good predictions on the training set, but is likely to <em>overfit</em> the data, leading to poor test set performance.</li>
+</ul>
+<!---
+-   A smaller tree with fewer splits (that is, fewer regions $R_1, \dots, R_J$) might lead to lower variance and better interpretation at the cost of a little bias.
+
+-   One possible alternative to the process described above is to grow the tree only so long as the decrease in the RSS due to each split exceeds some (high) threshold.
+
+-   This strategy will result in smaller trees, but is too *short-sighted*: a seemingly worthless split early on in the tree might be followed by a very good split — that is, a split that leads to a large reduction in RSS later on.
+
+## Pruning a tree
+
+--->
+<ul>
+<li><p>A better strategy is to grow a very large tree <span class="math inline">\(T_0\)</span>, and then <em>prune</em> it back in order to obtain a <em>subtree</em>.</p></li>
+<li><p><em>Cost complexity pruning</em> — also known as <em>weakest link pruning</em> — is used to do this.</p></li>
+<li><p>We consider a sequence of trees indexed by a nonnegative tuning parameter <span class="math inline">\(\alpha\)</span>. For each value of <span class="math inline">\(\alpha\)</span>, there corresponds a subtree <span class="math inline">\(T \subset T_0\)</span> such that</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\sum_{m=1}^{|T|} \sum_{i : x_i \in R_m} \left( y_i - \hat{y}_{R_m} \right)^2 + \alpha |T|
+\]</span></p>
+<p>is as small as possible.</p>
+<p>Here <span class="math inline">\(|T|\)</span> indicates the number of terminal nodes of the tree <span class="math inline">\(T\)</span>, <span class="math inline">\(R_m\)</span> is the rectangle (i.e., the subset of predictor space) corresponding to the <span class="math inline">\(m\)</span>-th terminal node, and <span class="math inline">\(\hat{y}_{R_m}\)</span> is the mean of the training observations in <span class="math inline">\(R_m\)</span>.</p>
+</div>
+</section>
+<section id="choosing-the-best-subtree" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-best-subtree">Choosing the best subtree</h2>
+<ul>
+<li><p>The tuning parameter <span class="math inline">\(\alpha\)</span> controls a trade-off between the subtree’s complexity and its fit to the training data.</p></li>
+<li><p>We select an optimal value <span class="math inline">\(\hat{\alpha}\)</span> using <strong>cross-validation</strong>.</p></li>
+<li><p>We then return to the full data set and obtain the subtree corresponding to <span class="math inline">\(\hat{\alpha}\)</span>.</p></li>
+</ul>
+</section>
+<section id="tree-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="tree-algorithm">Tree algorithm</h2>
+<ol type="1">
+<li><p>Use recursive binary splitting to grow a large tree on the training data, stopping only when each terminal node has fewer than some minimum number of observations.</p></li>
+<li><p>Apply cost complexity pruning to the large tree in order to obtain a sequence of best subtrees, as a function of <span class="math inline">\(\alpha\)</span>.</p></li>
+<li><p>Use K-fold cross-validation to choose <span class="math inline">\(\alpha\)</span>. For each <span class="math inline">\(k = 1, \dots, K\)</span>:</p>
+<p>3.1 Repeat Steps 1 and 2 on the <span class="math inline">\(\frac{K-1}{K}\)</span>-th fraction of the training data, excluding the <span class="math inline">\(k\)</span>-th fold. 3.2 Evaluate the mean squared prediction error on the data in the left-out <span class="math inline">\(k\)</span>-th fold, as a function of <span class="math inline">\(\alpha\)</span>.</p>
+<p>Average the results, and pick <span class="math inline">\(\alpha\)</span> to minimize the average error.</p></li>
+<li><p>Return the subtree from Step 2 that corresponds to the chosen value of <span class="math inline">\(\alpha\)</span>.</p></li>
+</ol>
+</section>
+<section id="baseball-example-continued" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-example-continued">Baseball example continued</h2>
+<ul>
+<li><p>First, we randomly divided the data set in half, yielding 132 observations in the training set and 131 observations in the test set.</p></li>
+<li><p>We then built a large regression tree on the training data and varied <span class="math inline">\(\alpha\)</span> in order to create subtrees with different numbers of terminal nodes.</p></li>
+<li><p>Finally, we performed six-fold cross-validation in order to estimate the cross-validated MSE of the trees as a function of <span class="math inline">\(\alpha\)</span>.</p></li>
+</ul>
+</section>
+<section id="baseball-example-the-full-tree-before-pruning" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-example-the-full-tree-before-pruning">Baseball example: The Full Tree Before Pruning</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="baseball-example-cross-validation-for-the-prune-tree" class="level2">
+<h2 class="anchored" data-anchor-id="baseball-example-cross-validation-for-the-prune-tree">Baseball example: Cross Validation for the Prune Tree</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 70%;">
+<p>Along the <strong>horizontal axis</strong>, we have <strong>tree size</strong>, which is controlled by the <strong>alpha parameter (</strong><span class="math inline">\(\alpha\)</span>). This parameter directly influences the complexity of the decision tree.</p>
+<ul>
+<li><p>When <span class="math inline">\(\alpha = 0\)</span>, there is <strong>no penalty</strong> on tree size, meaning the model grows to its <strong>largest possible tree</strong>, which in this case contains <strong>12 terminal nodes</strong>.</p></li>
+<li><p>As <span class="math inline">\(\alpha\)</span> increases, a stronger penalty is applied to larger trees, gradually reducing the number of terminal nodes.</p></li>
+<li><p>As <span class="math inline">\(\alpha\)</span> continues to increase, the model <strong>prunes away</strong> more splits, simplifying the tree structure.</p></li>
+<li><p>At the <strong>extreme</strong>, when <span class="math inline">\(\alpha\)</span> is large enough, the tree is <strong>reduced to a single node</strong>, meaning no splits occur, and the model collapses into a single <strong>global mean prediction</strong>.</p></li>
+<li><p>The green curve is what we get from cross validation and it’s minimized at around three terminal nodes!</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="classification-trees" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Classification Trees</h1>
+<section id="classification-trees-1" class="level2">
+<h2 class="anchored" data-anchor-id="classification-trees-1">Classification Trees</h2>
+<ul>
+<li><p>Very similar to a regression tree, except that it is used to predict a qualitative response rather than a quantitative one.</p></li>
+<li><p>For a classification tree, we predict that each observation belongs to the <em>most commonly occurring class</em> of training observations in the region to which it belongs.</p></li>
+</ul>
+</section>
+<section id="classification-trees-2" class="level2">
+<h2 class="anchored" data-anchor-id="classification-trees-2">Classification Trees</h2>
+<ul>
+<li><p>Just as in the regression setting, we use recursive binary splitting to grow a classification tree.</p></li>
+<li><p>In the classification setting, RSS cannot be used as a criterion for making the binary splits.</p></li>
+<li><p>A natural alternative to RSS is the <em>classification error rate</em>. This is simply the fraction of the training observations in that region that do not belong to the most common class:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E = 1 - \max_k(\hat{p}_{mk}).
+\]</span></p>
+<p>Here <span class="math inline">\(\hat{p}_{mk}\)</span> represents the proportion of training observations in the <span class="math inline">\(m\)</span>-th region that are from the <span class="math inline">\(k\)</span>-th class.</p>
+<ul>
+<li>However, classification error is not sufficiently sensitive for tree-growing, and in practice, two other measures are preferable.</li>
+</ul>
+</div>
+</section>
+<section id="gini-index-and-deviance" class="level2">
+<h2 class="anchored" data-anchor-id="gini-index-and-deviance">Gini index and Deviance</h2>
+<p>The <em>Gini index</em> is defined by</p>
+<p><span class="math display">\[
+G = \sum_{k=1}^K \hat{p}_{mk}(1 - \hat{p}_{mk}),
+\]</span></p>
+<p>a measure of total variance across the <span class="math inline">\(K\)</span> classes. The Gini index takes on a small value if all of the <span class="math inline">\(\hat{p}_{mk}\)</span>’s are close to zero or one.</p>
+<ul>
+<li>For this reason, the Gini index is referred to as a measure of node <em>purity</em> — a small value indicates that a node contains predominantly observations from a single class.</li>
+</ul>
+<div class="fragment">
+<p><em>Deviance</em> or <em>cross-entropy</em>, given by</p>
+<p><span class="math display">\[
+D = - \sum_{k=1}^K \hat{p}_{mk} \log \hat{p}_{mk}.
+\]</span></p>
+<ul>
+<li>It turns out that the Gini index and the cross-entropy are very similar numerically.</li>
+</ul>
+</div>
+</section>
+<section id="example-heart-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-heart-data">Example: Heart data</h2>
+<ul>
+<li><p>These data contain a binary outcome <em>HD</em> for 303 patients who presented with chest pain.</p></li>
+<li><p>An outcome value of <em>Yes</em> indicates the presence of heart disease based on an angiographic test, while <em>No</em> means no heart disease.</p></li>
+<li><p>There are 13 predictors including <em>Age</em>, <em>Sex</em>, <em>Chol</em> (a cholesterol measurement), and other heart and lung function measurements.</p></li>
+<li><p>Cross-validation yields a tree with six terminal nodes. See next figure.</p></li>
+</ul>
+</section>
+<section id="example-heart-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-heart-data-1">Example: Heart data</h2>
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<div style="font-size: 80%;">
+<ul>
+<li><p>At the top, we see the fully grown tree.</p>
+<ul>
+<li>The first split occurs on FEL (a thallium stress test), followed by splits on CA (calcium). The terminal nodes classify observations as “No” (no heart disease) or “Yes” (heart disease) based on majority class.</li>
+<li>Some terminal nodes with the same classification still have splits. This suggests that while both nodes predict “No,” one is purer than the other, as identified by the Gini index.</li>
+</ul></li>
+<li><p>Since this tree is likely too complex, cross-validation was used to find an optimal size.</p>
+<ul>
+<li>The right panel shows training, validation, and test errors, with the cross-validation error curve guiding the selection of a tree size. A tree with six terminal nodes performed best, balancing complexity and accuracy.</li>
+</ul></li>
+<li><p>The pruned tree (size six) is shown on the right, derived using the cost-complexity parameter (<span class="math inline">\(\alpha\)</span>). This subtree of the original tree achieved an estimated 25% classification error—a significant improvement in generalization.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="trees-versus-linear-models" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Trees Versus Linear Models</h1>
+<section id="trees-versus-linear-models-1" class="level2">
+<h2 class="anchored" data-anchor-id="trees-versus-linear-models-1">Trees Versus Linear Models</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Top Row:</strong> True linear boundary;</li>
+<li><strong>Bottom row</strong>: true non-linear boundary.</li>
+<li><strong>Left column:</strong> Linear model;</li>
+<li><strong>Right column:</strong> Tree-based model.</li>
+</ul>
+</section>
+<section id="advantages-and-disadvantages-of-trees" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-and-disadvantages-of-trees">Advantages and Disadvantages of Trees</h2>
+<ul>
+<li><p><strong>Advantage</strong>: Trees are very easy to explain to people. In fact, they are even easier to explain than linear regression!</p></li>
+<li><p><strong>Advantage</strong>: Some people believe that decision trees more closely mirror human decision-making than do the regression and classification approaches.</p></li>
+<li><p><strong>Advantage</strong>: Trees can be displayed graphically, and are easily interpreted even by a non-expert (especially if they are small).</p></li>
+<li><p><strong>Advantage</strong>: Trees can easily handle qualitative predictors without the need to create dummy variables.</p></li>
+<li><p><strong>Disadvantage</strong>: Unfortunately, trees generally do not have the same level of predictive accuracy as some of the other regression and classification approaches seen in this book.</p></li>
+<li><p>However, by aggregating many decision trees, the predictive performance of trees can be substantially improved. We introduce these concepts next.</p></li>
+</ul>
+</section>
+</section>
+<section id="bagging" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Bagging</h1>
+<section id="bagging-1" class="level2">
+<h2 class="anchored" data-anchor-id="bagging-1">Bagging</h2>
+<div style="font-size: 80%;">
+<ul>
+<li><p><em>Bootstrap aggregation</em>, or <em>bagging</em>, is a general-purpose procedure for reducing the variance of a statistical learning method. It is particularly useful and frequently used in the context of decision trees.</p></li>
+<li><p>Recall that given a set of <span class="math inline">\(n\)</span> independent observations <span class="math inline">\(Z_1, \dots, Z_n\)</span>, each with variance <span class="math inline">\(\sigma^2\)</span>, the variance of the mean <span class="math inline">\(\bar{Z}\)</span> of the observations is given by <span class="math inline">\(\sigma^2 / n\)</span>.</p>
+<ul>
+<li>This means that as <span class="math inline">\(n\)</span> increases (i.e., we take more independent observations and average them), the variance of the mean <strong>decreases</strong>. The more independent samples we have, the more stable our estimate becomes.</li>
+</ul></li>
+<li><p>In other words, <em>averaging a set of observations reduces variance</em>. In practice, we <strong>do not</strong> have access to multiple independent training sets, which would allow us to directly apply the above variance reduction principle.</p>
+<ul>
+<li>However, <strong>bagging</strong> overcomes this limitation by using <strong>bootstrapping</strong>—randomly sampling (with replacement) from a <strong>single training set</strong> to create multiple datasets. These datasets are used to train multiple models, whose predictions are then averaged, effectively reducing variance in the same way that averaging multiple independent observations does.</li>
+<li>Thus, bagging <strong>approximates the variance-reducing effect</strong> of having multiple training sets by repeatedly resampling from the same dataset.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="bagging-2" class="level2">
+<h2 class="anchored" data-anchor-id="bagging-2">Bagging</h2>
+<p>With bootstrap, by taking repeated samples from the (single) training data set, we generate <span class="math inline">\(B\)</span> different bootstrapped training data sets.</p>
+<p>We then train our method on the <span class="math inline">\(b\)</span>-th bootstrapped training set in order to get <span class="math inline">\(\hat{f}^*_b(x)\)</span>, the prediction at a point <span class="math inline">\(x\)</span>. We then average all the predictions to obtain</p>
+<p><span class="math display">\[
+\hat{f}_{\text{bag}}(x) = \frac{1}{B} \sum_{b=1}^B \hat{f}^*_b(x).
+\]</span></p>
+<p>This is called <em>bagging</em>.</p>
+<ul>
+<li><p>The above prescription applied to regression trees.</p></li>
+<li><p>For classification trees: for each test observation, we record the class predicted by each of the <span class="math inline">\(B\)</span> trees, and take a <em>majority vote</em>: the overall prediction is the most commonly occurring class among the <span class="math inline">\(B\)</span> predictions.</p></li>
+</ul>
+</section>
+<section id="bagging-the-heart-data" class="level2">
+<h2 class="anchored" data-anchor-id="bagging-the-heart-data">Bagging the Heart data</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<p>Bagging and Random Forest results.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p>The dashed line indicates the test error resulting from a single classification tree.</p></li>
+<li><p>The test error (black and orange) is shown as a function of <span class="math inline">\(B\)</span>, the number of bootstrapped training sets used.</p></li>
+<li><p>Random forests were applied with <span class="math inline">\(m = \sqrt{p}\)</span>.</p></li>
+<li><p>The green and blue traces show the Out-of-Bag (OOB) error, which in this case is considerably lower.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="out-of-bag-error-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="out-of-bag-error-estimation">Out-of-Bag Error Estimation</h2>
+<ul>
+<li><p>It turns out that there is a very straightforward way to estimate the test error of a bagged model.</p></li>
+<li><p>Recall that the key to bagging is that trees are repeatedly fit to bootstrapped subsets of the observations. One can show that on average, each bagged tree makes use of around two-thirds of the observations.</p></li>
+<li><p>The remaining one-third of the observations not used to fit a given bagged tree are referred to as the <em>out-of-bag</em> (OOB) observations.</p></li>
+<li><p>We can predict the response for the <span class="math inline">\(i\)</span>th observation using each of the trees in which that observation was OOB. This will yield around <span class="math inline">\(B/3\)</span> predictions for the <span class="math inline">\(i\)</span>th observation, which we average.</p></li>
+<li><p>This estimate is essentially the LOO cross-validation error for bagging, if <span class="math inline">\(B\)</span> is large.</p></li>
+</ul>
+</section>
+<section id="test-error-vs.-oob-error-in-bagging" class="level2">
+<h2 class="anchored" data-anchor-id="test-error-vs.-oob-error-in-bagging">Test Error vs.&nbsp;OOB Error in Bagging</h2>
+<div style="font-size: 80%;">
+<ul>
+<li><strong>Data Overlap &amp; Model Correlation</strong>
+<ul>
+<li>Each model is trained on a bootstrap sample, leaving out some observations for OOB evaluation.<br>
+</li>
+<li>Overlap among bootstrap samples introduces correlation among models, causing OOB error to differ from an independent test error.</li>
+</ul></li>
+<li><strong>Sample Size &amp; Representativeness</strong>
+<ul>
+<li>OOB estimates use only the leftover observations from each bootstrap draw, often fewer and less representative than a true external test set.<br>
+</li>
+<li>A well-chosen test set is typically larger and fully independent, providing a more stable performance estimate.</li>
+</ul></li>
+<li><strong>Random Fluctuations &amp; Variance</strong>
+<ul>
+<li>OOB error depends on random sampling; it can have higher variance than test error.<br>
+</li>
+<li>An external test set, assuming it is independent, generally offers a less biased measure of generalization error.</li>
+</ul></li>
+<li><strong>Possible Bias in OOB Error</strong>
+<ul>
+<li>While OOB error acts like an “internal cross-validation,” it may exhibit slight bias—optimistic or pessimistic—depending on the dataset and model specifics.<br>
+</li>
+<li>Certain data characteristics or model sensitivities can amplify discrepancies between OOB and true test performance.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="random-forests" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Random Forests</h1>
+<section id="random-forests-1" class="level2">
+<h2 class="anchored" data-anchor-id="random-forests-1">Random Forests</h2>
+<ul>
+<li><p><strong>Key Idea</strong><br>
+Random forests enhance bagged trees by introducing a small modification that <strong>decorrelates</strong> the individual trees, thus reducing variance when their predictions are averaged.</p></li>
+<li><p><strong>Construction</strong></p>
+<ol type="1">
+<li><strong>Bootstrapped Samples</strong>: As in bagging, multiple decision trees are trained on <strong>bootstrapped</strong> subsets of the original dataset.<br>
+</li>
+<li><strong>Random Predictor Selection</strong>: At each split in a tree, only a <strong>random subset</strong> of <span class="math inline">\(m\)</span> predictors (out of <span class="math inline">\(p\)</span> total) is considered. The best split is chosen <strong>exclusively</strong> from these <span class="math inline">\(m\)</span> predictors.</li>
+</ol></li>
+<li><p><strong>Typical Parameter Choice</strong><br>
+A new subset of <span class="math inline">\(m\)</span> predictors is drawn at <strong>every split</strong>. Common practice sets <span class="math inline">\(m \approx \sqrt{p}\)</span>. For example, with <span class="math inline">\(p = 13\)</span> predictors, <strong>4</strong> might be considered at each split.</p></li>
+<li><p>This random predictor selection helps ensure the trees are less correlated, thereby improving the <strong>variance reduction</strong> achieved by averaging.</p></li>
+</ul>
+</section>
+<section id="example-gene-expression-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-gene-expression-data">Example: Gene Expression Data</h2>
+<ul>
+<li><p>We applied random forests to a high-dimensional biological data set consisting of expression measurements of 4,718 genes measured on tissue samples from 349 patients.</p></li>
+<li><p>There are around 20,000 genes in humans, and individual genes have different levels of activity, or expression, in particular cells, tissues, and biological conditions.</p></li>
+<li><p>Each of the patient samples has a qualitative label with 15 different levels: either normal or one of 14 different types of cancer.</p></li>
+<li><p>We use random forests to predict cancer type based on the 500 genes that have the largest variance in the training set.</p></li>
+<li><p>We randomly divided the observations into a training and a test set, and applied random forests to the training set for three different values of the number of splitting variables <span class="math inline">\(m\)</span>.</p></li>
+</ul>
+</section>
+<section id="results-gene-expression-data" class="level2">
+<h2 class="anchored" data-anchor-id="results-gene-expression-data">Results: Gene Expression Data</h2>
+<p>Results from random forests for the fifteen-class gene expression data set with <span class="math inline">\(p = 500\)</span> predictors.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The test error is displayed as a function of the number of trees. Each colored line corresponds to a different value of <span class="math inline">\(m\)</span>, the number of predictors available for splitting at each interior tree node.</p></li>
+<li><p>Random forests (<span class="math inline">\(m &lt; p\)</span>) lead to a slight improvement over bagging (<span class="math inline">\(m = p\)</span>). A single classification tree has an error rate of 45.7%.</p></li>
+</ul>
+</section>
+</section>
+<section id="boosting" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Boosting</h1>
+<section id="boosting-1" class="level2">
+<h2 class="anchored" data-anchor-id="boosting-1">Boosting</h2>
+<ul>
+<li><p>Like bagging, boosting is a general approach that can be applied to many statistical learning methods for regression or classification.</p></li>
+<li><p>Recall that bagging involves creating multiple copies of the original training data set using the bootstrap, fitting a separate decision tree to each copy, and then combining all of the trees in order to create a single predictive model.</p></li>
+<li><p>Notably, each tree is built on a bootstrap data set, independent of the other trees.</p></li>
+<li><p>Boosting works in a similar way, except that the trees are grown <em>sequentially</em>: each tree is grown using information from previously grown trees and it is added to the collection of trees if it contributes to the performance improvement.</p></li>
+</ul>
+</section>
+<section id="boosting-algorithm-for-regression-trees" class="level2">
+<h2 class="anchored" data-anchor-id="boosting-algorithm-for-regression-trees">Boosting Algorithm for Regression Trees</h2>
+<div style="font-size: 80%;">
+<ol type="1">
+<li><p>Set <span class="math inline">\(\hat{f}(x) = 0\)</span> and <span class="math inline">\(r_i = y_i\)</span> for all <span class="math inline">\(i\)</span> in the training set.</p></li>
+<li><p>For <span class="math inline">\(b = 1, 2, \dots, B\)</span>, repeat:</p></li>
+</ol>
+<div class="fragment">
+<p>2.1 Fit a tree <span class="math inline">\(\hat{f}^b\)</span> with <span class="math inline">\(d\)</span> splits (<span class="math inline">\(d + 1\)</span> terminal nodes) to the training data <span class="math inline">\((X, r)\)</span>.</p>
+<p>2.2 Update <span class="math inline">\(\hat{f}\)</span> by adding in a shrunken version of the new tree:</p>
+<p><span class="math display">\[
+   \hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^b(x).
+\]</span></p>
+<p>2.3 Update the residuals,</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+   r_i \leftarrow r_i - \lambda \hat{f}^b(x_i).
+\]</span></p>
+</div>
+<ol start="3" type="1">
+<li>Output the boosted model,</li>
+</ol>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{f}(x) = \sum_{b=1}^B \lambda \hat{f}^b(x).
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="what-is-the-idea-behind-this-procedure" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-idea-behind-this-procedure">What is the idea behind this procedure?</h2>
+<ul>
+<li><p>Unlike fitting a single large decision tree to the data, which amounts to <em>fitting the data hard</em> and potentially overfitting, the boosting approach instead <em>learns slowly</em>.</p></li>
+<li><p>Given the current model, we fit a decision tree to the residuals from the model. We then add this new decision tree into the fitted function in order to update the residuals.</p></li>
+<li><p>Each of these trees can be rather small, with just a few terminal nodes, determined by the parameter <span class="math inline">\(d\)</span> in the algorithm.</p></li>
+<li><p>By fitting small trees to the residuals, we slowly improve <span class="math inline">\(\hat{f}\)</span> in areas where it does not perform well. The shrinkage parameter <span class="math inline">\(\lambda\)</span> slows the process down even further, allowing more and different shaped trees to attack the residuals.</p></li>
+<li><p><strong>Boosting for classification</strong> is similar in spirit to boosting for regression, but is a bit more complex. To learn the deatails, check the <a href="https://hastie.su.domains/ElemStatLearn/" target="_blank"><em>Elements of Statistical Learning</em> book</a>, chapter 10.</p></li>
+</ul>
+</section>
+<section id="example-gene-expression-data-continued" class="level2">
+<h2 class="anchored" data-anchor-id="example-gene-expression-data-continued">Example: Gene expression data continued</h2>
+<p>Results from performing boosting and random forests on the fifteen-class gene expression data set in order to predict <em>cancer</em> versus <em>normal</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The test error is displayed as a function of the number of trees.</p></li>
+<li><p>For the two boosted models, <span class="math inline">\(\lambda = 0.01\)</span>. Depth-1 trees, when a single split where applied, slightly outperform depth-2 trees, and both outperform the random forest, although the standard errors are around 0.02, making none of these differences significant.</p></li>
+<li><p>The test error rate for a single tree is 24%.</p></li>
+</ul>
+</section>
+<section id="tuning-parameters-for-boosting" class="level2">
+<h2 class="anchored" data-anchor-id="tuning-parameters-for-boosting">Tuning Parameters for Boosting</h2>
+<ol type="1">
+<li><p><strong>The number of trees</strong> <span class="math inline">\(B\)</span>. Unlike bagging and random forests, boosting can overfit if <span class="math inline">\(B\)</span> is too large, although this overfitting tends to occur slowly if at all. We use cross-validation to select <span class="math inline">\(B\)</span>.</p></li>
+<li><p><strong>The shrinkage parameter</strong> <span class="math inline">\(\lambda\)</span>. A small positive number. This controls the rate at which boosting learns. Typical values are 0.01 or 0.001, and the right choice can depend on the problem. Very small <span class="math inline">\(\lambda\)</span> can require using a very large value of <span class="math inline">\(B\)</span> in order to achieve good performance.</p></li>
+<li><p><strong>The number of splits</strong> <span class="math inline">\(d\)</span> in each tree, which controls the complexity of the boosted ensemble. Often <span class="math inline">\(d = 1\)</span> works well, in which case each tree is a <em>stump</em>, consisting of a single split and resulting in an additive model. More generally <span class="math inline">\(d\)</span> is the <em>interaction depth</em>, and controls the interaction order of the boosted model, since <span class="math inline">\(d\)</span> splits can involve at most <span class="math inline">\(d\)</span> variables.</p></li>
+</ol>
+<!---
+
+## Another Regression Example
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/8_1_2-1.png){fig-align='center' width=65%}
+:::
+:::
+
+<br>
+
+::: aside
+From [*Elements of Statistical Learning* book](https://hastie.su.domains/ElemStatLearn/){target="_blank"}, chapter 15.
+:::
+
+
+
+## Another Classification Example
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/8_1_3-1.png){fig-align='center' width=65%}
+:::
+:::
+
+::: aside
+From [*Elements of Statistical Learning* book](https://hastie.su.domains/ElemStatLearn/){target="_blank"}, chapter 15.
+:::
+
+--->
+</section>
+</section>
+<section id="variable-importance-measure" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Variable Importance Measure</h1>
+<section id="variable-importance-measure-1" class="level2">
+<h2 class="anchored" data-anchor-id="variable-importance-measure-1">Variable Importance Measure</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p><strong>For bagged/RF regression trees</strong>:</p>
+<ul>
+<li><p>Record the total amount that the RSS is decreased due to splits over a given predictor, averaged over all <span class="math inline">\(B\)</span> trees.</p></li>
+<li><p>A large value indicates an important predictor.</p></li>
+</ul></li>
+<li><p><strong>For bagged/RF classification trees</strong>:</p>
+<ul>
+<li>Add up the total amount that the Gini index is decreased by splits over a given predictor, averaged over all <span class="math inline">\(B\)</span> trees.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<div class="fragment">
+<center>
+<strong>Variable Importance Plot for the Heart Data</strong>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li><p><strong>Decision trees</strong> are simple and interpretable models for regression and classification.</p></li>
+<li><p>However, they are often not competitive with other methods in terms of prediction accuracy.</p></li>
+<li><p><strong>Bagging</strong>, <strong>random forests</strong>, and <strong>boosting</strong> are effective methods for improving the prediction accuracy of trees:</p>
+<ul>
+<li>They work by growing many trees on the training data and then combining the predictions of the resulting ensemble of trees.</li>
+</ul></li>
+<li><p>Random forests and boosting are among the <strong>state-of-the-art methods for supervised learning</strong>, though their results can be difficult to interpret.</p></li>
+</ul>
+</section>
+</section>
+<section id="bart-bayesian-additive-regression-trees" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">BART<br>Bayesian Additive Regression Trees</h1>
+<section id="bart-bayesian-additive-regression-trees-1" class="level2">
+<h2 class="anchored" data-anchor-id="bart-bayesian-additive-regression-trees-1">BART: Bayesian Additive Regression Trees</h2>
+<ul>
+<li><p>Recall that <em>bagging</em> and <em>random forests</em> make predictions from an average of regression trees, each of which is built using a random sample of data and/or predictors. Each tree is built separately from the others.</p></li>
+<li><p>By contrast, <em>boosting</em> uses a weighted sum of trees, each of which is constructed by fitting a tree to the residual of the current fit. Thus, each new tree attempts to capture signal that is not yet accounted for by the current set of trees.</p></li>
+<li><p><em>Bayesian additive regression trees</em> (<strong>BART</strong>), an ensemble method that uses decision trees as its building blocks, is related to both <strong>random forests</strong> and <strong>boosting</strong>:</p>
+<ul>
+<li>Each tree is constructed in a random manner as in <strong>bagging</strong> and <strong>random forests</strong>, and each tree tries to capture signal not yet accounted for by the current model, as in <strong>boosting</strong>.</li>
+</ul></li>
+<li><p>The <strong>main novelty</strong> in BART is the way in which <strong>new trees are generated</strong>.</p></li>
+<li><p><strong>BART</strong> can be applied to <em>regression</em>, <em>classification</em>, and other problems; we will focus here just on <strong>regression</strong>.</p></li>
+</ul>
+</section>
+<section id="bart-algorithm-intuition" class="level2">
+<h2 class="anchored" data-anchor-id="bart-algorithm-intuition">BART Algorithm Intuition</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_11_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="bart-algorithm-intuition-1" class="level2">
+<h2 class="anchored" data-anchor-id="bart-algorithm-intuition-1">BART Algorithm Intuition</h2>
+<div style="font-size: 80%;">
+<ol type="1">
+<li><strong>Multiple Trees in Parallel</strong>
+<ul>
+<li>Choose a number of trees, <span class="math inline">\(K\)</span> (often in the hundreds), and a total of <span class="math inline">\(B\)</span> iterations.<br>
+</li>
+<li>All <span class="math inline">\(K\)</span> trees start as a single root node and are <strong>updated in parallel</strong> through successive iterations.</li>
+</ul></li>
+<li><strong>Random Perturbations</strong>
+<ul>
+<li>At each iteration, <strong>each tree</strong> is modified via a “perturbation,” which can involve:
+<ul>
+<li><strong>Adding</strong> or <strong>removing</strong> a split.<br>
+</li>
+<li><strong>Adjusting</strong> the predicted values in terminal nodes.<br>
+</li>
+</ul></li>
+<li>Each tree is updated based on <strong>partial residuals</strong>, improving how the ensemble fits the data.</li>
+</ul></li>
+<li><strong>Iterative Evolution</strong>
+<ul>
+<li>Over <span class="math inline">\(B\)</span> iterations, trees evolve—some gain new splits, others lose them, and node predictions adjust.<br>
+</li>
+<li>This process is akin to a <strong>Markov chain</strong> over tree configurations, guided by how well each tree explains current residuals.</li>
+</ul></li>
+<li><strong>Final Prediction by Averaging</strong>
+<ul>
+<li>After <span class="math inline">\(B\)</span> iterations, you have an ensemble of <span class="math inline">\(K\)</span> trees that collectively capture the posterior distribution.<br>
+</li>
+<li>The <strong>final prediction</strong> at a point <span class="math inline">\(x\)</span> is typically the <strong>average</strong> of predictions from all <span class="math inline">\(K\)</span> trees at the final iteration (or across multiple post–burn-in iterations).</li>
+</ul></li>
+</ol>
+</div>
+<!---
+number of trees are fit in parallel so one chooses a number k maybe a few hundred and b steps in each stage and each tree is is is changed b times as the as the algorithm proceeds for each tree say the first tree we start with the root node right so they all start with the root node and then perturbations are applied to the trees to to change them these perturbations as we'll see can be of various kinds we can add add a branch we can delete a branch or or we can change the predicted values at each of the nodes in this case since we start with the root node each of these trees gets a single split added to them although the split points and split variables are different and then at the next stage this tree we've added another branch which is on the left this tree we've actually removed the single the existing branch is back to the root node and this tree again we add another branch on the left side and this continues for maybe a few thousand steps these perturbations to get a whole sequence of trees of varying sizes with with different predictions in the root notes so robert so it looks like so the iterations where you go one through b and seems like what you're doing is maintaining k trees at each step exactly and each step you change each of those k trees in some kind of random way exactly yeah so at the end we make our final prediction by averaging the prediction over all k sequences of trees and all steps b 
+--->
+</section>
+<section id="bayesian-additive-regression-trees-some-notation" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-additive-regression-trees-some-notation">Bayesian Additive Regression Trees — Some Notation</h2>
+<ul>
+<li><p>We let <span class="math inline">\(K\)</span> denote the number of regression trees, and <span class="math inline">\(B\)</span> the number of iterations for which the BART algorithm will be run.</p></li>
+<li><p>The notation <span class="math inline">\(\hat{f}^{b}_{k}(x)\)</span> represents the prediction at <span class="math inline">\(x\)</span> for the <span class="math inline">\(k\)</span>th regression tree used in the <span class="math inline">\(b\)</span>th iteration.<br>
+At the end of each iteration, the <span class="math inline">\(K\)</span> trees from that iteration will be summed, i.e.,</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+  \hat{f}^{b}(x) = \sum_{k=1}^{K} \hat{f}^{b}_{k}(x)
+\]</span></p>
+<p>for <span class="math inline">\(b = 1, \dots, B\)</span>.</p>
+</div>
+</section>
+<section id="bart-iterations" class="level2">
+<h2 class="anchored" data-anchor-id="bart-iterations">BART Iterations</h2>
+<div style="font-size: 80%;">
+<p>In the <strong>first iteration</strong> of the BART algorithm, all trees are initialized to have a single root node, with</p>
+<p><span class="math display">\[
+  \hat{f}^{1}_{k}(x) = \frac{1}{nK} \sum_{i=1}^{n} y_i
+\]</span></p>
+<p>representing the mean of the response values divided by the total number of trees. Thus,</p>
+<p><span class="math display">\[
+  \hat{f}^{1}(x) = \sum_{k=1}^{K} \hat{f}^{1}_{k}(x) = \frac{1}{n} \sum_{i=1}^{n} y_i
+\]</span></p>
+<p><strong>In subsequent iterations</strong>, BART updates each of the <span class="math inline">\(K\)</span> trees, one at a time. In the <span class="math inline">\(b\)</span>th iteration, to update the <span class="math inline">\(k\)</span>th tree, we subtract from each response value the predictions from all but the <span class="math inline">\(k\)</span>th tree, in order to obtain a <em>partial residual</em></p>
+<p><span class="math display">\[
+  r_i = y_i - \sum_{k' &lt; k} \hat{f}^{b}_{k'}(x_i) - \sum_{k' &gt; k} \hat{f}^{b-1}_{k'}(x_i), \quad i = 1, \dots, n
+\]</span></p>
+</div>
+</section>
+<section id="new-trees-are-chosen-by-perturbations" class="level2">
+<h2 class="anchored" data-anchor-id="new-trees-are-chosen-by-perturbations">New trees are chosen by perturbations</h2>
+<ul>
+<li><p>Rather than fitting a fresh tree to this partial residual, <strong>BART</strong> randomly chooses a perturbation to the tree from the previous iteration <span class="math inline">\(\hat{f}^{b-1}_{k}\)</span> from a set of possible perturbations, favoring ones that improve the fit to the partial residual.</p></li>
+<li><p>There are two components to this perturbation:</p>
+<ol type="1">
+<li><em>We may change the structure of the tree by adding or pruning branches.</em><br>
+</li>
+<li><em>We may change the prediction in each terminal node of the tree.</em></li>
+</ol></li>
+</ul>
+</section>
+<section id="examples-of-possible-perturbations-to-a-tree" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-possible-perturbations-to-a-tree">Examples of possible perturbations to a tree</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-bart-deliver" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-bart-deliver">What does BART Deliver?</h2>
+<div style="font-size: 80%;">
+<p>The output of <strong>BART</strong> is a collection of prediction models,</p>
+<p><span class="math display">\[
+  \hat{f}^{b}(x) = \sum_{k=1}^{K} \hat{f}^{b}_{k}(x), \quad \text{for } b = 1,2, \dots, B.
+\]</span></p>
+<p>To obtain a single prediction, we simply take the average after some <span class="math inline">\(L\)</span> <em>burn-in iterations</em>,</p>
+<p><span class="math display">\[
+  \hat{f}(x) = \frac{1}{B - L} \sum_{b=L+1}^{B} \hat{f}^{b}(x).
+\]</span></p>
+<ul>
+<li><p>The perturbation-style moves guard against overfitting since they limit how <em>hard</em> we fit the data in each iteration.</p></li>
+<li><p>We can also compute quantities other than the average: for instance, the <em>percentiles</em> of <span class="math inline">\(f^{L+1}(x), \dots, f^{B}(x)\)</span> provide a measure of uncertainty of the final prediction.</p></li>
+</ul>
+</div>
+</section>
+<section id="bart-applied-to-the-heart-data" class="level2">
+<h2 class="anchored" data-anchor-id="bart-applied-to-the-heart-data">BART applied to the Heart data</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/8_13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<p><br></p>
+<p><span class="math inline">\(K = 200\)</span> trees; the number of iterations is increased to 10,000.</p>
+<p>During the initial iterations (<em>in gray</em>), the test and training errors jump around a bit.</p>
+<p>After this initial <strong>burn-in</strong> period, the error rates settle down.</p>
+<p>The tree perturbation process largely avoids overfitting.</p>
+</div>
+</div>
+</section>
+<section id="bart-is-a-bayesian-method" class="level2">
+<h2 class="anchored" data-anchor-id="bart-is-a-bayesian-method">BART is a Bayesian Method</h2>
+<ul>
+<li><p>It turns out that the <strong>BART</strong> method can be viewed as a <em>Bayesian</em> approach to fitting an ensemble of trees: each time we randomly perturb a tree in order to fit the residuals, we are in fact drawing a new tree from a <em>posterior</em> distribution.</p></li>
+<li><p>Furthermore, the <strong>BART</strong> algorithm can be viewed as a <em>Markov chain Monte Carlo</em> procedure for fitting the <strong>BART</strong> model.</p></li>
+<li><p>We typically choose large values for <span class="math inline">\(B\)</span> and <span class="math inline">\(K\)</span>, and a moderate value for <span class="math inline">\(L\)</span>: for instance, <span class="math inline">\(K = 200\)</span>, <span class="math inline">\(B = 1,000\)</span>, and <span class="math inline">\(L = 100\)</span> are reasonable choices. <strong>BART</strong> has been shown to have impressive out-of-box performance — that is, it performs well with minimal tuning.</p></li>
+</ul>
+</section>
+<section id="summary-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
+<div style="font-size: 70%;">
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Decision Trees</strong>
+<ul>
+<li>Partition the predictor space into simple regions.</li>
+<li>Easy to interpret and visualize.</li>
+<li>Prone to overfitting without <strong>pruning</strong> or <strong>regularization</strong>.</li>
+</ul></li>
+<li><strong>Bagging</strong>
+<ul>
+<li>Trains multiple trees on <strong>bootstrap</strong> samples.</li>
+<li>Averages predictions to reduce variance.</li>
+<li>Out-of-Bag (OOB) error provides an internal estimate of test error.</li>
+</ul></li>
+<li><strong>Random Forests</strong>
+<ul>
+<li>A variant of bagging that selects a <strong>random subset of predictors</strong> at each split.</li>
+<li>Reduces correlation among trees, improving variance reduction.</li>
+<li>Typically uses <span class="math inline">\(m \approx \sqrt{p}\)</span> features at each split.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>Boosting</strong>
+<ul>
+<li>Builds trees <strong>sequentially</strong>, each learning from the residuals of the previous trees.</li>
+<li>Involves a <strong>shrinkage</strong> parameter (<span class="math inline">\(\lambda\)</span>) to control the learning rate.</li>
+<li>Can achieve strong predictive performance, but can be less interpretable.</li>
+</ul></li>
+<li><strong>Bayesian Additive Regression Trees (BART)</strong>
+<ul>
+<li>Combines ideas from <strong>bagging</strong> and <strong>boosting</strong> in a <strong>Bayesian</strong> framework.</li>
+<li>Maintains <span class="math inline">\(K\)</span> trees in parallel, updating each by <strong>random perturbations</strong>.</li>
+<li>Can handle both regression and classification.</li>
+<li>Offers built-in measures of <strong>uncertainty</strong> and often works well with minimal tuning.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thank-you" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Thank you!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

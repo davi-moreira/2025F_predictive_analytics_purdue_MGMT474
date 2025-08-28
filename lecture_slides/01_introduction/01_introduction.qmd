@@ -792,6 +792,44 @@ $$
 ## Bias-Variance Trade-off
 
 ::: nonincremental
+::: {style="font-size: 80%;"}
+
+:::: columns
+::: column
+### Bias *(tends to underfit)*
+- **Definition:** The error introduced by approximating a real-world problem with a simplified model. High bias implies underfitting.  
+- **Implication:** High bias ⇒ the model misses important patterns (systematic error).  
+- **Typical causes:** Too-simple model (e.g., overly rigid assumptions), insufficient features, heavy regularization.
+:::
+
+::: column
+### Variance *(tends to overfit)*
+- **Definition:** The amount by which the model's prediction would change if trained on a different training dataset. High variance implies overfitting.  
+- **Implication:** High variance ⇒ the model is overly sensitive to noise (unstable across samples).  
+- **Typical causes:** Overly flexible model, too many features vs. observations, weak regularization.
+:::
+::::
+
+::: callout-note
+#### The trade-off we manage
+- Increasing flexibility ↓ **bias** but ↑ **variance**.  
+- Goal: choose complexity that **minimizes expected test error**.
+:::
+
+**Decomposition of expected test MSE**  
+$$
+\mathbb{E}\big[(Y-\hat f(X))^2\big]
+   \;=\; \underbrace{\big(\mathrm{Bias}[\hat f(X)]\big)^2}_{\text{misspecification}}
+   \;+\; \underbrace{\mathrm{Var}[\hat f(X)]}_{\text{sensitivity}}
+   \;+\; \underbrace{\sigma^2}_{\text{irreducible noise}}
+$$
+
+:::
+:::
+
+## Bias-Variance Trade-off
+
+::: nonincremental
 ::: {style="font-size: 55%;"}
 
 

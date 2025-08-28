@@ -1778,6 +1778,253 @@ $$
 :::
 ::::
 
+# Model Evaluation {background-color="#cfb991"}
+
+## Confusion Matrix
+
+::::: nonincremental
+:::: {style="font-size: 80%;"}
+The confusion matrix provides a summary of prediction results. It compares the predicted and actual classes, offering insights into the model's classification performance.
+
+::: center
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+::::
+:::::
+
+## Confusion Matrix
+
+:::: nonincremental
+::: {style="font-size: 75%;"}
+Key metrics derived from the confusion matrix include:
+
+| Metric                | Definition                                                                                       |
+|:----------------------|:--------------------------------------------------------------------------------------------------|
+| Accuracy              | The proportion of correct predictions.                                                            |
+| Sensitivity (Recall)  | The model's ability to identify positive cases.                                                   |
+| Specificity           | The model's ability to identify negative cases.                                                   |
+| Precision             | Among predicted positive cases, the proportion that are truly positive.                           |
+| F1 Score              | The harmonic mean of Precision and Sensitivity, balancing false positives and false negatives.    |
+
+:::
+::::
+
+## Accuracy
+
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: {style="display: flex; align-items: center; gap: 2em;"}
+::: {.column style="flex: 1;"}
+<center>**Confusion Matrix**</center>
+
+<br>
+
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+
+::: {.column style="flex: 1;"}
+<center>**Formula**</center>
+
+<br>
+
+$$
+\text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
+$$
+:::
+:::::
+
+<br>
+
+::: fragment
+-   Overall effectiveness of the model.
+
+-   In the context of weather forecasting, for example, accuracy reflects how well a model predicts weather events correctly (e.g., rainy or sunny days).
+
+-   **High accuracy**: lots of correct predictions!
+:::
+:::::::
+::::::::
+
+## Recall (Sensitivity)
+
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: {style="display: flex; align-items: center; gap: 2em;"}
+::: {.column style="flex: 1;"}
+<center>**Confusion Matrix**</center>
+
+<br>
+
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+
+::: {.column style="flex: 1;"}
+<center>**Formula**</center>
+
+<br>
+
+$$
+\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+$$
+:::
+:::::
+
+<br>
+
+::: fragment
+-   Is the fraction of positives correctly identified.
+
+-   In criminal justice, it would assess how well a predictive policing model identifies all potential criminal activities (True Positives) without missing any (thus minimizing False Negatives).
+
+-   **High recall**: low false-negative rates.
+:::
+:::::::
+::::::::
+
+## Specificity
+
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: {style="display: flex; align-items: center; gap: 2em;"}
+::: {.column style="flex: 1;"}
+<center>**Confusion Matrix**</center>
+
+<br>
+
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+
+::: {.column style="flex: 1;"}
+<center>**Formula**</center>
+
+<br>
+
+$$
+\text{Specificity} = \frac{\text{TN}}{\text{TN} + \text{FP}}
+$$
+:::
+:::::
+
+<br>
+
+::: fragment
+-   It is the true negative rate, measuring a model's ability to correctly identify actual negatives.
+
+-   Crucial in fields where incorrectly identifying a negative case as positive could have serious implications (e.g., criminal justice).
+
+-   **High specificity**: the model is very effective at identifying true negatives.
+:::
+:::::::
+::::::::
+
+## Precision
+
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: {style="display: flex; align-items: center; gap: 2em;"}
+::: {.column style="flex: 1;"}
+<center>**Confusion Matrix**</center>
+
+<br>
+
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+
+::: {.column style="flex: 1;"}
+<center>**Formula**</center>
+
+<br>
+
+$$
+\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
+$$
+:::
+:::::
+
+<br>
+
+::: fragment
+-   Accuracy of positive predictions.
+
+-   In email spam detection, it would indicate the percentage of emails correctly identified as spam (True Positives) out of all emails flagged as spam, aiming to reduce the number of legitimate emails incorrectly marked as spam (False Positives).
+
+-   **High precision**: low false-positive rates.
+:::
+:::::::
+::::::::
+
+## F1-Score
+
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: {style="display: flex; align-items: center; gap: 2em;"}
+::: {.column style="flex: 1;"}
+<center>**Confusion Matrix**</center>
+
+<br>
+
+|               | Predicted: 0        | Predicted: 1        |
+|---------------|---------------------|---------------------|
+| **Actual: 0** | True Negative (TN)  | False Positive (FP) |
+| **Actual: 1** | False Negative (FN) | True Positive (TP)  |
+:::
+
+::: {.column style="flex: 1;"}
+<center>**Formula**</center>
+
+<br>
+
+$$
+\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+:::
+:::::
+
+<br>
+
+::: fragment
+-   Harmonic mean of Precision and Recall.
+
+-   In a medical diagnosis scenario, it would help in evaluating a test's effectiveness in correctly identifying patients with a disease (True Positives) while minimizing the misclassification of healthy individuals as diseased (False Positives and False Negatives).
+
+-   **High F1 score**: a better balance between precision and recall.
+:::
+:::::::
+::::::::
+
+# ROC Curve & AUC {background-color="#cfb991"}
+
+## ROC Curve & AUC
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+The ROC (Receiver Operating Characteristic) curve is a graphical representation that illustrates the trade-off between the true positive rate (Sensitivity) and the false positive rate (1 - Specificity) across various threshold values. The AUC (Area Under the Curve) summarizes the ROC curve into a single value, indicating the model's overall performance.
+
+-   **AUC Interpretation:**
+
+    -   **AUC** $\approx$ 1: The model has near-perfect predictive capability.
+    -   **AUC** $\approx$ 0.5: The model performs no better than random guessing.
+:::
+::::
+
+
+
+
 # Summary {background-color="#cfb991"}
 
 ## Summary

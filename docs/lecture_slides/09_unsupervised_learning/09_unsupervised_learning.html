@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Professor: Davi Moreira">
+
+<title> MGMT 47400: Predictive Analytics  – MGMT 47400: Predictive Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-278f079c28f28dbf8752571db94a6592.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule and Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a>
+  <ul class="collapse">
+  <li><a href="#unsupervised-vs-supervised-learning" id="toc-unsupervised-vs-supervised-learning" class="nav-link" data-scroll-target="#unsupervised-vs-supervised-learning">Unsupervised vs Supervised Learning</a></li>
+  <li><a href="#the-goals-of-unsupervised-learning" id="toc-the-goals-of-unsupervised-learning" class="nav-link" data-scroll-target="#the-goals-of-unsupervised-learning">The Goals of Unsupervised Learning</a></li>
+  <li><a href="#the-challenge-of-unsupervised-learning" id="toc-the-challenge-of-unsupervised-learning" class="nav-link" data-scroll-target="#the-challenge-of-unsupervised-learning">The Challenge of Unsupervised Learning</a></li>
+  <li><a href="#another-advantage" id="toc-another-advantage" class="nav-link" data-scroll-target="#another-advantage">Another advantage</a></li>
+  </ul></li>
+  <li><a href="#principal-components-analysis" id="toc-principal-components-analysis" class="nav-link" data-scroll-target="#principal-components-analysis">Principal Components Analysis</a>
+  <ul class="collapse">
+  <li><a href="#principal-components-analysis-1" id="toc-principal-components-analysis-1" class="nav-link" data-scroll-target="#principal-components-analysis-1">Principal Components Analysis</a></li>
+  <li><a href="#principal-components-analysis-details" id="toc-principal-components-analysis-details" class="nav-link" data-scroll-target="#principal-components-analysis-details">Principal Components Analysis: details</a></li>
+  <li><a href="#pca-example" id="toc-pca-example" class="nav-link" data-scroll-target="#pca-example">PCA: example</a></li>
+  <li><a href="#computation-of-principal-components" id="toc-computation-of-principal-components" class="nav-link" data-scroll-target="#computation-of-principal-components">Computation of Principal Components</a></li>
+  <li><a href="#computation-of-principal-components-1" id="toc-computation-of-principal-components-1" class="nav-link" data-scroll-target="#computation-of-principal-components-1">Computation of Principal Components</a></li>
+  <li><a href="#geometry-of-pca" id="toc-geometry-of-pca" class="nav-link" data-scroll-target="#geometry-of-pca">Geometry of PCA</a></li>
+  <li><a href="#further-principal-components" id="toc-further-principal-components" class="nav-link" data-scroll-target="#further-principal-components">Further principal components</a></li>
+  <li><a href="#further-principal-components-1" id="toc-further-principal-components-1" class="nav-link" data-scroll-target="#further-principal-components-1">Further principal components</a></li>
+  </ul></li>
+  <li><a href="#principal-components-analysis-example" id="toc-principal-components-analysis-example" class="nav-link" data-scroll-target="#principal-components-analysis-example">Principal Components Analysis: Example</a>
+  <ul class="collapse">
+  <li><a href="#principal-components-analysis-example-1" id="toc-principal-components-analysis-example-1" class="nav-link" data-scroll-target="#principal-components-analysis-example-1">Principal Components Analysis: Example</a></li>
+  <li><a href="#principal-components-analysis-example-2" id="toc-principal-components-analysis-example-2" class="nav-link" data-scroll-target="#principal-components-analysis-example-2">Principal Components Analysis: Example</a></li>
+  <li><a href="#pca-loadings" id="toc-pca-loadings" class="nav-link" data-scroll-target="#pca-loadings">PCA loadings</a></li>
+  </ul></li>
+  <li><a href="#another-interpretation-of-principal-components" id="toc-another-interpretation-of-principal-components" class="nav-link" data-scroll-target="#another-interpretation-of-principal-components">Another Interpretation of Principal Components</a>
+  <ul class="collapse">
+  <li><a href="#another-interpretation-of-principal-components-1" id="toc-another-interpretation-of-principal-components-1" class="nav-link" data-scroll-target="#another-interpretation-of-principal-components-1">Another Interpretation of Principal Components</a></li>
+  <li><a href="#pca-find-the-hyperplane-closest-to-the-observations" id="toc-pca-find-the-hyperplane-closest-to-the-observations" class="nav-link" data-scroll-target="#pca-find-the-hyperplane-closest-to-the-observations">PCA find the hyperplane closest to the observations</a></li>
+  </ul></li>
+  <li><a href="#scaling-of-the-variables-matters" id="toc-scaling-of-the-variables-matters" class="nav-link" data-scroll-target="#scaling-of-the-variables-matters">Scaling of the variables matters</a>
+  <ul class="collapse">
+  <li><a href="#scaling-of-the-variables-matters-1" id="toc-scaling-of-the-variables-matters-1" class="nav-link" data-scroll-target="#scaling-of-the-variables-matters-1">Scaling of the variables matters</a></li>
+  </ul></li>
+  <li><a href="#proportion-variance-explained" id="toc-proportion-variance-explained" class="nav-link" data-scroll-target="#proportion-variance-explained">Proportion Variance Explained</a>
+  <ul class="collapse">
+  <li><a href="#proportion-variance-explained-1" id="toc-proportion-variance-explained-1" class="nav-link" data-scroll-target="#proportion-variance-explained-1">Proportion Variance Explained</a></li>
+  <li><a href="#proportion-variance-explained-2" id="toc-proportion-variance-explained-2" class="nav-link" data-scroll-target="#proportion-variance-explained-2">Proportion Variance Explained</a></li>
+  <li><a href="#how-many-principal-components-should-we-use" id="toc-how-many-principal-components-should-we-use" class="nav-link" data-scroll-target="#how-many-principal-components-should-we-use">How many principal components should we use?</a></li>
+  </ul></li>
+  <li><a href="#matrix-completion-and-missing-values" id="toc-matrix-completion-and-missing-values" class="nav-link" data-scroll-target="#matrix-completion-and-missing-values">Matrix Completion and Missing Values</a>
+  <ul class="collapse">
+  <li><a href="#matrix-completion-and-missing-values-1" id="toc-matrix-completion-and-missing-values-1" class="nav-link" data-scroll-target="#matrix-completion-and-missing-values-1">Matrix Completion and Missing Values</a></li>
+  <li><a href="#recommender-systems" id="toc-recommender-systems" class="nav-link" data-scroll-target="#recommender-systems">Recommender Systems</a></li>
+  <li><a href="#matrix-approximation-via-principal-components" id="toc-matrix-approximation-via-principal-components" class="nav-link" data-scroll-target="#matrix-approximation-via-principal-components">Matrix Approximation via Principal Components</a></li>
+  <li><a href="#matrix-completion-via-principal-components" id="toc-matrix-completion-via-principal-components" class="nav-link" data-scroll-target="#matrix-completion-via-principal-components">Matrix Completion via Principal Components</a></li>
+  <li><a href="#iterative-algorithm-for-matrix-completion" id="toc-iterative-algorithm-for-matrix-completion" class="nav-link" data-scroll-target="#iterative-algorithm-for-matrix-completion">Iterative Algorithm for Matrix Completion</a></li>
+  <li><a href="#example-usaarrests-data" id="toc-example-usaarrests-data" class="nav-link" data-scroll-target="#example-usaarrests-data">Example: USAarrests Data</a></li>
+  <li><a href="#example-usaarrests-data-1" id="toc-example-usaarrests-data-1" class="nav-link" data-scroll-target="#example-usaarrests-data-1">Example: USAarrests Data</a></li>
+  </ul></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a>
+  <ul class="collapse">
+  <li><a href="#clustering-1" id="toc-clustering-1" class="nav-link" data-scroll-target="#clustering-1">Clustering</a></li>
+  <li><a href="#pca-vs-clustering" id="toc-pca-vs-clustering" class="nav-link" data-scroll-target="#pca-vs-clustering">PCA vs Clustering</a></li>
+  <li><a href="#application-clustering-for-market-segmentation" id="toc-application-clustering-for-market-segmentation" class="nav-link" data-scroll-target="#application-clustering-for-market-segmentation">Application: Clustering for Market Segmentation</a></li>
+  <li><a href="#two-clustering-methods" id="toc-two-clustering-methods" class="nav-link" data-scroll-target="#two-clustering-methods">Two clustering methods</a></li>
+  </ul></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering">K-means clustering</a>
+  <ul class="collapse">
+  <li><a href="#k-means-clustering-1" id="toc-k-means-clustering-1" class="nav-link" data-scroll-target="#k-means-clustering-1">K-means clustering</a></li>
+  <li><a href="#k-means-clustering-details" id="toc-k-means-clustering-details" class="nav-link" data-scroll-target="#k-means-clustering-details">K-means clustering: Details</a></li>
+  <li><a href="#k-means-clustering-details-1" id="toc-k-means-clustering-details-1" class="nav-link" data-scroll-target="#k-means-clustering-details-1">K-means clustering: Details</a></li>
+  <li><a href="#how-to-define-within-cluster-variation" id="toc-how-to-define-within-cluster-variation" class="nav-link" data-scroll-target="#how-to-define-within-cluster-variation">How to Define Within-Cluster Variation?</a></li>
+  <li><a href="#k-means-clustering-algorithm" id="toc-k-means-clustering-algorithm" class="nav-link" data-scroll-target="#k-means-clustering-algorithm">K-Means Clustering Algorithm</a></li>
+  <li><a href="#example-with-k-3" id="toc-example-with-k-3" class="nav-link" data-scroll-target="#example-with-k-3">Example with <span class="math inline">\(K = 3\)</span></a></li>
+  <li><a href="#details-of-previous-figure" id="toc-details-of-previous-figure" class="nav-link" data-scroll-target="#details-of-previous-figure">Details of Previous Figure</a></li>
+  <li><a href="#properties-of-the-algorithm" id="toc-properties-of-the-algorithm" class="nav-link" data-scroll-target="#properties-of-the-algorithm">Properties of the Algorithm</a></li>
+  <li><a href="#example-different-starting-values" id="toc-example-different-starting-values" class="nav-link" data-scroll-target="#example-different-starting-values">Example: Different Starting Values</a></li>
+  <li><a href="#details-of-previous-figure-1" id="toc-details-of-previous-figure-1" class="nav-link" data-scroll-target="#details-of-previous-figure-1">Details of Previous Figure</a></li>
+  </ul></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical Clustering</a>
+  <ul class="collapse">
+  <li><a href="#hierarchical-clustering-1" id="toc-hierarchical-clustering-1" class="nav-link" data-scroll-target="#hierarchical-clustering-1">Hierarchical Clustering</a></li>
+  <li><a href="#hierarchical-clustering-the-idea-step-1" id="toc-hierarchical-clustering-the-idea-step-1" class="nav-link" data-scroll-target="#hierarchical-clustering-the-idea-step-1">Hierarchical Clustering: The Idea (Step 1)</a></li>
+  <li><a href="#hierarchical-clustering-the-idea-step-2" id="toc-hierarchical-clustering-the-idea-step-2" class="nav-link" data-scroll-target="#hierarchical-clustering-the-idea-step-2">Hierarchical Clustering: The Idea (Step 2)</a></li>
+  <li><a href="#hierarchical-clustering-the-idea-step-3" id="toc-hierarchical-clustering-the-idea-step-3" class="nav-link" data-scroll-target="#hierarchical-clustering-the-idea-step-3">Hierarchical Clustering: The Idea (Step 3)</a></li>
+  <li><a href="#hierarchical-clustering-the-idea-step-4" id="toc-hierarchical-clustering-the-idea-step-4" class="nav-link" data-scroll-target="#hierarchical-clustering-the-idea-step-4">Hierarchical Clustering: The Idea (Step 4)</a></li>
+  <li><a href="#hierarchical-clustering-the-idea-step-5-final-step" id="toc-hierarchical-clustering-the-idea-step-5-final-step" class="nav-link" data-scroll-target="#hierarchical-clustering-the-idea-step-5-final-step">Hierarchical Clustering: The Idea (Step 5: Final Step)</a></li>
+  <li><a href="#hierarchical-clustering-algorithm" id="toc-hierarchical-clustering-algorithm" class="nav-link" data-scroll-target="#hierarchical-clustering-algorithm">Hierarchical Clustering Algorithm</a></li>
+  <li><a href="#hierarchical-clustering-example" id="toc-hierarchical-clustering-example" class="nav-link" data-scroll-target="#hierarchical-clustering-example">Hierarchical Clustering: Example</a></li>
+  <li><a href="#application-of-hierarchical-clustering" id="toc-application-of-hierarchical-clustering" class="nav-link" data-scroll-target="#application-of-hierarchical-clustering">Application of Hierarchical Clustering</a></li>
+  <li><a href="#types-of-linkage" id="toc-types-of-linkage" class="nav-link" data-scroll-target="#types-of-linkage">Types of Linkage</a></li>
+  <li><a href="#choice-of-dissimilarity-measure" id="toc-choice-of-dissimilarity-measure" class="nav-link" data-scroll-target="#choice-of-dissimilarity-measure">Choice of Dissimilarity Measure</a></li>
+  <li><a href="#practical-issues" id="toc-practical-issues" class="nav-link" data-scroll-target="#practical-issues">Practical Issues</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
+  <ul class="collapse">
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
+  </ul></li>
+  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank you!</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="09_unsupervised_learning.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+<p class="subtitle lead"><span style="font-size: 150%;"> Unsupervised Learning </span></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Professor: Davi Moreira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Unsupervised Learning</li>
+<li>Principal Components Analysis</li>
+<li>Matrix Completion and Missing Values</li>
+</ul>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Clustering</li>
+<li>K-means clustering</li>
+<li>Hierarchical Clustering</li>
+</ul>
+</div>
+</div>
+</div>
+<p><br></p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
+</div></div></section>
+<section id="unsupervised-learning" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Unsupervised Learning</h1>
+<section id="unsupervised-vs-supervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-vs-supervised-learning">Unsupervised vs Supervised Learning</h2>
+<ul>
+<li><p>Most of this course focuses on <em>supervised learning</em> methods such as regression and classification.</p></li>
+<li><p>In that setting we observe both a set of features <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span> for each object, as well as a response or outcome variable <span class="math inline">\(Y\)</span>. The goal is then to predict <span class="math inline">\(Y\)</span> using <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span>.</p></li>
+<li><p>Here we instead focus on <em>unsupervised learning</em>, where we observe only the features <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span>. We are not interested in prediction, because we <strong>do not have</strong> an associated response variable <span class="math inline">\(Y\)</span>.</p></li>
+</ul>
+</section>
+<section id="the-goals-of-unsupervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="the-goals-of-unsupervised-learning">The Goals of Unsupervised Learning</h2>
+<ul>
+<li><p>The goal is to discover interesting things about the measurements: is there an informative way to visualize the data? Can we discover subgroups among the variables or among the observations?</p></li>
+<li><p>We discuss two methods:</p>
+<ul>
+<li><p><em>principal components analysis</em>, a tool used for data visualization or data pre-processing before supervised techniques are applied, and</p></li>
+<li><p><em>clustering</em>, a broad class of methods for discovering unknown subgroups in data.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-challenge-of-unsupervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="the-challenge-of-unsupervised-learning">The Challenge of Unsupervised Learning</h2>
+<ul>
+<li><p>Unsupervised learning is more subjective than supervised learning, as there is no simple goal for the analysis, such as prediction of a response.</p></li>
+<li><p>But techniques for unsupervised learning are of growing importance in a number of fields:</p>
+<ul>
+<li>subgroups of breast cancer patients grouped by their gene expression measurements,</li>
+<li>groups of shoppers characterized by their browsing and purchase histories,</li>
+<li>movies grouped by the ratings assigned by movie viewers.</li>
+</ul></li>
+</ul>
+</section>
+<section id="another-advantage" class="level2">
+<h2 class="anchored" data-anchor-id="another-advantage">Another advantage</h2>
+<ul>
+<li><p>It is often easier to obtain <em>unlabeled data</em> — from a lab instrument or a computer — than <em>labeled data</em>, which can require human intervention.</p></li>
+<li><p>For example, it is difficult to automatically assess the overall sentiment of a movie review: is it favorable or not?</p></li>
+</ul>
+</section>
+</section>
+<section id="principal-components-analysis" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Principal Components Analysis</h1>
+<section id="principal-components-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="principal-components-analysis-1">Principal Components Analysis</h2>
+<ul>
+<li>PCA produces a low-dimensional representation of a dataset. It finds a sequence of linear combinations of the variables that have maximal variance, and are mutually uncorrelated.</li>
+<li>Apart from producing derived variables for use in supervised learning problems, PCA also serves as a tool for data visualization.</li>
+</ul>
+</section>
+<section id="principal-components-analysis-details" class="level2">
+<h2 class="anchored" data-anchor-id="principal-components-analysis-details">Principal Components Analysis: details</h2>
+<div style="font-size: 80%;">
+<ul>
+<li><p>The <em>first principal component</em> of a set of features <span class="math inline">\(X_1, X_2, \ldots, X_p\)</span> is the normalized linear combination of the features <span class="math display">\[
+  Z_1 = \phi_{11}X_1 + \phi_{21}X_2 + \ldots + \phi_{p1}X_p
+\]</span></p></li>
+<li><p>Here:</p>
+<ul>
+<li><span class="math inline">\(Z_1\)</span> is the first principal component.</li>
+<li><span class="math inline">\(X_1, X_2, ..., X_p\)</span> are the original features (variables).</li>
+<li><span class="math inline">\(\phi_{j1}\)</span> (where <span class="math inline">\(j = 1, 2, \dots, p\)</span>) are the <strong>loadings</strong> or <strong>weights</strong> assigned to each feature in the linear combination.</li>
+<li>These weights determine how much each feature contributes to the principal component.</li>
+</ul></li>
+<li><p>The loadings <span class="math inline">\(\phi_{11}, \ldots, \phi_{p1}\)</span> of the first principal component make up the principal component loading vector, <span class="math display">\[
+  \phi_1 = (\phi_{11}, \phi_{21}, \ldots, \phi_{p1})^T.
+\]</span></p>
+<ul>
+<li>By <em>normalized</em>, we mean that <span class="math inline">\(\sum_{j=1}^p \phi_{j1}^2 = 1\)</span>. This ensures that the sum of squared weights equals 1, preventing any arbitrary scaling and ensuring the principal components remain standardized.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="pca-example" class="level2">
+<h2 class="anchored" data-anchor-id="pca-example">PCA: example</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The population size (<em>pop</em>) and ad spending (<em>ad</em>) for 100 different cities are shown as purple circles. The green solid line indicates the first principal component direction, and the blue dashed line indicates the second principal component direction.</p>
+</section>
+<section id="computation-of-principal-components" class="level2">
+<h2 class="anchored" data-anchor-id="computation-of-principal-components">Computation of Principal Components</h2>
+<ul>
+<li><p>Suppose we have a <span class="math inline">\(n \times p\)</span> data set <span class="math inline">\(\mathbf{X}\)</span>. Since we are only interested in variance, we assume that each of the variables in <span class="math inline">\(\mathbf{X}\)</span> has been centered to have mean zero (that is, the column means of <span class="math inline">\(\mathbf{X}\)</span> are zero).</p></li>
+<li><p>We then look for the linear combination of the sample feature values of the form <span class="math display">\[
+z_{i1} = \phi_{11}x_{i1} + \phi_{21}x_{i2} + \ldots + \phi_{p1}x_{ip} \tag{1}
+\]</span> for <span class="math inline">\(i = 1, \ldots, n\)</span> that has the largest sample variance, subject to the constraint that <span class="math inline">\(\sum_{j=1}^p \phi_{j1}^2 = 1\)</span>.</p></li>
+<li><p>Since each of the <span class="math inline">\(x_{ij}\)</span> has mean zero, then so does <span class="math inline">\(z_{i1}\)</span> (for any values of <span class="math inline">\(\phi_{j1}\)</span>). Hence the sample variance of the <span class="math inline">\(z_{i1}\)</span> can be written as <span class="math display">\[
+  \frac{1}{n} \sum_{i=1}^n z_{i1}^2.
+\]</span></p></li>
+</ul>
+</section>
+<section id="computation-of-principal-components-1" class="level2">
+<h2 class="anchored" data-anchor-id="computation-of-principal-components-1">Computation of Principal Components</h2>
+<ul>
+<li><p>Plugging in (1) the first principal component loading vector solves the optimization problem <span class="math display">\[
+  \text{maximize}_{\phi_{11}, \ldots, \phi_{p1}} \frac{1}{n} \sum_{i=1}^n \left( \sum_{j=1}^p \phi_{j1} x_{ij} \right)^2 \quad \text{subject to} \quad \sum_{j=1}^p \phi_{j1}^2 = 1.
+\]</span></p></li>
+<li><p>This problem can be solved via a <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank">singular-value decomposition</a> of the matrix <span class="math inline">\(\mathbf{X}\)</span>, a standard technique in linear algebra.</p></li>
+<li><p>We refer to <span class="math inline">\(Z_1\)</span> as the first principal component, with realized values <span class="math inline">\(z_{11}, \ldots, z_{n1}\)</span>. And <span class="math inline">\(Z_1\)</span> can be assumed as a new predictor to use, with values for each of the <span class="math inline">\(n\)</span> observations in the dataset.</p></li>
+</ul>
+</section>
+<section id="geometry-of-pca" class="level2">
+<h2 class="anchored" data-anchor-id="geometry-of-pca">Geometry of PCA</h2>
+<ul>
+<li><p>The loading vector <span class="math inline">\(\phi_1\)</span> with elements <span class="math inline">\(\phi_{11}, \phi_{21}, \ldots, \phi_{p1}\)</span> defines a direction in feature space along which the data vary the most.</p></li>
+<li><p>If we project the <span class="math inline">\(n\)</span> data points <span class="math inline">\(x_1, \ldots, x_n\)</span> onto this direction, the projected values are the principal component scores <span class="math inline">\(z_{11}, \ldots, z_{n1}\)</span> themselves.</p></li>
+</ul>
+</section>
+<section id="further-principal-components" class="level2">
+<h2 class="anchored" data-anchor-id="further-principal-components">Further principal components</h2>
+<ul>
+<li><p>The second principal component is the linear combination of <span class="math inline">\(X_1, \ldots, X_p\)</span> that has maximal variance among all linear combinations that are <em>uncorrelated</em> with <span class="math inline">\(Z_1\)</span>.</p></li>
+<li><p>The second principal component scores <span class="math inline">\(z_{12}, z_{22}, \ldots, z_{n2}\)</span> take the form <span class="math display">\[
+  z_{i2} = \phi_{12}x_{i1} + \phi_{22}x_{i2} + \ldots + \phi_{p2}x_{ip},
+\]</span> where <span class="math inline">\(\phi_2\)</span> is the second principal component loading vector, with elements <span class="math inline">\(\phi_{12}, \phi_{22}, \ldots, \phi_{p2}\)</span>.</p></li>
+</ul>
+</section>
+<section id="further-principal-components-1" class="level2">
+<h2 class="anchored" data-anchor-id="further-principal-components-1">Further principal components</h2>
+<ul>
+<li><p>It turns out that constraining <span class="math inline">\(Z_2\)</span> to be uncorrelated with <span class="math inline">\(Z_1\)</span> is equivalent to constraining the direction <span class="math inline">\(\phi_2\)</span> to be orthogonal (perpendicular) to the direction <span class="math inline">\(\phi_1\)</span>. And so on.</p></li>
+<li><p>The principal component directions <span class="math inline">\(\phi_1, \phi_2, \phi_3, \ldots\)</span> are the ordered sequence of right singular vectors of the matrix <span class="math inline">\(\mathbf{X}\)</span>, and the variances of the components are <span class="math inline">\(\frac{1}{n}\)</span> times the squares of the singular values. There are at most <span class="math inline">\(\min(n - 1, p)\)</span> principal components.</p></li>
+</ul>
+</section>
+</section>
+<section id="principal-components-analysis-example" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Principal Components Analysis: Example</h1>
+<section id="principal-components-analysis-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="principal-components-analysis-example-1">Principal Components Analysis: Example</h2>
+<ul>
+<li><p><strong>USArrests</strong> data: For each of the fifty states in the United States, the data set contains the number of arrests per 100,000 residents for each of three crimes: <strong>Assault</strong>, <strong>Murder</strong>, and <strong>Rape</strong>. We also record <strong>UrbanPop</strong> (the percent of the population in each state living in urban areas).</p></li>
+<li><p>The principal component score vectors have length <span class="math inline">\(n = 50\)</span>, and the principal component loading vectors have length <span class="math inline">\(p = 4\)</span>.</p></li>
+<li><p>PCA was performed after standardizing each variable to have mean zero and standard deviation one.</p></li>
+</ul>
+</section>
+<section id="principal-components-analysis-example-2" class="level2">
+<h2 class="anchored" data-anchor-id="principal-components-analysis-example-2">Principal Components Analysis: Example</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p>This figure is known as a <strong>biplot</strong>, because it displays both the principal component scores and the principal component loadings.</p></li>
+<li><p>The PCA plot shows the first and second principal components for the USArrests dataset, with arrows indicating the loadings for the variables <strong>UrbanPop</strong>, <strong>Rape</strong>, <strong>Assault</strong>, and <strong>Murder</strong>. State names are displayed based on their principal component scores.</p></li>
+<li><p>The blue state names represent the scores for the first two principal components.</p></li>
+<li><p>The orange arrows indicate the first two principal component loading vectors (with axes on the top and right). For example, the loading for <strong>Rape</strong> on the first component is 0.54, and its loading on the second principal component is 0.17 [the word <strong>Rape</strong> is centered at the point (0.54, 0.17)].</p></li>
+<li><p>We can conclude that the <strong>First Principal Component (PC1)</strong> primarily captures <strong>violence</strong>, as all three crime-related variables appear on the right side of the plot. Meanwhile, the <strong>Second Principal Component (PC2)</strong> appears to represent the <strong>share of the urban population</strong>, as this variable is positioned at the top of the plot.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="pca-loadings" class="level2">
+<h2 class="anchored" data-anchor-id="pca-loadings">PCA loadings</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>PC1</th>
+<th>PC2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Murder</td>
+<td>0.5358995</td>
+<td>-0.4181809</td>
+</tr>
+<tr class="even">
+<td>Assault</td>
+<td>0.5831836</td>
+<td>-0.1879856</td>
+</tr>
+<tr class="odd">
+<td>UrbanPop</td>
+<td>0.2781909</td>
+<td>0.8728062</td>
+</tr>
+<tr class="even">
+<td>Rape</td>
+<td>0.5434321</td>
+<td>0.1673186</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="another-interpretation-of-principal-components" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Another Interpretation of Principal Components</h1>
+<section id="another-interpretation-of-principal-components-1" class="level2">
+<h2 class="anchored" data-anchor-id="another-interpretation-of-principal-components-1">Another Interpretation of Principal Components</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These two plots are equivalent. The left plot shows a 3D visualization with projections onto the first two principal components, while the right plot displays the data in 2D using the first and second principal components.</p>
+</section>
+<section id="pca-find-the-hyperplane-closest-to-the-observations" class="level2">
+<h2 class="anchored" data-anchor-id="pca-find-the-hyperplane-closest-to-the-observations">PCA find the hyperplane closest to the observations</h2>
+<ul>
+<li><p>The first principal component loading vector has a very special property: it defines the line in <span class="math inline">\(p\)</span>-dimensional space that is <em>closest</em> to the <span class="math inline">\(n\)</span> observations (using average squared Euclidean distance as a measure of closeness).</p></li>
+<li><p>The notion of principal components as the dimensions that are closest to the <span class="math inline">\(n\)</span> observations extends beyond just the first principal component.</p></li>
+<li><p>For instance, the first two principal components of a data set span the plane that is closest to the <span class="math inline">\(n\)</span> observations, in terms of average squared Euclidean distance.</p></li>
+</ul>
+</section>
+</section>
+<section id="scaling-of-the-variables-matters" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Scaling of the variables matters</h1>
+<section id="scaling-of-the-variables-matters-1" class="level2">
+<h2 class="anchored" data-anchor-id="scaling-of-the-variables-matters-1">Scaling of the variables matters</h2>
+<ul>
+<li><p>If the variables are in different units, scaling each to have standard deviation equal to one is recommended.</p></li>
+<li><p>If they are in the same units, you might or might not scale the variables.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="proportion-variance-explained" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Proportion Variance Explained</h1>
+<section id="proportion-variance-explained-1" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-variance-explained-1">Proportion Variance Explained</h2>
+<div style="font-size: 80%;">
+<ul>
+<li><p>To understand the strength of each component, we are interested in knowing the proportion of variance explained (PVE) by each one.</p></li>
+<li><p>The <em>total variance</em> present in a data set (assuming that the variables have been centered to have mean zero) is defined as <span class="math display">\[
+  \sum_{j=1}^p \text{Var}(X_j) = \sum_{j=1}^p \frac{1}{n} \sum_{i=1}^n x_{ij}^2,
+\]</span> and the variance explained by the <span class="math inline">\(m\)</span>-th principal component is <span class="math display">\[
+  \text{Var}(Z_m) = \frac{1}{n} \sum_{i=1}^n z_{im}^2.
+\]</span></p></li>
+<li><p>It can be shown that <span class="math display">\[
+  \sum_{j=1}^p \text{Var}(X_j) = \sum_{m=1}^M \text{Var}(Z_m),
+\]</span> with <span class="math inline">\(M = \min(n-1, p)\)</span>.</p></li>
+</ul>
+</div>
+</section>
+<section id="proportion-variance-explained-2" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-variance-explained-2">Proportion Variance Explained</h2>
+<div style="font-size: 75%;">
+<ul>
+<li><p>Therefore, the PVE of the <span class="math inline">\(m\)</span>-th principal component is given by the positive quantity between 0 and 1: <span class="math display">\[
+  \frac{\sum_{i=1}^n z_{im}^2}{\sum_{j=1}^p \sum_{i=1}^n x_{ij}^2}.
+\]</span></p></li>
+<li><p>The PVEs sum to one. We sometimes display the cumulative PVEs.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="how-many-principal-components-should-we-use" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-principal-components-should-we-use">How many principal components should we use?</h2>
+<p>If we use principal components as a summary of our data, how many components are sufficient?</p>
+<ul>
+<li><p>There is no simple answer to this question as the response will be conditioned on the data.</p></li>
+<li><p>The “scree plot” on the previous slide can be used as a guide: we look for an “elbow”.</p>
+<ul>
+<li>Essentially, this means that we can determine the optimal number of principal components by identifying the point where the marginal gain in the Proportion of Variance Explained (PVE) becomes negligible as additional components are added.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="matrix-completion-and-missing-values" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Matrix Completion and Missing Values</h1>
+<section id="matrix-completion-and-missing-values-1" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-completion-and-missing-values-1">Matrix Completion and Missing Values</h2>
+<ul>
+<li><p>It is often the case that data matrices <strong>X</strong> have missing entries, often represented by <strong>NAs</strong> (<strong>N</strong>ot <strong>A</strong>vailable).</p></li>
+<li><p>This is a nuisance, since many of our modeling procedures, such as linear regression and GLMs, require complete data.</p></li>
+<li><p>Sometimes imputation <em>is the prediction problem!</em> — as in recommender systems.</p></li>
+<li><p>One simple approach is <em>mean imputation</em> — replace missing values for a variable by the mean of the non-missing entries.</p>
+<ul>
+<li>This ignores the correlations among variables; we should be able to exploit these correlations when imputing missing values.</li>
+</ul></li>
+<li><p>We assume values are missing <em>at random</em>; i.e., the missingness should not be informative.</p></li>
+<li><p>Let’s see an imputation approach based on principal components.</p></li>
+</ul>
+</section>
+<section id="recommender-systems" class="level2">
+<h2 class="anchored" data-anchor-id="recommender-systems">Recommender Systems</h2>
+<div style="font-size: 70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Netflix users rate movies they have seen, usually a very small fraction of available movies.</p></li>
+<li><p>The <a href="https://en.wikipedia.org/wiki/Netflix_Prize" target="_blank">Netflix Competition</a> data set had 400,000 users and over 18,000 movies. Only 2% of the matrix had numbers in it and the rest were missing.</p></li>
+<li><p>Predicting missing ratings provides a way to <em>recommend</em> movies to users. <strong>Matrix completion</strong> is one of the primary tools.</p></li>
+</ul>
+</div>
+</section>
+<section id="matrix-approximation-via-principal-components" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-approximation-via-principal-components">Matrix Approximation via Principal Components</h2>
+<ul>
+<li><p>It is possible to have an interpretation of principal components in terms of <em>matrix approximation</em>: <span class="math display">\[
+\text{minimize}_{\mathbf{A} \in \mathbb{R}^{n \times M}, \mathbf{B} \in \mathbb{R}^{p \times M}} \left\{ \sum_{j=1}^p \sum_{i=1}^n \left( x_{ij} - \sum_{m=1}^M a_{im}b_{jm} \right)^2 \right\}.
+\]</span></p></li>
+<li><p><span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times M\)</span> matrix whose <span class="math inline">\((i, m)\)</span> element is <span class="math inline">\(a_{im}\)</span>, and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(p \times M\)</span> matrix whose <span class="math inline">\((j, m)\)</span> element is <span class="math inline">\(b_{jm}\)</span>.</p></li>
+<li><p>It can be shown that for any value of <span class="math inline">\(M\)</span>, the <strong>first</strong> <span class="math inline">\(M\)</span> principal components provide a solution: <span class="math display">\[
+\hat{a}_{im} = z_{im} \quad \text{and} \quad \hat{b}_{jm} = \phi_{jm}.
+\]</span></p></li>
+<li><p>But what to do if the matrix has missing elements?</p></li>
+</ul>
+</section>
+<section id="matrix-completion-via-principal-components" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-completion-via-principal-components">Matrix Completion via Principal Components</h2>
+<p>We pose instead a modified version of the approximation criterion: <span class="math display">\[
+\text{minimize}_{\mathbf{A} \in \mathbb{R}^{n \times M}, \mathbf{B} \in \mathbb{R}^{p \times M}} \left\{ \sum_{(i,j) \in \mathcal{O}} \left( x_{ij} - \sum_{m=1}^M a_{im}b_{jm} \right)^2 \right\},
+\]</span> where <span class="math inline">\(\mathcal{O}\)</span> is the set of all <strong>observed</strong> pairs of indices <span class="math inline">\((i, j)\)</span>, a subset of the possible <span class="math inline">\(n \times p\)</span> pairs.</p>
+<ul>
+<li><p>Once we solve this problem:</p>
+<ul>
+<li><p>We can estimate a missing observation <span class="math inline">\(x_{ij}\)</span> using: <span class="math display">\[
+\hat{x}_{ij} = \sum_{m=1}^M \hat{a}_{im}\hat{b}_{jm},
+\]</span> where <span class="math inline">\(\hat{a}_{im}\)</span> and <span class="math inline">\(\hat{b}_{jm}\)</span> are the <span class="math inline">\((i,m)\)</span> and <span class="math inline">\((j,m)\)</span> elements of the solution matrices <span class="math inline">\(\mathbf{\hat{A}}\)</span> and <span class="math inline">\(\mathbf{\hat{B}}\)</span>.</p></li>
+<li><p>We can (approximately) recover the <span class="math inline">\(M\)</span> principal component scores and loadings, as if data were complete.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="iterative-algorithm-for-matrix-completion" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-algorithm-for-matrix-completion">Iterative Algorithm for Matrix Completion</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<ol type="1">
+<li><p><strong>Initialize</strong>: create a complete data matrix <span class="math inline">\(\tilde{\mathbf{X}}\)</span> by filling in the missing values using mean imputation.</p></li>
+<li><p><strong>Repeat</strong>: steps (a)–(c) until the objective in (c) fails to decrease:</p></li>
+</ol>
+<!-- -->
+<ol type="a">
+<li><span class="math display">\[
+\text{minimize}_{\mathbf{A} \in \mathbb{R}^{n \times M}, \mathbf{B} \in \mathbb{R}^{p \times M}} \left\{ \sum_{j=1}^p \sum_{i=1}^n \left( \tilde{x}_{ij} - \sum_{m=1}^M a_{im}b_{jm} \right)^2 \right\},
+\]</span> by computing the principal components of <span class="math inline">\(\tilde{\mathbf{X}}\)</span>.</li>
+</ol>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ol start="2" type="a">
+<li><p>For each missing entry <span class="math inline">\((i, j) \notin \mathcal{O}\)</span>, set: <span class="math display">\[
+\tilde{x}_{ij} \leftarrow \sum_{m=1}^M \hat{a}_{im} \hat{b}_{jm}.
+\]</span></p></li>
+<li><p>Compute the objective: <span class="math display">\[
+\sum_{(i,j) \in \mathcal{O}} \left( x_{ij} - \sum_{m=1}^M \hat{a}_{im} \hat{b}_{jm} \right)^2.
+\]</span></p></li>
+</ol>
+<!-- -->
+<ol start="3" type="1">
+<li><strong>Return</strong> the estimated missing entries <span class="math inline">\(\tilde{x}_{ij}\)</span>, <span class="math inline">\((i, j) \notin \mathcal{O}\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="example-usaarrests-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-usaarrests-data">Example: USAarrests Data</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<p>Here <span class="math inline">\(\mathbf{X}\)</span> has 50 rows (states) and four columns: <strong>Murder</strong>, <strong>Assault</strong>, <strong>Rape</strong>, and <strong>UrbanPop</strong>.</p>
+<ul>
+<li><p>We selected 20 states at random, and for each, we selected one of the variables at random, and set its value to <strong>NA</strong>.</p></li>
+<li><p>Used <span class="math inline">\(M = 1\)</span> principal component in the algorithm.</p></li>
+<li><p><strong>Correlation</strong>: 0.63 between original and imputed values.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="example-usaarrests-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-usaarrests-data-1">Example: USAarrests Data</h2>
+<ul>
+<li><p>The <strong>USAarrests</strong> data has only four variables, which is on the low end for this method to work well. For this reason, for this demonstration we randomly set at most one variable per state to be missing and only used <span class="math inline">\(M = 1\)</span> principal component.</p></li>
+<li><p>In general, in order to apply this algorithm, we must select <span class="math inline">\(M\)</span>, the number of principal components to use for the imputation.</p></li>
+<li><p>One approach is to randomly set to <strong>NA</strong> some elements that were actually observed, and select <span class="math inline">\(M\)</span> based on how well those known values are recovered.</p></li>
+</ul>
+</section>
+</section>
+<section id="clustering" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Clustering</h1>
+<section id="clustering-1" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-1">Clustering</h2>
+<ul>
+<li><p><em>Clustering</em> refers to a very broad set of techniques for finding <em>subgroups</em>, or <em>clusters</em>, in a data set.</p></li>
+<li><p>We seek a partition of the data into distinct groups so that the observations within each group are quite similar to each other.</p></li>
+<li><p>To make this concrete, we must define what it means for two or more observations to be <em>similar</em> or <em>different</em>.</p></li>
+<li><p>Indeed, this is often a domain-specific consideration that must be made based on knowledge of the data being studied.</p></li>
+</ul>
+</section>
+<section id="pca-vs-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="pca-vs-clustering">PCA vs Clustering</h2>
+<ul>
+<li><p>PCA looks for a low-dimensional representation of the observations that explains a good fraction of the variance.</p></li>
+<li><p>Clustering looks for homogeneous subgroups among the observations.</p></li>
+</ul>
+</section>
+<section id="application-clustering-for-market-segmentation" class="level2">
+<h2 class="anchored" data-anchor-id="application-clustering-for-market-segmentation">Application: Clustering for Market Segmentation</h2>
+<ul>
+<li><p>Suppose we have access to a large number of measurements (e.g., median household income, occupation, distance from nearest urban area, and so forth) for a large number of people.</p></li>
+<li><p>Our goal is to perform <em>market segmentation</em> by identifying subgroups of people who might be more receptive to a particular form of advertising, or more likely to purchase a particular product.</p></li>
+<li><p>The task of performing market segmentation amounts to clustering the people in the data set.</p></li>
+</ul>
+</section>
+<section id="two-clustering-methods" class="level2">
+<h2 class="anchored" data-anchor-id="two-clustering-methods">Two clustering methods</h2>
+<ul>
+<li><p>In <strong>K-means clustering</strong>, we seek to partition the observations into a pre-specified number of clusters.</p></li>
+<li><p>In <strong>hierarchical clustering</strong>, we do not know in advance how many clusters we want; in fact, we end up with a tree-like visual representation of the observations, called a <strong>dendrogram</strong>, that allows us to view at once the clusterings obtained for each possible number of clusters, from 1 to <span class="math inline">\(n\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="k-means-clustering" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">K-means clustering</h1>
+<section id="k-means-clustering-1" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering-1">K-means clustering</h2>
+<div style="font-size: 80%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A simulated data set with 150 observations in 2-dimensional space. Panels show the results of applying <em>K-means clustering</em> with different values of <span class="math inline">\(K\)</span>, the number of clusters. The color of each observation indicates the cluster to which it was assigned using the <em>K-means clustering</em> algorithm. Note that there is no ordering of the clusters, so the cluster coloring is arbitrary.</p>
+</div>
+</section>
+<section id="k-means-clustering-details" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering-details">K-means clustering: Details</h2>
+<ul>
+<li>Let <span class="math inline">\(C_1, \ldots, C_K\)</span> denote sets containing the indices of the observations in each cluster. These sets satisfy two properties:</li>
+</ul>
+<ol type="1">
+<li><p><span class="math inline">\(C_1 \cup C_2 \cup \ldots \cup C_K = \{1, \ldots, n\}\)</span>. In other words, each observation belongs to at least one of the <span class="math inline">\(K\)</span> clusters.</p></li>
+<li><p><span class="math inline">\(C_k \cap C_{k'} = \emptyset\)</span> for all <span class="math inline">\(k \neq k'\)</span>. In other words, the clusters are non-overlapping: no observation belongs to more than one cluster.</p></li>
+</ol>
+<ul>
+<li>For instance, if the <span class="math inline">\(i\)</span>-th observation is in the <span class="math inline">\(k\)</span>-th cluster, then <span class="math inline">\(i \in C_k\)</span>.</li>
+</ul>
+</section>
+<section id="k-means-clustering-details-1" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering-details-1">K-means clustering: Details</h2>
+<ul>
+<li><p>The idea behind <em>K-means clustering</em> is that a <strong>good clustering</strong> is one for which the <em>within-cluster variation</em> is as small as possible.</p></li>
+<li><p>The within-cluster variation for cluster <span class="math inline">\(C_k\)</span> is a measure <span class="math inline">\(\text{WCV}(C_k)\)</span> of the amount by which the observations within a cluster differ from each other.</p></li>
+<li><p>Hence, we want to solve the problem: <span class="math display">\[
+  \text{minimize}_{C_1, \ldots, C_K} \left\{ \sum_{k=1}^K \text{WCV}(C_k) \right\}.
+\]</span></p></li>
+<li><p>In words, this formula says that we want to partition the observations into <span class="math inline">\(K\)</span> clusters such that the total within-cluster variation, summed over all <span class="math inline">\(K\)</span> clusters, is as small as possible.</p></li>
+</ul>
+</section>
+<section id="how-to-define-within-cluster-variation" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-define-within-cluster-variation">How to Define Within-Cluster Variation?</h2>
+<ul>
+<li><p>Typically, we use Euclidean distance: <span class="math display">\[
+  \text{WCV}(C_k) = \frac{1}{|C_k|} \sum_{i,i' \in C_k} \sum_{j=1}^p (x_{ij} - x_{i'j})^2, \tag{3}
+\]</span> where <span class="math inline">\(|C_k|\)</span> denotes the number of observations in the <span class="math inline">\(k\)</span>-th cluster.</p></li>
+<li><p>Combining (2) and (3) gives the optimization problem that defines <em>K-means clustering</em>: <span class="math display">\[
+  \text{minimize}_{C_1, \ldots, C_K} \left\{ \sum_{k=1}^K \frac{1}{|C_k|} \sum_{i,i' \in C_k} \sum_{j=1}^p (x_{ij} - x_{i'j})^2 \right\}. \tag{4}
+\]</span></p></li>
+</ul>
+</section>
+<section id="k-means-clustering-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering-algorithm">K-Means Clustering Algorithm</h2>
+<ol type="1">
+<li><p>Randomly assign a number, from 1 to <span class="math inline">\(K\)</span>, to each of the observations. These serve as initial cluster assignments for the observations.</p></li>
+<li><p>Iterate until the cluster assignments stop changing:</p>
+<p>2.a For each of the <span class="math inline">\(K\)</span> clusters, compute the cluster <strong>centroid</strong>. The <span class="math inline">\(k\)</span>-th cluster centroid is the vector of the <span class="math inline">\(p\)</span> feature means for the observations in the <span class="math inline">\(k\)</span>-th cluster.</p>
+<p>2.b Assign each observation to the cluster whose centroid is <strong>closest</strong> (where <strong>closest</strong> is defined using Euclidean distance).</p></li>
+</ol>
+</section>
+<section id="example-with-k-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-with-k-3">Example with <span class="math inline">\(K = 3\)</span></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="details-of-previous-figure" class="level2">
+<h2 class="anchored" data-anchor-id="details-of-previous-figure">Details of Previous Figure</h2>
+<ul>
+<li><p><strong>Top left</strong>: The observations are shown.</p></li>
+<li><p><strong>Top center</strong>: In Step 1 of the algorithm, each observation is randomly assigned to a cluster.</p></li>
+<li><p><strong>Top right</strong>: In Step 2(a), the cluster centroids are computed. These are shown as large colored disks. Initially, the centroids are almost completely overlapping because the initial cluster assignments were chosen at random.</p></li>
+<li><p><strong>Bottom left</strong>: In Step 2(b), each observation is assigned to the nearest centroid.</p></li>
+<li><p><strong>Bottom center</strong>: Step 2(a) is once again performed, leading to new cluster centroids.</p></li>
+<li><p><strong>Bottom right</strong>: The results obtained after 10 iterations.</p></li>
+</ul>
+</section>
+<section id="properties-of-the-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-the-algorithm">Properties of the Algorithm</h2>
+<ul>
+<li><p>This algorithm is guaranteed to decrease the value of the objective function (4) at each step. <strong>Why?</strong></p></li>
+<li><p>Note that <span class="math display">\[
+\frac{1}{|C_k|} \sum_{i,i' \in C_k} \sum_{j=1}^p (x_{ij} - x_{i'j})^2 = 2 \sum_{i \in C_k} \sum_{j=1}^p (x_{ij} - \bar{x}_{kj})^2,
+\]</span> where <span class="math inline">\(\bar{x}_{kj} = \frac{1}{|C_k|} \sum_{i \in C_k} x_{ij}\)</span> is the mean for feature <span class="math inline">\(j\)</span> in cluster <span class="math inline">\(C_k\)</span>.</p></li>
+<li><p>However, it is not guaranteed to give the global minimum.</p></li>
+</ul>
+</section>
+<section id="example-different-starting-values" class="level2">
+<h2 class="anchored" data-anchor-id="example-different-starting-values">Example: Different Starting Values</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="details-of-previous-figure-1" class="level2">
+<h2 class="anchored" data-anchor-id="details-of-previous-figure-1">Details of Previous Figure</h2>
+<ul>
+<li><p><strong>K-means clustering</strong> was performed six times on the data from the previous figure with <span class="math inline">\(K = 3\)</span>, each time with a different random assignment of the observations in Step 1 of the K-means algorithm.</p></li>
+<li><p>Above each plot is the value of the objective (4).</p></li>
+<li><p>Three different local optima were obtained, one of which resulted in a smaller value of the objective and provides better separation between the clusters.</p></li>
+<li><p>Those labeled in <strong>red</strong> all achieved the same best solution, with an objective value of <strong>235.8</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="hierarchical-clustering" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Hierarchical Clustering</h1>
+<section id="hierarchical-clustering-1" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-1">Hierarchical Clustering</h2>
+<ul>
+<li><p><strong>K-means clustering</strong> requires us to pre-specify the number of clusters <span class="math inline">\(K\)</span>. This can be a disadvantage (later we discuss strategies for choosing <span class="math inline">\(K\)</span>).</p></li>
+<li><p><strong>Hierarchical clustering</strong> is an alternative approach which does not require that we commit to a particular choice of <span class="math inline">\(K\)</span>.</p></li>
+<li><p>We will check the <strong>bottom-up</strong> or <strong>agglomerative clustering</strong>. This is the most common type of hierarchical clustering and refers to the fact that a dendrogram is built starting from the leaves and combining clusters up to the trunk.</p></li>
+</ul>
+</section>
+<section id="hierarchical-clustering-the-idea-step-1" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-the-idea-step-1">Hierarchical Clustering: The Idea (Step 1)</h2>
+<p>Builds a hierarchy in a “bottom-up” fashion…</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-the-idea-step-2" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-the-idea-step-2">Hierarchical Clustering: The Idea (Step 2)</h2>
+<p>Merging Closest Observations</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-the-idea-step-3" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-the-idea-step-3">Hierarchical Clustering: The Idea (Step 3)</h2>
+<p>Merging Another Closest Pair</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-the-idea-step-4" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-the-idea-step-4">Hierarchical Clustering: The Idea (Step 4)</h2>
+<p>Expanding the Hierarchy</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-the-idea-step-5-final-step" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-the-idea-step-5-final-step">Hierarchical Clustering: The Idea (Step 5: Final Step)</h2>
+<p>Single Cluster Representation</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-algorithm">Hierarchical Clustering Algorithm</h2>
+<div style="font-size: 90%;">
+<p>The approach in words:</p>
+<ul>
+<li><p>Start with each point in its own cluster.</p></li>
+<li><p>Identify the closest two clusters and merge them.</p></li>
+<li><p>Repeat.</p></li>
+<li><p>Ends when all points are in a single cluster.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_1_8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-clustering-example" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering-example">Hierarchical Clustering: Example</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>45 observations generated in 2-dimensional space.</p></li>
+<li><p>In reality, there are three distinct classes, shown in separate colors.</p></li>
+<li><p>However, we will treat these class labels as unknown and will seek to cluster the observations in order to discover the classes from the data.</p></li>
+</ul>
+</section>
+<section id="application-of-hierarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="application-of-hierarchical-clustering">Application of Hierarchical Clustering</h2>
+<div style="font-size: 70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p>Each dendrogram represents different thresholds for determining clusters. The dashed horizontal lines indicate where the data is split into distinct clusters.</p></li>
+<li><p><strong>Left</strong>: Dendrogram obtained from hierarchically clustering the data from the previous slide, using complete linkage and Euclidean distance. The entire tree is one cluster.</p></li>
+</ul>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p><strong>Center</strong>: The dendrogram in the center panel, cut at a height of 9 (indicated by the dashed line). This cut results in two distinct clusters, shown in different colors.</p></li>
+<li><p><strong>Right</strong>: The dendrogram from the left-hand panel, now cut at a height of 5. This cut results in three distinct clusters, shown in different colors. Note that the colors were not used in clustering, but are simply used for display purposes in this figure.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="types-of-linkage" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-linkage">Types of Linkage</h2>
+<div style="font-size: 85%;">
+<p>Linkage methods determine how the distance between two clusters is measured when forming a <strong>hierarchical clustering dendrogram</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Linkage</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Complete</strong></td>
+<td>Computes the <strong>maximum</strong> pairwise dissimilarity between clusters. This method tends to create <strong>compact clusters</strong> but is <strong>sensitive to outliers</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Single</strong></td>
+<td>Computes the <strong>minimum</strong> pairwise dissimilarity between clusters. It can lead to <strong>elongated, chain-like clusters</strong> and is <strong>sensitive to noise</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Average</strong></td>
+<td>Computes the <strong>average</strong> pairwise dissimilarity between clusters. It provides a <strong>balance</strong> between complete and single linkage, making it <strong>widely used</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Centroid</strong></td>
+<td>Computes the dissimilarity between <strong>centroids</strong> (mean vectors) of clusters. However, it may cause <strong>inversions</strong>, where clusters are <strong>not merged in a monotonic order</strong> - a situation where a pair of clusters are merged in a non-monotonic way, meaning that the hierarchical structure does not maintain a proper increasing order of distances.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="choice-of-dissimilarity-measure" class="level2">
+<h2 class="anchored" data-anchor-id="choice-of-dissimilarity-measure">Choice of Dissimilarity Measure</h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p>So far, we have used Euclidean distance to defince the clusters.</p></li>
+<li><p>An alternative is <em>correlation-based distance</em>, which considers two observations to be similar if their features are highly correlated.</p></li>
+<li><p>This is an unusual use of correlation, which is normally computed between variables; here, it is computed between the observation profiles for each pair of observations.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/12_15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<ul>
+<li><p>The figure shows a <strong>sequence of points over time</strong> for 3 different observations. Each curve represents one such series, and the goal is to assess how <strong>similar the patterns</strong> are across these series.</p></li>
+<li><p>If we use <strong>Euclidean distance</strong>, we compare observations based on their absolute coordinates. Here, the <strong>purple and gold observations are numerically closer together</strong>, while the <strong>green observation is farther apart</strong> from both.</p></li>
+<li><p>However, if we use <strong>correlation-based distance</strong>, we look at how the values fluctuate over the index rather than their absolute differences. In this case, the <strong>green and gold series exhibit similar trends</strong>, moving <strong>up and down together</strong>, making them <strong>more correlated</strong> than the purple and green observations.</p></li>
+<li><p>The key idea is that <strong>correlation focuses on shape rather than scale</strong>. If your problem requires detecting <strong>similar trends and patterns</strong> rather than absolute differences in values, <strong>correlation-based distance</strong> is a better choice than <strong>Euclidean distance</strong>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="practical-issues" class="level2">
+<h2 class="anchored" data-anchor-id="practical-issues">Practical Issues</h2>
+<ul>
+<li><p><strong>Scaling of the variables matters!</strong> Should the observations or features first be standardized in some way?</p>
+<ul>
+<li>For instance, maybe the variables should be centered to have mean zero and scaled to have a standard deviation of one.</li>
+</ul></li>
+<li><p>In the case of hierarchical clustering:</p>
+<ul>
+<li><p>What dissimilarity measure should be used?</p></li>
+<li><p>What type of linkage should be used?</p></li>
+</ul></li>
+<li><p>How many clusters to choose? (in both <em>K</em>-means or hierarchical clustering):</p>
+<ul>
+<li>Difficult problem. No agreed-upon method. See <a href="https://hastie.su.domains/ElemStatLearn/" target="_blank"><em>Elements of Statistical Learning</em></a>, Chapter 13, for more details.</li>
+</ul></li>
+<li><p>Which features should we use to drive the clustering?</p></li>
+</ul>
+<!---
+# Example: Breast Cancer Microarray Study
+
+## Example: Breast Cancer Microarray Study
+
+-   **"Repeated observation of breast tumor subtypes in independent gene expression data sets;"** Sorlie et al., PNAS 2003.
+
+-   Gene expression measurements for approximately \~8000 genes, for each of 88 breast cancer patients.
+
+-   Average linkage, correlation metric.
+
+-   Clustered samples using **500 intrinsic genes**:
+
+    -   Each woman was measured before and after chemotherapy.
+
+    -   Intrinsic genes have the smallest within/between variation.
+
+## 
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/12_1_9-1.png){fig-align='center' width=65%}
+:::
+:::
+
+## 
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/12_1_10-1.png){fig-align='center' width=65%}
+:::
+:::
+
+## Conclusions
+
+-   *Unsupervised learning* is important for understanding the variation and grouping structure of a set of unlabeled data, and can be a useful pre-processor for supervised learning.
+
+-   It is intrinsically more difficult than *supervised learning* because there is no gold standard (like an outcome variable) and no single objective (like test set accuracy).
+
+-   It is an active field of research, with many recently developed tools such as *self-organizing maps*, *independent components analysis*, and *spectral clustering*.
+
+-   See *The Elements of Statistical Learning*, chapter 14.
+
+--->
+</section>
+</section>
+<section id="summary" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Summary</h1>
+<section id="summary-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<ul>
+<li><p><strong>Unsupervised Learning</strong>: Focuses on finding patterns or structures (e.g., subgroups, summaries) within data when no labeled outcome variable is available. Examples include dimensionality reduction and clustering.</p></li>
+<li><p><strong>Principal Components Analysis (PCA)</strong>:</p>
+<ul>
+<li>Seeks linear combinations of features that capture the greatest variance in the data.<br>
+</li>
+<li>Often used for visualization or as a pre-processing step to reduce dimensionality.<br>
+</li>
+<li>The proportion of variance explained (PVE) helps determine how many principal components to retain.</li>
+</ul></li>
+<li><p><strong>Matrix Completion and Missing Values</strong>:</p>
+<ul>
+<li>Exploits correlations among features to impute missing entries in a data matrix.<br>
+</li>
+<li>Tools like low-rank approximations (via PCA) can effectively fill in missing data under the assumption that the matrix is only partially observed.</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<ul>
+<li><strong>Clustering Methods</strong>:
+<ul>
+<li><strong>K-means Clustering</strong>: Partitions data into <span class="math inline">\(K\)</span> clusters by minimizing within-cluster variation, but requires specifying <span class="math inline">\(K\)</span> in advance.<br>
+</li>
+<li><strong>Hierarchical Clustering</strong>: Builds a tree (dendrogram) that merges data points (or clusters) iteratively, which can be cut at different heights to form any number of clusters.</li>
+</ul></li>
+<li><strong>Distance &amp; Linkage Choices</strong>:
+<ul>
+<li>In clustering, outcomes vary based on how similarity is measured (e.g., Euclidean distance vs.&nbsp;correlation-based distance) and which linkage criterion (e.g., complete, single, average) is chosen.</li>
+</ul></li>
+<li><strong>Practical Considerations</strong>:
+<ul>
+<li>Decide whether to standardize variables (especially if measured in different units).<br>
+</li>
+<li>Select the number of clusters (<span class="math inline">\(K\)</span>) or principal components based on interpretability, domain knowledge, and diagnostic tools (like scree plots).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thank-you" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Thank you!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

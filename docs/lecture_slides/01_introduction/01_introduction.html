@@ -917,6 +917,57 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 <section id="bias-variance-trade-off" class="slide level2 center">
 <h2>Bias-Variance Trade-off</h2>
 <div>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column">
+<h3 id="bias-tends-to-underfit">Bias <em>(tends to underfit)</em></h3>
+<ul>
+<li><strong>Definition:</strong> The error introduced by approximating a real-world problem with a simplified model. High bias implies underfitting.<br>
+</li>
+<li><strong>Implication:</strong> High bias ⇒ the model misses important patterns (systematic error).<br>
+</li>
+<li><strong>Typical causes:</strong> Too-simple model (e.g., overly rigid assumptions), insufficient features, heavy regularization.</li>
+</ul>
+</div><div class="column">
+<h3 id="variance-tends-to-overfit">Variance <em>(tends to overfit)</em></h3>
+<ul>
+<li><strong>Definition:</strong> The amount by which the model’s prediction would change if trained on a different training dataset. High variance implies overfitting.<br>
+</li>
+<li><strong>Implication:</strong> High variance ⇒ the model is overly sensitive to noise (unstable across samples).<br>
+</li>
+<li><strong>Typical causes:</strong> Overly flexible model, too many features vs.&nbsp;observations, weak regularization.</li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The trade-off we manage</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Increasing flexibility ↓ <strong>bias</strong> but ↑ <strong>variance</strong>.<br>
+</li>
+<li>Goal: choose complexity that <strong>minimizes expected test error</strong>.</li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Decomposition of expected test MSE</strong><br>
+<span class="math display">\[
+\mathbb{E}\big[(Y-\hat f(X))^2\big]
+   \;=\; \underbrace{\big(\mathrm{Bias}[\hat f(X)]\big)^2}_{\text{misspecification}}
+   \;+\; \underbrace{\mathrm{Var}[\hat f(X)]}_{\text{sensitivity}}
+   \;+\; \underbrace{\sigma^2}_{\text{irreducible noise}}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="bias-variance-trade-off-1" class="slide level2 center">
+<h2>Bias-Variance Trade-off</h2>
+<div>
 <div style="font-size: 55%;">
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -1009,7 +1060,7 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 </div>
 </div>
 </section>
-<section id="bias-variance-trade-off-1" class="slide level2 center">
+<section id="bias-variance-trade-off-2" class="slide level2 center">
 <h2>Bias-Variance Trade-off</h2>
 <div>
 <div style="font-size: 80%;">

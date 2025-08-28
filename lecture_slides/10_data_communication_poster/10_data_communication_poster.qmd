@@ -400,8 +400,8 @@ library(slider)
 library(ggforce)
 library(here)
 
-covnat <- read_csv(here("lecture_slides/99_data_communication_poster/data","covdata.csv"))
-load(here("lecture_slides/99_data_communication_poster/data","nytexcess.rda"))
+covnat <- read_csv(here("lecture_slides/10_data_communication_poster/data","covdata.csv"))
+load(here("lecture_slides/10_data_communication_poster/data","nytexcess.rda"))
 ```
 
 ## [COVID-19 Evolution](https://kjhealy.github.io/covdata/)
@@ -695,7 +695,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="70%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="70%"}
 
 </center>
 
@@ -718,7 +718,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -752,7 +752,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -792,7 +792,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -824,7 +824,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -868,7 +868,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -906,7 +906,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 
@@ -935,7 +935,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -964,7 +964,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -998,7 +998,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -1026,7 +1026,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::
@@ -1055,7 +1055,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/99_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
+![[Template](https://github.com/davi-moreira/2025S_predictive_analytics_MGMT474/raw/refs/heads/main/docs/lecture_slides/10_data_communication_poster/2025S_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="90%"}
 
 </center>
 :::

@@ -1,0 +1,2830 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Professor: Davi Moreira">
+
+<title> MGMT 47400: Predictive Analytics  – MGMT 47400: Predictive Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-278f079c28f28dbf8752571db94a6592.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule and Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link" data-scroll-target="#deep-learning">Deep Learning</a>
+  <ul class="collapse">
+  <li><a href="#deep-learning-1" id="toc-deep-learning-1" class="nav-link" data-scroll-target="#deep-learning-1">Deep Learning</a></li>
+  <li><a href="#ai-visionaries-interviews" id="toc-ai-visionaries-interviews" class="nav-link" data-scroll-target="#ai-visionaries-interviews">AI Visionaries: Interviews</a></li>
+  </ul></li>
+  <li><a href="#pytorch-vs.-tensorflow" id="toc-pytorch-vs.-tensorflow" class="nav-link" data-scroll-target="#pytorch-vs.-tensorflow">PyTorch vs.&nbsp;TensorFlow</a>
+  <ul class="collapse">
+  <li><a href="#what-are-deep-learning-frameworks" id="toc-what-are-deep-learning-frameworks" class="nav-link" data-scroll-target="#what-are-deep-learning-frameworks">What Are Deep Learning Frameworks?</a></li>
+  <li><a href="#pytorch-and-tensor-flow" id="toc-pytorch-and-tensor-flow" class="nav-link" data-scroll-target="#pytorch-and-tensor-flow">PyTorch and Tensor Flow</a></li>
+  <li><a href="#key-differences" id="toc-key-differences" class="nav-link" data-scroll-target="#key-differences">Key Differences</a></li>
+  <li><a href="#similarities" id="toc-similarities" class="nav-link" data-scroll-target="#similarities">Similarities</a></li>
+  <li><a href="#comparison-of-advantages-and-disadvantages" id="toc-comparison-of-advantages-and-disadvantages" class="nav-link" data-scroll-target="#comparison-of-advantages-and-disadvantages">Comparison of Advantages and Disadvantages</a></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations">Recommendations</a></li>
+  </ul></li>
+  <li><a href="#pytorch" id="toc-pytorch" class="nav-link" data-scroll-target="#pytorch">PyTorch</a>
+  <ul class="collapse">
+  <li><a href="#tensors-in-pytorch" id="toc-tensors-in-pytorch" class="nav-link" data-scroll-target="#tensors-in-pytorch">Tensors in PyTorch</a></li>
+  <li><a href="#datasets-dataloaders" id="toc-datasets-dataloaders" class="nav-link" data-scroll-target="#datasets-dataloaders">Datasets &amp; DataLoaders</a></li>
+  <li><a href="#datasets-dataloaders-1" id="toc-datasets-dataloaders-1" class="nav-link" data-scroll-target="#datasets-dataloaders-1">Datasets &amp; DataLoaders</a></li>
+  <li><a href="#transforms" id="toc-transforms" class="nav-link" data-scroll-target="#transforms">Transforms</a></li>
+  <li><a href="#build-the-neural-network" id="toc-build-the-neural-network" class="nav-link" data-scroll-target="#build-the-neural-network">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-1" id="toc-build-the-neural-network-1" class="nav-link" data-scroll-target="#build-the-neural-network-1">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-2" id="toc-build-the-neural-network-2" class="nav-link" data-scroll-target="#build-the-neural-network-2">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-3" id="toc-build-the-neural-network-3" class="nav-link" data-scroll-target="#build-the-neural-network-3">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-4" id="toc-build-the-neural-network-4" class="nav-link" data-scroll-target="#build-the-neural-network-4">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-5" id="toc-build-the-neural-network-5" class="nav-link" data-scroll-target="#build-the-neural-network-5">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-6" id="toc-build-the-neural-network-6" class="nav-link" data-scroll-target="#build-the-neural-network-6">Build the Neural Network</a></li>
+  <li><a href="#build-the-neural-network-7" id="toc-build-the-neural-network-7" class="nav-link" data-scroll-target="#build-the-neural-network-7">Build the Neural Network</a></li>
+  <li><a href="#automatic-differentiation-with-torch.autograd" id="toc-automatic-differentiation-with-torch.autograd" class="nav-link" data-scroll-target="#automatic-differentiation-with-torch.autograd">Automatic Differentiation with torch.autograd</a></li>
+  <li><a href="#optimizing-model-parameters" id="toc-optimizing-model-parameters" class="nav-link" data-scroll-target="#optimizing-model-parameters">Optimizing Model Parameters</a></li>
+  <li><a href="#save-and-load-the-model" id="toc-save-and-load-the-model" class="nav-link" data-scroll-target="#save-and-load-the-model">Save and Load the Model</a></li>
+  </ul></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn!</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-pytorch---youtube-series" id="toc-introduction-to-pytorch---youtube-series" class="nav-link" data-scroll-target="#introduction-to-pytorch---youtube-series">Introduction to PyTorch - YouTube Series</a></li>
+  </ul></li>
+  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks">Neural Networks</a>
+  <ul class="collapse">
+  <li><a href="#neural-networks---video" id="toc-neural-networks---video" class="nav-link" data-scroll-target="#neural-networks---video">Neural Networks - Video</a></li>
+  </ul></li>
+  <li><a href="#single-layer-neural-network" id="toc-single-layer-neural-network" class="nav-link" data-scroll-target="#single-layer-neural-network">Single Layer Neural Network</a>
+  <ul class="collapse">
+  <li><a href="#single-layer-neural-network-1" id="toc-single-layer-neural-network-1" class="nav-link" data-scroll-target="#single-layer-neural-network-1">Single Layer Neural Network</a></li>
+  <li><a href="#single-layer-neural-network-introduction-and-layers-overview" id="toc-single-layer-neural-network-introduction-and-layers-overview" class="nav-link" data-scroll-target="#single-layer-neural-network-introduction-and-layers-overview">Single Layer Neural Network: Introduction and Layers Overview</a></li>
+  <li><a href="#single-layer-neural-network-observed-vs.-latent" id="toc-single-layer-neural-network-observed-vs.-latent" class="nav-link" data-scroll-target="#single-layer-neural-network-observed-vs.-latent">Single Layer Neural Network: Observed vs.&nbsp;Latent</a></li>
+  <li><a href="#single-layer-neural-network-hidden-layer-as-transformations" id="toc-single-layer-neural-network-hidden-layer-as-transformations" class="nav-link" data-scroll-target="#single-layer-neural-network-hidden-layer-as-transformations">Single Layer Neural Network: Hidden Layer as Transformations</a></li>
+  <li><a href="#single-layer-neural-network-training-the-network" id="toc-single-layer-neural-network-training-the-network" class="nav-link" data-scroll-target="#single-layer-neural-network-training-the-network">Single Layer Neural Network: Training the Network</a></li>
+  <li><a href="#single-layer-neural-network-details" id="toc-single-layer-neural-network-details" class="nav-link" data-scroll-target="#single-layer-neural-network-details">Single Layer Neural Network: Details</a></li>
+  <li><a href="#nn-example-mnist-digits" id="toc-nn-example-mnist-digits" class="nav-link" data-scroll-target="#nn-example-mnist-digits">NN Example: MNIST Digits</a></li>
+  </ul></li>
+  <li><a href="#fitting-neural-networks" id="toc-fitting-neural-networks" class="nav-link" data-scroll-target="#fitting-neural-networks">Fitting Neural Networks</a>
+  <ul class="collapse">
+  <li><a href="#gradient-descent---video" id="toc-gradient-descent---video" class="nav-link" data-scroll-target="#gradient-descent---video">Gradient Descent - Video</a></li>
+  <li><a href="#backpropagation-intuition---video" id="toc-backpropagation-intuition---video" class="nav-link" data-scroll-target="#backpropagation-intuition---video">Backpropagation Intuition - Video</a></li>
+  <li><a href="#backpropagation-calculus---video" id="toc-backpropagation-calculus---video" class="nav-link" data-scroll-target="#backpropagation-calculus---video">Backpropagation Calculus - Video</a></li>
+  <li><a href="#fitting-neural-networks-1" id="toc-fitting-neural-networks-1" class="nav-link" data-scroll-target="#fitting-neural-networks-1">Fitting Neural Networks</a></li>
+  <li><a href="#non-convex-functions-and-gradient-descent" id="toc-non-convex-functions-and-gradient-descent" class="nav-link" data-scroll-target="#non-convex-functions-and-gradient-descent">Non Convex Functions and Gradient Descent</a></li>
+  <li><a href="#gradient-descent-continued" id="toc-gradient-descent-continued" class="nav-link" data-scroll-target="#gradient-descent-continued">Gradient Descent Continued</a></li>
+  <li><a href="#gradients-and-backpropagation" id="toc-gradients-and-backpropagation" class="nav-link" data-scroll-target="#gradients-and-backpropagation">Gradients and Backpropagation</a></li>
+  <li><a href="#tricks-of-the-trade" id="toc-tricks-of-the-trade" class="nav-link" data-scroll-target="#tricks-of-the-trade">Tricks of the Trade</a></li>
+  <li><a href="#dropout-learning" id="toc-dropout-learning" class="nav-link" data-scroll-target="#dropout-learning">Dropout Learning</a></li>
+  <li><a href="#ridge-and-data-augmentation" id="toc-ridge-and-data-augmentation" class="nav-link" data-scroll-target="#ridge-and-data-augmentation">Ridge and Data Augmentation</a></li>
+  <li><a href="#data-augmentation-on-the-fly" id="toc-data-augmentation-on-the-fly" class="nav-link" data-scroll-target="#data-augmentation-on-the-fly">Data Augmentation on the Fly</a></li>
+  <li><a href="#double-descent" id="toc-double-descent" class="nav-link" data-scroll-target="#double-descent">Double Descent</a></li>
+  <li><a href="#the-double-descent-error-curve" id="toc-the-double-descent-error-curve" class="nav-link" data-scroll-target="#the-double-descent-error-curve">The Double-Descent Error Curve</a></li>
+  <li><a href="#less-wiggly-solutions" id="toc-less-wiggly-solutions" class="nav-link" data-scroll-target="#less-wiggly-solutions">Less Wiggly Solutions</a></li>
+  <li><a href="#some-facts" id="toc-some-facts" class="nav-link" data-scroll-target="#some-facts">Some Facts</a></li>
+  </ul></li>
+  <li><a href="#convolutional-neural-network-cnn" id="toc-convolutional-neural-network-cnn" class="nav-link" data-scroll-target="#convolutional-neural-network-cnn">Convolutional Neural Network — CNN</a>
+  <ul class="collapse">
+  <li><a href="#cnn-introduction" id="toc-cnn-introduction" class="nav-link" data-scroll-target="#cnn-introduction">CNN: Introduction</a></li>
+  <li><a href="#the-cifar100-database" id="toc-the-cifar100-database" class="nav-link" data-scroll-target="#the-cifar100-database">The CIFAR100 Database</a></li>
+  <li><a href="#the-convolutional-network-hierarchy" id="toc-the-convolutional-network-hierarchy" class="nav-link" data-scroll-target="#the-convolutional-network-hierarchy">The Convolutional Network Hierarchy</a></li>
+  <li><a href="#convolution-layer" id="toc-convolution-layer" class="nav-link" data-scroll-target="#convolution-layer">Convolution Layer</a></li>
+  <li><a href="#convolution-example" id="toc-convolution-example" class="nav-link" data-scroll-target="#convolution-example">Convolution Example</a></li>
+  <li><a href="#pooling-layer" id="toc-pooling-layer" class="nav-link" data-scroll-target="#pooling-layer">Pooling Layer</a></li>
+  <li><a href="#architecture-of-a-cnn" id="toc-architecture-of-a-cnn" class="nav-link" data-scroll-target="#architecture-of-a-cnn">Architecture of a CNN</a></li>
+  <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link" data-scroll-target="#data-augmentation">Data Augmentation</a></li>
+  <li><a href="#cnn-example-pretrained-networks-to-classify-images" id="toc-cnn-example-pretrained-networks-to-classify-images" class="nav-link" data-scroll-target="#cnn-example-pretrained-networks-to-classify-images">CNN Example: Pretrained Networks to Classify Images</a></li>
+  </ul></li>
+  <li><a href="#document-classification" id="toc-document-classification" class="nav-link" data-scroll-target="#document-classification">Document Classification</a>
+  <ul class="collapse">
+  <li><a href="#document-classification-imdb-movie-reviews" id="toc-document-classification-imdb-movie-reviews" class="nav-link" data-scroll-target="#document-classification-imdb-movie-reviews">Document Classification: IMDB Movie Reviews</a></li>
+  <li><a href="#featurization-bag-of-words" id="toc-featurization-bag-of-words" class="nav-link" data-scroll-target="#featurization-bag-of-words">Featurization: Bag-of-Words</a></li>
+  <li><a href="#document-classification-example-lasso-versus-neural-network-imdb-reviews" id="toc-document-classification-example-lasso-versus-neural-network-imdb-reviews" class="nav-link" data-scroll-target="#document-classification-example-lasso-versus-neural-network-imdb-reviews">Document Classification Example: Lasso versus Neural Network — IMDB Reviews</a></li>
+  </ul></li>
+  <li><a href="#recurrent-neural-networks---rnn" id="toc-recurrent-neural-networks---rnn" class="nav-link" data-scroll-target="#recurrent-neural-networks---rnn">Recurrent Neural Networks - RNN</a>
+  <ul class="collapse">
+  <li><a href="#recurrent-neural-networks---rnn-1" id="toc-recurrent-neural-networks---rnn-1" class="nav-link" data-scroll-target="#recurrent-neural-networks---rnn-1">Recurrent Neural Networks - RNN</a></li>
+  <li><a href="#simple-recurrent-neural-network-architecture" id="toc-simple-recurrent-neural-network-architecture" class="nav-link" data-scroll-target="#simple-recurrent-neural-network-architecture">Simple Recurrent Neural Network Architecture</a></li>
+  <li><a href="#rnn-in-detail" id="toc-rnn-in-detail" class="nav-link" data-scroll-target="#rnn-in-detail">RNN in Detail</a></li>
+  </ul></li>
+  <li><a href="#rnn-for-document-classification" id="toc-rnn-for-document-classification" class="nav-link" data-scroll-target="#rnn-for-document-classification">RNN for Document Classification</a>
+  <ul class="collapse">
+  <li><a href="#rnn-for-document-classification-1" id="toc-rnn-for-document-classification-1" class="nav-link" data-scroll-target="#rnn-for-document-classification-1">RNN for Document Classification</a></li>
+  <li><a href="#word-embedding---rnn-example-imdb-reviews" id="toc-word-embedding---rnn-example-imdb-reviews" class="nav-link" data-scroll-target="#word-embedding---rnn-example-imdb-reviews">Word Embedding - RNN Example: IMDB Reviews</a></li>
+  </ul></li>
+  <li><a href="#rnn-for-time-series-forecasting" id="toc-rnn-for-time-series-forecasting" class="nav-link" data-scroll-target="#rnn-for-time-series-forecasting">RNN for Time Series Forecasting</a>
+  <ul class="collapse">
+  <li><a href="#rnn-time-series-forecasting" id="toc-rnn-time-series-forecasting" class="nav-link" data-scroll-target="#rnn-time-series-forecasting">RNN: Time Series Forecasting</a></li>
+  <li><a href="#autocorrelation" id="toc-autocorrelation" class="nav-link" data-scroll-target="#autocorrelation">Autocorrelation</a></li>
+  <li><a href="#rnn-forecaster" id="toc-rnn-forecaster" class="nav-link" data-scroll-target="#rnn-forecaster">RNN Forecaster</a></li>
+  <li><a href="#rnn-results-for-nyse-data" id="toc-rnn-results-for-nyse-data" class="nav-link" data-scroll-target="#rnn-results-for-nyse-data">RNN Results for NYSE Data</a></li>
+  <li><a href="#autoregression-forecaster" id="toc-autoregression-forecaster" class="nav-link" data-scroll-target="#autoregression-forecaster">Autoregression Forecaster</a></li>
+  <li><a href="#autoregression-results-for-nyse-data" id="toc-autoregression-results-for-nyse-data" class="nav-link" data-scroll-target="#autoregression-results-for-nyse-data">Autoregression Results for NYSE Data</a></li>
+  <li><a href="#summary-of-rnns" id="toc-summary-of-rnns" class="nav-link" data-scroll-target="#summary-of-rnns">Summary of RNNs</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-deep-learning" id="toc-when-to-use-deep-learning" class="nav-link" data-scroll-target="#when-to-use-deep-learning">When to Use Deep Learning</a>
+  <ul class="collapse">
+  <li><a href="#when-to-use-deep-learning-1" id="toc-when-to-use-deep-learning-1" class="nav-link" data-scroll-target="#when-to-use-deep-learning-1">When to Use Deep Learning</a></li>
+  <li><a href="#flexibility-vs.-interpretability" id="toc-flexibility-vs.-interpretability" class="nav-link" data-scroll-target="#flexibility-vs.-interpretability">Flexibility vs.&nbsp;Interpretability</a></li>
+  <li><a href="#additional-material" id="toc-additional-material" class="nav-link" data-scroll-target="#additional-material">Additional Material</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank you!</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="11_deep_learning.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+<p class="subtitle lead"><span style="font-size: 150%;"> Deep Learning </span></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Professor: Davi Moreira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Deep Learning</li>
+<li>PyTorch vs.&nbsp;TensorFlow</li>
+<li>PyTorch</li>
+<li>Neural Networks</li>
+<li>Single Layer Neural Network</li>
+<li>Fitting Neural Networks</li>
+</ul>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li>Convolutional Neural Network — CNN</li>
+<li>Document Classification</li>
+<li>Recurrent Neural Networks - RNN</li>
+<li>RNN for Document Classification</li>
+<li>RNN for Time Series Forecasting</li>
+<li>When to Use Deep Learning</li>
+</ul>
+</div>
+</div>
+</div>
+<p><br></p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
+</div></div></section>
+<section id="deep-learning" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Deep Learning</h1>
+<section id="deep-learning-1" class="level2">
+<h2 class="anchored" data-anchor-id="deep-learning-1">Deep Learning</h2>
+<div style="font-size: 70%;">
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Early Rise (1980s)</strong>
+<ul>
+<li>Neural networks first gained popularity.<br>
+</li>
+<li>High levels of excitement, with dedicated conferences (e.g., NeurIPS, Snowbird).</li>
+</ul></li>
+<li><strong>1990s Shift</strong>
+<ul>
+<li>Emergence of other methods (SVMs, Random Forests, Boosting).<br>
+</li>
+<li>Neural networks receded into the background.</li>
+</ul></li>
+<li><strong>Resurgence (2010)</strong>
+<ul>
+<li>Rebranded and refined under the banner of <em>Deep Learning</em>.<br>
+</li>
+<li>By the 2020s, became extremely successful and widely adopted.</li>
+</ul></li>
+<li><strong>Key Drivers of Success</strong>
+<ul>
+<li>Rapid increases in computing power (GPUs, parallel computing).<br>
+</li>
+<li>Availability of large-scale datasets.<br>
+</li>
+<li>User-friendly deep learning libraries (e.g., TensorFlow, PyTorch).</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p>Much of the credit goes to three pioneers and their students:</p>
+<ul>
+<li><strong>Yann LeCun</strong>, <strong>Geoffrey Hinton</strong>, and <strong>Yoshua Bengio</strong>,<br>
+who received the 2019 ACM Turing Award for their work in Neural Networks.</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ai-visionaries-interviews" class="level2">
+<h2 class="anchored" data-anchor-id="ai-visionaries-interviews">AI Visionaries: Interviews</h2>
+<p><br></p>
+<div style="font-size: 80%;">
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="width:33%;">
+<div style="text-align: center;">
+<iframe width="100%" height="300" src="https://www.youtube.com/embed/Ah6nR8YAYF4" title="Yann LeCun: How to Build a Brain" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>
+<a href="https://www.youtube.com/watch?v=Ah6nR8YAYF4" target="_blank"> <strong>Yann LeCun</strong><br>The Future of AI<br>Dec 16, 2023 </a>
+</p>
+</div>
+</div><div class="column" style="width:33%;">
+<div style="text-align: center;">
+<iframe width="100%" height="300" src="https://www.youtube.com/embed/qrvK_KuIeJk" title="Geoffrey Hinton: 60 Minutes Interview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>
+<a href="https://www.youtube.com/watch?v=qrvK_KuIeJk" target="_blank"> <strong>Geoffrey Hinton</strong><br>60 Minutes Interview<br>Oct 9, 2023 </a>
+</p>
+</div>
+</div><div class="column" style="width:33%;">
+<div style="text-align: center;">
+<iframe width="100%" height="300" src="https://www.youtube.com/embed/5LgDUqCbBwo" title="Yoshua Bengio: Human-Level AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>
+<a href="https://www.youtube.com/watch?v=5LgDUqCbBwo" target="_blank"> <strong>Yoshua Bengio</strong><br>Path to Human-Level AI<br>Apr 24, 2024 </a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pytorch-vs.-tensorflow" class="level1">
+<h1>PyTorch vs.&nbsp;TensorFlow</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/pytorch_vs_tensorflow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="what-are-deep-learning-frameworks" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-deep-learning-frameworks">What Are Deep Learning Frameworks?</h2>
+<ul>
+<li>Deep learning frameworks reduce boilerplate code, handle tensor operations efficiently, and make it easier to prototype and iterate on new architectures.</li>
+<li>Software libraries designed to streamline the creation, training, and deployment of neural networks.<br>
+</li>
+<li>Provide <strong>pre-built functions</strong>, <strong>automatic differentiation</strong>, and <strong>GPU/TPU</strong> support.<br>
+</li>
+<li><strong>Necessity</strong>: They allow researchers and developers to focus on <strong>model design</strong> rather than low-level implementation details.</li>
+</ul>
+</section>
+<section id="pytorch-and-tensor-flow" class="level2">
+<h2 class="anchored" data-anchor-id="pytorch-and-tensor-flow">PyTorch and Tensor Flow</h2>
+<div style="font-size: 65%;">
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<section id="what-is-pytorch" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-pytorch">What is PyTorch?</h3>
+<ul>
+<li><p>Developed primarily by <strong>Facebook (Meta)</strong> and released on September 2016.</p></li>
+<li><p>Emphasizes a <strong>dynamic computation graph</strong> (eager execution).</p></li>
+<li><p>Highly <strong>“Pythonic”</strong>: feels natural for Python developers.</p></li>
+<li><p>Strong community presence in <strong>academia</strong> and research.</p></li>
+</ul>
+</section>
+<div class="fragment">
+<section id="why-is-pytorch-necessary" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-pytorch-necessary">Why is PyTorch Necessary?</h3>
+<ul>
+<li><strong>Ease of Use &amp; Debugging</strong>
+<ul>
+<li>Evaluate expressions immediately without building a separate graph.<br>
+</li>
+<li>More intuitive for experimenting with complex, innovative models.</li>
+</ul></li>
+<li><strong>Research Focus</strong>
+<ul>
+<li>Quickly prototype new ideas and iterate.</li>
+</ul></li>
+<li><strong>Active Ecosystem</strong>
+<ul>
+<li>Libraries like <strong>torchvision</strong>, <strong>torchaudio</strong>, and others for specialized tasks.</li>
+</ul></li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="how-to-begin" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-begin">How to begin</h3>
+<ul>
+<li><a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank">https://pytorch.org/tutorials/beginner/basics/intro.html</a>.</li>
+<li>There is also a YouTube Series (<a href="https://www.youtube.com/playlist?list=PL_lsbAsL_o2CTlGHgMxNrKhzP97BaG9ZN" target="_blank">PyTorch Beginner Series</a>) also here (<a href="https://pytorch.org/tutorials/beginner/introyt/introyt1_tutorial.html" target="_blank">Introduction to PyTorch</a>)</li>
+</ul>
+</section>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<div class="fragment">
+<section id="what-is-tensorflow" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-tensorflow">What is TensorFlow?</h3>
+<ul>
+<li>Developed primarily by <strong>Google</strong> and released in November 2015.</li>
+<li>Historically used a <strong>static graph</strong> approach (with an “eager mode” added later).</li>
+<li>Comes with <strong>extensive tools</strong> for deployment (mobile, web, and production).</li>
+<li>Large ecosystem with well-integrated components (e.g., <strong>TensorBoard</strong>, <strong>TFX</strong>, <strong>TensorFlow Lite</strong>).</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="why-is-tensorflow-necessary" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-tensorflow-necessary">Why is TensorFlow Necessary?</h3>
+<ul>
+<li><strong>Production-Ready</strong>
+<ul>
+<li>Strong support for model serving at scale in enterprise environments.</li>
+</ul></li>
+<li><strong>Comprehensive Ecosystem</strong>
+<ul>
+<li>Visualization (TensorBoard), data processing (TFX), and model deployment pipelines.<br>
+</li>
+</ul></li>
+<li><strong>Cross-Platform &amp; Hardware Support</strong>
+<ul>
+<li>Easily deploy models to cloud infrastructures, mobile devices, and specialized hardware (TPUs).</li>
+</ul></li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="how-to-begin-1" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-begin-1">How to begin</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/tutorials" target="_blank">https://www.tensorflow.org/tutorials</a>. There is also a <a href="https://www.tensorflow.org/" target="_blank">Quick Start!</a></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="key-differences" class="level2">
+<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 41%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Aspect</th>
+<th style="text-align: left;"><strong>PyTorch</strong></th>
+<th style="text-align: left;"><strong>TensorFlow</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Computation Graph</strong></td>
+<td style="text-align: left;">Dynamic graph (eager execution by default).</td>
+<td style="text-align: left;">Historically static graph with a build-and-execute phase (now supports eager execution).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Debugging &amp; Development Style</strong></td>
+<td style="text-align: left;">More straightforward for Python developers, immediate error feedback.</td>
+<td style="text-align: left;">Can be trickier to debug in graph mode; eager mode helps but is relatively newer.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Deployment &amp; Production</strong></td>
+<td style="text-align: left;">TorchServe and growing enterprise support, but historically overshadowed by TensorFlow’s tools.</td>
+<td style="text-align: left;">TensorFlow Serving, TensorFlow Lite, and easy Google Cloud integration.</td>
+</tr>
+</tbody>
+</table>
+<div class="notes">
+<p>While the fundamental math and building blocks are similar, the biggest difference typically lies in how you prototype, debug, and deploy models.</p>
+</div>
+</section>
+<section id="similarities" class="level2">
+<h2 class="anchored" data-anchor-id="similarities">Similarities</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Similarity</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Wide Range of Neural Network Layers</strong></td>
+<td style="text-align: left;">Convolutional, Recurrent, Transformers, etc. Both frameworks maintain robust libraries for standard and advanced layers.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Auto-Differentiation</strong></td>
+<td style="text-align: left;">No need to manually compute gradients; backpropagation is handled automatically.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>GPU Acceleration</strong></td>
+<td style="text-align: left;">Both leverage CUDA (NVIDIA GPUs) or other backends to speed up training.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Rich Communities</strong></td>
+<td style="text-align: left;">Abundant tutorials, example code, pretrained models, and Q&amp;A forums.</td>
+</tr>
+</tbody>
+</table>
+<div class="notes">
+<p>Despite differing philosophies, PyTorch and TensorFlow share many core functionalities and have large, supportive user communities.</p>
+</div>
+</section>
+<section id="comparison-of-advantages-and-disadvantages" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-advantages-and-disadvantages">Comparison of Advantages and Disadvantages</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 45%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: left;"><strong>PyTorch</strong></th>
+<th style="text-align: left;"><strong>TensorFlow</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Advantages</strong></td>
+<td style="text-align: left;">- <strong>Intuitive, Pythonic Syntax</strong>: Feels like standard Python, reducing friction for experimentation <br> - <strong>Dynamic Graph Execution</strong>: Simplifies debugging and model design <br> - <strong>Research &amp; Academia Favorite</strong>: widely used in cutting-edge papers</td>
+<td style="text-align: left;">- <strong>Static Graph Optimization</strong>: Graph-based execution can be highly optimized for speed and memory usage <br> - <strong>Extensive Production Ecosystem</strong>: Includes TensorFlow Serving, TensorFlow Lite, TFX for data pipelines <br> - <strong>Large Corporate Adoption</strong>: Backed by Google, widely used in enterprise settings</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Disadvantages</strong></td>
+<td style="text-align: left;">- <strong>Deployment Maturity</strong>: Production tooling and ecosystem are improving but still behind TensorFlow <br> - <strong>Smaller Enterprise Adoption</strong>: Historically overshadowed by TensorFlow’s widespread adoption</td>
+<td style="text-align: left;">- <strong>Learning Curve</strong>: The graph-based approach can be challenging for newcomers <br> - <strong>Historically Less Intuitive</strong>: Older APIs and tutorials can be confusing, though Eager Mode improves usability</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="recommendations">Recommendations</h2>
+<div class="columns">
+<div class="column">
+<section id="choose-pytorch-if" class="level3">
+<h3 class="anchored" data-anchor-id="choose-pytorch-if">Choose <strong>PyTorch</strong> if:</h3>
+<ul>
+<li>Your focus is on <strong>rapid experimentation</strong> and <strong>academic research</strong></li>
+<li>You prioritize a <strong>Pythonic workflow</strong> and easy debugging</li>
+<li>You prefer a <a href="https://pytorch.org/blog/computational-graphs-constructed-in-pytorch/" target="_blank"><strong>dynamic graph</strong> approach</a> (<a href="https://medium.com/@serverwalainfra/understanding-pytorchs-dynamic-computational-graphs-bf77ee51e5c8" target="_blank">about it</a>).</li>
+<li>You are working on cutting-edge models with high flexibility</li>
+<li>You value seamless interaction with Python libraries</li>
+</ul>
+</section>
+</div><div class="column">
+<section id="choose-tensorflow-if" class="level3">
+<h3 class="anchored" data-anchor-id="choose-tensorflow-if">Choose <strong>TensorFlow</strong> if:</h3>
+<ul>
+<li>You need <strong>robust production</strong> and <strong>deployment pipelines</strong></li>
+<li>You plan to integrate with <strong>Google Cloud</strong> services</li>
+<li>You require support for <strong>mobile/edge devices</strong> (e.g., TensorFlow Lite)</li>
+<li>You benefit from <strong>static graph optimization</strong> for performance</li>
+<li>You want an <strong>end-to-end ecosystem</strong> (TFX, TensorBoard, Serving)</li>
+</ul>
+</section>
+</div>
+</div>
+<!----
+
+XXXXXXXXXXXX
+
+## Conclusion
+
+- **Both Frameworks Are Necessary**  
+  - They address core problems in deep learning: high-level APIs, automatic differentiation, and efficient hardware usage.
+- **Decision Factors**  
+  - Project goals (research vs. production), team expertise, ecosystem preference, and existing infrastructure.
+- **Stay Flexible**  
+  - Both PyTorch and TensorFlow evolve rapidly, so keep an eye on new releases and community developments.
+
+:::{.notes}
+Framework preference often comes down to familiarity and project scope. Ultimately, both PyTorch and TensorFlow are powerful, widely adopted, and actively improving.
+:::
+
+XXXXXXXXXXXXXXXXx
+
+--->
+</section>
+</section>
+<section id="pytorch" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">PyTorch</h1>
+<!---
+<br>
+
+
+
+
+
+::: {.cell layout-align="center" width='45%'}
+::: {.cell-output-display}
+![](figs/pytorch_logo.png){fig-align='center' width=430}
+:::
+:::
+
+
+
+
+
+<br>
+
+<br>
+--->
+<section id="tensors-in-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="tensors-in-pytorch"><a href="https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html" target="_blank">Tensors in PyTorch</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="datasets-dataloaders" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-dataloaders"><a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html" target="_blank">Datasets &amp; DataLoaders</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="datasets-dataloaders-1" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-dataloaders-1"><a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html" target="_blank">Datasets &amp; DataLoaders</a></h2>
+<div class="slide-font-small" style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>The code below extracts a single image‑tensor from the <code>training_data</code> used in the tutorial (you can use <code>test_data</code> the same way), prints its basic properties, and visualizes it.</p>
+<div class="cell" style="font-size: 80%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose the index of the image you wish to inspect</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">0</span>  <span class="co"># e.g., the first image; change as desired</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the sample</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>image_tensor, label <span class="op">=</span> training_data[idx]   <span class="co"># image_tensor is a 1×28×28 tensor</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the raw tensor values</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape :"</span>, image_tensor.shape)  <span class="co"># torch.Size([1, 28, 28])</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Label :"</span>, label) <span class="co"># integer class id</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tensor (first 5 rows):</span><span class="ch">\n</span><span class="st">"</span>, image_tensor[<span class="dv">0</span>, :<span class="dv">5</span>, :])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the image</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.imshow(image_tensor.squeeze(), cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Fashion‑MNIST class</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>How it works</strong></p>
+<ol type="1">
+<li><strong>Index selection</strong> – set <code>idx</code> to any integer in <code>range(len(training_data))</code>.<br>
+</li>
+<li><strong>Dataset access</strong> – indexing the dataset returns <code>(image, label)</code> with the transform already applied (here, <code>ToTensor()</code> scales to <code>[0,1]</code>).<br>
+</li>
+<li><strong>Inspection</strong> – the printed tensor slice lets you verify pixel values, and <code>plt.imshow</code> renders the sample for visual confirmation.</li>
+</ol>
+<ul>
+<li>To see a different image you just need to adjust the index.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="transforms" class="level2">
+<h2 class="anchored" data-anchor-id="transforms"><a href="https://pytorch.org/tutorials/beginner/basics/transforms_tutorial.html" target="_blank">Transforms</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/transforms_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="build-the-neural-network" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="build-the-neural-network-1" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-1"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We define our neural network by subclassing <code>nn.Module</code>, and initialize the neural network layers in <code>__init__</code>. Every <code>nn.Module</code> subclass implements the operations on input data in the <code>forward</code> method.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flatten <span class="op">=</span> nn.Flatten()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.flatten(x)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.linear_relu_stack(x)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>What Are We Doing?</strong></p>
+<p>We are defining a <strong>neural network class</strong> using PyTorch. This network is designed to work with images, specifically 28×28 grayscale images like those from the <strong>FashionMNIST</strong> dataset. The network will output <strong>10 values</strong>, one for each digit from 0 to 9.</p>
+<p><strong>Step-by-Step Breakdown</strong></p>
+<ul>
+<li><p><code>class NeuralNetwork(nn.Module):</code></p>
+<ul>
+<li>We create a new neural network class called <code>NeuralNetwork</code>. It inherits from PyTorch’s <code>nn.Module</code>, which is the base class for all neural network models.</li>
+</ul></li>
+<li><p><code>def __init__(self):</code> and <code>super().__init__()</code></p>
+<ul>
+<li><code>__init__</code> is the <strong>constructor</strong>. It’s run when we create the model.</li>
+<li><code>super().__init__()</code> tells Python to also run the initialization code from the parent class (<code>nn.Module</code>). This is required for PyTorch to keep track of everything inside the model.</li>
+</ul></li>
+<li><p><code>self.flatten = nn.Flatten()</code>:</p>
+<ul>
+<li>changes the input from a <strong>2D image (28×28)</strong> into a <strong>1D vector (784 values)</strong>, which is easier for linear layers to handle.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-2" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-2"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We define our neural network by subclassing <code>nn.Module</code>, and initialize the neural network layers in <code>__init__</code>. Every <code>nn.Module</code> subclass implements the operations on input data in the <code>forward</code> method.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flatten <span class="op">=</span> nn.Flatten()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.flatten(x)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.linear_relu_stack(x)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Define a sequence of layers:</strong></p>
+<p>Here we build the main body of the neural network.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    nn.ReLU(),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    nn.ReLU(),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In most contexts when we say “how many layers?” we refer to the learnable ones. So this network has <strong>three fully‑connected (Linear) layers, with ReLU activations in between</strong>.</p>
+<ul>
+<li>You can think of the linear layer as a <strong>filter</strong> that projects the image into a <strong>new space with 512 dimensions</strong>. These new values are <strong>not pixels</strong> anymore, but rather <strong>abstract features</strong> learned by the network.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-3" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-3"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We define our neural network by subclassing <code>nn.Module</code>, and initialize the neural network layers in <code>__init__</code>. Every <code>nn.Module</code> subclass implements the operations on input data in the <code>forward</code> method.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flatten <span class="op">=</span> nn.Flatten()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.flatten(x)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.linear_relu_stack(x)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Define a sequence of layers:</strong></p>
+<ol type="1">
+<li><strong>First layer</strong> <code>nn.Linear(28*28, 512)</code>: takes the 784 values from the image and transforms them into 512 values. A <code>Linear(784, 512)</code> layer performs:
+<ul>
+<li>A <strong>matrix multiplication</strong> between the input vector (length 784) and a <strong>weight matrix</strong> of size <code>[784 × 512]</code>, followed by adding a <strong>bias vector</strong> of length 512.</li>
+<li>Mathematically: <span class="math display">\[
+\text{output} = x \cdot W + b
+\]</span></li>
+<li><code>x</code> is the <strong>input vector</strong>: shape <code>[784]</code></li>
+<li><code>W</code> is the <strong>weight matrix</strong>: shape <code>[784 × 512]</code></li>
+<li><code>b</code> is the <strong>bias vector</strong>: shape <code>[512]</code></li>
+<li>The result (<code>output</code>) is a new vector of shape <code>[512]</code></li>
+</ul></li>
+</ol>
+<ul>
+<li>Each of the 512 output values is a <strong>linear combination</strong> of all 784 pixel values in the input image. By default, PyTorch initializes weights using <a href="https://en.wikipedia.org/wiki/Weight_initialization" target="_blank">Kaiming Uniform Initialization</a> (a variant of <a href="https://en.wikipedia.org/wiki/Weight_initialization" target="_blank">He initialization</a>), which works well with ReLU activation functions.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-4" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-4"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We define our neural network by subclassing <code>nn.Module</code>, and initialize the neural network layers in <code>__init__</code>. Every <code>nn.Module</code> subclass implements the operations on input data in the <code>forward</code> method.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flatten <span class="op">=</span> nn.Flatten()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.flatten(x)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.linear_relu_stack(x)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Define a sequence of layers:</strong></p>
+<ol start="2" type="1">
+<li><p><code>nn.ReLU()</code>: applies the <a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)" target="_blank"><strong>ReLU activation function</strong></a>, which keeps positive numbers and turns negative numbers into zero. This adds non-linearity to the model.</p></li>
+<li><p><strong>Second layer</strong><code>nn.Linear(512, 512)</code>: takes those 512 values and again outputs 512 values. This is a <strong>hidden layer</strong>, helping the model learn more complex patterns.</p></li>
+<li><p><code>nn.ReLU()</code>: Another non-linear transformation.</p></li>
+<li><p><strong>Third (Final) layer</strong>:<code>nn.Linear(512, 10)</code>: takes the 512 values and produces <strong>10 output values</strong>.</p>
+<ul>
+<li>These are called <strong>logits</strong>, and each one corresponds to a digit class (0 to 9).</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-5" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-5"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We define our neural network by subclassing <code>nn.Module</code>, and initialize the neural network layers in <code>__init__</code>. Every <code>nn.Module</code> subclass implements the operations on input data in the <code>forward</code> method.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flatten <span class="op">=</span> nn.Flatten()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear_relu_stack <span class="op">=</span> nn.Sequential(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">512</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">512</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">512</span>, <span class="dv">10</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.flatten(x)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        logits <span class="op">=</span> <span class="va">self</span>.linear_relu_stack(x)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> logits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Define a sequence of layers:</strong></p>
+<ul>
+<li><p><code>forward(self, x)</code>: This is the <strong>forward pass</strong>, the function that runs when we send data through the model.</p></li>
+<li><p>Step-by-step:</p></li>
+</ul>
+<ol type="1">
+<li><p><code>x = self.flatten(x)</code>: Convert the 28×28 image into a 1D tensor with 784 values.</p></li>
+<li><p><code>logits = self.linear_relu_stack(x)</code>: Pass the input through the series of layers.</p></li>
+<li><p><code>return logits</code>: Output the final predictions (raw scores for each class).</p></li>
+</ol>
+<ul>
+<li>In summary this neural network:
+<ul>
+<li>Takes an image (28×28) as input,</li>
+<li>Flattens it into a vector,</li>
+<li>Passes it through two <strong>fully connected layers</strong> with ReLU,</li>
+<li>Outputs a vector of size 10 (one for each digit)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-6" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-6"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 60%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We create an instance of <code>NeuralNetwork</code>, and move it to the <code>device</code>, and print its structure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> NeuralNetwork().to(device)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To use the model, we pass it the input data.</p>
+<p><strong>Example</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.rand(<span class="dv">1</span>, <span class="dv">28</span>, <span class="dv">28</span>, device<span class="op">=</span>device)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>logits <span class="op">=</span> model(X)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pred_probab <span class="op">=</span> nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)(logits)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pred_probab.argmax(<span class="dv">1</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted class: </span><span class="sc">{</span>y_pred<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To see the image:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the batch dimension (1, 28, 28) → (28, 28)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> X[<span class="dv">0</span>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the image</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)  <span class="co"># Use 'gray' colormap for grayscale image</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Random 28x28 Image"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><code>torch.rand(1, 28, 28, device=device)</code>: Creates a <strong>random image</strong> with shape <code>[1, 28, 28]</code>
+<ul>
+<li><code>1</code> is the batch size (just one image)</li>
+<li><code>28×28</code> is the image dimension</li>
+<li><code>device=device</code> ensures the tensor goes to CPU or GPU (wherever the model is)</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To see tensor:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Let’s say the tensor shown is:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.tensor([[</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.1177</span>, <span class="fl">0.2669</span>, <span class="fl">0.6367</span>, <span class="fl">0.6148</span>, <span class="fl">0.3085</span>, ...],  <span class="co"># row 0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.8672</span>, <span class="fl">0.3645</span>, <span class="fl">0.4822</span>, <span class="fl">0.9566</span>, <span class="fl">0.8999</span>, ...],  <span class="co"># row 1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>This is a <strong>3D tensor</strong> of shape <code>[1, 28, 28]</code>:
+<ul>
+<li>The first dimension <code>1</code> is the batch size,</li>
+<li>The next two are height and width of the image.</li>
+</ul></li>
+<li>The full index of <code>0.2669</code> in the 3D tensor is: <code>X[0, 0, 1]</code>.
+<ul>
+<li><code>0</code> → first (and only) image in the batch</li>
+<li><code>0</code> → first row of the image</li>
+<li><code>1</code> → second column in that row</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-neural-network-7" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-neural-network-7"><a href="https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html" target="_blank">Build the Neural Network</a></h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>We create an instance of <code>NeuralNetwork</code>, and move it to the <code>device</code>, and print its structure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> NeuralNetwork().to(device)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To use the model, we pass it the input data.</p>
+<p><strong>Example</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.rand(<span class="dv">1</span>, <span class="dv">28</span>, <span class="dv">28</span>, device<span class="op">=</span>device)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>logits <span class="op">=</span> model(X)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>pred_probab <span class="op">=</span> nn.Softmax(dim<span class="op">=</span><span class="dv">1</span>)(logits)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pred_probab.argmax(<span class="dv">1</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted class: </span><span class="sc">{</span>y_pred<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># To see the image:</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the batch dimension (1, 28, 28) → (28, 28)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> X[<span class="dv">0</span>]</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the image</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap<span class="op">=</span><span class="st">'gray'</span>)  <span class="co"># Use 'gray' colormap for grayscale image</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Random 28x28 Image"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p><code>logits = model(X)</code>: This <strong>calls the model</strong> with input <code>X</code>.</p>
+<ul>
+<li>Behind the scenes, it runs <code>model.forward(X)</code></li>
+<li>Output: a <strong>vector of 10 values</strong> (called logits), one for each class (digits 0 through 9)</li>
+</ul></li>
+<li><p><strong>Note</strong>: We do <strong>not</strong> call <code>model.forward()</code> directly — <code>PyTorch</code> manages hooks and gradients when we use <code>model(X)</code></p></li>
+<li><p><code>pred_probab = nn.Softmax(dim=1)(logits)</code>: Applies <strong>softmax</strong> to the raw output logits</p>
+<ul>
+<li>Softmax turns logits into <strong>probabilities</strong> (values between 0 and 1 that sum to 1)</li>
+<li><code>dim=1</code> means we apply softmax across the 10 output class values (not across the batch)</li>
+</ul></li>
+<li><p><code>y_pred = pred_probab.argmax(1)</code>: Picks the <strong>index of the largest probability</strong>, i.e., the <strong>predicted class</strong></p>
+<ul>
+<li><code>argmax(1)</code> returns the class with the highest probability from each row (here we have just one row)</li>
+</ul></li>
+<li><p><code>print(f"Predicted class: {y_pred}")</code>: Prints the predicted digit class (0 through 9)</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="automatic-differentiation-with-torch.autograd" class="level2">
+<h2 class="anchored" data-anchor-id="automatic-differentiation-with-torch.autograd"><a href="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html" target="_blank">Automatic Differentiation with torch.autograd</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="optimizing-model-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="optimizing-model-parameters"><a href="https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html" target="_blank">Optimizing Model Parameters</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+<section id="save-and-load-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="save-and-load-the-model"><a href="https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html" target="_blank">Save and Load the Model</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+</section>
+</section>
+<section id="your-turn" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Your turn!</h1>
+<section id="introduction-to-pytorch---youtube-series" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-pytorch---youtube-series"><a href="https://pytorch.org/tutorials/beginner/introyt/introyt1_tutorial.html" target="_blank">Introduction to PyTorch - YouTube Series</a></h2>
+<iframe src="https://pytorch.org/tutorials/beginner/introyt/introyt1_tutorial.html" width="100%" height="600" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups">
+</iframe>
+<center>
+<em>Pro tip: Use Colab with a GPU runtime to speed up operations Runtime &gt; Change runtime type &gt; GPU</em>
+</center>
+</section>
+</section>
+<section id="neural-networks" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Neural Networks</h1>
+<section id="neural-networks---video" class="level2">
+<h2 class="anchored" data-anchor-id="neural-networks---video">Neural Networks - Video</h2>
+<p><br></p>
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/aircAruvnKk" title="But what is a neural network?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</center>
+<center>
+<a href="https://www.youtube.com/embed/aircAruvnKk" target="_blank">But what is a neural network?</a>
+</center>
+</section>
+</section>
+<section id="single-layer-neural-network" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Single Layer Neural Network</h1>
+<section id="single-layer-neural-network-1" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-1">Single Layer Neural Network</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X) \\
+     &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j \right).
+\end{align*}
+\]</span></p>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><strong>Network Diagram of Single Layer Neural Network</strong></p>
+<div class="cell" data-layout-align="center" width="85%">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="618"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="single-layer-neural-network-introduction-and-layers-overview" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-introduction-and-layers-overview">Single Layer Neural Network: Introduction and Layers Overview</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X) \\
+     &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j \right).
+\end{align*}
+\]</span></p>
+<p><strong>Network Diagram of Single Layer Neural Network</strong></p>
+<div class="cell" data-layout-align="center" width="85%">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="618"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p>Neural networks are often displayed using <strong>network diagrams</strong>, as shown in the figure.</p>
+<ul>
+<li><strong>Input Layer (Orange Circles):</strong>
+<ul>
+<li><span class="math inline">\(X_1, X_2, X_3, X_4\)</span></li>
+<li>These are observed variables from the dataset.</li>
+</ul></li>
+<li><strong>Hidden Layer (Blue Circles):</strong>
+<ul>
+<li><span class="math inline">\(A_1, A_2, A_3, A_4, A_5\)</span></li>
+<li>These are transformations (activations) computed from the inputs.</li>
+</ul></li>
+<li><strong>Output Layer (Pink Circle):</strong>
+<ul>
+<li><span class="math inline">\(f(X) \to Y\)</span></li>
+<li><span class="math inline">\(Y\)</span> is also observed, e.g., a label or continuous response.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="single-layer-neural-network-observed-vs.-latent" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-observed-vs.-latent">Single Layer Neural Network: Observed vs.&nbsp;Latent</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X) \\
+     &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j \right).
+\end{align*}
+\]</span></p>
+<p><strong>Network Diagram of Single Layer Neural Network</strong></p>
+<div class="cell" data-layout-align="center" width="85%">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="618"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><strong>Where is the observed data?</strong></p>
+<ul>
+<li><span class="math inline">\(X_j\)</span> are observed (the input features).</li>
+<li><span class="math inline">\(Y\)</span> is observed (the response or label).</li>
+<li>The <strong>hidden units</strong> (<span class="math inline">\(A_k\)</span>) are <strong>not</strong> observed; they’re learned transformations.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="single-layer-neural-network-hidden-layer-as-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-hidden-layer-as-transformations">Single Layer Neural Network: Hidden Layer as Transformations</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X) \\
+     &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j \right).
+\end{align*}
+\]</span></p>
+<p><strong>Network Diagram of Single Layer Neural Network</strong></p>
+<div class="cell" data-layout-align="center" width="85%">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="618"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p>In the hidden layer, each activation <span class="math inline">\(A_k\)</span> is computed as:</p>
+<p><span class="math display">\[
+A_k = g\Bigl(w_{k0} + \sum_{j=1}^4 w_{kj} X_j\Bigr),
+\]</span></p>
+<ul>
+<li>In the formula, these <span class="math inline">\(h_k(X)\)</span> are the same as the activations <span class="math inline">\(A_k\)</span>.</li>
+<li><strong><span class="math inline">\(h_k(X)\)</span></strong> = <strong><span class="math inline">\(g(w_{k0} + \sum_{j=1}^p w_{kj} X_j)\)</span></strong>.</li>
+<li><strong><span class="math inline">\(g(\cdot)\)</span></strong> is a nonlinear function (e.g., ReLU, sigmoid, tanh).</li>
+<li><strong><span class="math inline">\(w_{kj}\)</span></strong> are the weights learned during training.</li>
+<li>Each hidden unit has a <em>different</em> set of weights, hence different transformations.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="single-layer-neural-network-training-the-network" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-training-the-network">Single Layer Neural Network: Training the Network</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\begin{align*}
+f(X) &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k h_k(X) \\
+     &amp;= \beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j \right).
+\end{align*}
+\]</span></p>
+<p><strong>Network Diagram of Single Layer Neural Network</strong></p>
+<div class="cell" data-layout-align="center" width="85%">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="618"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li><p>The network learns all weights <span class="math inline">\(w_{kj}, w_{k0}, \beta_k, \beta_0\)</span> during <strong>training</strong>.</p></li>
+<li><p>Objective: predict <span class="math inline">\(Y\)</span> from <span class="math inline">\(X\)</span> accurately.</p></li>
+<li><p><strong>Key insight:</strong> Hidden layer learns useful transformations on the fly to help approximate the true function mapping <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="single-layer-neural-network-details" class="level2">
+<h2 class="anchored" data-anchor-id="single-layer-neural-network-details">Single Layer Neural Network: Details</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li><p><span class="math inline">\(A_k = h_k(X) = g(w_{k0} + \sum_{j=1}^{p} w_{kj} X_j)\)</span> are called the <strong>activations</strong> in the <em>hidden layer</em>. We can think of it as a non-linear tranformation of a linear function.</p></li>
+<li><p><span class="math inline">\(g(z)\)</span> is called the <strong>activation function</strong>. Two popular <strong>activation functions</strong> are: the <strong>sigmoid</strong> and <strong>rectified linear (ReLU)</strong>.</p></li>
+<li><p>Activation functions in hidden layers are typically nonlinear; otherwise, the model collapses to a linear model.</p></li>
+<li><p>So the activations are like derived features — nonlinear transformations of linear combinations of the features.</p></li>
+<li><p>The model is fit by minimizing <span class="math inline">\(\sum_{i=1}^{n} (y_i - f(x_i))^2\)</span> (e.g., for regression).</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="nn-example-mnist-digits" class="level2">
+<h2 class="anchored" data-anchor-id="nn-example-mnist-digits">NN Example: MNIST Digits</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_3a-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_3b-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li><p><strong>Handwritten digits</strong></p>
+<ul>
+<li><p><span class="math inline">\(28 \times 28\)</span> grayscale images</p></li>
+<li><p>60K train, 10K test images</p></li>
+<li><p>Features are the 784 pixel grayscale values <span class="math inline">\(\in (0, 255)\)</span></p></li>
+<li><p>Labels are the digit class <span class="math inline">\(0\text{–}9\)</span></p></li>
+</ul></li>
+<li><p><strong>Goal</strong>: Build a classifier to predict the image class.</p></li>
+<li><p>We build a two-layer network with:</p>
+<ul>
+<li><p>256 units at the first layer,</p></li>
+<li><p>128 units at the second layer, and</p></li>
+<li><p>10 units at the output layer.</p></li>
+</ul></li>
+<li><p>Along with intercepts (called <em>biases</em>), there are 235,146 parameters (referred to as <em>weights</em>).</p></li>
+</ul>
+<div class="fragment">
+<center>
+<strong>Let’s code!</strong>
+</center>
+</div>
+</div>
+</div>
+</div>
+<!---
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+## Example: MNIST Digits
+
+::: {style="font-size: 80%;"}
+
+::::: columns
+::: {.column width="70%" style="text-align: center; justify-content: center; align-items: center;"}
+
+
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/10_4-1.png){fig-align='center' width=85%}
+:::
+:::
+
+
+
+
+
+:::
+
+::: {.column width="30%" style="text-align: center; justify-content: center; align-items: center;"}
+
+-   **Handwritten digits**
+
+    -   $28 \times 28$ grayscale images
+
+    -   60K train, 10K test images
+
+    -   Features are the 784 pixel grayscale values $\in (0, 255)$
+
+    -   Labels are the digit class $0\text{–}9$
+
+-   **Goal**: Build a classifier to predict the image class.
+
+-   We build a two-layer network with:
+
+    -   256 units at the first layer,
+
+    -   128 units at the second layer, and
+
+    -   10 units at the output layer.
+
+-   Along with intercepts (called *biases*), there are 235,146 parameters (referred to as *weights*).
+
+:::
+:::::
+:::
+
+
+
+## Details of Output Layer
+
+-   Let $Z_m = \beta_{m0} + \sum_{\ell=1}^{K_2} \beta_{m\ell} A_\ell^{(2)}$, $m = 0, 1, \ldots, 9$, be 10 linear combinations of activations at the second layer.
+
+-   Output activation function encodes the **softmax** function:
+$$
+f_m(X) = \Pr(Y = m \mid X) = \frac{e^{Z_m}}{\sum_{\ell=0}^{9} e^{Z_\ell}}.
+$$
+
+-   We fit the model by minimizing the negative multinomial log-likelihood (or cross-entropy):
+$$
+-\sum_{i=1}^{n} \sum_{m=0}^{9} y_{im} \log(f_m(x_i)).
+$$
+
+-   $y_{im}$ is 1 if the true class for observation $i$ is $m$, else 0 — i.e., *one-hot encoded*.
+
+## Results
+
+| Method                                  | Test Error |
+|-----------------------------------------|------------|
+| Neural Network + Ridge Regularization   | 2.3%       |
+| Neural Network + Dropout Regularization | 1.8%       |
+| Multinomial Logistic Regression         | 7.2%       |
+| Linear Discriminant Analysis            | 12.7%      |
+
+-   Early success for neural networks in the 1990s.
+
+-   With so many parameters, regularization is essential.
+
+-   Some details of regularization and fitting will come later.
+
+-   Very overworked problem — best reported rates are $< 0.5\%$!
+
+-   Human error rate is reported to be around $0.2\%$, or 20 of the 10K test images.
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--->
+</section>
+</section>
+<section id="fitting-neural-networks" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Fitting Neural Networks</h1>
+<section id="gradient-descent---video" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent---video">Gradient Descent - Video</h2>
+<p><br></p>
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/IHZwWFHWa-w?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3" title="Gradient descent, how neural networks learn | DL2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</center>
+<center>
+<a href="https://www.youtube.com/watch?v=IHZwWFHWa-w&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3" target="_blank">Gradient descent, how neural networks learn</a>
+</center>
+</section>
+<section id="backpropagation-intuition---video" class="level2">
+<h2 class="anchored" data-anchor-id="backpropagation-intuition---video">Backpropagation Intuition - Video</h2>
+<p><br></p>
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Ilg3gGewQ5U?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3" title="Backpropagation, intuitively" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</center>
+<center>
+<a href="https://www.youtube.com/watch?v=Ilg3gGewQ5U&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3" target="_blank">Backpropagation, intuitively</a>
+</center>
+</section>
+<section id="backpropagation-calculus---video" class="level2">
+<h2 class="anchored" data-anchor-id="backpropagation-calculus---video">Backpropagation Calculus - Video</h2>
+<p><br></p>
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/tIeHLnjs5U8?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=4" title="Neural Network Insights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</center>
+<center>
+<a href="https://www.youtube.com/watch?v=tIeHLnjs5U8&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=4" target="_blank">Backpropagation calculus</a>
+</center>
+</section>
+<section id="fitting-neural-networks-1" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-neural-networks-1">Fitting Neural Networks</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<p><span class="math display">\[
+\min_{\{w_k\}_{1}^K, \beta} \frac{1}{2} \sum_{i=1}^n \left(y_i - f(x_i)\right)^2, \quad \text{where}
+\]</span></p>
+<p><span class="math display">\[
+f(x_i) = \beta_0 + \sum_{k=1}^K \beta_k g\left(w_{k0} + \sum_{j=1}^p w_{kj} x_{ij}\right).
+\]</span></p>
+<p>This problem is difficult because the objective is <strong>non-convex</strong>.</p>
+<p>Despite this, effective algorithms have evolved that can optimize complex neural network problems efficiently.</p>
+</div>
+</div>
+</section>
+<section id="non-convex-functions-and-gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="non-convex-functions-and-gradient-descent">Non Convex Functions and Gradient Descent</h2>
+<p>Let <span class="math inline">\(R(\theta) = \frac{1}{2} \sum_{i=1}^n (y_i - f_\theta(x_i))^2\)</span> with <span class="math inline">\(\theta = (\{w_k\}_{1}^K, \beta)\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><p>Start with a guess <span class="math inline">\(\theta^0\)</span> for all the parameters in <span class="math inline">\(\theta\)</span>, and set <span class="math inline">\(t = 0\)</span>.</p></li>
+<li><p>Iterate until the objective <span class="math inline">\(R(\theta)\)</span> fails to decrease:</p>
+<ol type="a">
+<li><p>Find a vector <span class="math inline">\(\delta\)</span> that reflects a small change in <span class="math inline">\(\theta\)</span>, such that <span class="math inline">\(\theta^{t+1} = \theta^t + \delta\)</span> <strong>reduces</strong> the objective; i.e., <span class="math inline">\(R(\theta^{t+1}) &lt; R(\theta^t)\)</span>.</p></li>
+<li><p>Set <span class="math inline">\(t \gets t + 1\)</span>.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="gradient-descent-continued" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent-continued">Gradient Descent Continued</h2>
+<ul>
+<li><p>In this simple example, we reached the <strong>global minimum</strong>.</p></li>
+<li><p>If we had started a little to the left of <span class="math inline">\(\theta^0\)</span>, we would have gone in the other direction and ended up in a <strong>local minimum</strong>.</p></li>
+<li><p>Although <span class="math inline">\(\theta\)</span> is multi-dimensional, we have depicted the process as one-dimensional. It is much harder to identify whether one is in a local minimum in high dimensions.</p></li>
+<li><p>How to find a direction <span class="math inline">\(\delta\)</span> that points downhill? We compute the <strong>gradient vector</strong>: <span class="math display">\[
+\nabla R(\theta^t) = \frac{\partial R(\theta)}{\partial \theta} \bigg|_{\theta = \theta^t}
+\]</span></p></li>
+<li><p>i.e., the vector of <strong>partial derivatives</strong> at the current guess <span class="math inline">\(\theta^t\)</span>.</p></li>
+<li><p>The gradient points uphill, so our update is <span class="math inline">\(\delta = - \rho \nabla R(\theta^t)\)</span> or <span class="math display">\[
+\theta^{t+1} \gets \theta^t - \rho \nabla R(\theta^t),
+\]</span> where <span class="math inline">\(\rho\)</span> is the <strong>learning rate</strong> (typically small, e.g., <span class="math inline">\(\rho = 0.001\)</span>).</p></li>
+</ul>
+</section>
+<section id="gradients-and-backpropagation" class="level2">
+<h2 class="anchored" data-anchor-id="gradients-and-backpropagation">Gradients and Backpropagation</h2>
+<div style="font-size: 80%;">
+<p><span class="math display">\[
+R(\theta) = \sum_{i=1}^n R_i(\theta) \text{ is a sum, so gradient is sum of gradients.}
+\]</span></p>
+<p><span class="math display">\[
+R_i(\theta) = \frac{1}{2}(y_i - f_\theta(x_i))^2 = \frac{1}{2} \left( y_i - \beta_0 - \sum_{k=1}^K \beta_k g\left( w_{k0} + \sum_{j=1}^p w_{kj} x_{ij} \right) \right)^2
+\]</span></p>
+<p>For ease of notation, let</p>
+<p><span class="math display">\[
+z_{ik} = w_{k0} + \sum_{j=1}^p w_{kj} x_{ij}.
+\]</span></p>
+<p>Backpropagation uses the <strong>chain rule for differentiation</strong>:</p>
+<p><span class="math display">\[
+\frac{\partial R_i(\theta)}{\partial \beta_k} = \frac{\partial R_i(\theta)}{\partial f_\theta(x_i)} \cdot \frac{\partial f_\theta(x_i)}{\partial \beta_k}
+= -(y_i - f_\theta(x_i)) \cdot g(z_{ik}).
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial R_i(\theta)}{\partial w_{kj}} = \frac{\partial R_i(\theta)}{\partial f_\theta(x_i)} \cdot \frac{\partial f_\theta(x_i)}{\partial g(z_{ik})} \cdot \frac{\partial g(z_{ik})}{\partial z_{ik}} \cdot \frac{\partial z_{ik}}{\partial w_{kj}}
+= -(y_i - f_\theta(x_i)) \cdot \beta_k \cdot g'(z_{ik}) \cdot x_{ij}.
+\]</span></p>
+</div>
+</section>
+<section id="tricks-of-the-trade" class="level2">
+<h2 class="anchored" data-anchor-id="tricks-of-the-trade">Tricks of the Trade</h2>
+<ul>
+<li><strong>Slow learning.</strong> Gradient descent is slow, and a small learning rate <span class="math inline">\(\rho\)</span> slows it even further. With <em>early stopping</em>, this is a form of regularization.</li>
+<li><strong>Stochastic gradient descent.</strong> Rather than compute the gradient using <em>all</em> the data, use a small <em>minibatch</em> drawn at random at each step. E.g. for <em>MNIST</em> data, with <span class="math inline">\(n = 60K\)</span>, we use minibatches of 128 observations.</li>
+<li><strong>An epoch</strong> is a count of iterations and amounts to the number of minibatch updates such that <span class="math inline">\(n\)</span> samples in total have been processed; i.e.&nbsp;<span class="math inline">\(60K/128 \approx 469\)</span> for <em>MNIST</em>.</li>
+<li><strong>Regularization.</strong> Ridge and lasso regularization can be used to shrink the weights at each layer. Two other popular forms of regularization are <em>dropout</em> and <em>augmentation</em>, discussed next.</li>
+</ul>
+</section>
+<section id="dropout-learning" class="level2">
+<h2 class="anchored" data-anchor-id="dropout-learning">Dropout Learning</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>At each Stochastic Gradient Descent (SGD) update</strong>, randomly remove units with probability <span class="math inline">\(\phi\)</span>, and scale up the weights of those retained by <span class="math inline">\(1/(1-\phi)\)</span> to compensate.</p></li>
+<li><p>In simple scenarios like linear regression, a version of this process can be shown to be equivalent to ridge regularization.</p></li>
+<li><p>As in ridge, the other units <em>stand in</em> for those temporarily removed, and their weights are drawn closer together.</p></li>
+<li><p>Similar to randomly omitting variables when growing trees in random forests.</p></li>
+</ul>
+</section>
+<section id="ridge-and-data-augmentation" class="level2">
+<h2 class="anchored" data-anchor-id="ridge-and-data-augmentation">Ridge and Data Augmentation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Make many copies of each</strong> <span class="math inline">\((x_i, y_i)\)</span> and add a small amount of Gaussian noise to the <span class="math inline">\(x_i\)</span> — a little cloud around each observation — but <em>leave the copies of</em> <span class="math inline">\(y_i\)</span> alone!</p></li>
+<li><p>This makes the fit robust to small perturbations in <span class="math inline">\(x_i\)</span>, and is equivalent to ridge regularization in an OLS setting.</p></li>
+</ul>
+</section>
+<section id="data-augmentation-on-the-fly" class="level2">
+<h2 class="anchored" data-anchor-id="data-augmentation-on-the-fly">Data Augmentation on the Fly</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Data augmentation</strong> is especially effective with <strong>SGD</strong>, here demonstrated for a CNN and image classification.</p></li>
+<li><p>Natural transformations are made of each training image when it is sampled by SGD, thus ultimately making a cloud of images around each original training image.</p></li>
+<li><p>The label is left unchanged — in each case still <strong>tiger</strong>.</p></li>
+<li><p>Improves performance of CNN and is similar to ridge.</p></li>
+</ul>
+</section>
+<section id="double-descent" class="level2">
+<h2 class="anchored" data-anchor-id="double-descent">Double Descent</h2>
+<ul>
+<li><p><strong>With neural networks</strong>, it seems better to have too many hidden units than too few.</p></li>
+<li><p>Likewise more hidden layers better than few.</p></li>
+<li><p>Running stochastic gradient descent till zero training error often gives good out-of-sample error.</p></li>
+<li><p>Increasing the number of units or layers and again training till zero error sometimes gives <strong>even better</strong> out-of-sample error.</p></li>
+<li><p>What happened to overfitting and the usual bias-variance trade-off?</p>
+<ul>
+<li><em>Belkin, Hsu, Ma, and Mandal (arXiv 2018) Reconciling Modern Machine Learning and the Bias-Variance Trade-off.</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-double-descent-error-curve" class="level2">
+<h2 class="anchored" data-anchor-id="the-double-descent-error-curve">The Double-Descent Error Curve</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>When <span class="math inline">\(d \leq 20\)</span>, model is OLS, and we see usual bias-variance trade-off.</p></li>
+<li><p>When <span class="math inline">\(d &gt; 20\)</span>, we revert to minimum-norm. As <span class="math inline">\(d\)</span> increases above 20, <span class="math inline">\(\sum_{j=1}^d \hat{\beta}_j^2\)</span> <strong>decreases</strong> since it is easier to achieve zero error, and hence less wiggly solutions.</p></li>
+</ul>
+</section>
+<section id="less-wiggly-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="less-wiggly-solutions">Less Wiggly Solutions</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>To achieve a zero-residual solution with <span class="math inline">\(d = 20\)</span> is a real stretch!</p></li>
+<li><p>Easier for larger <span class="math inline">\(d\)</span>.</p></li>
+</ul>
+</section>
+<section id="some-facts" class="level2">
+<h2 class="anchored" data-anchor-id="some-facts">Some Facts</h2>
+<ul>
+<li><p>In a wide linear model (<span class="math inline">\(p \gg n\)</span>) fit by least squares, SGD with a small step size leads to a <em>minimum norm</em> zero-residual solution.</p></li>
+<li><p>Stochastic gradient <em>flow</em> — i.e.&nbsp;the entire path of SGD solutions — is somewhat similar to ridge path.</p></li>
+<li><p>By analogy, deep and wide neural networks fit by SGD down to zero training error often give good solutions that generalize well.</p></li>
+<li><p>In particular cases with <em>high signal-to-noise ratio</em> — e.g.&nbsp;image recognition — are less prone to overfitting; the zero-error solution is mostly signal!</p></li>
+</ul>
+</section>
+</section>
+<section id="convolutional-neural-network-cnn" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Convolutional Neural Network — CNN</h1>
+<section id="cnn-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="cnn-introduction">CNN: Introduction</h2>
+<ul>
+<li><p>Neural networks rebounded around 2010 with big successes in image classification.</p></li>
+<li><p>Around that time, massive databases of labeled images were being accumulated, with ever-increasing numbers of classes.</p></li>
+</ul>
+</section>
+<section id="the-cifar100-database" class="level2">
+<h2 class="anchored" data-anchor-id="the-cifar100-database">The CIFAR100 Database</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/cifar100.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 80%;">
+<ul>
+<li><p>The figure shows 75 images drawn from the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank"><strong>CIFAR100</strong> database</a>.</p></li>
+<li><p>This database consists of 60,000 images labeled according to 20 superclasses (e.g.&nbsp;<em>aquatic mammals</em>), with five classes per superclass (<em>beaver, dolphin, otter, seal, whale</em>).</p></li>
+<li><p>Each image has a resolution of 32 × 32 pixels, with three eight-bit numbers per pixel representing red, green, and blue. The numbers for each image are organized in a three-dimensional array called a <strong>feature map</strong>.</p></li>
+<li><p>The first two axes are spatial (both 32-dimensional), and the third is the <strong>channel</strong> axis, representing the three (blue, green or red) colors.</p></li>
+<li><p>There is a designated training set of 50,000 images, and a test set of 10,000.</p></li>
+</ul>
+</div>
+</section>
+<section id="the-convolutional-network-hierarchy" class="level2">
+<h2 class="anchored" data-anchor-id="the-convolutional-network-hierarchy">The Convolutional Network Hierarchy</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 80%;">
+<ul>
+<li><p>CNNs mimic, to some degree, how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.</p></li>
+<li><p>The network first identifies <strong>low-level features</strong> in the input image, such as small edges or patches of color.</p></li>
+<li><p>These low-level features are then combined to form <strong>higher-level features</strong>, such as parts of ears or eyes. Eventually, the presence or absence of these higher-level features contributes to the probability of any given output class.</p></li>
+<li><p>This hierarchical construction is achieved by combining two specialized types of hidden layers: <strong>convolution layers</strong> and <strong>pooling layers</strong>:</p></li>
+<li><p><strong>Convolution layers</strong> search for instances of small patterns in the image.</p></li>
+<li><p><strong>Pooling layers</strong> downsample these results to select a prominent subset.</p></li>
+<li><p>To achieve state-of-the-art results, contemporary neural network architectures often use many convolution and pooling layers.</p></li>
+</ul>
+</div>
+</section>
+<section id="convolution-layer" class="level2">
+<h2 class="anchored" data-anchor-id="convolution-layer">Convolution Layer</h2>
+<div style="font-size: 70%;">
+<ul>
+<li><p>A convolution layer is made up of a large number of <strong>convolution filters</strong>, each of which is a template that determines whether a particular local feature is present in an image.</p></li>
+<li><p>A <strong>convolution filter</strong> relies on a very simple operation, called a convolution, which basically amounts to repeatedly multiplying matrix elements and then adding the results. <span class="math display">\[
+\text{Input Image} =
+\begin{bmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i \\
+j &amp; k &amp; l
+\end{bmatrix}
+\quad \text{Convolution Filter} =
+\begin{bmatrix}
+\alpha &amp; \beta \\
+\gamma &amp; \delta
+\end{bmatrix}.
+\]</span></p></li>
+<li><p>When we convolve the image with the filter, we get the result: <span class="math display">\[
+\text{Convolved Image} =
+\begin{bmatrix}
+a\alpha + b\beta + d\gamma + e\delta &amp; b\alpha + c\beta + e\gamma + f\delta \\
+d\alpha + e\beta + g\gamma + h\delta &amp; e\alpha + f\beta + h\gamma + i\delta \\
+g\alpha + h\beta + j\gamma + k\delta &amp; h\alpha + i\beta + k\gamma + l\delta
+\end{bmatrix}.
+\]</span></p></li>
+<li><p>the convolution filter is applied to every 2 × 2 submatrix of the original image in order to obtain the convolved image.</p></li>
+<li><p>If a 2 × 2 submatrix of the original image resembles the convolution filter, then it will have a large value in the convolved image; otherwise, it will have a small value. Thus, the convolved image highlights regions of the original image that resemble the convolution filter.</p></li>
+<li><p>The filter is itself an image and represents a small shape, edge, etc.</p></li>
+<li><p>The filters are <strong>learned</strong> during training.</p></li>
+</ul>
+</div>
+</section>
+<section id="convolution-example" class="level2">
+<h2 class="anchored" data-anchor-id="convolution-example">Convolution Example</h2>
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<div style="font-size: 80%;">
+<ul>
+<li><p>The idea of convolution with a filter is to find common patterns that occur in different parts of the image.</p></li>
+<li><p>The two filters shown here highlight vertical and horizontal stripes.</p></li>
+<li><p>The result of the convolution is a new feature map.</p></li>
+<li><p>Since images have three color channels, the filter does as well: one filter per channel, and dot-products are summed.</p></li>
+<li><p>The weights in the filters are <strong>learned</strong> by the network.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="pooling-layer" class="level2">
+<h2 class="anchored" data-anchor-id="pooling-layer">Pooling Layer</h2>
+<p>A pooling layer provides a way to condense a large image into a smaller summary image.</p>
+<p><span class="math display">\[
+\text{Max pool}
+\begin{bmatrix}
+1 &amp; 2 &amp; 5 &amp; 3 \\
+3 &amp; 0 &amp; 1 &amp; 2 \\
+2 &amp; 1 &amp; 3 &amp; 4 \\
+1 &amp; 1 &amp; 2 &amp; 0
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+3 &amp; 5 \\
+2 &amp; 4
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li><p>Each non-overlapping <span class="math inline">\(2 \times 2\)</span> block is replaced by its maximum.</p></li>
+<li><p>This sharpens the feature identification.</p></li>
+<li><p>Allows for locational invariance.</p></li>
+<li><p>Reduces the dimension by a factor of 4 — i.e., factor of 2 in each dimension.</p></li>
+</ul>
+</section>
+<section id="architecture-of-a-cnn" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-of-a-cnn">Architecture of a CNN</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Many convolve + pool layers.</p></li>
+<li><p>Filters are typically small, e.g., each channel <span class="math inline">\(3 \times 3\)</span>.</p></li>
+<li><p>Each filter creates a new channel in the convolution layer.</p></li>
+<li><p>As pooling reduces size, the number of filters/channels is typically increased.</p></li>
+<li><p>Number of layers can be very large.<br>
+E.g., <strong>resnet50</strong> trained on <strong>imagenet</strong> 1000-class image database has 50 layers!</p></li>
+</ul>
+</section>
+<section id="data-augmentation" class="level2">
+<h2 class="anchored" data-anchor-id="data-augmentation">Data Augmentation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 80%;">
+<ul>
+<li><p>An additional important trick used with image modeling is data augmentation.</p></li>
+<li><p>Essentially, each training image is replicated many times, with each replicate randomly distorted in a natural way such that human recognition is unaffected.</p></li>
+<li><p>Typical distortions are zoom, horizontal and vertical shift, shear, small rotations, and in this case horizontal flips.</p></li>
+<li><p>At face value this is a way of increasing the training set considerably with somewhat different examples, and thus protects against overfitting.</p></li>
+<li><p>In fact we can see this as a form of regularization: we build a cloud of images around each original image, all with the same label.</p></li>
+</ul>
+</div>
+</section>
+<section id="cnn-example-pretrained-networks-to-classify-images" class="level2">
+<h2 class="anchored" data-anchor-id="cnn-example-pretrained-networks-to-classify-images">CNN Example: Pretrained Networks to Classify Images</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_1_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we use the 50-layer <strong>resnet50</strong> network trained on the 1000-class <strong>imagenet</strong> corpus to classify some photographs.</p>
+<div class="fragment">
+<center>
+<strong>Let’s code!</strong>
+</center>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="document-classification" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Document Classification</h1>
+<section id="document-classification-imdb-movie-reviews" class="level2">
+<h2 class="anchored" data-anchor-id="document-classification-imdb-movie-reviews">Document Classification: IMDB Movie Reviews</h2>
+<p>The <a href="https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews" target="_blank"><strong>IMDB</strong> corpus</a> consists of user-supplied movie ratings for a large collection of movies. Each has been labeled for <strong>sentiment</strong> as <strong>positive</strong> or <strong>negative</strong>. Here is the beginning of a negative review:</p>
+<blockquote class="blockquote">
+<p><em>This has to be one of the worst films of the 1990s. When my friends &amp; I were watching this film (being the target audience it was aimed at) we just sat &amp; watched the first half an hour with our jaws touching the floor at how bad it really was. The rest of the time, everyone else in the theater just started talking to each other, leaving or generally crying into their popcorn …</em></p>
+</blockquote>
+<p>We have labeled training and test sets, each consisting of 25,000 reviews, and each balanced with regard to sentiment.</p>
+<p><strong>Goal:</strong> We want to build a classifier to predict the sentiment of a review.</p>
+</section>
+<section id="featurization-bag-of-words" class="level2">
+<h2 class="anchored" data-anchor-id="featurization-bag-of-words">Featurization: Bag-of-Words</h2>
+<p>Documents have different lengths and consist of sequences of words. How do we create features <span class="math inline">\(X\)</span> to characterize a document?</p>
+<ul>
+<li><p>From a dictionary, identify the 10K most frequently occurring words.</p></li>
+<li><p>Create a binary vector of length <span class="math inline">\(p = 10K\)</span> for each document, and score a 1 in every position that the corresponding word occurred.</p></li>
+<li><p>With <span class="math inline">\(n\)</span> documents, we now have an <span class="math inline">\(n \times p\)</span> <strong>sparse</strong> feature matrix <span class="math inline">\(\mathbf{X}\)</span>.</p></li>
+<li><p>We compare a lasso logistic regression model to a two-hidden-layer neural network on the next slide. (No convolutions here!)</p></li>
+<li><p>Bag-of-words are <strong>unigrams</strong>. We can instead use <strong>bigrams</strong> (occurrences of adjacent word pairs) and, in general, <strong>m-grams</strong>.</p></li>
+</ul>
+</section>
+<section id="document-classification-example-lasso-versus-neural-network-imdb-reviews" class="level2">
+<h2 class="anchored" data-anchor-id="document-classification-example-lasso-versus-neural-network-imdb-reviews">Document Classification Example: Lasso versus Neural Network — IMDB Reviews</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 85%;">
+<ul>
+<li>Simpler lasso logistic regression model works as well as neural network in this case.</li>
+</ul>
+<div class="fragment">
+<center>
+<strong>Let’s code!</strong>
+</center>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="recurrent-neural-networks---rnn" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Recurrent Neural Networks - RNN</h1>
+<section id="recurrent-neural-networks---rnn-1" class="level2">
+<h2 class="anchored" data-anchor-id="recurrent-neural-networks---rnn-1">Recurrent Neural Networks - RNN</h2>
+<ul>
+<li><p>Often data arise as sequences:</p>
+<ul>
+<li><p><strong>Documents</strong> are sequences of words, and their relative positions have meaning.</p></li>
+<li><p><strong>Time-series</strong> such as weather data or financial indices.</p></li>
+<li><p><strong>Recorded speech or music.</strong></p></li>
+</ul></li>
+<li><p>RNNs build models that take into account this sequential nature of the data and build a memory of the past.</p>
+<ul>
+<li><p>The feature for each observation is a <strong>sequence</strong> of vectors <span class="math inline">\(X = \{X_1, X_2, \ldots, X_L\}\)</span>.</p></li>
+<li><p>The target <span class="math inline">\(Y\)</span> is often of the usual kind — e.g., a single variable such as <strong>Sentiment</strong>, or a one-hot vector for multiclass.</p></li>
+<li><p>However, <span class="math inline">\(Y\)</span> can also be a sequence, such as the same document in a different language.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="simple-recurrent-neural-network-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="simple-recurrent-neural-network-architecture">Simple Recurrent Neural Network Architecture</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The hidden layer is a sequence of vectors <span class="math inline">\(A_\ell\)</span>, receiving as input <span class="math inline">\(X_\ell\)</span> as well as <span class="math inline">\(A_{\ell-1}\)</span>. <span class="math inline">\(A_\ell\)</span> produces an output <span class="math inline">\(O_\ell\)</span>.</p></li>
+<li><p>The <strong>same</strong> weights <span class="math inline">\(\mathbf{W}\)</span>, <span class="math inline">\(\mathbf{U}\)</span>, and <span class="math inline">\(\mathbf{B}\)</span> are used at each step in the sequence — hence the term <strong>recurrent</strong>.</p></li>
+<li><p>The <span class="math inline">\(A_\ell\)</span> sequence represents an evolving model for the response that is updated as each element <span class="math inline">\(X_\ell\)</span> is processed.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="rnn-in-detail" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-in-detail">RNN in Detail</h2>
+<div style="font-size: 70%;">
+<p>Suppose <span class="math inline">\(X_\ell = (X_{\ell1}, X_{\ell2}, \ldots, X_{\ell p})\)</span> has <span class="math inline">\(p\)</span> components, and <span class="math inline">\(A_\ell = (A_{\ell1}, A_{\ell2}, \ldots, A_{\ell K})\)</span> has <span class="math inline">\(K\)</span> components. Then the computation at the <span class="math inline">\(k\)</span>-th components of hidden unit <span class="math inline">\(A_\ell\)</span> is:</p>
+<p><span class="math display">\[
+A_{\ell k} = g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} X_{\ell j} + \sum_{s=1}^{K} u_{ks} A_{\ell-1,s}\right)
+\]</span></p>
+<p><span class="math display">\[
+O_\ell = \beta_0 + \sum_{k=1}^{K} \beta_k A_{\ell k}
+\]</span></p>
+<p>Often we are concerned only with the prediction <span class="math inline">\(O_L\)</span> at the last unit. For squared error loss, and <span class="math inline">\(n\)</span> sequence/response pairs, we would minimize:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} (y_i - o_{iL})^2 = \sum_{i=1}^{n} \left(y_i - \left(\beta_0 + \sum_{k=1}^{K} \beta_k g\left(w_{k0} + \sum_{j=1}^{p} w_{kj} x_{iL,j} + \sum_{s=1}^{K} u_{ks} a_{i,L-1,s}\right)\right)\right)^2
+\]</span></p>
+</div>
+</section>
+</section>
+<section id="rnn-for-document-classification" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">RNN for Document Classification</h1>
+<section id="rnn-for-document-classification-1" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-for-document-classification-1">RNN for Document Classification</h2>
+<ul>
+<li><p>The document feature is a sequence of words <span class="math inline">\(\{\mathcal{W}_\ell\}_{1}^{L}\)</span>. We typically truncate/pad the documents to the same number <span class="math inline">\(L\)</span> of words (we use <span class="math inline">\(L = 500\)</span>).</p></li>
+<li><p>Each word <span class="math inline">\(\mathcal{W}_\ell\)</span> is represented as a <strong>one-hot encoded</strong> binary vector <span class="math inline">\(X_\ell\)</span> (dummy variable) of length <span class="math inline">\(10K\)</span>, with all zeros and a single one in the position for that word in the dictionary.</p></li>
+<li><p>This results in an extremely sparse feature representation and would not work well.</p></li>
+<li><p>Instead, we use a lower-dimensional pretrained <strong>word embedding</strong> matrix <span class="math inline">\(\mathbf{E}\)</span> (<span class="math inline">\(m \times 10K\)</span>, next slide).</p></li>
+<li><p>This reduces the binary feature vector of length <span class="math inline">\(10K\)</span> to a real feature vector of dimension <span class="math inline">\(m \ll 10K\)</span> (e.g., <span class="math inline">\(m\)</span> in the low hundreds).</p></li>
+</ul>
+</section>
+<section id="word-embedding---rnn-example-imdb-reviews" class="level2">
+<h2 class="anchored" data-anchor-id="word-embedding---rnn-example-imdb-reviews">Word Embedding - RNN Example: <a href="https://paperswithcode.com/sota/%20sentiment-analysis-on-imdb" target="_blank">IMDB Reviews</a></h2>
+<div style="font-size: 65%;">
+<p>Review:</p>
+<blockquote class="blockquote">
+<p>this is one of the best films actually the best I have ever seen the film starts one fall day…</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_13a-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_13b-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Embeddings are pretrained on very large corpora of documents, using methods similar to principal components. <a href="https://code.google.com/archive/p/word2vec" target="_blank"><strong>word2vec</strong></a> and <a href="https://nlp.stanford.edu/projects/glove" target="_blank"><strong>GloVe</strong></a> are popular.</p>
+</div>
+<div class="fragment">
+<center>
+<strong>Let’s code!</strong>
+</center>
+</div>
+<p><br></p>
+<!---
+
+XXXXXXXXXXXXXX
+
+-   After a lot of work, the results are a disappointing 76% accuracy.
+
+-   We then fit a more exotic RNN than the one displayed — a **LSTM** with *long and short term memory*. Here $A_\ell$ receives input from $A_{\ell-1}$ (short term memory) as well as from a version that reaches further back in time (long term memory). Now we get 87% accuracy, slightly less than the 88% achieved by **glmnet**.
+
+-   These data have been used as a benchmark for new RNN architectures. The best reported result found at the time of writing (2020) was around 95%. We point to a **leaderboard** in Section 10.5.1.
+
+XXXXXXXXXXXXXX
+--->
+</section>
+</section>
+<section id="rnn-for-time-series-forecasting" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">RNN for Time Series Forecasting</h1>
+<section id="rnn-time-series-forecasting" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-time-series-forecasting">RNN: Time Series Forecasting</h2>
+<div style="font-size: 70%;">
+<div class="columns">
+<div class="column" style="justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="justify-content: center; align-items: center;">
+<p><strong>New-York Stock Exchange Data</strong></p>
+<p>Three daily time series for the period December 3, 1962, to December 31, 1986 (6,051 trading days):</p>
+<ul>
+<li><p><strong>Log trading volume.</strong> This is the fraction of all outstanding shares that are traded on that day, relative to a 100-day moving average of past turnover, on the log scale.</p></li>
+<li><p><strong>Dow Jones return.</strong> This is the difference between the log of the Dow Jones Industrial Index on consecutive trading days.</p></li>
+<li><p><strong>Log volatility.</strong> This is based on the absolute values of daily price movements.</p></li>
+</ul>
+<div class="fragment">
+<p><strong>Goal</strong>: predict <strong>Log trading volume</strong> tomorrow, given its observed values up to today, as well as those of <strong>Dow Jones return</strong> and <strong>Log volatility</strong>.</p>
+<p><em>These data were assembled by LeBaron and Weigend (1998) IEEE Transactions on Neural Networks, 9(1): 213–220.</em></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="autocorrelation">Autocorrelation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The <strong>autocorrelation</strong> at lag <span class="math inline">\(\ell\)</span> is the correlation of all pairs <span class="math inline">\((v_t, v_{t-\ell})\)</span> that are <span class="math inline">\(\ell\)</span> trading days apart.</p></li>
+<li><p>These sizable correlations give us confidence that past values will be helpful in predicting the future.</p></li>
+<li><p>This is a curious prediction problem: the response <span class="math inline">\(v_t\)</span> is also a feature <span class="math inline">\(v_{t-\ell}\)</span>!</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="rnn-forecaster" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-forecaster">RNN Forecaster</h2>
+<p>We only have one series of data! How do we set up for an RNN?</p>
+<p>We extract many short mini-series of input sequences <span class="math inline">\(\mathbf{X} = \{ X_1, X_2, \ldots, X_L \}\)</span> with a predefined length <span class="math inline">\(L\)</span> known as the <strong>lag</strong>:</p>
+<p><span class="math display">\[
+X_1 = \begin{pmatrix}
+v_{t-L} \\
+r_{t-L} \\
+z_{t-L}
+\end{pmatrix}, \quad
+X_2 = \begin{pmatrix}
+v_{t-L+1} \\
+r_{t-L+1} \\
+z_{t-L+1}
+\end{pmatrix}, \quad
+\cdots, \quad
+X_L = \begin{pmatrix}
+v_{t-1} \\
+r_{t-1} \\
+z_{t-1}
+\end{pmatrix}, \quad \text{and} \quad Y = v_t.
+\]</span></p>
+<p>Since <span class="math inline">\(T = 6,051\)</span>, with <span class="math inline">\(L = 5\)</span>, we can create 6,046 such <span class="math inline">\((X, Y)\)</span> pairs.</p>
+<p>We use the first 4,281 as training data, and the following 1,770 as test data. We fit an RNN with 12 hidden units per lag step (i.e., per <span class="math inline">\(A_\ell\)</span>).</p>
+</section>
+<section id="rnn-results-for-nyse-data" class="level2">
+<h2 class="anchored" data-anchor-id="rnn-results-for-nyse-data">RNN Results for NYSE Data</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/10_16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure shows predictions and truth for the test period.</p>
+<p><span class="math display">\[
+R^2 = 0.42 \text{ for RNN}
+\]</span></p>
+<p><span class="math inline">\(R^2 = 0.18\)</span> for the naive approach — uses yesterday’s value of Log trading volume to predict that of today.</p>
+<div class="fragment">
+<center>
+<strong>Let’s code!</strong>
+</center>
+</div>
+<p><br></p>
+</section>
+<section id="autoregression-forecaster" class="level2">
+<h2 class="anchored" data-anchor-id="autoregression-forecaster">Autoregression Forecaster</h2>
+<p>The RNN forecaster is similar in structure to a traditional <strong>autoregression</strong> procedure.</p>
+<p><span class="math display">\[
+\mathbf{y} =
+\begin{bmatrix}
+v_{L+1} \\
+v_{L+2} \\
+v_{L+3} \\
+\vdots \\
+v_T
+\end{bmatrix}, \quad
+\mathbf{M} =
+\begin{bmatrix}
+1 &amp; v_L &amp; v_{L-1} &amp; \cdots &amp; v_1 \\
+1 &amp; v_{L+1} &amp; v_L &amp; \cdots &amp; v_2 \\
+1 &amp; v_{L+2} &amp; v_{L+1} &amp; \cdots &amp; v_3 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; v_{T-1} &amp; v_{T-2} &amp; \cdots &amp; v_{T-L}
+\end{bmatrix}.
+\]</span></p>
+<p>Fit an OLS regression of <span class="math inline">\(\mathbf{y}\)</span> on <span class="math inline">\(\mathbf{M}\)</span>, giving:</p>
+<p><span class="math display">\[
+\hat{v}_t = \hat{\beta}_0 + \hat{\beta}_1 v_{t-1} + \hat{\beta}_2 v_{t-2} + \cdots + \hat{\beta}_L v_{t-L}.
+\]</span></p>
+<p>Known as an <strong>order-</strong><span class="math inline">\(L\)</span> autoregression model or <span class="math inline">\(AR(L)\)</span>.</p>
+<p>For the <strong>NYSE</strong> data, we can include lagged versions of <strong>DJ_return</strong> and <strong>log_volatility</strong> in matrix <span class="math inline">\(\mathbf{M}\)</span>, resulting in <span class="math inline">\(3L + 1\)</span> columns.</p>
+</section>
+<section id="autoregression-results-for-nyse-data" class="level2">
+<h2 class="anchored" data-anchor-id="autoregression-results-for-nyse-data">Autoregression Results for NYSE Data</h2>
+<ul>
+<li><p><span class="math inline">\(R^2 = 0.41 \text{ for } AR(5) \text{ model (16 parameters)}\)</span></p></li>
+<li><p><span class="math inline">\(R^2 = 0.42 \text{ for RNN model (205 parameters)}\)</span></p></li>
+<li><p><span class="math inline">\(R^2 = 0.42 \text{ for } AR(5) \text{ model fit by neural network.}\)</span></p></li>
+<li><p><span class="math inline">\(R^2 = 0.46 \text{ for all models if we include } \textbf{day_of_week} \text{ of day being predicted.}\)</span></p></li>
+</ul>
+</section>
+<section id="summary-of-rnns" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-rnns">Summary of RNNs</h2>
+<ul>
+<li><p>We have presented the simplest of RNNs. Many more complex variations exist.</p></li>
+<li><p>One variation treats the sequence as a one-dimensional image, and uses CNNs for fitting. For example, a sequence of words using an embedding representation can be viewed as an image, and the CNN convolves by sliding a convolutional filter along the sequence.</p></li>
+<li><p>Can have additional hidden layers, where each hidden layer is a sequence, and treats the previous hidden layer as an input sequence.</p></li>
+<li><p>Can have output also be a sequence, and input and output share the hidden units. So called <strong>seq2seq</strong> learning are used for language translation.</p></li>
+</ul>
+</section>
+</section>
+<section id="when-to-use-deep-learning" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">When to Use Deep Learning</h1>
+<section id="when-to-use-deep-learning-1" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-deep-learning-1">When to Use Deep Learning</h2>
+<div style="font-size: 90%;">
+<ul>
+<li><p><strong>CNNs</strong> have had enormous successes in image classification and modeling, and are starting to be used in medical diagnosis. Examples include digital mammography, ophthalmology, MRI scans, and digital X-rays.</p></li>
+<li><p><strong>RNNs</strong> have had big wins in speech modeling, language translation, and forecasting.</p></li>
+</ul>
+<div class="fragment">
+<p>Should we always use deep learning models?</p>
+<ul>
+<li><p>Often the big successes occur when the <strong>signal to noise ratio</strong> is high — e.g., image recognition and language translation. Datasets are large, and overfitting is not a big problem.</p></li>
+<li><p>For noisier data, simpler models can often work better:</p>
+<ul>
+<li><p>On the <strong>NYSE</strong> data, the <strong>AR(5)</strong> model is much simpler than an RNN, and performed as well.</p></li>
+<li><p>On the <strong>IMDB</strong> review data, a linear model fit (e.g.&nbsp;with glmnet) did as well as the neural network, and better than the RNN.</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="flexibility-vs.-interpretability" class="level2">
+<h2 class="anchored" data-anchor-id="flexibility-vs.-interpretability">Flexibility vs.&nbsp;Interpretability</h2>
+<div style="font-size: 80%;">
+<p>Trade-offs between <strong>flexibility</strong> and <strong>interpretability</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/2_7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As the authors suggest, I also endorse the <a href="https://en.wikipedia.org/wiki/Occam%27s_razor" target="_blank"><strong>Occam’s razor</strong> principle</a> — we prefer simpler models if they work as well. More interpretable!</p>
+<p><br></p>
+</div>
+</section>
+<section id="additional-material" class="level2">
+<h2 class="anchored" data-anchor-id="additional-material">Additional Material</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank">3Blue1Brown: Neural Networks</a></li>
+<li><a href="https://www.deeplearningbook.org/" target="_blank">Deep Learning, by Ian Goodfellow and Yoshua Bengio and Aaron Courvill</a></li>
+<li><a href="https://www.youtube.com/watch?v=bxe2T-V8XRs&amp;list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU" target="_blank">Welch Labs: Neural Networks Demystified</a></li>
+<li><a href="https://www.youtube.com/watch?v=i8D90DkCLhI&amp;list=PLiaHhY2iBX9ihLasvE8BKnS2Xg8AhY6iV" target="_blank">Welch Labs: Learning To See</a></li>
+<li><a href="https://distill.pub/" target="_blank">Distill: A Gentle Introduction to Graph Neural Networks</a></li>
+<li><a href="http://neuralnetworksanddeeplearning.com/" target="_blank">Neural Networks and Deep Learning, by Michael Nielsen</a></li>
+<li><a href="https://weiliu2k.github.io/CITS4012/nn/intro.html" target="_blank">CITS4012 Natural Language Processing</a></li>
+<li><a href="https://github.com/dvgodoy/PyTorchStepByStep/tree/master" target="_blank">Deep Learning with PyTorch Step-by-Step</a></li>
+</ul>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="nonincremental">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<ul>
+<li><strong>Deep Learning Renaissance</strong>
+<ul>
+<li>Neural networks first rose to prominence in the 1980s, waned in the 1990s, then surged again around 2010.</li>
+<li>Advances in computing (GPUs) and availability of massive labeled datasets propelled deep learning success.</li>
+</ul></li>
+<li><strong>Frameworks (PyTorch vs.&nbsp;TensorFlow)</strong>
+<ul>
+<li>PyTorch is known for its dynamic graph and Pythonic syntax; widely used in research.</li>
+<li>TensorFlow has an extensive production ecosystem, ideal for enterprise and deployment.</li>
+</ul></li>
+<li><strong>Essential Concepts</strong>
+<ul>
+<li>Automatic differentiation, gradient descent, and backpropagation are at the core of training neural networks.</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="font-size: 80%;">
+<ul>
+<li><strong>CNNs and RNNs</strong>
+<ul>
+<li><strong>CNNs</strong> excel in image classification by learning local patterns via convolution and pooling layers.<br>
+</li>
+<li><strong>RNNs</strong> (and variants like LSTM, GRU) handle sequential data for tasks like language modeling and time-series forecasting.</li>
+</ul></li>
+<li><strong>When to Use Deep Learning</strong>
+<ul>
+<li>Works best on large datasets with high signal-to-noise ratio (e.g., image, text).<br>
+</li>
+<li>Simpler models often perform well on noisier tasks or smaller datasets.<br>
+</li>
+<li>Over-parameterization can still generalize due to “double-descent” effects.</li>
+</ul></li>
+<li><strong>Practical Tips</strong>
+<ul>
+<li>Use regularization (dropout, data augmentation, weight decay) to mitigate overfitting.<br>
+</li>
+<li>Monitor convergence with appropriate learning rates and consider mini-batch stochastic gradient descent.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thank-you" class="level1" data-background-color="#cfb991">
+<h1 data-background-color="#cfb991">Thank you!</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
