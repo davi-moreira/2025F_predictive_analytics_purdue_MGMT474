@@ -264,100 +264,6 @@ knitr::include_graphics("figs/netflix_prize.png")
 </center>
 
 
-# Supervised Learning {background-color="#cfb991"}
-
-## Starting point
-
-<br>
-
-::: nonincremental
-::: {style="font-size: 90%;"}
-
-
-- Outcome measurement $Y$ (also called dependent variable, response, target).
-
-- Vector of $p$ predictor measurements $X$ (also called inputs, regressors, covariates, features, independent variables).
-
-- In the regression problem, $Y$ is quantitative (e.g., price, blood pressure).
-
-- In the classification problem, $Y$ takes values in a finite, unordered set (e.g., survived/died, digit 0–9, cancer class of tissue sample).
-
-- We have training data $(x_1, y_1), \ldots, (x_N, y_N)$. These are observations (examples, instances) of these measurements.
-
-:::
-:::
-
-## Objectives
-
-On the basis of the training data, we would like to:
-
-- Accurately predict unseen *test* cases.
-
-- Understand which inputs affect the outcome, and how.
-
-- Assess the quality of our predictions and inferences.
-
-## Philosophy
-
-<br>
-
-::: nonincremental
-
-- It is important to understand the ideas behind the various techniques, in order to know how and when to use them.
-
-- We wil understand the simpler methods first to grasp the more sophisticated ones later.
-
-- It is important to accurately assess the performance of a method, to know how well or how badly it is working.
-
-:::
-
-# Unsupervised Learning  {background-color="#cfb991"}
-
-## Unsupervised Learning
-
-::: nonincremental
-::: {style="font-size: 80%;"}
-
-- No outcome variable, just a set of predictors (features) measured on a set of samples.
-
-- Objective is more fuzzy:
-
-    - Find groups of samples that behave similarly.
-    
-    - Find features that behave similarly.
-    
-    - Find linear combinations of features with the most variation.
-
-- Difficult to know how well we are doing.
-
-- Different from supervised learning, but can be useful as a pre-processing step for supervised learning.
-
-:::
-:::
-
-<!---
-## Statistical Learning versus Machine Learning
-
-::: nonincremental
-::: {style="font-size: 80%;"}
-
-- Machine learning arose as a subfield of Artificial Intelligence.
-
-- Statistical learning arose as a subfield of Statistics.
-
-- **There is much overlap—both fields focus on supervised and unsupervised problems:**
-    
-    - Machine learning has a greater emphasis on *large scale applications* and *prediction accuracy*.
-    
-    - Statistical learning emphasizes *models* and their *interpretability*, and *precision* and *uncertainty*.
-
-- The distinction has become more blurred, with significant cross-fertilization.
-
-- Machine learning has the upper hand in *Marketing*!
-
-:::
-:::
---->
 
 # Statistical Learning Overview {background-color="#cfb991"}
 # What is Statistical Learning? {background-color="#cfb991"}
@@ -511,6 +417,176 @@ $$
 
 :::
 :::
+
+# Supervised Learning {background-color="#cfb991"}
+
+## Supervised Learning
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="font-size: 90%;"}
+
+- **Definition:**  
+  Learning a mapping from inputs $X$ to an output $Y$ using labeled data.  
+  The algorithm is *supervised* because the correct answers are known during training.  
+
+- **Goal:**  
+  - Predict $Y$ for new unseen $X$.  
+  - Minimize prediction error.  
+
+:::
+
+::: {.column width="50%" style="font-size: 90%;"}
+
+- **Examples of Methods:**  
+  - Linear Regression, Logistic Regression  
+  - Decision Trees, Random Forests, SVMs  
+  - Neural Networks  
+
+- **Applications:**  
+  - Predicting stock prices  
+  - Diagnosing diseases  
+  - Spam email detection  
+
+:::
+:::::
+::::::
+
+
+# Unsupervised Learning {background-color="#cfb991"}
+
+## Unsupervised Learning
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="font-size: 90%;"}
+
+- **Definition:**  
+  Learning the structure or patterns in data without labeled outputs.  
+  The algorithm is *unsupervised* because no outcome variable guides the learning.  
+
+- **Goal:**  
+  - Discover hidden structures in $X$.  
+  - Group, reduce, or represent data meaningfully.  
+
+:::
+
+::: {.column width="50%" style="font-size: 90%;"}
+
+- **Examples of Methods:**  
+  - Clustering: k-means, hierarchical clustering  
+  - Dimensionality Reduction: PCA, t-SNE  
+
+- **Applications:**  
+  - Customer segmentation  
+  - Market basket analysis  
+  - Reducing dimensionality of large datasets  
+
+- **Characteristics**:  
+  - Difficult to know how well we are doing.  
+  - Different from supervised learning, but can be useful as a pre-processing step for supervised learning.  
+
+:::
+:::::
+::::::
+
+
+<!---
+
+## Starting point
+
+<br>
+
+::: nonincremental
+::: {style="font-size: 90%;"}
+
+
+- Outcome measurement $Y$ (also called dependent variable, response, target).
+
+- Vector of $p$ predictor measurements $X$ (also called inputs, regressors, covariates, features, independent variables).
+
+- In the regression problem, $Y$ is quantitative (e.g., price, blood pressure).
+
+- In the classification problem, $Y$ takes values in a finite, unordered set (e.g., survived/died, digit 0–9, cancer class of tissue sample).
+
+- We have training data $(x_1, y_1), \ldots, (x_N, y_N)$. These are observations (examples, instances) of these measurements.
+
+:::
+:::
+
+## Objectives
+
+On the basis of the training data, we would like to:
+
+- Accurately predict unseen *test* cases.
+
+- Understand which inputs affect the outcome, and how.
+
+- Assess the quality of our predictions and inferences.
+
+## Philosophy
+
+<br>
+
+::: nonincremental
+
+- It is important to understand the ideas behind the various techniques, in order to know how and when to use them.
+
+- We wil understand the simpler methods first to grasp the more sophisticated ones later.
+
+- It is important to accurately assess the performance of a method, to know how well or how badly it is working.
+
+:::
+
+# Unsupervised Learning  {background-color="#cfb991"}
+
+## Unsupervised Learning
+
+::: nonincremental
+::: {style="font-size: 80%;"}
+
+- No outcome variable, just a set of predictors (features) measured on a set of samples.
+
+- Objective is more fuzzy:
+
+    - Find groups of samples that behave similarly.
+    
+    - Find features that behave similarly.
+    
+    - Find linear combinations of features with the most variation.
+
+- Difficult to know how well we are doing.
+
+- Different from supervised learning, but can be useful as a pre-processing step for supervised learning.
+
+:::
+:::
+
+--->
+
+<!---
+## Statistical Learning versus Machine Learning
+
+::: nonincremental
+::: {style="font-size: 80%;"}
+
+- Machine learning arose as a subfield of Artificial Intelligence.
+
+- Statistical learning arose as a subfield of Statistics.
+
+- **There is much overlap—both fields focus on supervised and unsupervised problems:**
+    
+    - Machine learning has a greater emphasis on *large scale applications* and *prediction accuracy*.
+    
+    - Statistical learning emphasizes *models* and their *interpretability*, and *precision* and *uncertainty*.
+
+- The distinction has become more blurred, with significant cross-fertilization.
+
+- Machine learning has the upper hand in *Marketing*!
+
+:::
+:::
+--->
 
 
 ## How to Estimate $f$

@@ -747,7 +747,7 @@
     "href": "lecture_slides/01_introduction/01_introduction.html#unsupervised-learning-1",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Unsupervised Learning",
-    "text": "Unsupervised Learning\n\n\n\nNo outcome variable, just a set of predictors (features) measured on a set of samples.\nObjective is more fuzzy:\n\nFind groups of samples that behave similarly.\nFind features that behave similarly.\nFind linear combinations of features with the most variation.\n\nDifficult to know how well we are doing.\nDifferent from supervised learning, but can be useful as a pre-processing step for supervised learning."
+    "text": "Unsupervised Learning\n\n\n\n\nDefinition:\nLearning the structure or patterns in data without labeled outputs.\nThe algorithm is unsupervised because no outcome variable guides the learning.\nGoal:\n\nDiscover hidden structures in \\(X\\).\n\nGroup, reduce, or represent data meaningfully.\n\n\n\n\nExamples of Methods:\n\nClustering: k-means, hierarchical clustering\n\nDimensionality Reduction: PCA, t-SNE\n\nApplications:\n\nCustomer segmentation\n\nMarket basket analysis\n\nReducing dimensionality of large datasets\n\nCharacteristics:\n\nDifficult to know how well we are doing.\n\nDifferent from supervised learning, but can be useful as a pre-processing step for supervised learning."
   },
   {
     "objectID": "lecture_slides/01_introduction/01_introduction.html#what-is-statistical-learning-1",
@@ -965,5 +965,12 @@
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Summary",
     "text": "Summary\n\n\n\n\nStatistical Learning and Predictive Analytics\n\nGoal: Build models to predict outcomes and understand relationships between inputs (predictors) and responses.\nSupervised Learning: Focuses on predicting \\(Y\\) (response) using \\(X\\) (predictors) via models like regression and classification.\nUnsupervised Learning: Focuses on finding patterns in data without predefined responses (e.g., clustering).\n\nBias-Variance Trade-off\n\nKey Trade-off: Model flexibility affects bias and variance:\n\nHigh flexibility → Low bias but high variance (overfitting).\nLow flexibility → High bias but low variance (underfitting).\n\nGoal: Find the optimal flexibility that minimizes test error.\n\n\nTechniques and Applications\n\nParametric Models:\n\nSimpler and interpretable (e.g., linear regression).\nOften used as approximations.\n\nFlexible Models:\n\nHandle complex patterns (e.g., splines, SVMs, deep learning).\nRequire careful tuning to avoid overfitting.\n\n\nPractical Considerations\n\nAssessing Model Accuracy:\n\nUse test data to calculate MSE.\nBalance between training performance and generalizability.\n\n\nKey Challenges\n\nCurse of Dimensionality:\n\nHigh-dimensional data affects distance-based methods like KNN.\nLarger neighborhoods needed, losing “locality.”"
+  },
+  {
+    "objectID": "lecture_slides/01_introduction/01_introduction.html#supervised-learning-1",
+    "href": "lecture_slides/01_introduction/01_introduction.html#supervised-learning-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Supervised Learning",
+    "text": "Supervised Learning\n\n\n\n\nDefinition:\nLearning a mapping from inputs \\(X\\) to an output \\(Y\\) using labeled data.\nThe algorithm is supervised because the correct answers are known during training.\nGoal:\n\nPredict \\(Y\\) for new unseen \\(X\\).\n\nMinimize prediction error.\n\n\n\n\nExamples of Methods:\n\nLinear Regression, Logistic Regression\n\nDecision Trees, Random Forests, SVMs\n\nNeural Networks\n\nApplications:\n\nPredicting stock prices\n\nDiagnosing diseases\n\nSpam email detection"
   }
 ]
