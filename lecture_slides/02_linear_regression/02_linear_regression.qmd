@@ -29,6 +29,8 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Recap
+
 -   Linear Regression
 
 -   Simple Linear Regression
@@ -56,6 +58,68 @@ html-math-method:
 ::: aside
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 :::
+
+
+## Recap
+
+<br>
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%"}
+
+<details>
+<summary><strong>What is Statistical Learning?</strong></summary>
+<p style="font-size:80%;">A framework to learn the relationship between predictors $X$ and an outcome $Y$ for prediction and inference, using parametric (e.g., linear/logistic regression) and non-parametric methods (e.g., trees, kNN).</p>
+</details>
+
+<details>
+<summary><strong>What is the difference between supervised and unsupervised learning?</strong></summary>
+<p style="font-size:80%;"><strong>Supervised:</strong> learn $f: X \to Y$ from labeled data to predict/explain $Y$.<br>
+<strong>Unsupervised:</strong> find structure in $X$ without labels (e.g., clustering, dimensionality reduction).</p>
+</details>
+
+<details>
+<summary><strong>What is the curse of dimensionality?</strong></summary>
+<p style="font-size:80%;">With many features/predictors, data become sparse; distances degrade, required sample size grows rapidly, and generalization deteriorates, especially for local/partitioning methods.</p>
+</details>
+
+:::
+::: {.column width="50%"}
+
+<details>
+<summary><strong>What is the difference between overfitting and underfitting?</strong></summary>
+<p style="font-size:80%;"><strong>Overfitting:</strong> too flexible; captures noise (high variance); low training error, poor test error.<br>
+<strong>Underfitting:</strong> too simple; misses signal (high bias); high error on both train and test.</p>
+</details>
+
+<details>
+<summary><strong>Why assess accuracy on test data rather than training data?</strong></summary>
+<p style="font-size:80%;">Training accuracy is optimistically biased (evaluated on seen data). Test accuracy estimates out-of-sample performance and reveals overfitting.</p>
+</details>
+
+:::
+:::::
+::::::
+
+## Participation
+
+:::::: nonincremental
+
+- In pairs, ask AI:
+
+    - In the context of Statistical Learning, what is the fundamental difference between a **regression** problem and a **classification** problem in supervised learning, based on the nature of the outcome variable?
+
+<!--- In Statistical Learning, a **regression** problem predicts a **quantitative (continuous)** outcome, while a **classification** problem predicts a **qualitative (categorical)** outcome. --->
+
+:::{.fragment}
+
+- Present the response you got to your right/left classmate. Do your understanding converge?
+
+- Submit your participation response.
+
+:::
+::::::
 
 # Linear Regression {background-color="#cfb991"}
 
@@ -85,17 +149,46 @@ Consider the advertising data shown:
 knitr::include_graphics("figs/2_1-1.png") 
 ```
 
-Questions we might ask:
+Suppose that, in our job as business analysts, we are asked to suggest, based on this data, a **marketing plan** for next year that will result in high product sales. What information would be useful in order to provide such a recommendation? 
+
+:::
+:::: 
+
+## The Marketing Plan: Guiding Questions
+
+::: {style="font-size: 80%;"}
+
+:::: columns
+::: {.column width="50%" style="font-size: 95%;"}
+
+1. **Is there a relationship between advertising budget and sales?**  
+   Our first goal is to determine whether the data provide evidence of an association between advertising expenditure and sales. If the evidence is weak, one might argue that no money should be spent on advertising.
+
+2. **How strong is the relationship between advertising budget and sales?**  
+   Assuming a relationship exists, how strong is it? Does knowledge of the advertising budget provide a lot of information about product sales?
+
+3. **Which media are associated with sales?**  
+   Are all three media—TV, radio, and newspaper—associated with sales, or just one or two? We must separate the individual contribution of each medium to sales when money is spent on all three.
+
+4. **How large is the association between each medium and sales?**  
+   For every dollar spent on a particular medium, by what amount will sales increase? How accurately can we predict this amount?
+
+:::
+
+::: {.column width="50%" style="font-size: 95%;"}
+
+5. **How accurately can we predict future sales?**  
+   For any given level of television, radio, or newspaper advertising, what is our prediction for sales, and what is the accuracy of this prediction?
+
+
+6. **Is the relationship linear?**  
+   If the relationship between advertising expenditure and sales is approximately linear, then linear regression is appropriate. If not, we may need to transform the predictor(s) or the response so that linear regression can be used.
+
+7. **Is there synergy among the advertising media?**  
+   Perhaps spending \$50,000 on television advertising **and** \$50,000 on radio advertising is associated with higher sales than allocating \$100,000 to either television or radio individually. In marketing, this is known as a **synergy** effect; in statistics, it is called an **interaction** effect.
+
 :::
 ::::
-
-::: {style="font-size: 70%;"}
--   Is there a relationship between advertising budget and sales?
--   How strong is the relationship between advertising budget and sales?
--   Which media contribute to sales?
--   How accurately can we predict future sales?
--   Is the relationship linear?
--   Is there synergy among the advertising media?
 :::
 
 # Simple Linear Regression {background-color="#cfb991"}
@@ -440,6 +533,8 @@ $$
 
 The F-statistic is huge and it's p-value is less than $.0001$. This says that there's a strong association of the predictors on the outcome variable.
 
+# Deciding on the Important Variables  {background-color="#cfb991"}
+
 ## Deciding on the Important Variables
 
 -   The most direct approach is called **all subsets** or **best subsets** regression:
@@ -498,11 +593,11 @@ The F-statistic is huge and it's p-value is less than $.0001$. This says that th
 
 ## Qualitative Predictors
 
--   Some predictors are **qualitative**, taking discrete values (e.g., gender, ethnicity).
+-   Some predictors are **qualitative**, taking discrete values.
 
 -   Categorical predictors can be represented using **factor variables**.
 
--   **Qualitative variables:** Gender, Student (Student Status), Status (Marital Status), Ethnicity.
+-   **Qualitative variables:** Student (Student Status), Status (Marital Status), Own (Owns a House).
 
 ## Credit Card Data
 
@@ -514,13 +609,13 @@ knitr::include_graphics("figs/3_6-1.png")
 
 ## Credit Card Data
 
-Suppose we investigate differences in credit card balance between males and females, ignoring the other variables. We create a new variable:
+Suppose we investigate differences in credit card balance between those who own a house and those who do not, ignoring the other variables. We create a new variable:
 
 $$ 
 x_i =
 \begin{cases} 
-1 & \text{if } i\text{th person is female} \\
-0 & \text{if } i\text{th person is male}
+1 & \text{if } i\text{th person owns a house} \\
+0 & \text{if } i\text{th person does not own a house}
 \end{cases}
 $$
 
@@ -529,23 +624,23 @@ Resulting model:
 $$ 
 y_i = \beta_0 + \beta_1 x_i + \epsilon_i =
 \begin{cases}
-\beta_0 + \beta_1 + \epsilon_i & \text{if } i\text{th person is female} \\
-\beta_0 + \epsilon_i & \text{if } i\text{th person is male.}
+\beta_0 + \beta_1 + \epsilon_i & \text{if } i\text{th person owns a house} \\
+\beta_0 + \epsilon_i & \text{if } i\text{th person does not own a house.}
 \end{cases}
 $$
 
 ## Credit Card Data
 
-<center>**Results for gender model:**</center>
+<center>**Results for the model:**</center>
 
 | Predictor       | Coefficient | Std. Error | t-statistic | p-value   |
 |-----------------|-------------|------------|-------------|-----------|
 | Intercept       | 509.80      | 33.13      | 15.389      | \< 0.0001 |
-| Gender $Female$ | 19.73       | 46.05      | 0.429       | 0.6690    |
+| Own [Yes]       | 19.73       | 46.05      | 0.429       | 0.6690    |
 
 <br>
 
-We see the coefficient is 19.73, but it's not significant. The p value is 0.66 which is not significant (\> 0.05). So, contrary to popular wisdom, females don't generally have a higher credit card balance than males.
+We see the coefficient is 19.73, but it's not significant. The p value is 0.66 which is not significant (\> 0.05). So, owing a house don't generally means a higher credit card balance than not owing one.
 
 <br>
 
@@ -555,20 +650,20 @@ We see the coefficient is 19.73, but it's not significant. The p value is 0.66 w
 
 With more than two levels, we create additional dummy variables.
 
-For example, for the `ethnicity` variable, we create two dummy variables:
+For example, for the `region`` variable, we create two dummy variables:
 
 $$ 
 x_{i1} =
 \begin{cases} 
-      1 & \text{if i-th person is Asian} \\ 
-      0 & \text{if i-th person is not Asian}
+      1 & \text{if i-th person is from the South} \\ 
+      0 & \text{if i-th person is not from the South}
     \end{cases}
 $$
 
 $$
 x_{i2} = \begin{cases} 
-      1 & \text{if i-th person is Caucasian} \\ 
-      0 & \text{if i-th person is not Caucasian}
+      1 & \text{if i-th person is from the West} \\ 
+      0 & \text{if i-th person is not from the West}
     \end{cases}
 $$
 
@@ -581,13 +676,13 @@ Both variables can be used in the regression equation to obtain the model:
 $$
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i =
 \begin{cases} 
-      \beta_0 + \beta_1 + \epsilon_i & \text{if i-th person is Asian} \\ 
-      \beta_0 + \beta_2 + \epsilon_i & \text{if i-th person is Caucasian}\\
-      \beta_0 + \epsilon_i & \text{if i-th person is African American (baseline)}
+      \beta_0 + \beta_1 + \epsilon_i & \text{if i-th person is from the South} \\ 
+      \beta_0 + \beta_2 + \epsilon_i & \text{if i-th person is from the West}\\
+      \beta_0 + \epsilon_i & \text{if i-th person is from the East (baseline)}
     \end{cases}
 $$ <br>
 
-**Note:** There will always be one fewer dummy variable than the number of levels. The level with no dummy variable — African American (AA) in this example — is known as the baseline.
+**Note:** There will always be one fewer dummy variable than the number of levels. The level with no dummy variable — East in this example — is known as the baseline.
 
 ## Results for Ethnicity
 
@@ -596,12 +691,12 @@ $$ <br>
 | Term                  | Coefficient | Std. Error | t-statistic | p-value   |
 |-----------------------|-------------|------------|-------------|-----------|
 | Intercept             | 531.00      | 46.32      | 11.464      | \< 0.0001 |
-| ethnicity $Asian$     | -18.69      | 65.02      | -0.287      | 0.7740    |
-| ethnicity $Caucasian$ | -12.50      | 56.68      | -0.221      | 0.8260    |
+| ethnicity $South$     | -18.69      | 65.02      | -0.287      | 0.7740    |
+| ethnicity $West$      | -12.50      | 56.68      | -0.221      | 0.8260    |
 
 <br>
 
-The coefficient -18.69 compares Asian to African American and that's not significant. Likewise, the Caucasian to African-American is also not significant.
+The coefficient -18.69 compares South to East and that's not significant. Likewise, the West to East is also not significant.
 
 <br>
 
@@ -783,6 +878,116 @@ may provide a better fit.
 
     -   **Regularized fitting:** Ridge regression and lasso.
 :::
+
+# The Marketing Plan: Answers
+
+## The Marketing Plan: Answers
+
+:::::: {style="font-size: 80%;"}
+
+:::: columns
+::: {.column width="50%"}
+
+**1.Is there a relationship between sales and advertising budget?**  
+
+Fit a multiple regression of **sales** on **TV**, **radio**, and **newspaper**, and test  
+
+$$
+H_0:\ \beta_{\text{TV}}=\beta_{\text{radio}}=\beta_{\text{newspaper}}=0.
+$$  
+
+Using the $F$-statistic, the very small $p$-value indicates clear evidence of a relationship between advertising and sales.
+
+:::{.fragment}
+
+**2. How strong is the relationship?**  
+
+Two accuracy measures:  
+
+- **RSE**: estimates the standard deviation of the response from the
+population regression line. For *Advertising*, RSE $\approx$ 3.26. In other words, actual sales in
+each market deviate from the true regression line by approximately 3,260 units, on average. In the data set, the mean value of sales over all markets is approximately 14,000 units, and so the percentage error is
+3,260/14,000 = 23 %.
+
+- **$R^2$** (variance explained): records the percentage of variability in the response that is explained by the predictors. Predictors explain ~90% of the variance in **sales**.
+
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+:::{.fragment}
+
+**3. Which media are associated with sales?**  
+
+Check $p$-values for each predictor’s $t$-statistic. The $p$-values for **TV** and **radio** are low, but **newspaper** is not, suggesting only TV and radio are related to **sales**.
+
+:::
+
+:::{.fragment}
+
+**4. How large is the association between each medium and sales?**  
+
+We used SEs to build 95% CIs for coefficients related to **TV**, **Radio**, **Newspaper**.
+
+TV and radio intervals are narrow and far from 0, which means a strong evidence of association. Newspaper CI includes 0, not significant given TV and radio.
+
+:::
+
+:::{.fragment}
+
+**5. How accurately can we predict future sales?**  
+
+Accuracy depends on whether predicting an **individual** response, $Y=f(X)+\epsilon$, or the **average** response, $f(X)$.
+
+- Individual $\rightarrow$ **prediction interval**  
+
+- Average $\rightarrow$ **confidence interval**  
+
+:::{.fragment}
+
+Prediction intervals are always wider because they include irreducible error uncertainty from $\epsilon$.
+
+:::
+
+:::
+
+:::
+::::
+::::::
+
+## The Marketing Plan: Answers
+
+:::: columns
+::: {.column width="50%" style="font-size: 90%;"}
+
+:::{.fragment}
+
+**6. Is the relationship linear?**  
+
+Residual plots help diagnose nonlinearity; linear relationships yield residuals with no pattern. Transformations can accommodate nonlinearity within linear regression.
+
+:::
+
+:::
+
+::: {.column width="50%" style="font-size: 90%;"}
+
+:::{.fragment}
+
+**7. Is there synergy among the advertising media?**  
+
+Standard linear regression assumes **additivity**. This is interpretable but may be unrealistic. 
+An **interaction term** allows non-additive relationships; a small $p$-value on the interaction indicates synergy. For *Advertising*, adding an interaction increases $R^2$ substantially — from ~90% to almost **97%**.
+
+:::
+
+:::
+::::
+
+
 
 # Summary {background-color="#cfb991"}
 

@@ -1078,6 +1078,8 @@ both bias and variance in an “optimal” region for minimizing MSE.
 
 <br>
 
+<!--- Optei por remover da primeira semana para abordar nas segunda e terceira semandas.
+
 # Classification Problems {background-color="#cfb991"}
 
 ## Classification Problems
@@ -1247,6 +1249,7 @@ The dashed horizontal line is the bayes error, used as reference for comparison.
 
 <br>
 
+--->
 
 # Summary {background-color="#cfb991"}
 

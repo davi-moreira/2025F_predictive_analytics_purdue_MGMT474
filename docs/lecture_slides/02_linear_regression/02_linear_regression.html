@@ -147,6 +147,7 @@ Professor: Davi Moreira
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <ul>
+<li><p>Recap</p></li>
 <li><p>Linear Regression</p></li>
 <li><p>Simple Linear Regression</p></li>
 <li><p>Multiple Linear Regression</p></li>
@@ -171,6 +172,74 @@ Professor: Davi Moreira
 <aside><div>
 <p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
 </div></aside></section>
+<section id="recap" class="slide level2 center">
+<h2>Recap</h2>
+<p><br></p>
+<div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<details>
+<summary>
+<strong>What is Statistical Learning?</strong>
+</summary>
+<p style="font-size:80%;">
+A framework to learn the relationship between predictors <span class="math inline">\(X\)</span> and an outcome <span class="math inline">\(Y\)</span> for prediction and inference, using parametric (e.g., linear/logistic regression) and non-parametric methods (e.g., trees, kNN).
+</p>
+</details>
+<details>
+<summary>
+<strong>What is the difference between supervised and unsupervised learning?</strong>
+</summary>
+<p style="font-size:80%;">
+<strong>Supervised:</strong> learn <span class="math inline">\(f: X \to Y\)</span> from labeled data to predict/explain <span class="math inline">\(Y\)</span>.<br> <strong>Unsupervised:</strong> find structure in <span class="math inline">\(X\)</span> without labels (e.g., clustering, dimensionality reduction).
+</p>
+</details>
+<details>
+<summary>
+<strong>What is the curse of dimensionality?</strong>
+</summary>
+<p style="font-size:80%;">
+With many features/predictors, data become sparse; distances degrade, required sample size grows rapidly, and generalization deteriorates, especially for local/partitioning methods.
+</p>
+</details>
+</div><div class="column" style="width:50%;">
+<details>
+<summary>
+<strong>What is the difference between overfitting and underfitting?</strong>
+</summary>
+<p style="font-size:80%;">
+<strong>Overfitting:</strong> too flexible; captures noise (high variance); low training error, poor test error.<br> <strong>Underfitting:</strong> too simple; misses signal (high bias); high error on both train and test.
+</p>
+</details>
+<details>
+<summary>
+<strong>Why assess accuracy on test data rather than training data?</strong>
+</summary>
+<p style="font-size:80%;">
+Training accuracy is optimistically biased (evaluated on seen data). Test accuracy estimates out-of-sample performance and reveals overfitting.
+</p>
+</details>
+</div></div>
+</div>
+</section>
+<section id="participation" class="slide level2 center">
+<h2>Participation</h2>
+<div>
+<ul>
+<li><p>In pairs, ask AI:</p>
+<ul>
+<li>In the context of Statistical Learning, what is the fundamental difference between a <strong>regression</strong> problem and a <strong>classification</strong> problem in supervised learning, based on the nature of the outcome variable?</li>
+</ul></li>
+</ul>
+<!--- In Statistical Learning, a **regression** problem predicts a **quantitative (continuous)** outcome, while a **classification** problem predicts a **qualitative (categorical)** outcome. --->
+<div class="fragment">
+<ul>
+<li><p>Present the response you got to your right/left classmate. Do your understanding converge?</p></li>
+<li><p>Submit your participation response.</p></li>
+</ul>
+</div>
+</div>
+</section>
 <section>
 <section id="linear-regression" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Linear Regression</h1>
@@ -213,18 +282,35 @@ Professor: Davi Moreira
 </div>
 </div>
 </div>
-<p>Questions we might ask:</p>
+<p>Suppose that, in our job as business analysts, we are asked to suggest, based on this data, a <strong>marketing plan</strong> for next year that will result in high product sales. What information would be useful in order to provide such a recommendation?</p>
 </div>
 </div>
-<div style="font-size: 70%;">
-<ul>
-<li class="fragment">Is there a relationship between advertising budget and sales?</li>
-<li class="fragment">How strong is the relationship between advertising budget and sales?</li>
-<li class="fragment">Which media contribute to sales?</li>
-<li class="fragment">How accurately can we predict future sales?</li>
-<li class="fragment">Is the relationship linear?</li>
-<li class="fragment">Is there synergy among the advertising media?</li>
-</ul>
+</section>
+<section id="the-marketing-plan-guiding-questions" class="slide level2 center">
+<h2>The Marketing Plan: Guiding Questions</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="font-size: 95%;">
+<ol type="1">
+<li class="fragment"><p><strong>Is there a relationship between advertising budget and sales?</strong><br>
+Our first goal is to determine whether the data provide evidence of an association between advertising expenditure and sales. If the evidence is weak, one might argue that no money should be spent on advertising.</p></li>
+<li class="fragment"><p><strong>How strong is the relationship between advertising budget and sales?</strong><br>
+Assuming a relationship exists, how strong is it? Does knowledge of the advertising budget provide a lot of information about product sales?</p></li>
+<li class="fragment"><p><strong>Which media are associated with sales?</strong><br>
+Are all three media—TV, radio, and newspaper—associated with sales, or just one or two? We must separate the individual contribution of each medium to sales when money is spent on all three.</p></li>
+<li class="fragment"><p><strong>How large is the association between each medium and sales?</strong><br>
+For every dollar spent on a particular medium, by what amount will sales increase? How accurately can we predict this amount?</p></li>
+</ol>
+</div><div class="column" style="font-size: 95%;">
+<ol start="5" type="1">
+<li class="fragment"><p><strong>How accurately can we predict future sales?</strong><br>
+For any given level of television, radio, or newspaper advertising, what is our prediction for sales, and what is the accuracy of this prediction?</p></li>
+<li class="fragment"><p><strong>Is the relationship linear?</strong><br>
+If the relationship between advertising expenditure and sales is approximately linear, then linear regression is appropriate. If not, we may need to transform the predictor(s) or the response so that linear regression can be used.</p></li>
+<li class="fragment"><p><strong>Is there synergy among the advertising media?</strong><br>
+Perhaps spending $50,000 on television advertising <strong>and</strong> $50,000 on radio advertising is associated with higher sales than allocating $100,000 to either television or radio individually. In marketing, this is known as a <strong>synergy</strong> effect; in statistics, it is called an <strong>interaction</strong> effect.</p></li>
+</ol>
+</div></div>
 </div>
 </section></section>
 <section>
@@ -694,8 +780,13 @@ F = \frac{(TSS - RSS) / p}{RSS / (n - p - 1)} \sim F_{p, n-p-1}
 </table>
 <p><br></p>
 <p>The F-statistic is huge and it’s p-value is less than <span class="math inline">\(.0001\)</span>. This says that there’s a strong association of the predictors on the outcome variable.</p>
+</section></section>
+<section>
+<section id="deciding-on-the-important-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Deciding on the Important Variables</h1>
+
 </section>
-<section id="deciding-on-the-important-variables" class="slide level2 center">
+<section id="deciding-on-the-important-variables-1" class="slide level2 center">
 <h2>Deciding on the Important Variables</h2>
 <ul>
 <li class="fragment"><p>The most direct approach is called <strong>all subsets</strong> or <strong>best subsets</strong> regression:</p>
@@ -759,9 +850,9 @@ F = \frac{(TSS - RSS) / p}{RSS / (n - p - 1)} \sim F_{p, n-p-1}
 <section id="qualitative-predictors" class="slide level2 center">
 <h2>Qualitative Predictors</h2>
 <ul>
-<li class="fragment"><p>Some predictors are <strong>qualitative</strong>, taking discrete values (e.g., gender, ethnicity).</p></li>
+<li class="fragment"><p>Some predictors are <strong>qualitative</strong>, taking discrete values.</p></li>
 <li class="fragment"><p>Categorical predictors can be represented using <strong>factor variables</strong>.</p></li>
-<li class="fragment"><p><strong>Qualitative variables:</strong> Gender, Student (Student Status), Status (Marital Status), Ethnicity.</p></li>
+<li class="fragment"><p><strong>Qualitative variables:</strong> Student (Student Status), Status (Marital Status), Own (Owns a House).</p></li>
 </ul>
 </section>
 <section id="credit-card-data" class="slide level2 center">
@@ -771,27 +862,27 @@ F = \frac{(TSS - RSS) / p}{RSS / (n - p - 1)} \sim F_{p, n-p-1}
 </section>
 <section id="credit-card-data-1" class="slide level2 center">
 <h2>Credit Card Data</h2>
-<p>Suppose we investigate differences in credit card balance between males and females, ignoring the other variables. We create a new variable:</p>
+<p>Suppose we investigate differences in credit card balance between those who own a house and those who do not, ignoring the other variables. We create a new variable:</p>
 <p><span class="math display">\[
 x_i =
 \begin{cases}
-1 &amp; \text{if } i\text{th person is female} \\
-0 &amp; \text{if } i\text{th person is male}
+1 &amp; \text{if } i\text{th person owns a house} \\
+0 &amp; \text{if } i\text{th person does not own a house}
 \end{cases}
 \]</span></p>
 <p>Resulting model:</p>
 <p><span class="math display">\[
 y_i = \beta_0 + \beta_1 x_i + \epsilon_i =
 \begin{cases}
-\beta_0 + \beta_1 + \epsilon_i &amp; \text{if } i\text{th person is female} \\
-\beta_0 + \epsilon_i &amp; \text{if } i\text{th person is male.}
+\beta_0 + \beta_1 + \epsilon_i &amp; \text{if } i\text{th person owns a house} \\
+\beta_0 + \epsilon_i &amp; \text{if } i\text{th person does not own a house.}
 \end{cases}
 \]</span></p>
 </section>
 <section id="credit-card-data-2" class="slide level2 center">
 <h2>Credit Card Data</h2>
 <center>
-<strong>Results for gender model:</strong>
+<strong>Results for the model:</strong>
 </center>
 <table class="caption-top">
 <thead>
@@ -812,7 +903,7 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i =
 <td>&lt; 0.0001</td>
 </tr>
 <tr class="even">
-<td>Gender <span class="math inline">\(Female\)</span></td>
+<td>Own [Yes]</td>
 <td>19.73</td>
 <td>46.05</td>
 <td>0.429</td>
@@ -821,25 +912,25 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i =
 </tbody>
 </table>
 <p><br></p>
-<p>We see the coefficient is 19.73, but it’s not significant. The p value is 0.66 which is not significant (&gt; 0.05). So, contrary to popular wisdom, females don’t generally have a higher credit card balance than males.</p>
+<p>We see the coefficient is 19.73, but it’s not significant. The p value is 0.66 which is not significant (&gt; 0.05). So, owing a house don’t generally means a higher credit card balance than not owing one.</p>
 <p><br></p>
 </section>
 <section id="qualitative-predictors-with-more-than-two-levels" class="slide level2 center">
 <h2>Qualitative Predictors with More Than Two Levels</h2>
 <p><br></p>
 <p>With more than two levels, we create additional dummy variables.</p>
-<p>For example, for the <code>ethnicity</code> variable, we create two dummy variables:</p>
+<p>For example, for the `region`` variable, we create two dummy variables:</p>
 <p><span class="math display">\[
 x_{i1} =
 \begin{cases}
-      1 &amp; \text{if i-th person is Asian} \\
-      0 &amp; \text{if i-th person is not Asian}
+      1 &amp; \text{if i-th person is from the South} \\
+      0 &amp; \text{if i-th person is not from the South}
     \end{cases}
 \]</span></p>
 <p><span class="math display">\[
 x_{i2} = \begin{cases}
-      1 &amp; \text{if i-th person is Caucasian} \\
-      0 &amp; \text{if i-th person is not Caucasian}
+      1 &amp; \text{if i-th person is from the West} \\
+      0 &amp; \text{if i-th person is not from the West}
     \end{cases}
 \]</span></p>
 </section>
@@ -850,12 +941,12 @@ x_{i2} = \begin{cases}
 <p><span class="math display">\[
 y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i =
 \begin{cases}
-      \beta_0 + \beta_1 + \epsilon_i &amp; \text{if i-th person is Asian} \\
-      \beta_0 + \beta_2 + \epsilon_i &amp; \text{if i-th person is Caucasian}\\
-      \beta_0 + \epsilon_i &amp; \text{if i-th person is African American (baseline)}
+      \beta_0 + \beta_1 + \epsilon_i &amp; \text{if i-th person is from the South} \\
+      \beta_0 + \beta_2 + \epsilon_i &amp; \text{if i-th person is from the West}\\
+      \beta_0 + \epsilon_i &amp; \text{if i-th person is from the East (baseline)}
     \end{cases}
 \]</span> <br></p>
-<p><strong>Note:</strong> There will always be one fewer dummy variable than the number of levels. The level with no dummy variable — African American (AA) in this example — is known as the baseline.</p>
+<p><strong>Note:</strong> There will always be one fewer dummy variable than the number of levels. The level with no dummy variable — East in this example — is known as the baseline.</p>
 </section>
 <section id="results-for-ethnicity" class="slide level2 center">
 <h2>Results for Ethnicity</h2>
@@ -886,14 +977,14 @@ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i =
 <td>&lt; 0.0001</td>
 </tr>
 <tr class="even">
-<td>ethnicity <span class="math inline">\(Asian\)</span></td>
+<td>ethnicity <span class="math inline">\(South\)</span></td>
 <td>-18.69</td>
 <td>65.02</td>
 <td>-0.287</td>
 <td>0.7740</td>
 </tr>
 <tr class="odd">
-<td>ethnicity <span class="math inline">\(Caucasian\)</span></td>
+<td>ethnicity <span class="math inline">\(West\)</span></td>
 <td>-12.50</td>
 <td>56.68</td>
 <td>-0.221</td>
@@ -902,7 +993,7 @@ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i =
 </tbody>
 </table>
 <p><br></p>
-<p>The coefficient -18.69 compares Asian to African American and that’s not significant. Likewise, the Caucasian to African-American is also not significant.</p>
+<p>The coefficient -18.69 compares South to East and that’s not significant. Likewise, the West to East is also not significant.</p>
 <p><br></p>
 <p><strong>Note</strong>: the choice of the baseline does not affect the fit of the model. The residual sum of sum of squares will be the same no matter which category we chose as the baseline. At its turn, the p-values will potentially change as we change the baseline category.</p>
 </section></section>
@@ -1140,6 +1231,69 @@ mpg = \beta_0 + \beta_1 \times horsepower + \beta_2 \times horsepower^2 + \epsil
 </ul></li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="the-marketing-plan-answers" class="title-slide slide level1 center">
+<h1>The Marketing Plan: Answers</h1>
+
+</section>
+<section id="the-marketing-plan-answers-1" class="slide level2 center">
+<h2>The Marketing Plan: Answers</h2>
+<div style="font-size: 80%;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>1.Is there a relationship between sales and advertising budget?</strong></p>
+<p>Fit a multiple regression of <strong>sales</strong> on <strong>TV</strong>, <strong>radio</strong>, and <strong>newspaper</strong>, and test</p>
+<p><span class="math display">\[
+H_0:\ \beta_{\text{TV}}=\beta_{\text{radio}}=\beta_{\text{newspaper}}=0.
+\]</span></p>
+<p>Using the <span class="math inline">\(F\)</span>-statistic, the very small <span class="math inline">\(p\)</span>-value indicates clear evidence of a relationship between advertising and sales.</p>
+<div class="fragment">
+<p><strong>2. How strong is the relationship?</strong></p>
+<p>Two accuracy measures:</p>
+<ul>
+<li class="fragment"><p><strong>RSE</strong>: estimates the standard deviation of the response from the population regression line. For <em>Advertising</em>, RSE <span class="math inline">\(\approx\)</span> 3.26. In other words, actual sales in each market deviate from the true regression line by approximately 3,260 units, on average. In the data set, the mean value of sales over all markets is approximately 14,000 units, and so the percentage error is 3,260/14,000 = 23 %.</p></li>
+<li class="fragment"><p><strong><span class="math inline">\(R^2\)</span></strong> (variance explained): records the percentage of variability in the response that is explained by the predictors. Predictors explain ~90% of the variance in <strong>sales</strong>.</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>3. Which media are associated with sales?</strong></p>
+<p>Check <span class="math inline">\(p\)</span>-values for each predictor’s <span class="math inline">\(t\)</span>-statistic. The <span class="math inline">\(p\)</span>-values for <strong>TV</strong> and <strong>radio</strong> are low, but <strong>newspaper</strong> is not, suggesting only TV and radio are related to <strong>sales</strong>.</p>
+</div>
+<div class="fragment">
+<p><strong>4. How large is the association between each medium and sales?</strong></p>
+<p>We used SEs to build 95% CIs for coefficients related to <strong>TV</strong>, <strong>Radio</strong>, <strong>Newspaper</strong>.</p>
+<p>TV and radio intervals are narrow and far from 0, which means a strong evidence of association. Newspaper CI includes 0, not significant given TV and radio.</p>
+</div>
+<div class="fragment">
+<p><strong>5. How accurately can we predict future sales?</strong></p>
+<p>Accuracy depends on whether predicting an <strong>individual</strong> response, <span class="math inline">\(Y=f(X)+\epsilon\)</span>, or the <strong>average</strong> response, <span class="math inline">\(f(X)\)</span>.</p>
+<ul>
+<li class="fragment"><p>Individual <span class="math inline">\(\rightarrow\)</span> <strong>prediction interval</strong></p></li>
+<li class="fragment"><p>Average <span class="math inline">\(\rightarrow\)</span> <strong>confidence interval</strong></p></li>
+</ul>
+<div class="fragment">
+<p>Prediction intervals are always wider because they include irreducible error uncertainty from <span class="math inline">\(\epsilon\)</span>.</p>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="the-marketing-plan-answers-2" class="slide level2 center">
+<h2>The Marketing Plan: Answers</h2>
+<div class="columns">
+<div class="column" style="font-size: 90%;">
+<div class="fragment">
+<p><strong>6. Is the relationship linear?</strong></p>
+<p>Residual plots help diagnose nonlinearity; linear relationships yield residuals with no pattern. Transformations can accommodate nonlinearity within linear regression.</p>
+</div>
+</div><div class="column" style="font-size: 90%;">
+<div class="fragment">
+<p><strong>7. Is there synergy among the advertising media?</strong></p>
+<p>Standard linear regression assumes <strong>additivity</strong>. This is interpretable but may be unrealistic. An <strong>interaction term</strong> allows non-additive relationships; a small <span class="math inline">\(p\)</span>-value on the interaction indicates synergy. For <em>Advertising</em>, adding an interaction increases <span class="math inline">\(R^2\)</span> substantially — from ~90% to almost <strong>97%</strong>.</p>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">

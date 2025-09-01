@@ -1211,144 +1211,214 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 </div>
 </div>
 <p><br></p>
-</section></section>
-<section>
-<section id="classification-problems" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Classification Problems</h1>
+<!--- Optei por remover da primeira semana para abordar nas segunda e terceira semandas.
 
-</section>
-<section id="classification-problems-1" class="slide level2 center">
-<h2>Classification Problems</h2>
-<div>
-<div style="font-size: 80%;">
-<p>Here the response variable <span class="math inline">\(Y\)</span> is <strong>qualitative</strong>. For example:</p>
-<ul>
-<li><p>Email could be classified as <strong>spam</strong> or <strong>ham</strong> (good email).</p></li>
-<li><p>Digit classification could be one of <span class="math inline">\(\{0, 1, 2, \dots, 9\}\)</span>.</p></li>
-</ul>
-<div class="fragment">
-<p>Our goals are to:</p>
-<ol type="1">
-<li><p>Build a classifier <span class="math inline">\(C(X)\)</span> that assigns a class label from the set <span class="math inline">\(C\)</span> to a future unlabeled observation <span class="math inline">\(X\)</span>.</p></li>
-<li><p>Assess the uncertainty in each classification.</p></li>
-<li><p>Understand the roles of the different predictors among <span class="math inline">\(X = (X_1, X_2, \dots, X_p)\)</span>.</p></li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-<section id="ideal-classifier-and-bayes-decision-rule" class="slide level2 center">
-<h2>Ideal Classifier and Bayes Decision Rule</h2>
-<div>
-<div style="font-size: 80%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/2_1_7.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Consider a classification problem with <span class="math inline">\(K\)</span> possible classes, numbered <span class="math inline">\(1, 2, \ldots, K\)</span>. Define</p>
-<p><span class="math display">\[
-  p_k(x) = \Pr(Y = k \mid X = x),
+# Classification Problems {background-color="#cfb991"}
+
+## Classification Problems
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+
+Here the response variable $Y$ is **qualitative**. For example:
+
+- Email could be classified as **spam** or **ham** (good email).
+    
+- Digit classification could be one of $\{0, 1, 2, \dots, 9\}$.
+
+:::{.fragment}
+
+Our goals are to:
+
+1. Build a classifier $C(X)$ that assigns a class label from the set $C$ to a future unlabeled observation $X$.
+    
+2. Assess the uncertainty in each classification.
+    
+3. Understand the roles of the different predictors among $X = (X_1, X_2, \dots, X_p)$.
+
+:::
+
+::::
+::: 
+
+## Ideal Classifier and Bayes Decision Rule
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_1_7.png){fig-align='center' width=50%}
+:::
+:::
+
+
+
+Consider a classification problem with $K$ possible classes,  numbered $1, 2, \ldots, K$. Define
+
+$$
+  p_k(x) = \Pr(Y = k \mid X = x), 
   \quad k = 1, 2, \ldots, K.
-\]</span></p>
-<p>These are the <strong>conditional class probabilities</strong> at <span class="math inline">\(x\)</span>; e.g.&nbsp;see little barplot at <span class="math inline">\(x=5\)</span>.</p>
-<p>The <strong>Bayes optimal</strong> classifier at <span class="math inline">\(x\)</span> is</p>
-<p><span class="math display">\[
-  C(x) \;=\; j \quad \text{if} \quad p_j(x) =
+$$
+
+These are the **conditional class probabilities** at $x$; e.g. see little
+barplot at $x=5$. 
+
+The **Bayes optimal** classifier at $x$ is
+
+$$
+  C(x) \;=\; j \quad \text{if} \quad p_j(x) = 
       \max \{\,p_1(x),\, p_2(x),\, \dots,\, p_K(x)\}.
-\]</span></p>
-</div>
-</div>
-<p><br></p>
-</section>
-<section id="nearest-neighbor-averaging" class="slide level2 center">
-<h2>Nearest-Neighbor Averaging</h2>
-<div>
-<div style="font-size: 80%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/2_1_8.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Nearest-neighbor averaging can be used as before.</p>
-<p>Also breaks down as dimension grows. However, the impact on <span class="math inline">\(\hat{C}(x)\)</span>is less than on <span class="math inline">\(\hat{p}_k(x)\)</span>, for <span class="math inline">\(k = 1,\ldots,K\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="classification-some-details" class="slide level2 center">
-<h2>Classification: Some Details</h2>
-<div>
-<div style="font-size: 90%;">
-<p>Typically we measure the performance of <span class="math inline">\(\hat{C}(x)\)</span> using the <strong>misclassification error rate</strong>:</p>
-<p><span class="math display">\[
-    \mathrm{Err}_{\mathrm{Te}}
-      = \mathrm{Ave}_{i\in \mathrm{Te}}
+$$
+
+::::
+:::
+
+<br>
+
+## Nearest-Neighbor Averaging
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_1_8.png){fig-align='center' width=60%}
+:::
+:::
+
+
+
+Nearest-neighbor averaging can be used as before.  
+
+Also breaks down as dimension grows. However, the impact on $\hat{C}(x)$is less than on $\hat{p}_k(x)$, for $k = 1,\ldots,K$.
+
+::::
+:::
+
+
+## Classification: Some Details
+
+:::: nonincremental
+::: {style="font-size: 90%;"}
+
+Typically we measure the performance of $\hat{C}(x)$ using the **misclassification error rate**:
+
+$$
+    \mathrm{Err}_{\mathrm{Te}} 
+      = \mathrm{Ave}_{i\in \mathrm{Te}} 
         \bigl[I(y_i \neq \hat{C}(x_i))\bigr].
-\]</span></p>
-<ul>
-<li><p>The <strong>Bayes classifier</strong> (using the true <span class="math inline">\(p_k(x)\)</span>) has the smallest error in the population.</p></li>
-<li><p><strong>Support-vector machines</strong> build structured models for <span class="math inline">\(\hat{C}(x)\)</span>.</p></li>
-<li><p>We also build <strong>structured models</strong> for representing <span class="math inline">\(p_k(x)\)</span>. For example, logistic regression or generalized additive models.</p></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="example-k-nearest-neighbors-in-two-dimensions" class="slide level2 center">
-<h2>Example: K-Nearest Neighbors in Two Dimensions</h2>
-<p>Below is an example data set in two dimensions <span class="math inline">\((X_1, X_2)\)</span>. Points shown in <strong>blue</strong> might represent one class, and points in <strong>orange</strong> the other. The dashed boundary suggests a decision boundary formed by a classifier.</p>
+$$
 
-<img data-src="figs/2_1_9.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-</section>
-<section id="knn-k-10" class="slide level2 center">
-<h2>KNN: K = 10</h2>
-<p>Here is the same data set classified by <strong>k-nearest neighbors</strong> with <span class="math inline">\(k = 10\)</span>. The black boundary line encloses the region of the feature space predicted as orange vs.&nbsp;blue, showing how the decision boundary has become smoother.</p>
+- The **Bayes classifier** (using the true $p_k(x)$) has the smallest error in the population.
 
-<img data-src="figs/2_15-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-</section>
-<section id="knn-k-1-vs.-k-100" class="slide level2 center">
-<h2>KNN: K = 1 vs.&nbsp;K = 100</h2>
+- **Support-vector machines** build structured models for $\hat{C}(x)$.
 
-<img data-src="figs/2_16-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p>Comparisons of a <strong>very low</strong> value of <span class="math inline">\(k\)</span> (left, <span class="math inline">\(k=1\)</span>) versus a <strong>very high</strong> value (right, <span class="math inline">\(k=100\)</span>).</p>
-<ul>
-<li class="fragment"><p><strong><span class="math inline">\(k=1\)</span></strong>: Overly flexible boundary that can overfit.</p></li>
-<li class="fragment"><p><strong><span class="math inline">\(k=100\)</span></strong>: Very smooth boundary that can underfit.</p></li>
-</ul>
-<p><br></p>
-</section>
-<section id="knn-error-rates" class="slide level2 center">
-<h2>KNN Error Rates</h2>
-<div>
-<div style="font-size: 80%;">
-<div class="columns">
-<div class="column" style="width:45%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/2_17-1.png" class="quarto-figure quarto-figure-center" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:45%;">
-<p>The figure illustrates how <strong>training errors</strong> (blue curve) and <strong>test errors</strong> (orange curve) change for a K-nearest neighbors (KNN) classifier as <span class="math inline">\(\frac{1}{K}\)</span> varies.</p>
-<ul>
-<li><p><strong>For small <span class="math inline">\(K\)</span></strong> (i.e., large <span class="math inline">\(\frac{1}{K}\)</span>), the model can become very flexible, often driving down training error but increasing overfitting and thus test error.</p></li>
-<li><p><strong>For large <span class="math inline">\(K\)</span></strong> (i.e., small <span class="math inline">\(\frac{1}{K}\)</span>), the model becomes smoother, which can help avoid overfitting but sometimes leads to underfitting.</p></li>
-</ul>
-<p>The dashed horizontal line is the bayes error, used as reference for comparison.</p>
-</div></div>
-</div>
-</div>
-<p><br></p>
+- We also build **structured models** for representing $p_k(x)$. For example, logistic regression or generalized additive models.
+
+::::
+:::
+
+
+## Example: K-Nearest Neighbors in Two Dimensions
+
+Below is an example data set in two dimensions $(X_1, X_2)$. Points shown in **blue** might represent one class, and points in **orange** the other. The dashed boundary suggests a decision boundary formed by a classifier.
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_1_9.png){fig-align='center' width=80%}
+:::
+:::
+
+
+
+<br>
+
+## KNN: K = 10
+
+Here is the same data set classified by **k-nearest neighbors** with $k = 10$. 
+The black boundary line encloses the region of the feature space predicted as orange vs. blue, showing how the decision boundary has become smoother.
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_15-1.png){fig-align='center' width=80%}
+:::
+:::
+
+
+
+<br>
+
+## KNN: K = 1 vs. K = 100
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_16-1.png){fig-align='center' width=80%}
+:::
+:::
+
+
+
+Comparisons of a **very low** value of $k$ (left, $k=1$) versus a **very high** value (right, $k=100$). 
+
+- **$k=1$**: Overly flexible boundary that can overfit.
+
+- **$k=100$**: Very smooth boundary that can underfit.
+
+<br>
+
+## KNN Error Rates
+
+:::: nonincremental
+::: {style="font-size: 80%;"}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/2_17-1.png){fig-align='center' width=95%}
+:::
+:::
+
+
+
+::: 
+
+::: {.column width="45%"}
+
+The figure illustrates how **training errors** (blue curve) and **test errors** (orange curve) change for a K-nearest neighbors (KNN) classifier as $\frac{1}{K}$ varies.  
+
+- **For small $K$** (i.e., large $\frac{1}{K}$), the model can become very flexible, often driving down training error but increasing overfitting and thus test error.
+
+- **For large $K$** (i.e., small $\frac{1}{K}$), the model becomes smoother, which can help avoid overfitting but sometimes leads to underfitting.
+
+The dashed horizontal line is the bayes error, used as reference for comparison.
+
+
+:::
+
+::::
+
+::::
+:::
+
+<br>
+
+--->
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
