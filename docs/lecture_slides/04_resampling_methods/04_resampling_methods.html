@@ -1,280 +1,149 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Professor: Davi Moreira">
-
-<title> MGMT 47400: Predictive Analytics  – MGMT 47400: Predictive Analytics</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-</style>
-
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<html lang="en"><head>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-278f079c28f28dbf8752571db94a6592.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
+  <meta name="author" content="Professor: Davi Moreira">
+  <title>MGMT 47400: Predictive Analytics –  MGMT 47400: Predictive Analytics </title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
     }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5b60505eb0a2c59e7e66c4d06532a844.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-sidebar docked slimcontent">
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+  <p class="subtitle"><span style="font-size: 150%;"> Resampling Methods </span></p>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      <div class="sidebar-tools-main">
-    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Professor: Davi Moreira 
 </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Schedule and Material</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a>
-  <ul class="collapse">
-  <li><a href="#prediction" id="toc-prediction" class="nav-link" data-scroll-target="#prediction">Prediction</a></li>
-  <li><a href="#why-not-use-training-data" id="toc-why-not-use-training-data" class="nav-link" data-scroll-target="#why-not-use-training-data">Why Not Use Training Data?</a></li>
-  <li><a href="#solution-resampling-methods" id="toc-solution-resampling-methods" class="nav-link" data-scroll-target="#solution-resampling-methods">Solution: Resampling methods</a></li>
-  </ul></li>
-  <li><a href="#training-error-versus-test-error" id="toc-training-error-versus-test-error" class="nav-link" data-scroll-target="#training-error-versus-test-error">Training Error versus Test Error</a>
-  <ul class="collapse">
-  <li><a href="#training-error-versus-test-error-1" id="toc-training-error-versus-test-error-1" class="nav-link" data-scroll-target="#training-error-versus-test-error-1">Training Error versus Test Error</a></li>
-  <li><a href="#training--versus-test-set-performance" id="toc-training--versus-test-set-performance" class="nav-link" data-scroll-target="#training--versus-test-set-performance">Training- versus Test-Set Performance</a></li>
-  <li><a href="#precision-and-accuracy" id="toc-precision-and-accuracy" class="nav-link" data-scroll-target="#precision-and-accuracy">Precision and Accuracy</a></li>
-  <li><a href="#more-on-prediction-error-estimates" id="toc-more-on-prediction-error-estimates" class="nav-link" data-scroll-target="#more-on-prediction-error-estimates">More on Prediction-Error Estimates</a></li>
-  </ul></li>
-  <li><a href="#validation-set-approach" id="toc-validation-set-approach" class="nav-link" data-scroll-target="#validation-set-approach">Validation-Set Approach</a>
-  <ul class="collapse">
-  <li><a href="#validation-set-approach-1" id="toc-validation-set-approach-1" class="nav-link" data-scroll-target="#validation-set-approach-1">Validation-Set Approach</a></li>
-  <li><a href="#the-validation-process" id="toc-the-validation-process" class="nav-link" data-scroll-target="#the-validation-process">The Validation Process</a></li>
-  <li><a href="#example-automobile-data" id="toc-example-automobile-data" class="nav-link" data-scroll-target="#example-automobile-data">Example: Automobile Data</a></li>
-  <li><a href="#drawbacks-of-validation-set-approach" id="toc-drawbacks-of-validation-set-approach" class="nav-link" data-scroll-target="#drawbacks-of-validation-set-approach">Drawbacks of Validation Set Approach</a></li>
-  </ul></li>
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-Validation</a>
-  <ul class="collapse">
-  <li><a href="#k-fold-cross-validation" id="toc-k-fold-cross-validation" class="nav-link" data-scroll-target="#k-fold-cross-validation">K-Fold Cross-Validation</a></li>
-  <li><a href="#k-fold-cross-validation-in-detail" id="toc-k-fold-cross-validation-in-detail" class="nav-link" data-scroll-target="#k-fold-cross-validation-in-detail">K-Fold Cross-Validation in Detail</a></li>
-  <li><a href="#k-fold-cross-validation-in-detail-1" id="toc-k-fold-cross-validation-in-detail-1" class="nav-link" data-scroll-target="#k-fold-cross-validation-in-detail-1">K-Fold Cross-Validation in Detail</a></li>
-  <li><a href="#k-fold-cross-validation-in-algebra" id="toc-k-fold-cross-validation-in-algebra" class="nav-link" data-scroll-target="#k-fold-cross-validation-in-algebra">K-Fold Cross-Validation: in algebra</a></li>
-  <li><a href="#leave-one-out-cross-validation-loocv" id="toc-leave-one-out-cross-validation-loocv" class="nav-link" data-scroll-target="#leave-one-out-cross-validation-loocv">Leave-One-Out Cross-Validation (LOOCV)</a></li>
-  <li><a href="#a-nice-special-case" id="toc-a-nice-special-case" class="nav-link" data-scroll-target="#a-nice-special-case">A Nice Special Case!</a></li>
-  <li><a href="#example-auto-data-revisited" id="toc-example-auto-data-revisited" class="nav-link" data-scroll-target="#example-auto-data-revisited">Example: Auto Data Revisited</a></li>
-  <li><a href="#true-and-estimated-test-mse-for-the-simulated-data" id="toc-true-and-estimated-test-mse-for-the-simulated-data" class="nav-link" data-scroll-target="#true-and-estimated-test-mse-for-the-simulated-data">True and Estimated Test MSE for the Simulated Data</a></li>
-  <li><a href="#potential-issues-with-cross-validation" id="toc-potential-issues-with-cross-validation" class="nav-link" data-scroll-target="#potential-issues-with-cross-validation">Potential Issues with Cross-Validation</a></li>
-  </ul></li>
-  <li><a href="#cross-validation-for-classification-problems" id="toc-cross-validation-for-classification-problems" class="nav-link" data-scroll-target="#cross-validation-for-classification-problems">Cross-Validation for Classification Problems</a>
-  <ul class="collapse">
-  <li><a href="#cross-validation-for-classification-problems-1" id="toc-cross-validation-for-classification-problems-1" class="nav-link" data-scroll-target="#cross-validation-for-classification-problems-1">Cross-Validation for Classification Problems</a></li>
-  </ul></li>
-  <li><a href="#cross-validation-right-and-wrong" id="toc-cross-validation-right-and-wrong" class="nav-link" data-scroll-target="#cross-validation-right-and-wrong">Cross-Validation: Right and Wrong</a>
-  <ul class="collapse">
-  <li><a href="#the-setting" id="toc-the-setting" class="nav-link" data-scroll-target="#the-setting">The Setting</a></li>
-  <li><a href="#the-tempting-but-wrong-approach" id="toc-the-tempting-but-wrong-approach" class="nav-link" data-scroll-target="#the-tempting-but-wrong-approach">The Tempting (but Wrong) Approach</a></li>
-  <li><a href="#why-it-is-wrong-data-leakage" id="toc-why-it-is-wrong-data-leakage" class="nav-link" data-scroll-target="#why-it-is-wrong-data-leakage">Why It Is Wrong: Data Leakage</a></li>
-  <li><a href="#the-correct-right-way-to-apply-crossvalidation" id="toc-the-correct-right-way-to-apply-crossvalidation" class="nav-link" data-scroll-target="#the-correct-right-way-to-apply-crossvalidation">The Correct (Right) Way to Apply Cross‐Validation</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul></li>
-  <li><a href="#bootstrap" id="toc-bootstrap" class="nav-link" data-scroll-target="#bootstrap">Bootstrap</a>
-  <ul class="collapse">
-  <li><a href="#the-bootstrap" id="toc-the-bootstrap" class="nav-link" data-scroll-target="#the-bootstrap">The Bootstrap</a></li>
-  <li><a href="#where-does-the-name-come-from" id="toc-where-does-the-name-come-from" class="nav-link" data-scroll-target="#where-does-the-name-come-from">Where Does the Name Come From?</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#example-continued" id="toc-example-continued" class="nav-link" data-scroll-target="#example-continued">Example Continued</a></li>
-  <li><a href="#example-continued-1" id="toc-example-continued-1" class="nav-link" data-scroll-target="#example-continued-1">Example Continued</a></li>
-  <li><a href="#example-continued-2" id="toc-example-continued-2" class="nav-link" data-scroll-target="#example-continued-2">Example Continued</a></li>
-  <li><a href="#example-continued-3" id="toc-example-continued-3" class="nav-link" data-scroll-target="#example-continued-3">Example Continued</a></li>
-  <li><a href="#example-results" id="toc-example-results" class="nav-link" data-scroll-target="#example-results">Example Results</a></li>
-  <li><a href="#now-back-to-the-real-world" id="toc-now-back-to-the-real-world" class="nav-link" data-scroll-target="#now-back-to-the-real-world">Now Back to the Real World</a></li>
-  <li><a href="#example-with-just-3-observations" id="toc-example-with-just-3-observations" class="nav-link" data-scroll-target="#example-with-just-3-observations">Example with Just 3 Observations</a></li>
-  <li><a href="#bootstrap-standard-error" id="toc-bootstrap-standard-error" class="nav-link" data-scroll-target="#bootstrap-standard-error">Bootstrap Standard Error</a></li>
-  </ul></li>
-  <li><a href="#more-on-bootstrap" id="toc-more-on-bootstrap" class="nav-link" data-scroll-target="#more-on-bootstrap">More on Bootstrap</a>
-  <ul class="collapse">
-  <li><a href="#a-general-picture-for-the-bootstrap" id="toc-a-general-picture-for-the-bootstrap" class="nav-link" data-scroll-target="#a-general-picture-for-the-bootstrap">A General Picture for the Bootstrap</a></li>
-  <li><a href="#the-bootstrap-in-general" id="toc-the-bootstrap-in-general" class="nav-link" data-scroll-target="#the-bootstrap-in-general">The Bootstrap in General</a></li>
-  <li><a href="#other-uses-of-the-bootstrap" id="toc-other-uses-of-the-bootstrap" class="nav-link" data-scroll-target="#other-uses-of-the-bootstrap">Other Uses of the Bootstrap</a></li>
-  </ul></li>
-  <li><a href="#can-the-bootstrap-estimate-prediction-error" id="toc-can-the-bootstrap-estimate-prediction-error" class="nav-link" data-scroll-target="#can-the-bootstrap-estimate-prediction-error">Can the Bootstrap Estimate Prediction Error?</a>
-  <ul class="collapse">
-  <li><a href="#can-the-bootstrap-estimate-prediction-error-1" id="toc-can-the-bootstrap-estimate-prediction-error-1" class="nav-link" data-scroll-target="#can-the-bootstrap-estimate-prediction-error-1">Can the Bootstrap Estimate Prediction Error?</a></li>
-  <li><a href="#removing-the-overlap" id="toc-removing-the-overlap" class="nav-link" data-scroll-target="#removing-the-overlap">Removing the Overlap</a></li>
-  </ul></li>
-  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a>
-  <ul class="collapse">
-  <li><a href="#summary-2" id="toc-summary-2" class="nav-link" data-scroll-target="#summary-2">Summary</a></li>
-  </ul></li>
-  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank you!</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="04_resampling_methods.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
-<p class="subtitle lead"><span style="font-size: 150%;"> Resampling Methods </span></p>
+</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Professor: Davi Moreira </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="overview" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<div class="nonincremental">
+</section>
+<section id="overview" class="slide level2 center">
+<h2>Overview</h2>
+<div>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <ul>
@@ -290,63 +159,67 @@ window.Quarto = {
 <li>More on Bootstrap</li>
 <li>Can the Bootstrap Estimate Prediction Error?</li>
 </ul>
-</div>
-</div>
+</div></div>
 </div>
 <p><br></p>
 
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<aside><div>
 <p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
-</div></div></section>
-<section id="motivation" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Motivation</h1>
-<section id="prediction" class="level2">
-<h2 class="anchored" data-anchor-id="prediction">Prediction</h2>
+</div></aside></section>
+<section>
+<section id="motivation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Motivation</h1>
+
+</section>
+<section id="prediction" class="slide level2 center">
+<h2>Prediction</h2>
 <ul>
-<li><strong>Goal</strong>: Build predictors and classifiers to make accurate predictions from data.</li>
-<li><strong>Challenge</strong>: How do we evaluate our predictions?</li>
+<li class="fragment"><strong>Goal</strong>: Build predictors and classifiers to make accurate predictions from data.</li>
+<li class="fragment"><strong>Challenge</strong>: How do we evaluate our predictions?</li>
 </ul>
 <div class="fragment">
 <p><strong>Ideal Scenario: New Data</strong></p>
 <ul>
-<li>The best way to test predictions is to use <strong>new, independent data</strong> from the population.</li>
-<li><strong>Problem</strong>: New data isn’t always available.</li>
+<li class="fragment">The best way to test predictions is to use <strong>new, independent data</strong> from the population.</li>
+<li class="fragment"><strong>Problem</strong>: New data isn’t always available.</li>
 </ul>
 </div>
 </section>
-<section id="why-not-use-training-data" class="level2">
-<h2 class="anchored" data-anchor-id="why-not-use-training-data">Why Not Use Training Data?</h2>
+<section id="why-not-use-training-data" class="slide level2 center">
+<h2>Why Not Use Training Data?</h2>
 <ul>
-<li>Using training data for evaluation is <strong>not reliable</strong>.
+<li class="fragment">Using training data for evaluation is <strong>not reliable</strong>.
 <ul>
-<li>Models tend to perform better on data they’ve already seen.</li>
-<li>This leads to overly <strong>optimistic</strong> results.</li>
+<li class="fragment">Models tend to perform better on data they’ve already seen.</li>
+<li class="fragment">This leads to overly <strong>optimistic</strong> results.</li>
 </ul></li>
 </ul>
 </section>
-<section id="solution-resampling-methods" class="level2">
-<h2 class="anchored" data-anchor-id="solution-resampling-methods">Solution: Resampling methods</h2>
+<section id="solution-resampling-methods" class="slide level2 center">
+<h2>Solution: Resampling methods</h2>
 <ul>
-<li><p>Cross-validation and the Bootstrap are two <em>resampling</em> methods.</p></li>
-<li><p>These methods allows us to evaluate the performance of our predictors using the available data without relying on additional samples.</p></li>
-<li><p>They refit a model of interest to samples formed from the training set, in order to obtain additional information about the fitted model.</p></li>
-<li><p>For example, they provide estimates of test-set prediction error, and the standard deviation and bias of our parameter estimates.</p></li>
+<li class="fragment"><p>Cross-validation and the Bootstrap are two <em>resampling</em> methods.</p></li>
+<li class="fragment"><p>These methods allows us to evaluate the performance of our predictors using the available data without relying on additional samples.</p></li>
+<li class="fragment"><p>They refit a model of interest to samples formed from the training set, in order to obtain additional information about the fitted model.</p></li>
+<li class="fragment"><p>For example, they provide estimates of test-set prediction error, and the standard deviation and bias of our parameter estimates.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="training-error-versus-test-error" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Training Error versus Test Error</h1>
+
+</section>
+<section id="training-error-versus-test-error-1" class="slide level2 center">
+<h2>Training Error versus Test Error</h2>
+<ul>
+<li class="fragment"><p>Recall the distinction between the <em>test error</em> and the <em>training error</em>:</p></li>
+<li class="fragment"><p>The <em>test error</em> is the average error that results from using a statistical learning method to predict the response on a new observation, one that was not used in training the method.</p></li>
+<li class="fragment"><p>The <em>training error</em> can be easily calculated by applying the statistical learning method to the observations used in its training.</p></li>
+<li class="fragment"><p>But the training error rate often is quite different from the test error rate, and in particular, the former can <em>dramatically underestimate</em> the latter.</p></li>
 </ul>
 </section>
-</section>
-<section id="training-error-versus-test-error" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Training Error versus Test Error</h1>
-<section id="training-error-versus-test-error-1" class="level2">
-<h2 class="anchored" data-anchor-id="training-error-versus-test-error-1">Training Error versus Test Error</h2>
-<ul>
-<li><p>Recall the distinction between the <em>test error</em> and the <em>training error</em>:</p></li>
-<li><p>The <em>test error</em> is the average error that results from using a statistical learning method to predict the response on a new observation, one that was not used in training the method.</p></li>
-<li><p>The <em>training error</em> can be easily calculated by applying the statistical learning method to the observations used in its training.</p></li>
-<li><p>But the training error rate often is quite different from the test error rate, and in particular, the former can <em>dramatically underestimate</em> the latter.</p></li>
-</ul>
-</section>
-<section id="training--versus-test-set-performance" class="level2">
-<h2 class="anchored" data-anchor-id="training--versus-test-set-performance">Training- versus Test-Set Performance</h2>
+<section id="training--versus-test-set-performance" class="slide level2 center">
+<h2>Training- versus Test-Set Performance</h2>
 <div style="font-size: 50%;">
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -355,66 +228,65 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_1_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+<figure>
+<p><img data-src="figs/5_1_4-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li><strong>Horizontal Axis</strong>: Represents <strong>model complexity</strong> (low to high).
+<li class="fragment"><strong>Horizontal Axis</strong>: Represents <strong>model complexity</strong> (low to high).
 <ul>
-<li>Low complexity: Simpler models with fewer parameters (e.g., fitting a straight line or using a few features).</li>
-<li>High complexity: More complex models with many parameters (e.g., higher-degree polynomials or many features).</li>
+<li class="fragment">Low complexity: Simpler models with fewer parameters (e.g., fitting a straight line or using a few features).</li>
+<li class="fragment">High complexity: More complex models with many parameters (e.g., higher-degree polynomials or many features).</li>
 </ul></li>
-<li><strong>Vertical Axis</strong>: Represents <strong>prediction error</strong>.
+<li class="fragment"><strong>Vertical Axis</strong>: Represents <strong>prediction error</strong>.
 <ul>
-<li>Lower values indicate better predictive performance.</li>
+<li class="fragment">Lower values indicate better predictive performance.</li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <ol type="1">
-<li><strong>Training Error (Blue Curve)</strong>:
+<li class="fragment"><strong>Training Error (Blue Curve)</strong>:
 <ul>
-<li>Starts high at low complexity because simple models underfit the training data.</li>
-<li>Decreases steadily as the model becomes more complex, fitting the training data better.</li>
-<li>Continues to decline even as the model becomes overly complex.</li>
+<li class="fragment">Starts high at low complexity because simple models underfit the training data.</li>
+<li class="fragment">Decreases steadily as the model becomes more complex, fitting the training data better.</li>
+<li class="fragment">Continues to decline even as the model becomes overly complex.</li>
 </ul></li>
-<li><strong>Test Error (Red Curve)</strong>:
+<li class="fragment"><strong>Test Error (Red Curve)</strong>:
 <ul>
-<li>Starts high at low complexity due to underfitting (failure to generalize).</li>
-<li>Decreases as complexity increases and the model starts capturing relevant patterns.</li>
-<li>Reaches a <strong>minimum</strong> at the optimal complexity (sweet spot).</li>
-<li>Increases again at high complexity due to overfitting (model captures noise instead of general patterns).</li>
+<li class="fragment">Starts high at low complexity due to underfitting (failure to generalize).</li>
+<li class="fragment">Decreases as complexity increases and the model starts capturing relevant patterns.</li>
+<li class="fragment">Reaches a <strong>minimum</strong> at the optimal complexity (sweet spot).</li>
+<li class="fragment">Increases again at high complexity due to overfitting (model captures noise instead of general patterns).</li>
 </ul></li>
 </ol>
 <ul>
-<li><p><strong>Key Concepts</strong></p></li>
-<li><p><strong>Bias-Variance Tradeoff</strong>:</p>
+<li class="fragment"><p><strong>Key Concepts</strong></p></li>
+<li class="fragment"><p><strong>Bias-Variance Tradeoff</strong>:</p>
 <ul>
-<li><strong>High Bias (Left Side)</strong>: Simple models fail to capture the true structure of the data.</li>
-<li><strong>High Variance (Right Side)</strong>: Complex models become overly tailored to the training data and fail to generalize.</li>
+<li class="fragment"><strong>High Bias (Left Side)</strong>: Simple models fail to capture the true structure of the data.</li>
+<li class="fragment"><strong>High Variance (Right Side)</strong>: Complex models become overly tailored to the training data and fail to generalize.</li>
 </ul></li>
-<li><p><strong>Optimal Complexity</strong>:</p>
+<li class="fragment"><p><strong>Optimal Complexity</strong>:</p>
 <ul>
-<li>Located where the <strong>test error</strong> is minimized.</li>
-<li>Balances bias and variance for the best generalization performance.</li>
+<li class="fragment">Located where the <strong>test error</strong> is minimized.</li>
+<li class="fragment">Balances bias and variance for the best generalization performance.</li>
 </ul></li>
-<li><p>The <strong>Goal</strong> is to select a model complexity that minimizes test error to ensure good predictive performance on unseen data.</p></li>
+<li class="fragment"><p>The <strong>Goal</strong> is to select a model complexity that minimizes test error to ensure good predictive performance on unseen data.</p></li>
 </ul>
-</div>
-</div>
+</div></div>
 </div>
 </section>
-<section id="precision-and-accuracy" class="level2">
-<h2 class="anchored" data-anchor-id="precision-and-accuracy">Precision and Accuracy</h2>
+<section id="precision-and-accuracy" class="slide level2 center">
+<h2>Precision and Accuracy</h2>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/precision_accuracy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<figure>
+<p><img data-src="figs/precision_accuracy.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
@@ -422,72 +294,65 @@ window.Quarto = {
 </div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <div style="font-size: 70%;">
 <ul>
-<li><p><strong>Precision</strong>: Refers to the consistency or reliability of the model’s predictions.</p></li>
-<li><p><strong>Accuracy</strong>: Refers to how close the model’s predictions are to the true values.</p></li>
+<li class="fragment"><p><strong>Precision</strong>: Refers to the consistency or reliability of the model’s predictions.</p></li>
+<li class="fragment"><p><strong>Accuracy</strong>: Refers to how close the model’s predictions are to the true values.</p></li>
 </ul>
 <div class="fragment">
 <p>In the context of regression:</p>
 <ul>
-<li><strong>High Precision, Low Accuracy</strong>: Predictions are consistent but biased.</li>
-<li><strong>High Precision, High Accuracy</strong>: Predictions are both consistent and valid.</li>
-<li><strong>Low Precision, Low Accuracy</strong>: Predictions are neither consistent nor valid.</li>
-<li><strong>Low Precision, High Accuracy</strong>: Predictions are valid on average but have high variability.</li>
+<li class="fragment"><strong>High Precision, Low Accuracy</strong>: Predictions are consistent but biased.</li>
+<li class="fragment"><strong>High Precision, High Accuracy</strong>: Predictions are both consistent and valid.</li>
+<li class="fragment"><strong>Low Precision, Low Accuracy</strong>: Predictions are neither consistent nor valid.</li>
+<li class="fragment"><strong>Low Precision, High Accuracy</strong>: Predictions are valid on average but have high variability.</li>
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="more-on-prediction-error-estimates" class="level2">
-<h2 class="anchored" data-anchor-id="more-on-prediction-error-estimates">More on Prediction-Error Estimates</h2>
+<section id="more-on-prediction-error-estimates" class="slide level2 center">
+<h2>More on Prediction-Error Estimates</h2>
 <ul>
-<li>Best solution: test the model with a large test set.
+<li class="fragment">Best solution: test the model with a large test set.
 <ul>
-<li>However, it is not very often available.</li>
+<li class="fragment">However, it is not very often available.</li>
 </ul></li>
-<li>In the absence of a large test set, some methods make a <em>mathematical adjustment</em> to the training error rate in order to estimate the test error rate.
+<li class="fragment">In the absence of a large test set, some methods make a <em>mathematical adjustment</em> to the training error rate in order to estimate the test error rate.
 <ul>
-<li>These include the <em>Cp statistic</em>, <em>AIC</em>, and <em>BIC</em>.</li>
+<li class="fragment">These include the <em>Cp statistic</em>, <em>AIC</em>, and <em>BIC</em>.</li>
 </ul></li>
-<li>In this lecture we consider a class of methods that estimate the test error by <em>holding out</em> a subset of the training observations from the fitting process, and then applying the statistical learning method to those held-out observations.</li>
+<li class="fragment">In this lecture we consider a class of methods that estimate the test error by <em>holding out</em> a subset of the training observations from the fitting process, and then applying the statistical learning method to those held-out observations.</li>
 </ul>
+</section></section>
+<section>
+<section id="validation-set-approach" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Validation-Set Approach</h1>
+
 </section>
-</section>
-<section id="validation-set-approach" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Validation-Set Approach</h1>
-<section id="validation-set-approach-1" class="level2">
-<h2 class="anchored" data-anchor-id="validation-set-approach-1">Validation-Set Approach</h2>
+<section id="validation-set-approach-1" class="slide level2 center">
+<h2>Validation-Set Approach</h2>
 <ul>
-<li><p>Here we randomly divide the available set of samples into two parts: a <em>training set</em> and a <em>validation</em> or <em>hold-out set</em>.</p></li>
-<li><p>The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set.</p></li>
-<li><p>The resulting validation-set error provides an estimate of the test error.</p>
+<li class="fragment"><p>Here we randomly divide the available set of samples into two parts: a <em>training set</em> and a <em>validation</em> or <em>hold-out set</em>.</p></li>
+<li class="fragment"><p>The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set.</p></li>
+<li class="fragment"><p>The resulting validation-set error provides an estimate of the test error.</p>
 <ul>
-<li>This is typically assessed using the <em>Mean Squared Error (MSE)</em> in the case of a quantitative response and Misclassification Rate in the case of a qualitative (discrete) response.</li>
-</ul></li>
-</ul>
-</section>
-<section id="the-validation-process" class="level2">
-<h2 class="anchored" data-anchor-id="the-validation-process">The Validation Process</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p><strong>A random splitting of the original dataset into two halves (two-fold validation):</strong></p>
-<ul>
-<li>Left part is the training set</li>
-<li>Right part is the validation set</li>
+<li class="fragment">This is typically assessed using the <em>Mean Squared Error (MSE)</em> in the case of a quantitative response and Misclassification Rate in the case of a qualitative (discrete) response.</li>
 </ul></li>
 </ul>
 </section>
-<section id="example-automobile-data" class="level2">
-<h2 class="anchored" data-anchor-id="example-automobile-data">Example: Automobile Data</h2>
-<div class="nonincremental">
+<section id="the-validation-process" class="slide level2 center">
+<h2>The Validation Process</h2>
+
+<img data-src="figs/5_1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p><strong>A random splitting of the original dataset into two halves (two-fold validation):</strong></p>
+<ul>
+<li class="fragment">Left part is the training set</li>
+<li class="fragment">Right part is the validation set</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-automobile-data" class="slide level2 center">
+<h2>Example: Automobile Data</h2>
+<div>
 <div style="font-size: 80%;">
 <ul>
 <li><p>Want to compare linear vs higher-order polynomial terms in a linear regression.</p></li>
@@ -500,8 +365,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/5_2-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
@@ -510,72 +375,58 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="drawbacks-of-validation-set-approach" class="level2">
-<h2 class="anchored" data-anchor-id="drawbacks-of-validation-set-approach">Drawbacks of Validation Set Approach</h2>
+<section id="drawbacks-of-validation-set-approach" class="slide level2 center">
+<h2>Drawbacks of Validation Set Approach</h2>
 <ul>
-<li><p>The validation estimate of the test error can be highly variable, depending on precisely which observations are included in the training set and which observations are included in the validation set.</p></li>
-<li><p>In the validation approach, only a subset of the observations — those that are included in the training set rather than in the validation set — are used to fit the model.</p></li>
-<li><p>This suggests that the validation set error may tend to <em>overestimate</em> the test error for the model fit on the entire data set. <em>Why?</em></p>
+<li class="fragment"><p>The validation estimate of the test error can be highly variable, depending on precisely which observations are included in the training set and which observations are included in the validation set.</p></li>
+<li class="fragment"><p>In the validation approach, only a subset of the observations — those that are included in the training set rather than in the validation set — are used to fit the model.</p></li>
+<li class="fragment"><p>This suggests that the validation set error may tend to <em>overestimate</em> the test error for the model fit on the entire data set. <em>Why?</em></p>
 <ul>
-<li>Having more data generally leads to lower error because it provides more information for training the model.</li>
-<li>For example, training on <strong>200 observations</strong> is typically preferable to <strong>100 observations</strong>, as larger datasets improve accuracy.</li>
-<li>However, when the training set is reduced (e.g., during validation), error estimates can be higher since smaller datasets may fail to capture all patterns in the data.</li>
-<li>This limitation highlights the drawbacks of simple validation.</li>
-<li><strong>Cross-validation</strong> addresses this issue by efficiently using the data to produce more accurate and reliable error estimates.</li>
+<li class="fragment">Having more data generally leads to lower error because it provides more information for training the model.</li>
+<li class="fragment">For example, training on <strong>200 observations</strong> is typically preferable to <strong>100 observations</strong>, as larger datasets improve accuracy.</li>
+<li class="fragment">However, when the training set is reduced (e.g., during validation), error estimates can be higher since smaller datasets may fail to capture all patterns in the data.</li>
+<li class="fragment">This limitation highlights the drawbacks of simple validation.</li>
+<li class="fragment"><strong>Cross-validation</strong> addresses this issue by efficiently using the data to produce more accurate and reliable error estimates.</li>
 </ul></li>
 </ul>
+</section></section>
+<section>
+<section id="cross-validation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Cross-Validation</h1>
+
 </section>
-</section>
-<section id="cross-validation" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Cross-Validation</h1>
-<section id="k-fold-cross-validation" class="level2">
-<h2 class="anchored" data-anchor-id="k-fold-cross-validation"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">K-Fold Cross-Validation</a></h2>
+<section id="k-fold-cross-validation" class="slide level2 center">
+<h2><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">K-Fold Cross-Validation</a></h2>
 <ul>
-<li><p><em>Widely used approach</em> for estimating test error.</p></li>
-<li><p>Estimates can be used to select the best model and to give an idea of the test error of the final chosen model.</p></li>
-<li><p>The idea is to randomly divide the data into <span class="math inline">\(K\)</span> equal-sized parts. We leave out part <span class="math inline">\(k\)</span>, fit the model to the other <span class="math inline">\(K-1\)</span> parts (combined), and then obtain predictions for the left-out <span class="math inline">\(k\)</span>-th part.</p></li>
-<li><p>This is done in turn for each part <span class="math inline">\(k = 1, 2, \ldots, K\)</span>, and then the results are combined.</p></li>
+<li class="fragment"><p><em>Widely used approach</em> for estimating test error.</p></li>
+<li class="fragment"><p>Estimates can be used to select the best model and to give an idea of the test error of the final chosen model.</p></li>
+<li class="fragment"><p>The idea is to randomly divide the data into <span class="math inline">\(K\)</span> equal-sized parts. We leave out part <span class="math inline">\(k\)</span>, fit the model to the other <span class="math inline">\(K-1\)</span> parts (combined), and then obtain predictions for the left-out <span class="math inline">\(k\)</span>-th part.</p></li>
+<li class="fragment"><p>This is done in turn for each part <span class="math inline">\(k = 1, 2, \ldots, K\)</span>, and then the results are combined.</p></li>
 </ul>
 </section>
-<section id="k-fold-cross-validation-in-detail" class="level2">
-<h2 class="anchored" data-anchor-id="k-fold-cross-validation-in-detail">K-Fold Cross-Validation in Detail</h2>
+<section id="k-fold-cross-validation-in-detail" class="slide level2 center">
+<h2>K-Fold Cross-Validation in Detail</h2>
 <p>Divide data into <span class="math inline">\(K\)</span> roughly equal-sized parts (<span class="math inline">\(K = 5\)</span> here).</p>
 <p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/grid_search_cross_validation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
+
+<img data-src="figs/grid_search_cross_validation.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"><p><br></p>
 </section>
-<section id="k-fold-cross-validation-in-detail-1" class="level2">
-<h2 class="anchored" data-anchor-id="k-fold-cross-validation-in-detail-1">K-Fold Cross-Validation in Detail</h2>
+<section id="k-fold-cross-validation-in-detail-1" class="slide level2 center">
+<h2>K-Fold Cross-Validation in Detail</h2>
 <p>Divide data into <span class="math inline">\(K\)</span> roughly equal-sized parts (<span class="math inline">\(K = 3\)</span> here).</p>
 <p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/KfoldCV.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
+
+<img data-src="figs/KfoldCV.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><p><br></p>
 <center>
 <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">Wiki</a>
 </center>
 <p><br></p>
 </section>
-<section id="k-fold-cross-validation-in-algebra" class="level2">
-<h2 class="anchored" data-anchor-id="k-fold-cross-validation-in-algebra">K-Fold Cross-Validation: in algebra</h2>
+<section id="k-fold-cross-validation-in-algebra" class="slide level2 center">
+<h2>K-Fold Cross-Validation: in algebra</h2>
 <ul>
-<li><p>Let the <span class="math inline">\(K\)</span> parts be <span class="math inline">\(C_1, C_2, \ldots, C_K\)</span>, where <span class="math inline">\(C_k\)</span> denotes the indices of the observations in part <span class="math inline">\(k\)</span>. There are <span class="math inline">\(n_k\)</span> observations in part <span class="math inline">\(k\)</span>: if <span class="math inline">\(N\)</span> is a multiple of <span class="math inline">\(K\)</span>, then <span class="math inline">\(n_k = n / K\)</span>.</p></li>
-<li><p>Compute the <strong>cross-validations error rate</strong>:</p></li>
+<li class="fragment"><p>Let the <span class="math inline">\(K\)</span> parts be <span class="math inline">\(C_1, C_2, \ldots, C_K\)</span>, where <span class="math inline">\(C_k\)</span> denotes the indices of the observations in part <span class="math inline">\(k\)</span>. There are <span class="math inline">\(n_k\)</span> observations in part <span class="math inline">\(k\)</span>: if <span class="math inline">\(N\)</span> is a multiple of <span class="math inline">\(K\)</span>, then <span class="math inline">\(n_k = n / K\)</span>.</p></li>
+<li class="fragment"><p>Compute the <strong>cross-validations error rate</strong>:</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -583,99 +434,85 @@ window.Quarto = {
 \]</span></p>
 <p>where <span class="math inline">\(\text{MSE}_k = \frac{\sum_{i \in C_k} (y_i - \hat{y}_i)^2}{n_k}\)</span>, and <span class="math inline">\(\hat{y}_i\)</span> is the fit for observation <span class="math inline">\(i\)</span>, obtained from the data with part <span class="math inline">\(k\)</span> removed.</p>
 <ul>
-<li>Special case: Setting <span class="math inline">\(K = n\)</span> yields <span class="math inline">\(n\)</span>-fold or <em>leave-one-out cross-validation</em> (LOOCV).</li>
+<li class="fragment">Special case: Setting <span class="math inline">\(K = n\)</span> yields <span class="math inline">\(n\)</span>-fold or <em>leave-one-out cross-validation</em> (LOOCV).</li>
 </ul>
 </div>
 </section>
-<section id="leave-one-out-cross-validation-loocv" class="level2">
-<h2 class="anchored" data-anchor-id="leave-one-out-cross-validation-loocv">Leave-One-Out Cross-Validation (LOOCV)</h2>
+<section id="leave-one-out-cross-validation-loocv" class="slide level2 center">
+<h2>Leave-One-Out Cross-Validation (LOOCV)</h2>
 <p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/LOOCV.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
+
+<img data-src="figs/LOOCV.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><p><br></p>
 <center>
 <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">Wiki</a>
 </center>
 <p><br></p>
 </section>
-<section id="a-nice-special-case" class="level2">
-<h2 class="anchored" data-anchor-id="a-nice-special-case">A Nice Special Case!</h2>
+<section id="a-nice-special-case" class="slide level2 center">
+<h2>A Nice Special Case!</h2>
 <p>With least-squares linear or polynomial regression, an amazing shortcut makes the cost of LOOCV the same as that of a single model fit! The following formula holds:</p>
 <p><span class="math display">\[
   \text{CV}_{(n)} = \frac{1}{n} \sum_{i=1}^{n} \left( \frac{y_i - \hat{y}_i}{1 - h_i} \right)^2,
 \]</span></p>
 <p>where <span class="math inline">\(\hat{y}_i\)</span> is the <span class="math inline">\(i\)</span>-th fitted value from the original least-squares fit, and <span class="math inline">\(h_i\)</span> is the leverage (diagonal of the “hat” matrix; see book for details). This is like the ordinary MSE, except the <span class="math inline">\(i\)</span>-th residual is divided by <span class="math inline">\(1 - h_i\)</span>.</p>
 <ul>
-<li><p>LOOCV is sometimes useful, but typically doesn’t <em>shake up</em> the data enough. The estimates from each fold are highly correlated, and hence their average can have high variance.</p></li>
-<li><p><strong>A better choice is <span class="math inline">\(K = 5\)</span> or <span class="math inline">\(K = 10\)</span></strong>.</p></li>
+<li class="fragment"><p>LOOCV is sometimes useful, but typically doesn’t <em>shake up</em> the data enough. The estimates from each fold are highly correlated, and hence their average can have high variance.</p></li>
+<li class="fragment"><p><strong>A better choice is</strong> <span class="math inline">\(K = 5\)</span> or <span class="math inline">\(K = 10\)</span>.</p></li>
 </ul>
 </section>
-<section id="example-auto-data-revisited" class="level2">
-<h2 class="anchored" data-anchor-id="example-auto-data-revisited">Example: Auto Data Revisited</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Left plot: Similar to the two halve validation;</li>
-<li>Right plot: Tenfold cross validation. With 10 different partitions of the data to train and test the model we see there is not much variability. The results are consistent, in contrast to the result when we divided into two parts.</li>
+<section id="example-auto-data-revisited" class="slide level2 center">
+<h2>Example: Auto Data Revisited</h2>
+
+<img data-src="figs/5_4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">Left plot: Similar to the two halve validation;</li>
+<li class="fragment">Right plot: Tenfold cross validation. With 10 different partitions of the data to train and test the model we see there is not much variability. The results are consistent, in contrast to the result when we divided into two parts.</li>
 </ul>
 </section>
-<section id="true-and-estimated-test-mse-for-the-simulated-data" class="level2">
-<h2 class="anchored" data-anchor-id="true-and-estimated-test-mse-for-the-simulated-data">True and Estimated Test MSE for the Simulated Data</h2>
+<section id="true-and-estimated-test-mse-for-the-simulated-data" class="slide level2 center">
+<h2>True and Estimated Test MSE for the Simulated Data</h2>
 <div style="font-size: 60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/5_6-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li><p>The plot presents the cross-validation estimates and true test error rates that result from applying smoothing splines to the simulated data sets illustrated in Figures 2.9–2.11 of Chapter 2 of the book.</p></li>
-<li><p>The true test MSE is displayed in blue.</p></li>
-<li><p>The black dashed and orange solid lines respectively show the estimated LOOCV and 10-fold CV estimates.</p></li>
-<li><p>In all three plots, the two cross-validation estimates are very similar.</p></li>
-<li><p>Right-hand panel: the true test MSE and the cross-validation curves are almost identical.</p></li>
-<li><p>Center panel: the two sets of curves are similar at the lower degrees of flexibility, while the CV curves overestimate the test set MSE for higher degrees of flexibility.</p></li>
-<li><p>Left-hand panel: the CV curves have the correct general shape, but they underestimate the true test MSE.</p></li>
+<li class="fragment"><p>The plot presents the cross-validation estimates and true test error rates that result from applying smoothing splines to the simulated data sets illustrated in Figures 2.9–2.11 of Chapter 2 of the book.</p></li>
+<li class="fragment"><p>The true test MSE is displayed in blue.</p></li>
+<li class="fragment"><p>The black dashed and orange solid lines respectively show the estimated LOOCV and 10-fold CV estimates.</p></li>
+<li class="fragment"><p>In all three plots, the two cross-validation estimates are very similar.</p></li>
+<li class="fragment"><p>Right-hand panel: the true test MSE and the cross-validation curves are almost identical.</p></li>
+<li class="fragment"><p>Center panel: the two sets of curves are similar at the lower degrees of flexibility, while the CV curves overestimate the test set MSE for higher degrees of flexibility.</p></li>
+<li class="fragment"><p>Left-hand panel: the CV curves have the correct general shape, but they underestimate the true test MSE.</p></li>
 </ul>
 </div>
 <!---With cross-validation, our goal might be to determine how well a given statistical learning procedure can be expected to perform on independent data; in this case, the actual estimate of the test MSE is
 of interest. But at other times we are interested only in the location of the minimum point in the estimated test MSE curve. This is because we might be performing cross-validation on a number of statistical learning methods, or on a single method using different levels of flexibility, in order to identify the method that results in the lowest test error.
 --->
 </section>
-<section id="potential-issues-with-cross-validation" class="level2">
-<h2 class="anchored" data-anchor-id="potential-issues-with-cross-validation">Potential Issues with Cross-Validation</h2>
+<section id="potential-issues-with-cross-validation" class="slide level2 center">
+<h2>Potential Issues with Cross-Validation</h2>
 <ul>
-<li><p>Since each training set is only <span class="math inline">\(\frac{K - 1}{K}\)</span> as big as the original training set, the estimates of prediction error will typically be biased upward. <em>Why?</em></p></li>
-<li><p>This bias is minimized when <span class="math inline">\(K = n\)</span> (LOOCV), but this estimate has high variance, as noted earlier.</p></li>
-<li><p><span class="math inline">\(K = 5\)</span> or <span class="math inline">\(10\)</span> provides a good compromise for this bias-variance tradeoff.</p></li>
+<li class="fragment"><p>Since each training set is only <span class="math inline">\(\frac{K - 1}{K}\)</span> as big as the original training set, the estimates of prediction error will typically be biased upward. <em>Why?</em></p></li>
+<li class="fragment"><p>This bias is minimized when <span class="math inline">\(K = n\)</span> (LOOCV), but this estimate has high variance, as noted earlier.</p></li>
+<li class="fragment"><p><span class="math inline">\(K = 5\)</span> or <span class="math inline">\(10\)</span> provides a good compromise for this bias-variance tradeoff.</p></li>
 </ul>
+</section></section>
+<section>
+<section id="cross-validation-for-classification-problems" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Cross-Validation for Classification Problems</h1>
+
 </section>
-</section>
-<section id="cross-validation-for-classification-problems" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Cross-Validation for Classification Problems</h1>
-<section id="cross-validation-for-classification-problems-1" class="level2">
-<h2 class="anchored" data-anchor-id="cross-validation-for-classification-problems-1">Cross-Validation for Classification Problems</h2>
+<section id="cross-validation-for-classification-problems-1" class="slide level2 center">
+<h2>Cross-Validation for Classification Problems</h2>
 <div style="font-size: 80%;">
 <p>We divide the data into <span class="math inline">\(K\)</span> roughly equal-sized parts <span class="math inline">\(C_1, C_2, \ldots, C_K\)</span>. <span class="math inline">\(C_k\)</span> denotes the indices of the observations in part <span class="math inline">\(k\)</span>. There are <span class="math inline">\(n_k\)</span> observations in part <span class="math inline">\(k\)</span>: if <span class="math inline">\(n\)</span> is a multiple of <span class="math inline">\(K\)</span>, then <span class="math inline">\(n_k = n / K\)</span>.</p>
 <ul>
-<li>Compute the <strong>cross-validation misclassification error</strong>:</li>
+<li class="fragment">Compute the <strong>cross-validation misclassification error</strong>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -683,7 +520,7 @@ of interest. But at other times we are interested only in the location of the mi
 \]</span></p>
 <p>where <span class="math inline">\(\text{Err}_k = \frac{\sum_{i \in C_k} I(y_i \neq \hat{y}_i)}{n_k}\)</span>.</p>
 <ul>
-<li>The estimated standard deviation of <span class="math inline">\(\text{CV}_K\)</span> is:</li>
+<li class="fragment">The estimated standard deviation of <span class="math inline">\(\text{CV}_K\)</span> is:</li>
 </ul>
 </div>
 <div class="fragment">
@@ -691,109 +528,113 @@ of interest. But at other times we are interested only in the location of the mi
   \widehat{\text{SE}}(\text{CV}_K) = \sqrt{\frac{1}{K} \sum_{k=1}^{K} \frac{(\text{Err}_k - \overline{\text{Err}_k})^2}{K - 1}}
 \]</span></p>
 <ul>
-<li><p>This is a useful estimate, but strictly speaking, not quite valid. <em>Why not?</em></p>
+<li class="fragment"><p>This is a useful estimate, but strictly speaking, not quite valid. <em>Why not?</em></p>
 <ul>
-<li>We compute the standard errors assuming these were independent observations, but they are not strictly independent as they share some training samples. So there’s some correlation between them.</li>
+<li class="fragment">We compute the standard errors assuming these were independent observations, but they are not strictly independent as they share some training samples. So there’s some correlation between them.</li>
 </ul></li>
 </ul>
 </div>
 </div>
+</section></section>
+<section>
+<section id="cross-validation-right-and-wrong" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Cross-Validation: Right and Wrong</h1>
+
 </section>
-</section>
-<section id="cross-validation-right-and-wrong" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Cross-Validation: Right and Wrong</h1>
-<section id="the-setting" class="level2">
-<h2 class="anchored" data-anchor-id="the-setting">The Setting</h2>
+<section id="the-setting" class="slide level2 center">
+<h2>The Setting</h2>
 <ul>
-<li><p><strong>High‐dimensional data</strong>: We have 50 samples (observations) but 5000 predictors (features). In many modern applications—such as genomics—it is typical to have many more predictors than observations.</p></li>
-<li><p><strong>Goal</strong>: Two‐class classification</p></li>
-<li><p>Feature selection (Step 1): We first look at the correlation of each of the 5000 predictors with the class labels, and we pick the 100 “best” predictors—the ones that exhibit the largest correlation with the class labels.</p></li>
-<li><p>Model fitting (Step 2): Once those top 100 are chosen, we fit a classifier (e.g., logistic regression) using only those top 100 predictors.</p></li>
-<li><p>The question is how to <strong>estimate the true test error</strong> of this two‐step procedure.</p></li>
+<li class="fragment"><p><strong>High‐dimensional data</strong>: We have 50 samples (observations) but 5000 predictors (features). In many modern applications—such as genomics—it is typical to have many more predictors than observations.</p></li>
+<li class="fragment"><p><strong>Goal</strong>: Two‐class classification</p></li>
+<li class="fragment"><p>Feature selection (Step 1): We first look at the correlation of each of the 5000 predictors with the class labels, and we pick the 100 “best” predictors—the ones that exhibit the largest correlation with the class labels.</p></li>
+<li class="fragment"><p>Model fitting (Step 2): Once those top 100 are chosen, we fit a classifier (e.g., logistic regression) using only those top 100 predictors.</p></li>
+<li class="fragment"><p>The question is how to <strong>estimate the true test error</strong> of this two‐step procedure.</p></li>
 </ul>
 </section>
-<section id="the-tempting-but-wrong-approach" class="level2">
-<h2 class="anchored" data-anchor-id="the-tempting-but-wrong-approach">The Tempting (but Wrong) Approach</h2>
+<section id="the-tempting-but-wrong-approach" class="slide level2 center">
+<h2>The Tempting (but Wrong) Approach</h2>
 <p>A common mistake is to <strong>ignore Step 1</strong> when doing cross‐validation and to apply cross‐validation <em>only</em> to Step 2. That is, one might simply take the already‐selected 100 features and then do, say, 10‐fold cross‐validation on the logistic regression.</p>
 <ul>
-<li><p><strong>Why people do this</strong>: It seems natural to say, “Now that we have our 100 features, let’s cross‐validate the classifier we fit with these 100 features.”</p></li>
-<li><p><strong>What goes wrong</strong>: By the time you pick those 100 “best” features, the data set has already “seen” all the labels in the process of ranking and filtering. This filtering step is actually part of training, because it <em>used</em> the outcome labels to choose features.</p></li>
+<li class="fragment"><p><strong>Why people do this</strong>: It seems natural to say, “Now that we have our 100 features, let’s cross‐validate the classifier we fit with these 100 features.”</p></li>
+<li class="fragment"><p><strong>What goes wrong</strong>: By the time you pick those 100 “best” features, the data set has already “seen” all the labels in the process of ranking and filtering. This filtering step is actually part of training, because it <em>used</em> the outcome labels to choose features.</p></li>
 </ul>
 <div class="fragment">
 <p>Skipping Step 1 in the cross‐validation will invariably produce an <strong>overly optimistic</strong> (often <em>wildly</em> optimistic) estimate of test error.</p>
 </div>
 </section>
-<section id="why-it-is-wrong-data-leakage" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-is-wrong-data-leakage">Why It Is Wrong: Data Leakage</h2>
+<section id="why-it-is-wrong-data-leakage" class="slide level2 center">
+<h2>Why It Is Wrong: Data Leakage</h2>
 <ol type="1">
-<li><p><strong>Data leakage</strong>: The crucial point is that feature selection (filtering) depends on the relationship between each feature and the class labels. Hence, it is not “just a preprocessing step”—it is using the label information. Thus, Step 1 is part of the model‐building process.</p></li>
-<li><p><strong>Overfitting by cherry‐picking</strong>: With thousands of predictors, even if none is truly predictive, by sheer chance some predictors will appear correlated with the class labels in the sample. Selecting only the strongest correlations can give the illusion that the model has learned meaningful structure, when in fact it is just capturing random noise.</p></li>
-<li><p><strong>An extreme illustration</strong>: If you simulate data where the class labels are purely random (true error = 50%), but you pick the top 100 out of 5000 or 5 million random features, then do cross‐validation <em>only</em> after you have chosen those top 100, you can easily see cross‐validation estimates near 0% error—clearly a false, biased result.</p></li>
+<li class="fragment"><p><strong>Data leakage</strong>: The crucial point is that feature selection (filtering) depends on the relationship between each feature and the class labels. Hence, it is not “just a preprocessing step”—it is using the label information. Thus, Step 1 is part of the model‐building process.</p></li>
+<li class="fragment"><p><strong>Overfitting by cherry‐picking</strong>: With thousands of predictors, even if none is truly predictive, by sheer chance some predictors will appear correlated with the class labels in the sample. Selecting only the strongest correlations can give the illusion that the model has learned meaningful structure, when in fact it is just capturing random noise.</p></li>
+<li class="fragment"><p><strong>An extreme illustration</strong>: If you simulate data where the class labels are purely random (true error = 50%), but you pick the top 100 out of 5000 or 5 million random features, then do cross‐validation <em>only</em> after you have chosen those top 100, you can easily see cross‐validation estimates near 0% error—clearly a false, biased result.</p></li>
 </ol>
 </section>
-<section id="the-correct-right-way-to-apply-crossvalidation" class="level2">
-<h2 class="anchored" data-anchor-id="the-correct-right-way-to-apply-crossvalidation">The Correct (Right) Way to Apply Cross‐Validation</h2>
+<section id="the-correct-right-way-to-apply-crossvalidation" class="slide level2 center">
+<h2>The Correct (Right) Way to Apply Cross‐Validation</h2>
 <div style="font-size: 80%;">
 <p>The key principle is that <em>any step that uses the outcome labels must occur inside the cross‐validation loop</em>. Concretely:</p>
 <ol type="1">
-<li><p><strong>Split</strong> the data into training/validation folds (e.g., 10‐fold CV).</p></li>
-<li><p><strong>For each fold</strong>:</p>
+<li class="fragment"><p><strong>Split</strong> the data into training/validation folds (e.g., 10‐fold CV).</p></li>
+<li class="fragment"><p><strong>For each fold</strong>:</p>
 <ul>
-<li>Treat that fold as a hold‐out set.<br>
+<li class="fragment">Treat that fold as a hold‐out set.<br>
 </li>
-<li>On the <em>remaining</em> training folds, perform the <em>entire</em> procedure:
+<li class="fragment">On the <em>remaining</em> training folds, perform the <em>entire</em> procedure:
 <ol type="1">
-<li><strong>Feature selection</strong> (filtering to the top 100 based on correlation with the class labels in the training folds only).<br>
+<li class="fragment"><strong>Feature selection</strong> (filtering to the top 100 based on correlation with the class labels in the training folds only).<br>
 </li>
-<li><strong>Fit</strong> the classifier (e.g., logistic regression) to those top 100 features in those training folds.<br>
+<li class="fragment"><strong>Fit</strong> the classifier (e.g., logistic regression) to those top 100 features in those training folds.<br>
 </li>
 </ol></li>
-<li>Finally, <strong>evaluate</strong> the trained model on the hold‐out fold—<em>with only the 100 features selected from the training folds</em>.</li>
+<li class="fragment">Finally, <strong>evaluate</strong> the trained model on the hold‐out fold—<em>with only the 100 features selected from the training folds</em>.</li>
 </ul></li>
-<li><p><strong>Repeat</strong> for each fold, then average the error rates (or other metrics).</p></li>
+<li class="fragment"><p><strong>Repeat</strong> for each fold, then average the error rates (or other metrics).</p></li>
 </ol>
 <div class="fragment">
 <p>By doing this, <em>each hold‐out fold is kept separate</em> from both feature selection and model training. This ensures that Step 1 (feature selection) is “relearned” anew in each training subset, just as Step 2 (the classifier) is. As a result, the cross‐validation error you compute properly reflects how the entire procedure—from filtering out thousands of features down to fitting the logistic model—would perform on truly unseen data.</p>
 </div>
 </div>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="slide level2 center">
+<h2>Summary</h2>
 <ul>
-<li><p><strong>Wrong</strong>: Select your 100 predictors once using <em>all</em> the data, then cross‐validate only the final classifier. This leads to overly optimistic, biased estimates of test error because it ignores that you used the labels in selecting those 100 predictors.</p></li>
-<li><p><strong>Right</strong>: Wrap the entire two‐step process (selection <strong>and</strong> model fitting) inside the cross‐validation loop. Each fold’s feature‐selection step must be done <em>without</em> knowledge of the hold‐out fold’s labels.</p></li>
+<li class="fragment"><p><strong>Wrong</strong>: Select your 100 predictors once using <em>all</em> the data, then cross‐validate only the final classifier. This leads to overly optimistic, biased estimates of test error because it ignores that you used the labels in selecting those 100 predictors.</p></li>
+<li class="fragment"><p><strong>Right</strong>: Wrap the entire two‐step process (selection <strong>and</strong> model fitting) inside the cross‐validation loop. Each fold’s feature‐selection step must be done <em>without</em> knowledge of the hold‐out fold’s labels.</p></li>
 </ul>
 <div class="fragment">
 <p>Following this correct approach is essential whenever one performs early filtering, variable selection, hyperparameter tuning, or any other step that uses the outcome labels. Such steps must be regarded as part of the training process and repeated inside each cross‐validation iteration.</p>
 </div>
+</section></section>
+<section>
+<section id="bootstrap" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Bootstrap</h1>
+
 </section>
-</section>
-<section id="bootstrap" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Bootstrap</h1>
-<section id="the-bootstrap" class="level2">
-<h2 class="anchored" data-anchor-id="the-bootstrap">The Bootstrap</h2>
+<section id="the-bootstrap" class="slide level2 center">
+<h2>The Bootstrap</h2>
 <ul>
-<li><p>The <em>bootstrap</em> is a flexible and powerful statistical tool that can be used to quantify the uncertainty associated with a given estimator or statistical learning method.</p></li>
-<li><p>For example, it can provide an estimate of the standard error of a coefficient, or a confidence interval for that coefficient.</p></li>
+<li class="fragment"><p>The <em>bootstrap</em> is a flexible and powerful statistical tool that can be used to quantify the uncertainty associated with a given estimator or statistical learning method.</p></li>
+<li class="fragment"><p>For example, it can provide an estimate of the standard error of a coefficient, or a confidence interval for that coefficient.</p></li>
 </ul>
 </section>
-<section id="where-does-the-name-come-from" class="level2">
-<h2 class="anchored" data-anchor-id="where-does-the-name-come-from">Where Does the Name Come From?</h2>
+<section id="where-does-the-name-come-from" class="slide level2 center">
+<h2>Where Does the Name Come From?</h2>
 <ul>
-<li><p>The use of the term <em>bootstrap</em> derives from the phrase <em>to pull oneself up by one’s bootstraps</em>, widely thought to be based on one of the eighteenth-century <em>The Surprising Adventures of Baron Munchausen</em> by Rudolph Erich Raspe:</p>
-<blockquote class="blockquote">
+<li class="fragment"><p>The use of the term <em>bootstrap</em> derives from the phrase <em>to pull oneself up by one’s bootstraps</em>, widely thought to be based on one of the eighteenth-century <em>The Surprising Adventures of Baron Munchausen</em> by Rudolph Erich Raspe:</p>
+<blockquote>
 <p>The Baron had fallen to the bottom of a deep lake. Just when it looked like all was lost, he thought to pick himself up by his own bootstraps.</p>
 </blockquote></li>
-<li><p>It is not the same as the term <em>bootstrap</em> used in computer science, meaning to “boot” a computer from a set of core instructions, though the derivation is similar.</p></li>
+<li class="fragment"><p>It is not the same as the term <em>bootstrap</em> used in computer science, meaning to “boot” a computer from a set of core instructions, though the derivation is similar.</p></li>
 </ul>
 </section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<section id="example" class="slide level2 center">
+<h2>Example</h2>
 <ul>
-<li><p>Suppose that we wish to invest a fixed sum of money in two financial assets that yield returns of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, respectively, where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random quantities.</p></li>
-<li><p>We will invest a fraction <span class="math inline">\(\alpha\)</span> of our money in <span class="math inline">\(X\)</span>, and will invest the remaining <span class="math inline">\(1 - \alpha\)</span> in <span class="math inline">\(Y\)</span>.</p></li>
-<li><p>We wish to choose <span class="math inline">\(\alpha\)</span> to minimize the total risk, or variance, of our investment. In other words, we want to minimize <span class="math inline">\(\text{Var}(\alpha X + (1 - \alpha) Y).\)</span></p></li>
-<li><p>One can show that the value that minimizes the risk is given by:</p></li>
+<li class="fragment"><p>Suppose that we wish to invest a fixed sum of money in two financial assets that yield returns of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, respectively, where <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random quantities.</p></li>
+<li class="fragment"><p>We will invest a fraction <span class="math inline">\(\alpha\)</span> of our money in <span class="math inline">\(X\)</span>, and will invest the remaining <span class="math inline">\(1 - \alpha\)</span> in <span class="math inline">\(Y\)</span>.</p></li>
+<li class="fragment"><p>We wish to choose <span class="math inline">\(\alpha\)</span> to minimize the total risk, or variance, of our investment. In other words, we want to minimize <span class="math inline">\(\text{Var}(\alpha X + (1 - \alpha) Y).\)</span></p></li>
+<li class="fragment"><p>One can show that the value that minimizes the risk is given by:</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -802,12 +643,12 @@ of interest. But at other times we are interested only in the location of the mi
 <p>where <span class="math inline">\(\sigma_X^2 = \text{Var}(X)\)</span>, <span class="math inline">\(\sigma_Y^2 = \text{Var}(Y)\)</span>, and <span class="math inline">\(\sigma_{XY} = \text{Cov}(X, Y)\)</span>.</p>
 </div>
 </section>
-<section id="example-continued" class="level2">
-<h2 class="anchored" data-anchor-id="example-continued">Example Continued</h2>
+<section id="example-continued" class="slide level2 center">
+<h2>Example Continued</h2>
 <ul>
-<li><p>But the values of <span class="math inline">\(\sigma_X^2\)</span>, <span class="math inline">\(\sigma_Y^2\)</span>, and <span class="math inline">\(\sigma_{XY}\)</span> are unknown.</p></li>
-<li><p>We can compute estimates for these quantities, <span class="math inline">\(\hat{\sigma}_X^2\)</span>, <span class="math inline">\(\hat{\sigma}_Y^2\)</span>, and <span class="math inline">\(\hat{\sigma}_{XY}\)</span>, using a data set that contains measurements for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
-<li><p>We can then estimate the value of <span class="math inline">\(\alpha\)</span> that minimizes the variance of our investment using:</p></li>
+<li class="fragment"><p>But the values of <span class="math inline">\(\sigma_X^2\)</span>, <span class="math inline">\(\sigma_Y^2\)</span>, and <span class="math inline">\(\sigma_{XY}\)</span> are unknown.</p></li>
+<li class="fragment"><p>We can compute estimates for these quantities, <span class="math inline">\(\hat{\sigma}_X^2\)</span>, <span class="math inline">\(\hat{\sigma}_Y^2\)</span>, and <span class="math inline">\(\hat{\sigma}_{XY}\)</span>, using a data set that contains measurements for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
+<li class="fragment"><p>We can then estimate the value of <span class="math inline">\(\alpha\)</span> that minimizes the variance of our investment using:</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -815,14 +656,14 @@ of interest. But at other times we are interested only in the location of the mi
 \]</span></p>
 </div>
 </section>
-<section id="example-continued-1" class="level2">
-<h2 class="anchored" data-anchor-id="example-continued-1">Example Continued</h2>
+<section id="example-continued-1" class="slide level2 center">
+<h2>Example Continued</h2>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<figure>
+<p><img data-src="figs/5_9-1.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
@@ -831,32 +672,32 @@ of interest. But at other times we are interested only in the location of the mi
 <p><br></p>
 </div>
 </section>
-<section id="example-continued-2" class="level2">
-<h2 class="anchored" data-anchor-id="example-continued-2">Example Continued</h2>
+<section id="example-continued-2" class="slide level2 center">
+<h2>Example Continued</h2>
 <div style="font-size: 80%;">
 <ul>
-<li><p>To estimate the standard deviation of <span class="math inline">\(\hat{\alpha}\)</span>, we repeated the process of simulating 100 paired observations of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and estimating <span class="math inline">\(\alpha\)</span> 1,000 times.</p></li>
-<li><p>We thereby obtained 1,000 estimates for <span class="math inline">\(\alpha\)</span>, which we can call <span class="math inline">\(\hat{\alpha}_1, \hat{\alpha}_2, \ldots, \hat{\alpha}_{1000}\)</span>.</p></li>
+<li class="fragment"><p>To estimate the standard deviation of <span class="math inline">\(\hat{\alpha}\)</span>, we repeated the process of simulating 100 paired observations of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and estimating <span class="math inline">\(\alpha\)</span> 1,000 times.</p></li>
+<li class="fragment"><p>We thereby obtained 1,000 estimates for <span class="math inline">\(\alpha\)</span>, which we can call <span class="math inline">\(\hat{\alpha}_1, \hat{\alpha}_2, \ldots, \hat{\alpha}_{1000}\)</span>.</p></li>
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/5_10-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <ul>
-<li><p>The left-hand panel of the Figure displays a histogram of the resulting estimates.</p></li>
-<li><p>For these simulations, the parameters were set to <span class="math inline">\(\sigma_X^2 = 1, \, \sigma_Y^2 = 1.25, \, \sigma_{XY} = 0.5,\)</span> and so we know that the true value of <span class="math inline">\(\alpha\)</span> is 0.6 (indicated by the red line).</p></li>
+<li class="fragment"><p>The left-hand panel of the Figure displays a histogram of the resulting estimates.</p></li>
+<li class="fragment"><p>For these simulations, the parameters were set to <span class="math inline">\(\sigma_X^2 = 1, \, \sigma_Y^2 = 1.25, \, \sigma_{XY} = 0.5,\)</span> and so we know that the true value of <span class="math inline">\(\alpha\)</span> is 0.6 (indicated by the red line).</p></li>
 </ul>
 </div>
 </section>
-<section id="example-continued-3" class="level2">
-<h2 class="anchored" data-anchor-id="example-continued-3">Example Continued</h2>
+<section id="example-continued-3" class="slide level2 center">
+<h2>Example Continued</h2>
 <p>The mean over all 1,000 estimates for <span class="math inline">\(\alpha\)</span> is:</p>
 <p><span class="math display">\[
   \bar{\alpha} = \frac{1}{1000} \sum_{r=1}^{1000} \hat{\alpha}_r = 0.5996,
@@ -867,93 +708,71 @@ of interest. But at other times we are interested only in the location of the mi
   \sqrt{\frac{1}{1000 - 1} \sum_{r=1}^{1000} (\hat{\alpha}_r - \bar{\alpha})^2} = 0.083.
 \]</span></p>
 <ul>
-<li><p>This gives us a very good idea of the accuracy of <span class="math inline">\(\hat{\alpha}\)</span>: <span class="math inline">\(\text{SE}(\hat{\alpha}) \approx 0.083\)</span>.</p></li>
-<li><p>So roughly speaking, for a random sample from the population, we would expect <span class="math inline">\(\hat{\alpha}\)</span> to differ from <span class="math inline">\(\alpha\)</span> by approximately 0.08, on average.</p></li>
+<li class="fragment"><p>This gives us a very good idea of the accuracy of <span class="math inline">\(\hat{\alpha}\)</span>: <span class="math inline">\(\text{SE}(\hat{\alpha}) \approx 0.083\)</span>.</p></li>
+<li class="fragment"><p>So roughly speaking, for a random sample from the population, we would expect <span class="math inline">\(\hat{\alpha}\)</span> to differ from <span class="math inline">\(\alpha\)</span> by approximately 0.08, on average.</p></li>
 </ul>
 </div>
 </section>
-<section id="example-results" class="level2">
-<h2 class="anchored" data-anchor-id="example-results">Example Results</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Left</strong>: A histogram of the estimates of <span class="math inline">\(\alpha\)</span> obtained by generating 1,000 simulated data sets from the true population.</p>
+<section id="example-results" class="slide level2 center">
+<h2>Example Results</h2>
+
+<img data-src="figs/5_10-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p><strong>Left</strong>: A histogram of the estimates of <span class="math inline">\(\alpha\)</span> obtained by generating 1,000 simulated data sets from the true population.</p>
 <p><strong>Center</strong>: A histogram of the estimates of <span class="math inline">\(\alpha\)</span> obtained from 1,000 bootstrap samples from a single data set.</p>
 <p><strong>Right</strong>: The estimates of <span class="math inline">\(\alpha\)</span> displayed in the left and center panels are shown as boxplots.</p>
 <ul>
-<li>In each panel, the pink line indicates the true value of <span class="math inline">\(\alpha\)</span>.</li>
+<li class="fragment">In each panel, the pink line indicates the true value of <span class="math inline">\(\alpha\)</span>.</li>
 </ul>
 </section>
-<section id="now-back-to-the-real-world" class="level2">
-<h2 class="anchored" data-anchor-id="now-back-to-the-real-world">Now Back to the Real World</h2>
+<section id="now-back-to-the-real-world" class="slide level2 center">
+<h2>Now Back to the Real World</h2>
 <ul>
-<li><p>The procedure outlined above cannot be applied, because for real data we cannot generate new samples from the original population.</p></li>
-<li><p>However, the bootstrap approach allows us to use a computer to mimic the process of obtaining new data sets, so that we can estimate the variability of our estimate without generating additional samples.</p></li>
-<li><p>Rather than repeatedly obtaining independent data sets <em>from the population</em>, <em>we instead obtain distinct data sets by repeatedly sampling observations from the original data set</em> <strong>with replacement</strong>.</p></li>
-<li><p>Each of these “bootstrap data sets” is created by sampling <strong>with replacement</strong>, and is the <strong>same size</strong> as our original dataset. As a result, some observations may appear more than once in a given bootstrap data set and some not at all.</p></li>
+<li class="fragment"><p>The procedure outlined above cannot be applied, because for real data we cannot generate new samples from the original population.</p></li>
+<li class="fragment"><p>However, the bootstrap approach allows us to use a computer to mimic the process of obtaining new data sets, so that we can estimate the variability of our estimate without generating additional samples.</p></li>
+<li class="fragment"><p>Rather than repeatedly obtaining independent data sets <em>from the population</em>, <em>we instead obtain distinct data sets by repeatedly sampling observations from the original data set</em> <strong>with replacement</strong>.</p></li>
+<li class="fragment"><p>Each of these “bootstrap data sets” is created by sampling <strong>with replacement</strong>, and is the <strong>same size</strong> as our original dataset. As a result, some observations may appear more than once in a given bootstrap data set and some not at all.</p></li>
 </ul>
 </section>
-<section id="example-with-just-3-observations" class="level2">
-<h2 class="anchored" data-anchor-id="example-with-just-3-observations">Example with Just 3 Observations</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>A graphical illustration of the bootstrap approach on a small sample containing <span class="math inline">\(n = 3\)</span> observations.</li>
-<li>Each bootstrap data set contains <span class="math inline">\(n\)</span> observations, sampled <strong>with replacement</strong> from the original data set.</li>
-<li>Each bootstrap data set is used to obtain an estimate of <span class="math inline">\(\alpha\)</span>.</li>
+<section id="example-with-just-3-observations" class="slide level2 center">
+<h2>Example with Just 3 Observations</h2>
+
+<img data-src="figs/5_11-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">A graphical illustration of the bootstrap approach on a small sample containing <span class="math inline">\(n = 3\)</span> observations.</li>
+<li class="fragment">Each bootstrap data set contains <span class="math inline">\(n\)</span> observations, sampled <strong>with replacement</strong> from the original data set.</li>
+<li class="fragment">Each bootstrap data set is used to obtain an estimate of <span class="math inline">\(\alpha\)</span>.</li>
 </ul>
 </section>
-<section id="bootstrap-standard-error" class="level2">
-<h2 class="anchored" data-anchor-id="bootstrap-standard-error">Bootstrap Standard Error</h2>
+<section id="bootstrap-standard-error" class="slide level2 center">
+<h2>Bootstrap Standard Error</h2>
 <ul>
-<li><p>Denoting the first bootstrap data set by <span class="math inline">\(Z^{*1}\)</span>, we use <span class="math inline">\(Z^{*1}\)</span> to produce a new bootstrap estimate for <span class="math inline">\(\alpha\)</span>, which we call <span class="math inline">\(\hat{\alpha}^{*1}\)</span>.</p></li>
-<li><p>This procedure is repeated <span class="math inline">\(B\)</span> times for some large value of <span class="math inline">\(B\)</span> (say 100 or 1000), in order to produce <span class="math inline">\(B\)</span> different bootstrap data sets, <span class="math inline">\(Z^{*1}, Z^{*2}, \ldots, Z^{*B}\)</span>, and <span class="math inline">\(B\)</span> corresponding <span class="math inline">\(\alpha\)</span> estimates, <span class="math inline">\(\hat{\alpha}^{*1}, \hat{\alpha}^{*2}, \ldots, \hat{\alpha}^{*B}\)</span>.</p></li>
-<li><p>We estimate the standard error of these bootstrap estimates using the formula:</p></li>
+<li class="fragment"><p>Denoting the first bootstrap data set by <span class="math inline">\(Z^{*1}\)</span>, we use <span class="math inline">\(Z^{*1}\)</span> to produce a new bootstrap estimate for <span class="math inline">\(\alpha\)</span>, which we call <span class="math inline">\(\hat{\alpha}^{*1}\)</span>.</p></li>
+<li class="fragment"><p>This procedure is repeated <span class="math inline">\(B\)</span> times for some large value of <span class="math inline">\(B\)</span> (say 100 or 1000), in order to produce <span class="math inline">\(B\)</span> different bootstrap data sets, <span class="math inline">\(Z^{*1}, Z^{*2}, \ldots, Z^{*B}\)</span>, and <span class="math inline">\(B\)</span> corresponding <span class="math inline">\(\alpha\)</span> estimates, <span class="math inline">\(\hat{\alpha}^{*1}, \hat{\alpha}^{*2}, \ldots, \hat{\alpha}^{*B}\)</span>.</p></li>
+<li class="fragment"><p>We estimate the standard error of these bootstrap estimates using the formula:</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
 SE_B(\hat{\alpha}) = \sqrt{\frac{1}{B - 1} \sum_{r=1}^B (\hat{\alpha}^{*r} - \bar{\alpha}^{*})^2}.
 \]</span></p>
 <ul>
-<li><p>This serves as an estimate of the standard error of <span class="math inline">\(\hat{\alpha}\)</span> estimated from the original data set. See center and right panels of Figure on slide 29. Bootstrap results are in blue.</p></li>
-<li><p>For this example <span class="math inline">\(SE_B(\hat{\alpha}) = 0.087\)</span>.</p></li>
+<li class="fragment"><p>This serves as an estimate of the standard error of <span class="math inline">\(\hat{\alpha}\)</span> estimated from the original data set. See center and right panels of Figure on slide 29. Bootstrap results are in blue.</p></li>
+<li class="fragment"><p>For this example <span class="math inline">\(SE_B(\hat{\alpha}) = 0.087\)</span>.</p></li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="more-on-bootstrap" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>More on Bootstrap</h1>
+
 </section>
-</section>
-<section id="more-on-bootstrap" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">More on Bootstrap</h1>
-<section id="a-general-picture-for-the-bootstrap" class="level2">
-<h2 class="anchored" data-anchor-id="a-general-picture-for-the-bootstrap">A General Picture for the Bootstrap</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/5_1_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="nonincremental">
+<section id="a-general-picture-for-the-bootstrap" class="slide level2 center">
+<h2>A General Picture for the Bootstrap</h2>
+
+<img data-src="figs/5_1_2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><div>
 <div style="font-size: 50%;">
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Real World</strong></p>
 <ol type="1">
-<li><strong>Population <span class="math inline">\(P\)</span></strong>
+<li><strong>Population</strong> <span class="math inline">\(P\)</span>
 <ul>
 <li>We imagine there is a true, unknown population (or data‐generating process).<br>
 </li>
@@ -965,7 +784,7 @@ SE_B(\hat{\alpha}) = \sqrt{\frac{1}{B - 1} \sum_{r=1}^B (\hat{\alpha}^{*r} - \ba
 </li>
 <li>This sample <span class="math inline">\(Z\)</span> is our observed dataset (often called the “training data” in applied work).</li>
 </ul></li>
-<li><strong>Estimate <span class="math inline">\(f(Z)\)</span></strong>
+<li><strong>Estimate</strong> <span class="math inline">\(f(Z)\)</span>
 <ul>
 <li>From this observed data <span class="math inline">\(Z\)</span>, we compute a statistic or estimate, denoted <span class="math inline">\(f(Z)\)</span>.<br>
 </li>
@@ -976,18 +795,18 @@ SE_B(\hat{\alpha}) = \sqrt{\frac{1}{B - 1} \sum_{r=1}^B (\hat{\alpha}^{*r} - \ba
 </div><div class="column" style="width:50%;">
 <p><strong>Bootstrap World</strong></p>
 <ol type="1">
-<li><strong>Estimated Population <span class="math inline">\(\hat{P}\)</span></strong>
+<li><strong>Estimated Population</strong> <span class="math inline">\(\hat{P}\)</span>
 <ul>
 <li>Because we usually cannot sample repeatedly from the real population <span class="math inline">\(P\)</span>, the bootstrap creates a stand‐in population <span class="math inline">\(\hat{P}\)</span>. We ‘replace’ the population by our sample.</li>
 <li><span class="math inline">\(\hat{P}\)</span> is the <strong>empirical distribution function</strong> of the observed data <span class="math inline">\(Z\)</span>. Informally, it assigns probability <span class="math inline">\(\tfrac{1}{n}\)</span> to each observed point in <span class="math inline">\(Z\)</span>.</li>
 </ul></li>
-<li><strong>Random Sampling from <span class="math inline">\(\hat{P}\)</span></strong>
+<li><strong>Random Sampling from</strong> <span class="math inline">\(\hat{P}\)</span>
 <ul>
 <li>To mimic drawing new data from the real population, we instead draw (with replacement) from <span class="math inline">\(\hat{P}\)</span>.<br>
 </li>
 <li>This produces a <em>bootstrap dataset</em> <span class="math inline">\(Z^* = (z_1^*, z_2^*, \dots, z_n^*)\)</span>. Each <span class="math inline">\(z_i^*\)</span> is sampled (with replacement) from among the original observed points <span class="math inline">\(\{z_1, \dots, z_n\}\)</span>.</li>
 </ul></li>
-<li><strong>Bootstrap Estimate <span class="math inline">\(f(Z^*)\)</span></strong>
+<li><strong>Bootstrap Estimate</strong> <span class="math inline">\(f(Z^*)\)</span>
 <ul>
 <li>We compute the same statistic (or estimator) on each bootstrap sample, giving <span class="math inline">\(f(Z^*)\)</span>.<br>
 </li>
@@ -997,53 +816,54 @@ SE_B(\hat{\alpha}) = \sqrt{\frac{1}{B - 1} \sum_{r=1}^B (\hat{\alpha}^{*r} - \ba
 <!---
 Hence, the Bootstrap World side shows how the empirical distribution $\hat{P}$ and resampling with replacement enable us to emulate “new” datasets—thereby providing a practical way to estimate variability, confidence intervals, or standard errors of our statistic $f(Z)$ without ever returning to the true population $P$.
 --->
-</div>
-</div>
+</div></div>
 </div>
 </div>
 </section>
-<section id="the-bootstrap-in-general" class="level2">
-<h2 class="anchored" data-anchor-id="the-bootstrap-in-general">The Bootstrap in General</h2>
+<section id="the-bootstrap-in-general" class="slide level2 center">
+<h2>The Bootstrap in General</h2>
 <ul>
-<li><p>In more complex data situations, figuring out the appropriate way to generate bootstrap samples can require some thought.</p></li>
-<li><p>For example, if the data is a time series, we can’t simply sample the observations with replacement (<strong>why not?</strong>).</p>
+<li class="fragment"><p>In more complex data situations, figuring out the appropriate way to generate bootstrap samples can require some thought.</p></li>
+<li class="fragment"><p>For example, if the data is a time series, we can’t simply sample the observations with replacement (<strong>why not?</strong>).</p>
 <ul>
-<li>The main reason we typically cannot simply resample individual points with replacement in a time series is that time‐ordered data exhibits serial dependence. That is, adjacent observations (e.g., today’s stock price and yesterday’s stock price) are correlated in ways that we lose if we treat all observations as independent units and shuffle them arbitrarily.</li>
-<li>A simple i.i.d. bootstrap would ignore the natural ordering of the data points (and the correlations it encodes), thereby violating a crucial assumption about the structure of time‐series data.</li>
+<li class="fragment">The main reason we typically cannot simply resample individual points with replacement in a time series is that time‐ordered data exhibits serial dependence. That is, adjacent observations (e.g., today’s stock price and yesterday’s stock price) are correlated in ways that we lose if we treat all observations as independent units and shuffle them arbitrarily.</li>
+<li class="fragment">A simple i.i.d. bootstrap would ignore the natural ordering of the data points (and the correlations it encodes), thereby violating a crucial assumption about the structure of time‐series data.</li>
 </ul></li>
-<li><p>We can instead create blocks of consecutive observations and sample those with replacements. Then we paste together sampled blocks to obtain a bootstrap dataset.</p></li>
+<li class="fragment"><p>We can instead create blocks of consecutive observations and sample those with replacements. Then we paste together sampled blocks to obtain a bootstrap dataset.</p></li>
 </ul>
 </section>
-<section id="other-uses-of-the-bootstrap" class="level2">
-<h2 class="anchored" data-anchor-id="other-uses-of-the-bootstrap">Other Uses of the Bootstrap</h2>
+<section id="other-uses-of-the-bootstrap" class="slide level2 center">
+<h2>Other Uses of the Bootstrap</h2>
 <ul>
-<li><p>Primarily used to obtain standard errors of an estimate.</p></li>
-<li><p>Also provides approximate confidence intervals for a population parameter. For example, looking at the histogram in the middle panel of the figure on slide 29, the 5% and 95% quantiles of the 1,000 values is (0.43, 0.72).</p></li>
-<li><p>This represents an approximate 90% confidence interval for the true α. <em>How do we interpret this confidence interval?</em></p></li>
-<li><p>The above interval is called a <strong>Bootstrap Percentile</strong> confidence interval. It is the simplest method (among many approaches) for obtaining a confidence interval from the bootstrap.</p></li>
+<li class="fragment"><p>Primarily used to obtain standard errors of an estimate.</p></li>
+<li class="fragment"><p>Also provides approximate confidence intervals for a population parameter. For example, looking at the histogram in the middle panel of the figure on slide 29, the 5% and 95% quantiles of the 1,000 values is (0.43, 0.72).</p></li>
+<li class="fragment"><p>This represents an approximate 90% confidence interval for the true α. <em>How do we interpret this confidence interval?</em></p></li>
+<li class="fragment"><p>The above interval is called a <strong>Bootstrap Percentile</strong> confidence interval. It is the simplest method (among many approaches) for obtaining a confidence interval from the bootstrap.</p></li>
 </ul>
+</section></section>
+<section>
+<section id="can-the-bootstrap-estimate-prediction-error" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Can the Bootstrap Estimate Prediction Error?</h1>
+
 </section>
-</section>
-<section id="can-the-bootstrap-estimate-prediction-error" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Can the Bootstrap Estimate Prediction Error?</h1>
-<section id="can-the-bootstrap-estimate-prediction-error-1" class="level2">
-<h2 class="anchored" data-anchor-id="can-the-bootstrap-estimate-prediction-error-1">Can the Bootstrap Estimate Prediction Error?</h2>
+<section id="can-the-bootstrap-estimate-prediction-error-1" class="slide level2 center">
+<h2>Can the Bootstrap Estimate Prediction Error?</h2>
 <ul>
-<li><p>In cross-validation, each of the <span class="math inline">\(K\)</span> validation folds is distinct from the other <span class="math inline">\(K-1\)</span> folds used for training: <em>there is no overlap.</em> This is crucial for its success. <strong>Why?</strong></p>
+<li class="fragment"><p>In cross-validation, each of the <span class="math inline">\(K\)</span> validation folds is distinct from the other <span class="math inline">\(K-1\)</span> folds used for training: <em>there is no overlap.</em> This is crucial for its success. <strong>Why?</strong></p>
 <ul>
-<li>There is a clear separation, no overlap, between the train and the test sets.</li>
+<li class="fragment">There is a clear separation, no overlap, between the train and the test sets.</li>
 </ul></li>
-<li><p>To estimate prediction error using the bootstrap, we could think about using <strong>each bootstrap dataset as our training sample</strong>, and <strong>the original sample as our validation sample</strong>.</p></li>
-<li><p>But each bootstrap sample has significant overlap with the original data. About two-thirds of the original data points appear in each bootstrap sample.</p></li>
-<li><p>This will cause the bootstrap to seriously underestimate the true prediction error.</p></li>
-<li><p>The other way around— with the original sample as the training sample, and the bootstrap dataset as the validation sample— is worse!</p></li>
+<li class="fragment"><p>To estimate prediction error using the bootstrap, we could think about using <strong>each bootstrap dataset as our training sample</strong>, and <strong>the original sample as our validation sample</strong>.</p></li>
+<li class="fragment"><p>But each bootstrap sample has significant overlap with the original data. About two-thirds of the original data points appear in each bootstrap sample.</p></li>
+<li class="fragment"><p>This will cause the bootstrap to seriously underestimate the true prediction error.</p></li>
+<li class="fragment"><p>The other way around— with the original sample as the training sample, and the bootstrap dataset as the validation sample— is worse!</p></li>
 </ul>
 </section>
-<section id="removing-the-overlap" class="level2">
-<h2 class="anchored" data-anchor-id="removing-the-overlap">Removing the Overlap</h2>
+<section id="removing-the-overlap" class="slide level2 center">
+<h2>Removing the Overlap</h2>
 <ul>
-<li><p>Can partly fix this problem by only using predictions for those observations that did not (by chance) occur in the current bootstrap sample.</p></li>
-<li><p>But the method gets complicated, and in the end, cross-validation provides a simpler, more attractive approach for estimating prediction error.</p></li>
+<li class="fragment"><p>Can partly fix this problem by only using predictions for those observations that did not (by chance) occur in the current bootstrap sample.</p></li>
+<li class="fragment"><p>But the method gets complicated, and in the end, cross-validation provides a simpler, more attractive approach for estimating prediction error.</p></li>
 </ul>
 <!---
 ## Pre-validation
@@ -1098,19 +918,11 @@ Comparison of the microarray predictor with some clinical predictors, using logi
 
 ## Pre-validation Process
 
-
-
-
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/5_1_3-1.png){fig-align='center' width=65%}
 :::
 :::
-
-
-
-
 
 
 -   Observations are used to create predictors, with some data omitted.
@@ -1148,18 +960,19 @@ Comparison of the microarray predictor with some clinical predictors, using logi
     -   However, there is no real advantage over permutation tests.
 
 --->
+</section></section>
+<section>
+<section id="summary-1" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Summary</h1>
+
 </section>
-</section>
-<section id="summary-1" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Summary</h1>
-<section id="summary-2" class="level2">
-<h2 class="anchored" data-anchor-id="summary-2">Summary</h2>
-<div class="nonincremental">
+<section id="summary-2" class="slide level2 center">
+<h2>Summary</h2>
+<div>
 <div style="font-size: 60%;">
 <div class="columns">
 <div class="column" style="width:50%;">
-<section id="resampling-methods" class="level3">
-<h3 class="anchored" data-anchor-id="resampling-methods">Resampling Methods</h3>
+<h3 id="resampling-methods">Resampling Methods</h3>
 <ul>
 <li>Cross-validation and Bootstrap allow evaluation of model performance using existing data.</li>
 <li>They provide estimates of:
@@ -1168,9 +981,7 @@ Comparison of the microarray predictor with some clinical predictors, using logi
 <li>Standard deviation and bias of parameter estimates.</li>
 </ul></li>
 </ul>
-</section>
-<section id="training-vs-test-error" class="level3">
-<h3 class="anchored" data-anchor-id="training-vs-test-error">Training vs Test Error</h3>
+<h3 id="training-vs-test-error">Training vs Test Error</h3>
 <ul>
 <li>Training error decreases with model complexity.</li>
 <li>Test error decreases, then increases due to <strong>bias-variance tradeoff</strong>:
@@ -1180,10 +991,8 @@ Comparison of the microarray predictor with some clinical predictors, using logi
 </ul></li>
 <li>Optimal complexity minimizes test error.</li>
 </ul>
-</section>
 </div><div class="column" style="width:50%;">
-<section id="validation-set-approach-2" class="level3">
-<h3 class="anchored" data-anchor-id="validation-set-approach-2">Validation-Set Approach</h3>
+<h3 id="validation-set-approach-2">Validation-Set Approach</h3>
 <ul>
 <li>Divides data into training and validation sets.</li>
 <li>Validation error provides an estimate of test error but:
@@ -1192,9 +1001,7 @@ Comparison of the microarray predictor with some clinical predictors, using logi
 <li>May overestimate test error due to smaller training sets.</li>
 </ul></li>
 </ul>
-</section>
-<section id="cross-validation-1" class="level3">
-<h3 class="anchored" data-anchor-id="cross-validation-1">Cross-Validation</h3>
+<h3 id="cross-validation-1">Cross-Validation</h3>
 <ul>
 <li><strong>K-Fold Cross-Validation</strong>:
 <ul>
@@ -1207,448 +1014,461 @@ Comparison of the microarray predictor with some clinical predictors, using logi
 <li>Low bias but high variance.</li>
 </ul></li>
 </ul>
-</section>
-<section id="bootstrap-1" class="level3">
-<h3 class="anchored" data-anchor-id="bootstrap-1">Bootstrap</h3>
+<h3 id="bootstrap-1">Bootstrap</h3>
 <ul>
 <li>Estimates variability and uncertainty of parameter estimates.</li>
 <li>Generates multiple samples with replacement from the dataset.</li>
 <li>Provides approximate confidence intervals and standard errors.</li>
 </ul>
-</section>
+</div></div>
 </div>
 </div>
-</div>
-</div>
-</section>
-</section>
-<section id="thank-you" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Thank you!</h1>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
 
 
 </section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Predictive Analytics</p>
+</div>
+</div></div>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
         }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
       }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
       });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
-
-
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
 
 </body></html>

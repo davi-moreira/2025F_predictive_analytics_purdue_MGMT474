@@ -52,6 +52,52 @@ html-math-method:
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 :::
 
+## Recap
+
+<br>
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%"}
+
+<details>
+<summary><strong>What is the fundamental difference between a regression problem and a classification problem in supervised learning, based on the nature of the outcome variable?</strong></summary>
+<p style="font-size:80%;">Regression predicts a continuous numeric outcome (quantitative response). Classification predicts a discrete category/label (qualitative response, e.g., binary or multiclass).</p>
+</details>
+
+<details>
+<summary><strong>Load the `Advertising.csv` and obtain descriptive statistics:</strong></summary>
+<p style="font-size:80%;">`df = pd.read_csv(Advertising.csv)`<br>`df.describe`</p>
+</details>
+
+<details>
+<summary><strong>What is a possible way to check if there is a relationship between predictors and an outcome variable? performance?</strong></summary>
+<p style="font-size:80%;">Regression Models.</p>
+</details>
+
+:::
+::: {.column width="50%"}
+
+<details>
+<summary><strong>In a regression model, how can we determine the strength of the relationship between predictors and our response variable?</strong></summary>
+<p style="font-size:80%;">Can be assessed by examining the size and statistical significance of the predictors coefficients, the model’s goodness-of-fit, and its predictive performance. Large and statistically significant coefficients (low p-values with narrow confidence intervals) indicate that changes in predictors are strongly associated with changes in the outcome variable. R-squared and adjusted R-squared values quantify how much of the variance in the outcome variable is explained by the predictors.</p>
+</details>
+
+<details>
+<summary><strong>How to discover which predictor is associated with the outcome variable?</strong></summary>
+<p style="font-size:80%;">Check coefficients, p-values, and confidence intervals for statistical significance. In multiple regression, standardized coefficients and model fit (R², adjusted R²) indicate relative importance.</p>
+</details>
+
+<details>
+<summary><strong>How can you determine if there is synergy among predictors in terms of the outcome variable?</strong></summary>
+<p style="font-size:70%;">Synergy among predictors can be determined by testing for **interaction effects** in a regression model, where you add product terms (e.g., `TV × Radio`) alongside the main predictors. A significant interaction coefficient indicates that the effect of one predictor on the outcome depends on the level of another, revealing synergy (positive or negative).</p>
+</details>
+
+:::
+:::::
+::::::
+
+
 # Motivation {background-color="#cfb991"}
 
 ## What is a classification problem?
@@ -766,7 +812,97 @@ $$
 ::::::::::
 :::::::::::
 
+# Generative Models for Classification {background-color="#cfb991"}
+
+## Discriminative vs. Generative
+
+<br>
+
+::: nonincremental
+::: columns
+::: column
+
+**Discriminative (Logistic Regression)**
+
+- Model the **conditional** distribution of the response  
+  $$
+  \Pr(Y=k\mid X=x)
+  $$
+  
+- Learn parameters by maximizing the **(multinomial) log-likelihood** (cross-entropy).
+- Directly outputs class **posterior probabilities**.
+
+:::
+::: column
+
+**Generative (LDA, QDA, NB)**
+
+- Model the **class-conditional** distribution of the predictors  
+  $$
+  f_k(x)\equiv \Pr(X=x\mid Y=k)
+  $$
+  and the **class prior** $\pi_k=\Pr(Y=k)$.
+
+- Apply **Bayes’ theorem** to “flip” into posteriors:
+  $$
+  p_k(x)=\Pr(Y=k\mid X=x)=
+  \frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}. \tag{4.15}
+  $$
+:::
+:::
+:::
+
+## Three Generative Classifiers (at a glance)
+
+<br>
+
+::: nonincremental
+::: columns
+::: column
+### Linear Discriminant Analysis (LDA)
+- Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma)$ with **common** $\Sigma$.
+- Leads to **linear** decision boundaries in $x$.
+:::
+::: column
+### Quadratic Discriminant Analysis (QDA)
+- Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma_k)$ with **class-specific** $\Sigma_k$.
+- Leads to **quadratic** decision boundaries; more flexible, higher variance.
+:::
+:::
+:::
+
+## Naïve Bayes
+
+::: nonincremental
+- Assumption: features are **conditionally independent** given $Y$.
+- Density factorization:
+  $$
+  f_k(x)=\prod_{j=1}^p f_{kj}(x_j\mid Y=k).
+  $$
+- Scales well in high dimensions; often competitive even when independence is only approximately true.
+:::
+
+## Summary
+
+::: nonincremental
+
+- **Logistic regression**: model $\Pr(Y\mid X)$ directly (**discriminative**).
+- **Generative** route: model $\Pr(X\mid Y)$ and $\Pr(Y)$, then use Bayes Theorem to get posteriors.
+- **Bayes classifier** picks the class with the largest posterior and is optimal if the model is correct.
+- **LDA/QDA/Naïve Bayes** are practical estimators of the Bayes rule under different assumptions on $f_k(x)$.
+:::
+
+
+
 # Discriminant Analysis {background-color="#cfb991"}
+
+## Why Discriminant Analysis?
+
+-   When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.
+
+-   If $n$ is small and the distribution of the predictors $X$ is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.
+
+-   Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.
 
 ## Discriminant Analysis
 
@@ -942,13 +1078,6 @@ knitr::include_graphics("figs/4_3_3-1.png")
 
 -   Right-hand plot: here we have different priors. The probability of $k = 2$ is 0.7 and and of of $k= 1$ is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.
 
-## Why Discriminant Analysis?
-
--   When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.
-
--   If $n$ is small and the distribution of the predictors $X$ is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.
-
--   Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.
 
 ## Linear Discriminant Analysis when $p = 1$
 
@@ -1121,6 +1250,7 @@ knitr::include_graphics("figs/4_6-1.png")
 
 -   Right-panel: We compute the mean for $x_1$ and $x_2$ for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.
 
+<!---
 # Example: Fisher's Iris Data {background-color="#cfb991"}
 
 ## Example: Fisher's Iris Data
@@ -1155,6 +1285,8 @@ knitr::include_graphics("figs/4_6_2-1.png")
 -   For $K$ classes:
     -   LDA can be visualized in $K - 1$-dimensional space.
     -   For $K > 3$, the "best" 2D plane can be chosen for visualization.
+
+--->
 
 ## From $\delta_k(x)$ to Probabilities
 
@@ -1247,18 +1379,6 @@ knitr::include_graphics("figs/4_7_1-1.png")
 ```
 
 In order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less.
-
-<br>
-
-## ROC Curve
-
-```{r  echo=FALSE, out.width = "65%", fig.align="center"}
-knitr::include_graphics("figs/4_8-1.png") 
-```
-
-The [*ROC plot*](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) displays both simultaneously.
-
-Sometimes we use the *AUC* or *area under the curve* to summarize the overall performance. Higher *AUC* is good.
 
 <br>
 
@@ -1668,6 +1788,7 @@ $$
 \log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = a_k + \sum_{j=1}^p g_{kj}(x_j)
 $$
 
+
 # Generalized Linear Models {background-color="#cfb991"}
 
 ## Generalized Linear Models
@@ -2023,6 +2144,20 @@ The ROC (Receiver Operating Characteristic) curve is a graphical representation 
 ::::
 
 
+## ROC Curve
+
+LDA on Credit Data Example:
+
+```{r  echo=FALSE, out.width = "65%", fig.align="center"}
+knitr::include_graphics("figs/4_8-1.png") 
+```
+
+The [*ROC plot*](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) displays both, **True Positive** rate and **False Positive** rate, simultaneously.
+
+Sometimes we use the *AUC* or *area under the curve* to summarize the overall performance. Higher *AUC* is good.
+
+<br>
+
 
 
 # Summary {background-color="#cfb991"}
@@ -2048,7 +2183,7 @@ The ROC (Receiver Operating Characteristic) curve is a graphical representation 
 ::: {style="font-size: 80%;"}
 **Practical Insights**
 
--   **Linear vs Logistic Regression**: Logistic regression avoids issues with probabilities outside \[0, 1\].
+-   **Linear vs Logistic Regression**: Logistic regression avoids issues with probabilities outside $0, 1$.
 -   **Discriminant Analysis**: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.
 -   **Naïve Bayes**: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.
 -   **Generalized Linear Models (GLMs)**: Extend regression to different types of responses with appropriate link and variance functions.

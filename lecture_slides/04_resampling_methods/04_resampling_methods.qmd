@@ -29,19 +29,17 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Motivation
-- Training Error versus Test Error
-- Validation-Set Approach
-- Cross-Validation
-- Cross-Validation for Classification Problems
-
+-   Motivation
+-   Training Error versus Test Error
+-   Validation-Set Approach
+-   Cross-Validation
+-   Cross-Validation for Classification Problems
 :::
 
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Bootstrap
-- More on Bootstrap
-- Can the Bootstrap Estimate Prediction Error?
-
+-   Bootstrap
+-   More on Bootstrap
+-   Can the Bootstrap Estimate Prediction Error?
 :::
 :::::
 ::::::
@@ -52,40 +50,37 @@ html-math-method:
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 :::
 
-
 # Motivation {background-color="#cfb991"}
 
 ## Prediction
 
-- **Goal**: Build predictors and classifiers to make accurate predictions from data.
-- **Challenge**: How do we evaluate our predictions?
+-   **Goal**: Build predictors and classifiers to make accurate predictions from data.
+-   **Challenge**: How do we evaluate our predictions?
 
-:::{.fragment}
-
+::: fragment
 **Ideal Scenario: New Data**
 
-- The best way to test predictions is to use **new, independent data** from the population.
-- **Problem**: New data isn’t always available.
+-   The best way to test predictions is to use **new, independent data** from the population.
+-   **Problem**: New data isn’t always available.
 :::
 
 ## Why Not Use Training Data?
 
-- Using training data for evaluation is **not reliable**.
-  - Models tend to perform better on data they’ve already seen.
-  - This leads to overly **optimistic** results.
+-   Using training data for evaluation is **not reliable**.
+    -   Models tend to perform better on data they’ve already seen.
+    -   This leads to overly **optimistic** results.
 
 ## Solution: Resampling methods
 
--   Cross-validation and the Bootstrap are two *resampling* methods. 
+-   Cross-validation and the Bootstrap are two *resampling* methods.
 
--   These methods allows us to evaluate the performance of our predictors using the available data without relying on additional samples. 
+-   These methods allows us to evaluate the performance of our predictors using the available data without relying on additional samples.
 
-- They refit a model of interest to samples formed from the training set, in order to obtain additional information about the fitted model.
+-   They refit a model of interest to samples formed from the training set, in order to obtain additional information about the fitted model.
 
 -   For example, they provide estimates of test-set prediction error, and the standard deviation and bias of our parameter estimates.
 
-
-# Training Error versus Test Error  {background-color="#cfb991"}
+# Training Error versus Test Error {background-color="#cfb991"}
 
 ## Training Error versus Test Error
 
@@ -99,12 +94,9 @@ html-math-method:
 
 ## Training- versus Test-Set Performance
 
-::::::: {style="font-size: 50%;"}
-
-::: {.columns}
-
+:::::: {style="font-size: 50%;"}
+::::: columns
 ::: {.column width="60%"}
-
 <br>
 
 <br>
@@ -113,94 +105,87 @@ html-math-method:
 knitr::include_graphics("figs/5_1_4-1.png") 
 ```
 
-- **Horizontal Axis**: Represents **model complexity** (low to high).
-  - Low complexity: Simpler models with fewer parameters (e.g., fitting a straight line or using a few features).
-  - High complexity: More complex models with many parameters (e.g., higher-degree polynomials or many features).
-
-- **Vertical Axis**: Represents **prediction error**.
-  - Lower values indicate better predictive performance.
-
+-   **Horizontal Axis**: Represents **model complexity** (low to high).
+    -   Low complexity: Simpler models with fewer parameters (e.g., fitting a straight line or using a few features).
+    -   High complexity: More complex models with many parameters (e.g., higher-degree polynomials or many features).
+-   **Vertical Axis**: Represents **prediction error**.
+    -   Lower values indicate better predictive performance.
 :::
+
 ::: {.column width="40%"}
+1.  **Training Error (Blue Curve)**:
+    -   Starts high at low complexity because simple models underfit the training data.
+    -   Decreases steadily as the model becomes more complex, fitting the training data better.
+    -   Continues to decline even as the model becomes overly complex.
+2.  **Test Error (Red Curve)**:
+    -   Starts high at low complexity due to underfitting (failure to generalize).
+    -   Decreases as complexity increases and the model starts capturing relevant patterns.
+    -   Reaches a **minimum** at the optimal complexity (sweet spot).
+    -   Increases again at high complexity due to overfitting (model captures noise instead of general patterns).
 
+-   **Key Concepts**
 
+-   **Bias-Variance Tradeoff**:
 
-1. **Training Error (Blue Curve)**:
-   - Starts high at low complexity because simple models underfit the training data.
-   - Decreases steadily as the model becomes more complex, fitting the training data better.
-   - Continues to decline even as the model becomes overly complex.
+    -   **High Bias (Left Side)**: Simple models fail to capture the true structure of the data.
+    -   **High Variance (Right Side)**: Complex models become overly tailored to the training data and fail to generalize.
 
-2. **Test Error (Red Curve)**:
-   - Starts high at low complexity due to underfitting (failure to generalize).
-   - Decreases as complexity increases and the model starts capturing relevant patterns.
-   - Reaches a **minimum** at the optimal complexity (sweet spot).
-   - Increases again at high complexity due to overfitting (model captures noise instead of general patterns).
+-   **Optimal Complexity**:
 
+    -   Located where the **test error** is minimized.
+    -   Balances bias and variance for the best generalization performance.
 
-- **Key Concepts**
-
-- **Bias-Variance Tradeoff**:
-  - **High Bias (Left Side)**: Simple models fail to capture the true structure of the data.
-  - **High Variance (Right Side)**: Complex models become overly tailored to the training data and fail to generalize.
-
-- **Optimal Complexity**:
-  - Located where the **test error** is minimized.
-  - Balances bias and variance for the best generalization performance.
-
-- The **Goal** is to select a model complexity that minimizes test error to ensure good predictive performance on unseen data.
-
+-   The **Goal** is to select a model complexity that minimizes test error to ensure good predictive performance on unseen data.
 :::
-:::
-
-:::::::
+:::::
+::::::
 
 ## Precision and Accuracy
 
-:::::::: columns
+::::::: columns
 ::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
 ```{r  echo=FALSE, out.width = "80%",fig.align="center"}
 knitr::include_graphics("figs/precision_accuracy.png")
 ```
 :::
 
-:::::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: {style="font-size: 70%;"}
+::::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: {style="font-size: 70%;"}
 -   **Precision**: Refers to the consistency or reliability of the model's predictions.
 
 -   **Accuracy**: Refers to how close the model's predictions are to the true values.
 
-:::: fragment
+::: fragment
 In the context of regression:
 
 -   **High Precision, Low Accuracy**: Predictions are consistent but biased.
 -   **High Precision, High Accuracy**: Predictions are both consistent and valid.
 -   **Low Precision, Low Accuracy**: Predictions are neither consistent nor valid.
 -   **Low Precision, High Accuracy**: Predictions are valid on average but have high variability.
-
+:::
 ::::
 :::::
-::::::
-::::::::
+:::::::
 
 ## More on Prediction-Error Estimates
 
--   Best solution: test the model with a large test set. 
-    - However, it is not very often available.
--   In the absence of a large test set, some methods make a *mathematical adjustment* to the training error rate in order to estimate the test error rate. 
-    - These include the *Cp statistic*, *AIC*, and *BIC*. 
+-   Best solution: test the model with a large test set.
+    -   However, it is not very often available.
+-   In the absence of a large test set, some methods make a *mathematical adjustment* to the training error rate in order to estimate the test error rate.
+    -   These include the *Cp statistic*, *AIC*, and *BIC*.
 -   In this lecture we consider a class of methods that estimate the test error by *holding out* a subset of the training observations from the fitting process, and then applying the statistical learning method to those held-out observations.
 
-
-
-# Validation-Set Approach  {background-color="#cfb991"}
+# Validation-Set Approach {background-color="#cfb991"}
 
 ## Validation-Set Approach
 
 -   Here we randomly divide the available set of samples into two parts: a *training set* and a *validation* or *hold-out set*.
--   The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set.
--   The resulting validation-set error provides an estimate of the test error. 
 
-    - This is typically assessed using the *Mean Squared Error (MSE)*  in the case of a quantitative response and Misclassification Rate in the case of a qualitative (discrete) response.
+-   The model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set.
+
+-   The resulting validation-set error provides an estimate of the test error.
+
+    -   This is typically assessed using the *Mean Squared Error (MSE)* in the case of a quantitative response and Misclassification Rate in the case of a qualitative (discrete) response.
 
 ## The Validation Process
 
@@ -208,19 +193,19 @@ In the context of regression:
 knitr::include_graphics("figs/5_1-1.png") 
 ```
 
-- **A random splitting of the original dataset into two halves (two-fold validation):**
+-   **A random splitting of the original dataset into two halves (two-fold validation):**
 
-    - Left part is the training set
-    - Right part is the validation set
+    -   Left part is the training set
+    -   Right part is the validation set
 
 ## Example: Automobile Data
 
-:::::::: nonincremental
-::::::: {style="font-size: 80%;"}
-
+:::: nonincremental
+::: {style="font-size: 80%;"}
 -   Want to compare linear vs higher-order polynomial terms in a linear regression.
 
 -   We randomly split the 392 observations into two sets:
+
     -   A training set containing 196 of the data points.
     -   A validation set containing the remaining 196 observations.
 
@@ -229,9 +214,8 @@ knitr::include_graphics("figs/5_2-1.png")
 ```
 
 Left panel shows single split; right panel shows multiple splits.
-
-::::::::
-:::::::
+:::
+::::
 
 ## Drawbacks of Validation Set Approach
 
@@ -241,11 +225,11 @@ Left panel shows single split; right panel shows multiple splits.
 
 -   This suggests that the validation set error may tend to *overestimate* the test error for the model fit on the entire data set. *Why?*
 
-    - Having more data generally leads to lower error because it provides more information for training the model.
-    - For example, training on **200 observations** is typically preferable to **100 observations**, as larger datasets improve accuracy.
-    - However, when the training set is reduced (e.g., during validation), error estimates can be higher since smaller datasets may fail to capture all patterns in the data.
-    - This limitation highlights the drawbacks of simple validation.
-    - **Cross-validation** addresses this issue by efficiently using the data to produce more accurate and reliable error estimates.
+    -   Having more data generally leads to lower error because it provides more information for training the model.
+    -   For example, training on **200 observations** is typically preferable to **100 observations**, as larger datasets improve accuracy.
+    -   However, when the training set is reduced (e.g., during validation), error estimates can be higher since smaller datasets may fail to capture all patterns in the data.
+    -   This limitation highlights the drawbacks of simple validation.
+    -   **Cross-validation** addresses this issue by efficiently using the data to produce more accurate and reliable error estimates.
 
 # Cross-Validation {background-color="#cfb991"}
 
@@ -283,9 +267,7 @@ knitr::include_graphics("figs/KfoldCV.gif")
 
 <br>
 
-<center>
-[Wiki](https://en.wikipedia.org/wiki/Cross-validation_(statistics)){target="_blank"}
-</center>
+<center>[Wiki](https://en.wikipedia.org/wiki/Cross-validation_(statistics)){target="_blank"}</center>
 
 <br>
 
@@ -295,8 +277,7 @@ knitr::include_graphics("figs/KfoldCV.gif")
 
 -   Compute the **cross-validations error rate**:
 
-:::{.fragment}
-
+::: fragment
 $$
   \text{CV}_{(K)} = \sum_{k=1}^{K} \frac{n_k}{n} \text{MSE}_k
 $$
@@ -304,7 +285,6 @@ $$
 where $\text{MSE}_k = \frac{\sum_{i \in C_k} (y_i - \hat{y}_i)^2}{n_k}$, and $\hat{y}_i$ is the fit for observation $i$, obtained from the data with part $k$ removed.
 
 -   Special case: Setting $K = n$ yields $n$-fold or *leave-one-out cross-validation* (LOOCV).
-
 :::
 
 ## Leave-One-Out Cross-Validation (LOOCV)
@@ -317,12 +297,9 @@ knitr::include_graphics("figs/LOOCV.gif")
 
 <br>
 
-<center>
-[Wiki](https://en.wikipedia.org/wiki/Cross-validation_(statistics)){target="_blank"}
-</center>
+<center>[Wiki](https://en.wikipedia.org/wiki/Cross-validation_(statistics)){target="_blank"}</center>
 
 <br>
-
 
 ## A Nice Special Case!
 
@@ -336,7 +313,7 @@ where $\hat{y}_i$ is the $i$-th fitted value from the original least-squares fit
 
 -   LOOCV is sometimes useful, but typically doesn’t *shake up* the data enough. The estimates from each fold are highly correlated, and hence their average can have high variance.
 
-- **A better choice is $K = 5$ or $K = 10$**.
+-   **A better choice is** $K = 5$ or $K = 10$.
 
 ## Example: Auto Data Revisited
 
@@ -344,33 +321,36 @@ where $\hat{y}_i$ is the $i$-th fitted value from the original least-squares fit
 knitr::include_graphics("figs/5_4-1.png") 
 ```
 
-- Left plot: Similar to the two halve validation;
-- Right plot: Tenfold cross validation. With 10 different partitions of the data to train and test the model we see there is not much variability. The results are consistent, in contrast to the result when we divided into two parts. 
+-   Left plot: Similar to the two halve validation;
+-   Right plot: Tenfold cross validation. With 10 different partitions of the data to train and test the model we see there is not much variability. The results are consistent, in contrast to the result when we divided into two parts.
 
 ## True and Estimated Test MSE for the Simulated Data
 
-:::::: {style="font-size: 60%;"}
-
+::: {style="font-size: 60%;"}
 ```{r  echo=FALSE, out.width = "65%", fig.align="center"}
 knitr::include_graphics("figs/5_6-1.png") 
 ```
 
-- The plot presents the cross-validation estimates and true test error rates that result from applying smoothing splines to the simulated data sets illustrated in Figures 2.9–2.11 of Chapter 2 of the book. 
+-   The plot presents the cross-validation estimates and true test error rates that result from applying smoothing splines to the simulated data sets illustrated in Figures 2.9–2.11 of Chapter 2 of the book.
 
-- The true test MSE is displayed in blue. 
-- The black dashed and orange solid lines respectively show the estimated LOOCV and 10-fold CV estimates. 
+-   The true test MSE is displayed in blue.
 
-- In all three plots, the two cross-validation estimates are very similar. 
-- Right-hand panel: the true test MSE and the cross-validation curves are almost identical. 
-- Center panel: the two sets of curves are similar at the lower degrees of flexibility, while the CV curves overestimate the test set MSE for higher degrees of flexibility. 
-- Left-hand panel: the CV curves have the correct general shape, but they underestimate the
-true test MSE.
+-   The black dashed and orange solid lines respectively show the estimated LOOCV and 10-fold CV estimates.
 
-::::::
+-   In all three plots, the two cross-validation estimates are very similar.
 
+-   Right-hand panel: the true test MSE and the cross-validation curves are almost identical.
+
+-   Center panel: the two sets of curves are similar at the lower degrees of flexibility, while the CV curves overestimate the test set MSE for higher degrees of flexibility.
+
+-   Left-hand panel: the CV curves have the correct general shape, but they underestimate the true test MSE.
+:::
+
+```{=html}
 <!---With cross-validation, our goal might be to determine how well a given statistical learning procedure can be expected to perform on independent data; in this case, the actual estimate of the test MSE is
 of interest. But at other times we are interested only in the location of the minimum point in the estimated test MSE curve. This is because we might be performing cross-validation on a number of statistical learning methods, or on a single method using different levels of flexibility, in order to identify the method that results in the lowest test error.
 --->
+```
 
 ## Potential Issues with Cross-Validation
 
@@ -380,18 +360,16 @@ of interest. But at other times we are interested only in the location of the mi
 
 -   $K = 5$ or $10$ provides a good compromise for this bias-variance tradeoff.
 
-# Cross-Validation for Classification Problems  {background-color="#cfb991"}
+# Cross-Validation for Classification Problems {background-color="#cfb991"}
 
 ## Cross-Validation for Classification Problems
 
-::::::: {style="font-size: 80%;"}
-
+::::: {style="font-size: 80%;"}
 We divide the data into $K$ roughly equal-sized parts $C_1, C_2, \ldots, C_K$. $C_k$ denotes the indices of the observations in part $k$. There are $n_k$ observations in part $k$: if $n$ is a multiple of $K$, then $n_k = n / K$.
 
 -   Compute the **cross-validation misclassification error**:
 
-:::{.fragment}
-
+::: fragment
 $$
   \text{CV}_K = \sum_{k=1}^{K} \frac{n_k}{n} \text{Err}_k
 $$
@@ -399,93 +377,83 @@ $$
 where $\text{Err}_k = \frac{\sum_{i \in C_k} I(y_i \neq \hat{y}_i)}{n_k}$.
 
 -   The estimated standard deviation of $\text{CV}_K$ is:
-
 :::
-:::{.fragment}
 
+::: fragment
 $$
   \widehat{\text{SE}}(\text{CV}_K) = \sqrt{\frac{1}{K} \sum_{k=1}^{K} \frac{(\text{Err}_k - \overline{\text{Err}_k})^2}{K - 1}}
 $$
 
 -   This is a useful estimate, but strictly speaking, not quite valid. *Why not?*
 
-    - We compute the standard errors assuming these were independent observations, but they are not strictly independent as they share some training samples. So there's some correlation between them.
-
+    -   We compute the standard errors assuming these were independent observations, but they are not strictly independent as they share some training samples. So there's some correlation between them.
 :::
+:::::
 
-:::::::
-
-# Cross-Validation: Right and Wrong  {background-color="#cfb991"}
+# Cross-Validation: Right and Wrong {background-color="#cfb991"}
 
 ## The Setting
 
-- **High‐dimensional data**: We have 50 samples (observations) but 5000 predictors (features). In many modern applications—such as genomics—it is typical to have many more predictors than observations.
+-   **High‐dimensional data**: We have 50 samples (observations) but 5000 predictors (features). In many modern applications—such as genomics—it is typical to have many more predictors than observations.
 
-- **Goal**: Two‐class classification  
+-   **Goal**: Two‐class classification
 
-- Feature selection (Step 1): We first look at the correlation of each of the 5000 predictors with the class labels, and we pick the 100 “best” predictors—the ones that exhibit the largest correlation with the class labels.
+-   Feature selection (Step 1): We first look at the correlation of each of the 5000 predictors with the class labels, and we pick the 100 “best” predictors—the ones that exhibit the largest correlation with the class labels.
 
-- Model fitting (Step 2): Once those top 100 are chosen, we fit a classifier (e.g., logistic regression) using only those top 100 predictors.
+-   Model fitting (Step 2): Once those top 100 are chosen, we fit a classifier (e.g., logistic regression) using only those top 100 predictors.
 
-- The question is how to **estimate the true test error** of this two‐step procedure.
+-   The question is how to **estimate the true test error** of this two‐step procedure.
 
 ## The Tempting (but Wrong) Approach
 
-A common mistake is to **ignore Step 1** when doing cross‐validation and to apply cross‐validation *only* to Step 2. That is, one might simply take the already‐selected 100 features and then do, say, 10‐fold cross‐validation on the logistic regression. 
+A common mistake is to **ignore Step 1** when doing cross‐validation and to apply cross‐validation *only* to Step 2. That is, one might simply take the already‐selected 100 features and then do, say, 10‐fold cross‐validation on the logistic regression.
 
-- **Why people do this**: It seems natural to say, “Now that we have our 100 features, let’s cross‐validate the classifier we fit with these 100 features.”  
+-   **Why people do this**: It seems natural to say, “Now that we have our 100 features, let’s cross‐validate the classifier we fit with these 100 features.”
 
-- **What goes wrong**: By the time you pick those 100 “best” features, the data set has already “seen” all the labels in the process of ranking and filtering. This filtering step is actually part of training, because it *used* the outcome labels to choose features.  
+-   **What goes wrong**: By the time you pick those 100 “best” features, the data set has already “seen” all the labels in the process of ranking and filtering. This filtering step is actually part of training, because it *used* the outcome labels to choose features.
 
-:::{.fragment}
-
+::: fragment
 Skipping Step 1 in the cross‐validation will invariably produce an **overly optimistic** (often *wildly* optimistic) estimate of test error.
-
 :::
 
 ## Why It Is Wrong: Data Leakage
 
-1. **Data leakage**: The crucial point is that feature selection (filtering) depends on the relationship between each feature and the class labels. Hence, it is not “just a preprocessing step”—it is using the label information. Thus, Step 1 is part of the model‐building process.  
+1.  **Data leakage**: The crucial point is that feature selection (filtering) depends on the relationship between each feature and the class labels. Hence, it is not “just a preprocessing step”—it is using the label information. Thus, Step 1 is part of the model‐building process.
 
-2. **Overfitting by cherry‐picking**: With thousands of predictors, even if none is truly predictive, by sheer chance some predictors will appear correlated with the class labels in the sample. Selecting only the strongest correlations can give the illusion that the model has learned meaningful structure, when in fact it is just capturing random noise.  
+2.  **Overfitting by cherry‐picking**: With thousands of predictors, even if none is truly predictive, by sheer chance some predictors will appear correlated with the class labels in the sample. Selecting only the strongest correlations can give the illusion that the model has learned meaningful structure, when in fact it is just capturing random noise.
 
-3. **An extreme illustration**: If you simulate data where the class labels are purely random (true error = 50%), but you pick the top 100 out of 5000 or 5 million random features, then do cross‐validation *only* after you have chosen those top 100, you can easily see cross‐validation estimates near 0% error—clearly a false, biased result.
-
+3.  **An extreme illustration**: If you simulate data where the class labels are purely random (true error = 50%), but you pick the top 100 out of 5000 or 5 million random features, then do cross‐validation *only* after you have chosen those top 100, you can easily see cross‐validation estimates near 0% error—clearly a false, biased result.
 
 ## The Correct (Right) Way to Apply Cross‐Validation
 
-::::::: {style="font-size: 80%;"}
-
+:::: {style="font-size: 80%;"}
 The key principle is that *any step that uses the outcome labels must occur inside the cross‐validation loop*. Concretely:
 
-1. **Split** the data into training/validation folds (e.g., 10‐fold CV).  
+1.  **Split** the data into training/validation folds (e.g., 10‐fold CV).
 
-2. **For each fold**:  
-   - Treat that fold as a hold‐out set.  
-   - On the *remaining* training folds, perform the *entire* procedure:  
-     1. **Feature selection** (filtering to the top 100 based on correlation with the class labels in the training folds only).  
-     2. **Fit** the classifier (e.g., logistic regression) to those top 100 features in those training folds.  
-   - Finally, **evaluate** the trained model on the hold‐out fold—*with only the 100 features selected from the training folds*.  
+2.  **For each fold**:
 
-3. **Repeat** for each fold, then average the error rates (or other metrics).  
+    -   Treat that fold as a hold‐out set.\
+    -   On the *remaining* training folds, perform the *entire* procedure:
+        1.  **Feature selection** (filtering to the top 100 based on correlation with the class labels in the training folds only).\
+        2.  **Fit** the classifier (e.g., logistic regression) to those top 100 features in those training folds.\
+    -   Finally, **evaluate** the trained model on the hold‐out fold—*with only the 100 features selected from the training folds*.
 
-:::{.fragment}
+3.  **Repeat** for each fold, then average the error rates (or other metrics).
 
+::: fragment
 By doing this, *each hold‐out fold is kept separate* from both feature selection and model training. This ensures that Step 1 (feature selection) is “relearned” anew in each training subset, just as Step 2 (the classifier) is. As a result, the cross‐validation error you compute properly reflects how the entire procedure—from filtering out thousands of features down to fitting the logistic model—would perform on truly unseen data.
-
 :::
-
-:::::::
+::::
 
 ## Summary
 
-- **Wrong**: Select your 100 predictors once using *all* the data, then cross‐validate only the final classifier. This leads to overly optimistic, biased estimates of test error because it ignores that you used the labels in selecting those 100 predictors.  
+-   **Wrong**: Select your 100 predictors once using *all* the data, then cross‐validate only the final classifier. This leads to overly optimistic, biased estimates of test error because it ignores that you used the labels in selecting those 100 predictors.
 
-- **Right**: Wrap the entire two‐step process (selection **and** model fitting) inside the cross‐validation loop. Each fold’s feature‐selection step must be done *without* knowledge of the hold‐out fold’s labels.
+-   **Right**: Wrap the entire two‐step process (selection **and** model fitting) inside the cross‐validation loop. Each fold’s feature‐selection step must be done *without* knowledge of the hold‐out fold’s labels.
 
-:::{.fragment}
+::: fragment
 Following this correct approach is essential whenever one performs early filtering, variable selection, hyperparameter tuning, or any other step that uses the outcome labels. Such steps must be regarded as part of the training process and repeated inside each cross‐validation iteration.
-
 :::
 
 # Bootstrap {background-color="#cfb991"}
@@ -514,14 +482,12 @@ Following this correct approach is essential whenever one performs early filteri
 
 -   One can show that the value that minimizes the risk is given by:
 
-:::{.fragment}
-
+::: fragment
 $$
   \alpha = \frac{\sigma_Y^2 - \sigma_{XY}}{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}},
-$$ 
+$$
 
 where $\sigma_X^2 = \text{Var}(X)$, $\sigma_Y^2 = \text{Var}(Y)$, and $\sigma_{XY} = \text{Cov}(X, Y)$.
-
 :::
 
 ## Example Continued
@@ -532,18 +498,15 @@ where $\sigma_X^2 = \text{Var}(X)$, $\sigma_Y^2 = \text{Var}(Y)$, and $\sigma_{X
 
 -   We can then estimate the value of $\alpha$ that minimizes the variance of our investment using:
 
-:::{.fragment}
-
+::: fragment
 $$
   \hat{\alpha} = \frac{\hat{\sigma}_Y^2 - \hat{\sigma}_{XY}}{\hat{\sigma}_X^2 + \hat{\sigma}_Y^2 - 2\hat{\sigma}_{XY}}.
 $$
-
 :::
 
 ## Example Continued
 
-:::::: {style="font-size: 80%;"}
-
+::: {style="font-size: 80%;"}
 ```{r  echo=FALSE, out.width = "40%", fig.align="center"}
 knitr::include_graphics("figs/5_9-1.png") 
 ```
@@ -551,31 +514,25 @@ knitr::include_graphics("figs/5_9-1.png")
 Each panel displays 100 simulated returns for investments X and Y. From left to right and top to bottom, the resulting estimates for $\alpha$, the fraction to minimize the total risk, are 0.576, 0.532, 0.657, and 0.651.
 
 <br>
-
-::::::
-
+:::
 
 ## Example Continued
 
-:::::: {style="font-size: 80%;"}
-
+:::: {style="font-size: 80%;"}
 -   To estimate the standard deviation of $\hat{\alpha}$, we repeated the process of simulating 100 paired observations of $X$ and $Y$, and estimating $\alpha$ 1,000 times.
 
 -   We thereby obtained 1,000 estimates for $\alpha$, which we can call $\hat{\alpha}_1, \hat{\alpha}_2, \ldots, \hat{\alpha}_{1000}$.
 
-:::{.fragment}
-
+::: fragment
 ```{r  echo=FALSE, out.width = "65%", fig.align="center"}
 knitr::include_graphics("figs/5_10-1.png") 
 ```
-
 :::
 
 -   The left-hand panel of the Figure displays a histogram of the resulting estimates.
 
 -   For these simulations, the parameters were set to $\sigma_X^2 = 1, \, \sigma_Y^2 = 1.25, \, \sigma_{XY} = 0.5,$ and so we know that the true value of $\alpha$ is 0.6 (indicated by the red line).
-
-::::::
+::::
 
 ## Example Continued
 
@@ -587,8 +544,7 @@ $$
 
 very close to $\alpha = 0.6$, and the standard deviation of the estimates is:
 
-:::{.fragment}
-
+::: fragment
 $$
   \sqrt{\frac{1}{1000 - 1} \sum_{r=1}^{1000} (\hat{\alpha}_r - \bar{\alpha})^2} = 0.083.
 $$
@@ -596,7 +552,6 @@ $$
 -   This gives us a very good idea of the accuracy of $\hat{\alpha}$: $\text{SE}(\hat{\alpha}) \approx 0.083$.
 
 -   So roughly speaking, for a random sample from the population, we would expect $\hat{\alpha}$ to differ from $\alpha$ by approximately 0.08, on average.
-
 :::
 
 ## Example Results
@@ -609,9 +564,9 @@ knitr::include_graphics("figs/5_10-1.png")
 
 **Center**: A histogram of the estimates of $\alpha$ obtained from 1,000 bootstrap samples from a single data set.
 
-**Right**: The estimates of $\alpha$ displayed in the left and center panels are shown as boxplots. 
+**Right**: The estimates of $\alpha$ displayed in the left and center panels are shown as boxplots.
 
-- In each panel, the pink line indicates the true value of $\alpha$.
+-   In each panel, the pink line indicates the true value of $\alpha$.
 
 ## Now Back to the Real World
 
@@ -641,8 +596,7 @@ knitr::include_graphics("figs/5_11-1.png")
 
 -   We estimate the standard error of these bootstrap estimates using the formula:
 
-:::{.fragment}
-
+::: fragment
 $$
 SE_B(\hat{\alpha}) = \sqrt{\frac{1}{B - 1} \sum_{r=1}^B (\hat{\alpha}^{*r} - \bar{\alpha}^{*})^2}.
 $$
@@ -650,9 +604,7 @@ $$
 -   This serves as an estimate of the standard error of $\hat{\alpha}$ estimated from the original data set. See center and right panels of Figure on slide 29. Bootstrap results are in blue.
 
 -   For this example $SE_B(\hat{\alpha}) = 0.087$.
-
 :::
-
 
 # More on Bootstrap {background-color="#cfb991"}
 
@@ -664,54 +616,45 @@ knitr::include_graphics("figs/5_1_2-1.png")
 
 ::::::: nonincremental
 :::::: {style="font-size: 50%;"}
-
 ::::: columns
 ::: {.column width="50%"}
-
 **Real World**
 
-1. **Population $P$**  
-   - We imagine there is a true, unknown population (or data‐generating process).  
-   - In practice, we typically do *not* have direct access to all of $P$.
+1.  **Population** $P$
+    -   We imagine there is a true, unknown population (or data‐generating process).\
+    -   In practice, we typically do *not* have direct access to all of $P$.
+2.  **Random Sampling**
+    -   We draw a finite sample $Z = (z_1, z_2, \dots, z_n)$ from the population $P$.\
+    -   This sample $Z$ is our observed dataset (often called the “training data” in applied work).
+3.  **Estimate** $f(Z)$
+    -   From this observed data $Z$, we compute a statistic or estimate, denoted $f(Z)$.\
+    -   Examples might include a mean, a regression coefficient, or (in the investment example) an optimal allocation parameter $\alpha$.
 
-2. **Random Sampling**  
-   - We draw a finite sample $Z = (z_1, z_2, \dots, z_n)$ from the population $P$.  
-   - This sample $Z$ is our observed dataset (often called the “training data” in applied work).
-
-3. **Estimate $f(Z)$**  
-   - From this observed data $Z$, we compute a statistic or estimate, denoted $f(Z)$.  
-   - Examples might include a mean, a regression coefficient, or (in the investment example) an optimal allocation parameter $\alpha$.
-
-In short, the Real World side shows how our single dataset $Z$ arrives by randomly sampling from the true population $P$.  
-
+In short, the Real World side shows how our single dataset $Z$ arrives by randomly sampling from the true population $P$.
 :::
 
 ::: {.column width="50%"}
-
 **Bootstrap World**
 
-1. **Estimated Population $\hat{P}$**  
-   - Because we usually cannot sample repeatedly from the real population $P$, the bootstrap creates a stand‐in population $\hat{P}$. We 'replace' the population by our sample. 
-   - $\hat{P}$ is the **empirical distribution function** of the observed data $Z$. Informally, it assigns probability $\tfrac{1}{n}$ to each observed point in $Z$.
+1.  **Estimated Population** $\hat{P}$
+    -   Because we usually cannot sample repeatedly from the real population $P$, the bootstrap creates a stand‐in population $\hat{P}$. We 'replace' the population by our sample.
+    -   $\hat{P}$ is the **empirical distribution function** of the observed data $Z$. Informally, it assigns probability $\tfrac{1}{n}$ to each observed point in $Z$.
+2.  **Random Sampling from** $\hat{P}$
+    -   To mimic drawing new data from the real population, we instead draw (with replacement) from $\hat{P}$.\
+    -   This produces a *bootstrap dataset* $Z^* = (z_1^*, z_2^*, \dots, z_n^*)$. Each $z_i^*$ is sampled (with replacement) from among the original observed points $\{z_1, \dots, z_n\}$.
+3.  **Bootstrap Estimate** $f(Z^*)$
+    -   We compute the same statistic (or estimator) on each bootstrap sample, giving $f(Z^*)$.\
+    -   By repeating this bootstrap sampling many times, we obtain a distribution of estimates $\{f(Z^*_1), f(Z^*_2), \dots\}$. This approximates how $f(Z)$ would vary if we could repeatedly resample from the *true* population.
 
-2. **Random Sampling from $\hat{P}$**  
-   - To mimic drawing new data from the real population, we instead draw (with replacement) from $\hat{P}$.  
-   - This produces a *bootstrap dataset* $Z^* = (z_1^*, z_2^*, \dots, z_n^*)$. Each $z_i^*$ is sampled (with replacement) from among the original observed points $\{z_1, \dots, z_n\}$.
-
-3. **Bootstrap Estimate $f(Z^*)$**  
-   - We compute the same statistic (or estimator) on each bootstrap sample, giving $f(Z^*)$.  
-   - By repeating this bootstrap sampling many times, we obtain a distribution of estimates $\{f(Z^*_1), f(Z^*_2), \dots\}$. This approximates how $f(Z)$ would vary if we could repeatedly resample from the *true* population.
-
+```{=html}
 <!---
 Hence, the Bootstrap World side shows how the empirical distribution $\hat{P}$ and resampling with replacement enable us to emulate “new” datasets—thereby providing a practical way to estimate variability, confidence intervals, or standard errors of our statistic $f(Z)$ without ever returning to the true population $P$.
 --->
-
+```
 :::
 :::::
-
 ::::::
 :::::::
-
 
 ## The Bootstrap in General
 
@@ -719,11 +662,10 @@ Hence, the Bootstrap World side shows how the empirical distribution $\hat{P}$ a
 
 -   For example, if the data is a time series, we can’t simply sample the observations with replacement (**why not?**).
 
-    - The main reason we typically cannot simply resample individual points with replacement in a time series is that time‐ordered data exhibits serial dependence. That is, adjacent observations (e.g., today’s stock price and yesterday’s stock price) are correlated in ways that we lose if we treat all observations as independent units and shuffle them arbitrarily.
-    - A simple i.i.d. bootstrap would ignore the natural ordering of the data points (and the correlations it encodes), thereby violating a crucial assumption about the structure of time‐series data.
+    -   The main reason we typically cannot simply resample individual points with replacement in a time series is that time‐ordered data exhibits serial dependence. That is, adjacent observations (e.g., today’s stock price and yesterday’s stock price) are correlated in ways that we lose if we treat all observations as independent units and shuffle them arbitrarily.
+    -   A simple i.i.d. bootstrap would ignore the natural ordering of the data points (and the correlations it encodes), thereby violating a crucial assumption about the structure of time‐series data.
 
 -   We can instead create blocks of consecutive observations and sample those with replacements. Then we paste together sampled blocks to obtain a bootstrap dataset.
-
 
 ## Other Uses of the Bootstrap
 
@@ -740,7 +682,8 @@ Hence, the Bootstrap World side shows how the empirical distribution $\hat{P}$ a
 ## Can the Bootstrap Estimate Prediction Error?
 
 -   In cross-validation, each of the $K$ validation folds is distinct from the other $K-1$ folds used for training: *there is no overlap.* This is crucial for its success. **Why?**
-    - There is a clear separation, no overlap, between the train and the test sets.
+
+    -   There is a clear separation, no overlap, between the train and the test sets.
 
 -   To estimate prediction error using the bootstrap, we could think about using **each bootstrap dataset as our training sample**, and **the original sample as our validation sample**.
 
@@ -756,6 +699,7 @@ Hence, the Bootstrap World side shows how the empirical distribution $\hat{P}$ a
 
 -   But the method gets complicated, and in the end, cross-validation provides a simpler, more attractive approach for estimating prediction error.
 
+````{=html}
 <!---
 ## Pre-validation
 
@@ -849,53 +793,57 @@ knitr::include_graphics("figs/5_1_3-1.png")
     -   However, there is no real advantage over permutation tests.
 
 --->
+````
 
 # Summary {background-color="#cfb991"}
 
 ## Summary
 
-:::::::: nonincremental
-::: {style="font-size: 60%;"}
-
-::: {.columns}
+::::::: nonincremental
+:::::: {style="font-size: 60%;"}
+::::: columns
 ::: {.column width="50%"}
 ### Resampling Methods
-- Cross-validation and Bootstrap allow evaluation of model performance using existing data.
-- They provide estimates of:
-  - Test-set prediction error
-  - Standard deviation and bias of parameter estimates.
+
+-   Cross-validation and Bootstrap allow evaluation of model performance using existing data.
+-   They provide estimates of:
+    -   Test-set prediction error
+    -   Standard deviation and bias of parameter estimates.
 
 ### Training vs Test Error
-- Training error decreases with model complexity.
-- Test error decreases, then increases due to **bias-variance tradeoff**:
-  - **High Bias**: Simple models underfit the data.
-  - **High Variance**: Complex models overfit the training data.
-- Optimal complexity minimizes test error.
 
+-   Training error decreases with model complexity.
+-   Test error decreases, then increases due to **bias-variance tradeoff**:
+    -   **High Bias**: Simple models underfit the data.
+    -   **High Variance**: Complex models overfit the training data.
+-   Optimal complexity minimizes test error.
 :::
+
 ::: {.column width="50%"}
 ### Validation-Set Approach
-- Divides data into training and validation sets.
-- Validation error provides an estimate of test error but:
-  - Can vary based on data split.
-  - May overestimate test error due to smaller training sets.
+
+-   Divides data into training and validation sets.
+-   Validation error provides an estimate of test error but:
+    -   Can vary based on data split.
+    -   May overestimate test error due to smaller training sets.
 
 ### Cross-Validation
-- **K-Fold Cross-Validation**:
-  - Divides data into $K$ folds for iterative training and testing.
-  - Balances bias and variance (e.g., $K = 5$ or $10$).
-- **Leave-One-Out Cross-Validation (LOOCV)**:
-  - Uses one data point as validation in each iteration.
-  - Low bias but high variance.
+
+-   **K-Fold Cross-Validation**:
+    -   Divides data into $K$ folds for iterative training and testing.
+    -   Balances bias and variance (e.g., $K = 5$ or $10$).
+-   **Leave-One-Out Cross-Validation (LOOCV)**:
+    -   Uses one data point as validation in each iteration.
+    -   Low bias but high variance.
 
 ### Bootstrap
-- Estimates variability and uncertainty of parameter estimates.
-- Generates multiple samples with replacement from the dataset.
-- Provides approximate confidence intervals and standard errors.
-:::
-:::
 
+-   Estimates variability and uncertainty of parameter estimates.
+-   Generates multiple samples with replacement from the dataset.
+-   Provides approximate confidence intervals and standard errors.
+:::
+:::::
+::::::
 :::::::
-::::::::
 
 # Thank you! {background-color="#cfb991"}

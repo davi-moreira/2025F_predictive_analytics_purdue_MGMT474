@@ -170,6 +170,64 @@ Professor: Davi Moreira
 <aside><div>
 <p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
 </div></aside></section>
+<section id="recap" class="slide level2 center">
+<h2>Recap</h2>
+<p><br></p>
+<div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<details>
+<summary>
+<strong>What is the fundamental difference between a regression problem and a classification problem in supervised learning, based on the nature of the outcome variable?</strong>
+</summary>
+<p style="font-size:80%;">
+Regression predicts a continuous numeric outcome (quantitative response). Classification predicts a discrete category/label (qualitative response, e.g., binary or multiclass).
+</p>
+</details>
+<details>
+<summary>
+<strong>Load the <code>Advertising.csv</code> and obtain descriptive statistics:</strong>
+</summary>
+<p style="font-size:80%;">
+<code>df = pd.read_csv(Advertising.csv)</code><br><code>df.describe</code>
+</p>
+</details>
+<details>
+<summary>
+<strong>What is a possible way to check if there is a relationship between predictors and an outcome variable? performance?</strong>
+</summary>
+<p style="font-size:80%;">
+Regression Models.
+</p>
+</details>
+</div><div class="column" style="width:50%;">
+<details>
+<summary>
+<strong>In a regression model, how can we determine the strength of the relationship between predictors and our response variable?</strong>
+</summary>
+<p style="font-size:80%;">
+Can be assessed by examining the size and statistical significance of the predictors coefficients, the model’s goodness-of-fit, and its predictive performance. Large and statistically significant coefficients (low p-values with narrow confidence intervals) indicate that changes in predictors are strongly associated with changes in the outcome variable. R-squared and adjusted R-squared values quantify how much of the variance in the outcome variable is explained by the predictors.
+</p>
+</details>
+<details>
+<summary>
+<strong>How to discover which predictor is associated with the outcome variable?</strong>
+</summary>
+<p style="font-size:80%;">
+Check coefficients, p-values, and confidence intervals for statistical significance. In multiple regression, standardized coefficients and model fit (R², adjusted R²) indicate relative importance.
+</p>
+</details>
+<details>
+<summary>
+<strong>How can you determine if there is synergy among predictors in terms of the outcome variable?</strong>
+</summary>
+<p style="font-size:70%;">
+Synergy among predictors can be determined by testing for <strong>interaction effects</strong> in a regression model, where you add product terms (e.g., <code>TV × Radio</code>) alongside the main predictors. A significant interaction coefficient indicates that the effect of one predictor on the outcome depends on the level of another, revealing synergy (positive or negative).
+</p>
+</details>
+</div></div>
+</div>
+</section>
 <section>
 <section id="motivation" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Motivation</h1>
@@ -900,9 +958,95 @@ z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
 </div>
 </section></section>
 <section>
+<section id="generative-models-for-classification" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Generative Models for Classification</h1>
+
+</section>
+<section id="discriminative-vs.-generative" class="slide level2 center">
+<h2>Discriminative vs.&nbsp;Generative</h2>
+<p><br></p>
+<div>
+<div class="columns">
+<div class="column">
+<p><strong>Discriminative (Logistic Regression)</strong></p>
+<ul>
+<li><p>Model the <strong>conditional</strong> distribution of the response<br>
+<span class="math display">\[
+\Pr(Y=k\mid X=x)
+\]</span></p></li>
+<li><p>Learn parameters by maximizing the <strong>(multinomial) log-likelihood</strong> (cross-entropy).</p></li>
+<li><p>Directly outputs class <strong>posterior probabilities</strong>.</p></li>
+</ul>
+</div><div class="column">
+<p><strong>Generative (LDA, QDA, NB)</strong></p>
+<ul>
+<li><p>Model the <strong>class-conditional</strong> distribution of the predictors<br>
+<span class="math display">\[
+f_k(x)\equiv \Pr(X=x\mid Y=k)
+\]</span> and the <strong>class prior</strong> <span class="math inline">\(\pi_k=\Pr(Y=k)\)</span>.</p></li>
+<li><p>Apply <strong>Bayes’ theorem</strong> to “flip” into posteriors: <span class="math display">\[
+p_k(x)=\Pr(Y=k\mid X=x)=
+\frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}. \tag{4.15}
+\]</span></p></li>
+</ul>
+</div></div>
+</div>
+</section>
+<section id="three-generative-classifiers-at-a-glance" class="slide level2 center">
+<h2>Three Generative Classifiers (at a glance)</h2>
+<p><br></p>
+<div>
+<div class="columns">
+<div class="column">
+<h3 id="linear-discriminant-analysis-lda">Linear Discriminant Analysis (LDA)</h3>
+<ul>
+<li>Assumption: <span class="math inline">\(X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma)\)</span> with <strong>common</strong> <span class="math inline">\(\Sigma\)</span>.</li>
+<li>Leads to <strong>linear</strong> decision boundaries in <span class="math inline">\(x\)</span>.</li>
+</ul>
+</div><div class="column">
+<h3 id="quadratic-discriminant-analysis-qda">Quadratic Discriminant Analysis (QDA)</h3>
+<ul>
+<li>Assumption: <span class="math inline">\(X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma_k)\)</span> with <strong>class-specific</strong> <span class="math inline">\(\Sigma_k\)</span>.</li>
+<li>Leads to <strong>quadratic</strong> decision boundaries; more flexible, higher variance.</li>
+</ul>
+</div></div>
+</div>
+</section>
+<section id="naïve-bayes" class="slide level2 center">
+<h2>Naïve Bayes</h2>
+<div>
+<ul>
+<li>Assumption: features are <strong>conditionally independent</strong> given <span class="math inline">\(Y\)</span>.</li>
+<li>Density factorization: <span class="math display">\[
+f_k(x)=\prod_{j=1}^p f_{kj}(x_j\mid Y=k).
+\]</span></li>
+<li>Scales well in high dimensions; often competitive even when independence is only approximately true.</li>
+</ul>
+</div>
+</section>
+<section id="summary" class="slide level2 center">
+<h2>Summary</h2>
+<div>
+<ul>
+<li><strong>Logistic regression</strong>: model <span class="math inline">\(\Pr(Y\mid X)\)</span> directly (<strong>discriminative</strong>).</li>
+<li><strong>Generative</strong> route: model <span class="math inline">\(\Pr(X\mid Y)\)</span> and <span class="math inline">\(\Pr(Y)\)</span>, then use Bayes Theorem to get posteriors.</li>
+<li><strong>Bayes classifier</strong> picks the class with the largest posterior and is optimal if the model is correct.</li>
+<li><strong>LDA/QDA/Naïve Bayes</strong> are practical estimators of the Bayes rule under different assumptions on <span class="math inline">\(f_k(x)\)</span>.</li>
+</ul>
+</div>
+</section></section>
+<section>
 <section id="discriminant-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Discriminant Analysis</h1>
 
+</section>
+<section id="why-discriminant-analysis" class="slide level2 center">
+<h2>Why Discriminant Analysis?</h2>
+<ul>
+<li class="fragment"><p>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</p></li>
+<li class="fragment"><p>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</p></li>
+<li class="fragment"><p>Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.</p></li>
+</ul>
 </section>
 <section id="discriminant-analysis-1" class="slide level2 center">
 <h2>Discriminant Analysis</h2>
@@ -1046,14 +1190,6 @@ From medical diagnosis to spam filtering, Bayes’ Theorem is pivotal in areas r
 <img data-src="figs/4_3_3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
 <li class="fragment"><p>Left-hand plot: single variable X and <span class="math inline">\(\pi_k f_k(x)\)</span> in the vertical axis for both classes <span class="math inline">\(k\)</span> equals 1 and <span class="math inline">\(k\)</span> equals 2. In this case the the pies are the same for both, so anything to the left of zero we classify as as green and anything to the right we classify as as purple.</p></li>
 <li class="fragment"><p>Right-hand plot: here we have different priors. The probability of <span class="math inline">\(k = 2\)</span> is 0.7 and and of of <span class="math inline">\(k= 1\)</span> is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.</p></li>
-</ul>
-</section>
-<section id="why-discriminant-analysis" class="slide level2 center">
-<h2>Why Discriminant Analysis?</h2>
-<ul>
-<li class="fragment"><p>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</p></li>
-<li class="fragment"><p>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</p></li>
-<li class="fragment"><p>Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.</p></li>
 </ul>
 </section>
 <section id="linear-discriminant-analysis-when-p-1" class="slide level2 center">
@@ -1214,52 +1350,55 @@ x = \frac{\mu_1 + \mu_2}{2}.
 <li class="fragment"><p>Left-panel: The circle presents the countor of the density of a particular level of probability for the blue, green, and the orange class. Here <span class="math inline">\(\pi_1 = \pi_2 = \pi_3 = \frac{1}{3}\)</span>. The dashed lines are known as the <strong>Bayes decision boundaries</strong>. They are the “True” decision boundaries, were they known, they would yield the fewest misclassification errors, among all possible classifiers.</p></li>
 <li class="fragment"><p>Right-panel: We compute the mean for <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="example-fishers-iris-data" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Example: Fisher’s Iris Data</h1>
+<!---
+# Example: Fisher's Iris Data {background-color="#cfb991"}
 
-</section>
-<section id="example-fishers-iris-data-1" class="slide level2 center">
-<h2>Example: Fisher’s Iris Data</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/4_6_1-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<ul>
-<li class="fragment"><strong>4 variables</strong></li>
-<li class="fragment"><strong>3 species</strong></li>
-<li class="fragment"><strong>50 samples/class</strong>
-<ul>
-<li class="fragment">🟦 Setosa</li>
-<li class="fragment">🟧 Versicolor</li>
-<li class="fragment">🟩 Virginica</li>
-</ul></li>
-<li class="fragment"><strong>LDA classifies all but 3 of the 150 training samples correctly.</strong></li>
-</ul>
-</div></div>
-</section>
-<section id="example-fishers-discriminant-plot" class="slide level2 center">
-<h2>Example: Fisher’s Discriminant Plot</h2>
+## Example: Fisher's Iris Data
 
-<img data-src="figs/4_6_2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
-<li class="fragment">Discriminant variables 1 and 2 are <strong>linear combinations</strong> of the original variables.</li>
-<li class="fragment">LDA classifies points based on their <strong>proximity to centroids</strong> in discriminant space.</li>
-<li class="fragment">The centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).</li>
-<li class="fragment">For <span class="math inline">\(K\)</span> classes:
-<ul>
-<li class="fragment">LDA can be visualized in <span class="math inline">\(K - 1\)</span>-dimensional space.</li>
-<li class="fragment">For <span class="math inline">\(K &gt; 3\)</span>, the “best” 2D plane can be chosen for visualization.</li>
-</ul></li>
-</ul>
+::::: columns
+::: {.column width="50%"}
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/4_6_1-1.png){fig-align='center' width=65%}
+:::
+:::
+
+
+:::
+
+::: {.column width="50%"}
+-   **4 variables**
+-   **3 species**
+-   **50 samples/class**
+    -   🟦 Setosa
+    -   🟧 Versicolor
+    -   🟩 Virginica
+-   **LDA classifies all but 3 of the 150 training samples correctly.**
+:::
+:::::
+
+## Example: Fisher's Discriminant Plot
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](figs/4_6_2-1.png){fig-align='center' width=65%}
+:::
+:::
+
+
+
+-   Discriminant variables 1 and 2 are **linear combinations** of the original variables.
+-   LDA classifies points based on their **proximity to centroids** in discriminant space.
+-   The centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).
+-   For $K$ classes:
+    -   LDA can be visualized in $K - 1$-dimensional space.
+    -   For $K > 3$, the "best" 2D plane can be chosen for visualization.
+
+--->
 </section>
 <section id="from-delta_kx-to-probabilities" class="slide level2 center">
 <h2>From <span class="math inline">\(\delta_k(x)\)</span> to Probabilities</h2>
@@ -1371,13 +1510,6 @@ True Default Status
 <h2>Varying the <em>threshold</em></h2>
 
 <img data-src="figs/4_7_1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"><p>In order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less.</p>
-<p><br></p>
-</section>
-<section id="roc-curve" class="slide level2 center">
-<h2>ROC Curve</h2>
-
-<img data-src="figs/4_8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p>The <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><em>ROC plot</em></a> displays both simultaneously.</p>
-<p>Sometimes we use the <em>AUC</em> or <em>area under the curve</em> to summarize the overall performance. Higher <em>AUC</em> is good.</p>
 <p><br></p>
 </section></section>
 <section>
@@ -2332,13 +2464,21 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </ul>
 </div>
 </div>
+</section>
+<section id="roc-curve" class="slide level2 center">
+<h2>ROC Curve</h2>
+<p>LDA on Credit Data Example:</p>
+
+<img data-src="figs/4_8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p>The <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><em>ROC plot</em></a> displays both, <strong>True Positive</strong> rate and <strong>False Positive</strong> rate, simultaneously.</p>
+<p>Sometimes we use the <em>AUC</em> or <em>area under the curve</em> to summarize the overall performance. Higher <em>AUC</em> is good.</p>
+<p><br></p>
 </section></section>
 <section>
-<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
+<section id="summary-1" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Summary</h1>
 
 </section>
-<section id="summary-1" class="slide level2 center">
+<section id="summary-2" class="slide level2 center">
 <h2>Summary</h2>
 <div>
 <div class="columns">
@@ -2360,7 +2500,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <div style="font-size: 80%;">
 <p><strong>Practical Insights</strong></p>
 <ul>
-<li><strong>Linear vs Logistic Regression</strong>: Logistic regression avoids issues with probabilities outside [0, 1].</li>
+<li><strong>Linear vs Logistic Regression</strong>: Logistic regression avoids issues with probabilities outside <span class="math inline">\(0, 1\)</span>.</li>
 <li><strong>Discriminant Analysis</strong>: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.</li>
 <li><strong>Naïve Bayes</strong>: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.</li>
 <li><strong>Generalized Linear Models (GLMs)</strong>: Extend regression to different types of responses with appropriate link and variance functions.</li>

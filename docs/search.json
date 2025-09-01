@@ -1741,7 +1741,7 @@
     "href": "lecture_slides/03_classification/03_classification.html#roc-curve",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "ROC Curve",
-    "text": "ROC Curve\n\nThe ROC plot displays both simultaneously.\nSometimes we use the AUC or area under the curve to summarize the overall performance. Higher AUC is good."
+    "text": "ROC Curve\nLDA on Credit Data Example:\n\nThe ROC plot displays both, True Positive rate and False Positive rate, simultaneously.\nSometimes we use the AUC or area under the curve to summarize the overall performance. Higher AUC is good."
   },
   {
     "objectID": "lecture_slides/03_classification/03_classification.html#other-forms-of-discriminant-analysis-1",
@@ -1966,5 +1966,383 @@
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Summary",
     "text": "Summary\n\n\n\n\nKey Concepts:\n\nClassification involves predicting categorical outcomes based on input features.\nPopular approaches include:\n\nLogistic Regression: Directly models probabilities; suitable for \\(K=2\\) and extendable to \\(K &gt; 2\\).\nDiscriminant Analysis: Assumes Gaussian distributions; suitable for small datasets or when classes are well separated.\nNaïve Bayes: Assumes feature independence; works well with large \\(p\\) or mixed data types.\n\nThresholds and ROC Curves allow fine-tuning between false positive and false negative rates.\n\n\n\n\nPractical Insights\n\nLinear vs Logistic Regression: Logistic regression avoids issues with probabilities outside [0, 1].\nDiscriminant Analysis: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.\nNaïve Bayes: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.\nGeneralized Linear Models (GLMs): Extend regression to different types of responses with appropriate link and variance functions."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#recap",
+    "href": "lecture_slides/03_classification/03_classification.html#recap",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Recap",
+    "text": "Recap\n\n\n\n\n\n\nWhat is the fundamental difference between a regression problem and a classification problem in supervised learning, based on the nature of the outcome variable?\n\n\nRegression predicts a continuous numeric outcome (quantitative response). Classification predicts a discrete category/label (qualitative response, e.g., binary or multiclass).\n\n\n\n\nLoad the Advertising.csv and obtain descriptive statistics:\n\n\ndf = pd.read_csv(Advertising.csv)df.describe\n\n\n\n\nWhat is a possible way to check if there is a relationship between predictors and an outcome variable? performance?\n\n\nRegression Models.\n\n\n\n\n\nIn a regression model, how can we determine the strength of the relationship between predictors and our response variable?\n\n\nCan be assessed by examining the size and statistical significance of the predictors coefficients, the model’s goodness-of-fit, and its predictive performance. Large and statistically significant coefficients (low p-values with narrow confidence intervals) indicate that changes in predictors are strongly associated with changes in the outcome variable. R-squared and adjusted R-squared values quantify how much of the variance in the outcome variable is explained by the predictors.\n\n\n\n\nHow to discover which predictor is associated with the outcome variable?\n\n\nCheck coefficients, p-values, and confidence intervals for statistical significance. In multiple regression, standardized coefficients and model fit (R², adjusted R²) indicate relative importance.\n\n\n\n\nHow can you determine if there is synergy among predictors in terms of the outcome variable?\n\n\nSynergy among predictors can be determined by testing for interaction effects in a regression model, where you add product terms (e.g., TV × Radio) alongside the main predictors. A significant interaction coefficient indicates that the effect of one predictor on the outcome depends on the level of another, revealing synergy (positive or negative)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#discriminative-vs.-generative",
+    "href": "lecture_slides/03_classification/03_classification.html#discriminative-vs.-generative",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Discriminative vs. Generative",
+    "text": "Discriminative vs. Generative\n\n\n\n\nDiscriminative (Logistic Regression)\n\nModel the conditional distribution of the response\n\\[\n\\Pr(Y=k\\mid X=x)\n\\]\nLearn parameters by maximizing the (multinomial) log-likelihood (cross-entropy).\nDirectly outputs class posterior probabilities.\n\n\nGenerative (LDA, QDA, NB)\n\nModel the class-conditional distribution of the predictors\n\\[\nf_k(x)\\equiv \\Pr(X=x\\mid Y=k)\n\\] and the class prior \\(\\pi_k=\\Pr(Y=k)\\).\nApply Bayes’ theorem to “flip” into posteriors: \\[\np_k(x)=\\Pr(Y=k\\mid X=x)=\n\\frac{\\pi_k\\,f_k(x)}{\\sum_{l=1}^{K}\\pi_l\\,f_l(x)}. \\tag{4.15}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#why-use-a-generative-approach",
+    "href": "lecture_slides/03_classification/03_classification.html#why-use-a-generative-approach",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Why use a generative approach?",
+    "text": "Why use a generative approach?\n\n\nWith large class separation, logistic-regression parameters can be unstable; generative models are less sensitive.\nIf \\(X\\mid Y=k\\) is approximately normal and \\(n\\) is small, generative methods can be more accurate than logistic regression.\nNatural extension to multi-class (\\(K&gt;2\\)) settings."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#setup-notation",
+    "href": "lecture_slides/03_classification/03_classification.html#setup-notation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Setup & Notation",
+    "text": "Setup & Notation\n\n\n\\(K\\ge 2\\) unordered classes.\n\\(\\pi_k=\\Pr(Y=k)\\): class prior.\n\\(f_k(x)=\\Pr(X=x\\mid Y=k)\\): density of predictors in class \\(k\\).\nLarge \\(f_k(x)\\) ⇒ \\(x\\) looks typical for class \\(k\\).\nPosterior probability (repeat of 4.15): \\[\np_k(x)=\\frac{\\pi_k\\,f_k(x)}{\\sum_{l=1}^{K}\\pi_l\\,f_l(x)}.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#bayes-classifier",
+    "href": "lecture_slides/03_classification/03_classification.html#bayes-classifier",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Bayes Classifier",
+    "text": "Bayes Classifier\n\n\nDecision rule: \\[\n\\widehat{C}_{\\text{Bayes}}(x)\n=\\arg\\max_{k\\in\\{1,\\dots,K\\}}\\, p_k(x).\n\\]\nIf model components are correctly specified, the Bayes classifier achieves the lowest possible error rate among all classifiers."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#estimating-pi_k-and-f_kx",
+    "href": "lecture_slides/03_classification/03_classification.html#estimating-pi_k-and-f_kx",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Estimating \\(\\pi_k\\) and \\(f_k(x)\\)",
+    "text": "Estimating \\(\\pi_k\\) and \\(f_k(x)\\)\n\n\n\\(\\pi_k\\): estimate via class frequencies in the training set.\n\\(f_k(x)\\): requires assumptions/approximations:\n\nGaussian class-conditional densities with shared covariance ⇒ LDA.\nGaussian class-conditional densities with class-specific covariance ⇒ QDA.\nConditional independence of features given class ⇒ Naïve Bayes.\n\nPlug estimates \\(\\hat{\\pi}_k\\) and \\(\\hat{f}_k(x)\\) into (4.15) to approximate the Bayes classifier."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#three-generative-classifiers-at-a-glance",
+    "href": "lecture_slides/03_classification/03_classification.html#three-generative-classifiers-at-a-glance",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Three Generative Classifiers (at a glance)",
+    "text": "Three Generative Classifiers (at a glance)\n\n\n\n\nLinear Discriminant Analysis (LDA)\n\nAssumption: \\(X\\mid Y=k \\sim \\mathcal{N}(\\mu_k,\\Sigma)\\) with common \\(\\Sigma\\).\nLeads to linear decision boundaries in \\(x\\).\n\n\nQuadratic Discriminant Analysis (QDA)\n\nAssumption: \\(X\\mid Y=k \\sim \\mathcal{N}(\\mu_k,\\Sigma_k)\\) with class-specific \\(\\Sigma_k\\).\nLeads to quadratic decision boundaries; more flexible, higher variance."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#naïve-bayes",
+    "href": "lecture_slides/03_classification/03_classification.html#naïve-bayes",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Naïve Bayes",
+    "text": "Naïve Bayes\n\n\nAssumption: features are conditionally independent given \\(Y\\).\nDensity factorization: \\[\nf_k(x)=\\prod_{j=1}^p f_{kj}(x_j\\mid Y=k).\n\\]\nScales well in high dimensions; often competitive even when independence is only approximately true."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#summary",
+    "href": "lecture_slides/03_classification/03_classification.html#summary",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\n\nLogistic regression: model \\(\\Pr(Y\\mid X)\\) directly (discriminative).\nGenerative route: model \\(\\Pr(X\\mid Y)\\) and \\(\\Pr(Y)\\), then use Bayes Theorem to get posteriors.\nBayes classifier picks the class with the largest posterior and is optimal if the model is correct.\nLDA/QDA/Naïve Bayes are practical estimators of the Bayes rule under different assumptions on \\(f_k(x)\\)."
+  },
+  {
+    "objectID": "lecture_slides/03_classification/03_classification.html#summary-2",
+    "href": "lecture_slides/03_classification/03_classification.html#summary-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\nKey Concepts:\n\nClassification involves predicting categorical outcomes based on input features.\nPopular approaches include:\n\nLogistic Regression: Directly models probabilities; suitable for \\(K=2\\) and extendable to \\(K &gt; 2\\).\nDiscriminant Analysis: Assumes Gaussian distributions; suitable for small datasets or when classes are well separated.\nNaïve Bayes: Assumes feature independence; works well with large \\(p\\) or mixed data types.\n\nThresholds and ROC Curves allow fine-tuning between false positive and false negative rates.\n\n\n\n\nPractical Insights\n\nLinear vs Logistic Regression: Logistic regression avoids issues with probabilities outside \\(0, 1\\).\nDiscriminant Analysis: Use Linear Discriminant Analysis (LDA) for shared covariance matrices or Quadratic Discriminant Analysis (QDA) when covariance matrices differ.\nNaïve Bayes: Despite its simplicity, it often performs well due to reduced variance and works for both qualitative and quantitative data.\nGeneralized Linear Models (GLMs): Extend regression to different types of responses with appropriate link and variance functions."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#overview",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#overview",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Overview",
+    "text": "Overview\n\n\n\n\nMotivation\nTraining Error versus Test Error\nValidation-Set Approach\nCross-Validation\nCross-Validation for Classification Problems\n\n\n\nBootstrap\nMore on Bootstrap\nCan the Bootstrap Estimate Prediction Error?\n\n\n\n\n\n\nThis lecture content is inspired by and replicates the material from An Introduction to Statistical Learning."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#prediction",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#prediction",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Prediction",
+    "text": "Prediction\n\nGoal: Build predictors and classifiers to make accurate predictions from data.\nChallenge: How do we evaluate our predictions?\n\n\nIdeal Scenario: New Data\n\nThe best way to test predictions is to use new, independent data from the population.\nProblem: New data isn’t always available."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#why-not-use-training-data",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#why-not-use-training-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Why Not Use Training Data?",
+    "text": "Why Not Use Training Data?\n\nUsing training data for evaluation is not reliable.\n\nModels tend to perform better on data they’ve already seen.\nThis leads to overly optimistic results."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#solution-resampling-methods",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#solution-resampling-methods",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Solution: Resampling methods",
+    "text": "Solution: Resampling methods\n\nCross-validation and the Bootstrap are two resampling methods.\nThese methods allows us to evaluate the performance of our predictors using the available data without relying on additional samples.\nThey refit a model of interest to samples formed from the training set, in order to obtain additional information about the fitted model.\nFor example, they provide estimates of test-set prediction error, and the standard deviation and bias of our parameter estimates."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#training-error-versus-test-error-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#training-error-versus-test-error-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Training Error versus Test Error",
+    "text": "Training Error versus Test Error\n\nRecall the distinction between the test error and the training error:\nThe test error is the average error that results from using a statistical learning method to predict the response on a new observation, one that was not used in training the method.\nThe training error can be easily calculated by applying the statistical learning method to the observations used in its training.\nBut the training error rate often is quite different from the test error rate, and in particular, the former can dramatically underestimate the latter."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#training--versus-test-set-performance",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#training--versus-test-set-performance",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Training- versus Test-Set Performance",
+    "text": "Training- versus Test-Set Performance\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHorizontal Axis: Represents model complexity (low to high).\n\nLow complexity: Simpler models with fewer parameters (e.g., fitting a straight line or using a few features).\nHigh complexity: More complex models with many parameters (e.g., higher-degree polynomials or many features).\n\nVertical Axis: Represents prediction error.\n\nLower values indicate better predictive performance.\n\n\n\n\nTraining Error (Blue Curve):\n\nStarts high at low complexity because simple models underfit the training data.\nDecreases steadily as the model becomes more complex, fitting the training data better.\nContinues to decline even as the model becomes overly complex.\n\nTest Error (Red Curve):\n\nStarts high at low complexity due to underfitting (failure to generalize).\nDecreases as complexity increases and the model starts capturing relevant patterns.\nReaches a minimum at the optimal complexity (sweet spot).\nIncreases again at high complexity due to overfitting (model captures noise instead of general patterns).\n\n\n\nKey Concepts\nBias-Variance Tradeoff:\n\nHigh Bias (Left Side): Simple models fail to capture the true structure of the data.\nHigh Variance (Right Side): Complex models become overly tailored to the training data and fail to generalize.\n\nOptimal Complexity:\n\nLocated where the test error is minimized.\nBalances bias and variance for the best generalization performance.\n\nThe Goal is to select a model complexity that minimizes test error to ensure good predictive performance on unseen data."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#precision-and-accuracy",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#precision-and-accuracy",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Precision and Accuracy",
+    "text": "Precision and Accuracy\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrecision: Refers to the consistency or reliability of the model’s predictions.\nAccuracy: Refers to how close the model’s predictions are to the true values.\n\n\nIn the context of regression:\n\nHigh Precision, Low Accuracy: Predictions are consistent but biased.\nHigh Precision, High Accuracy: Predictions are both consistent and valid.\nLow Precision, Low Accuracy: Predictions are neither consistent nor valid.\nLow Precision, High Accuracy: Predictions are valid on average but have high variability."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#more-on-prediction-error-estimates",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#more-on-prediction-error-estimates",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "More on Prediction-Error Estimates",
+    "text": "More on Prediction-Error Estimates\n\nBest solution: test the model with a large test set.\n\nHowever, it is not very often available.\n\nIn the absence of a large test set, some methods make a mathematical adjustment to the training error rate in order to estimate the test error rate.\n\nThese include the Cp statistic, AIC, and BIC.\n\nIn this lecture we consider a class of methods that estimate the test error by holding out a subset of the training observations from the fitting process, and then applying the statistical learning method to those held-out observations."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#validation-set-approach-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#validation-set-approach-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Validation-Set Approach",
+    "text": "Validation-Set Approach\n\nHere we randomly divide the available set of samples into two parts: a training set and a validation or hold-out set.\nThe model is fit on the training set, and the fitted model is used to predict the responses for the observations in the validation set.\nThe resulting validation-set error provides an estimate of the test error.\n\nThis is typically assessed using the Mean Squared Error (MSE) in the case of a quantitative response and Misclassification Rate in the case of a qualitative (discrete) response."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-validation-process",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-validation-process",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Validation Process",
+    "text": "The Validation Process\n\n\nA random splitting of the original dataset into two halves (two-fold validation):\n\nLeft part is the training set\nRight part is the validation set"
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-automobile-data",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-automobile-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Automobile Data",
+    "text": "Example: Automobile Data\n\n\n\nWant to compare linear vs higher-order polynomial terms in a linear regression.\nWe randomly split the 392 observations into two sets:\n\nA training set containing 196 of the data points.\nA validation set containing the remaining 196 observations.\n\n\n\n\n\n\n\n\n\n\n\nLeft panel shows single split; right panel shows multiple splits."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#drawbacks-of-validation-set-approach",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#drawbacks-of-validation-set-approach",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Drawbacks of Validation Set Approach",
+    "text": "Drawbacks of Validation Set Approach\n\nThe validation estimate of the test error can be highly variable, depending on precisely which observations are included in the training set and which observations are included in the validation set.\nIn the validation approach, only a subset of the observations — those that are included in the training set rather than in the validation set — are used to fit the model.\nThis suggests that the validation set error may tend to overestimate the test error for the model fit on the entire data set. Why?\n\nHaving more data generally leads to lower error because it provides more information for training the model.\nFor example, training on 200 observations is typically preferable to 100 observations, as larger datasets improve accuracy.\nHowever, when the training set is reduced (e.g., during validation), error estimates can be higher since smaller datasets may fail to capture all patterns in the data.\nThis limitation highlights the drawbacks of simple validation.\nCross-validation addresses this issue by efficiently using the data to produce more accurate and reliable error estimates."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "K-Fold Cross-Validation",
+    "text": "K-Fold Cross-Validation\n\nWidely used approach for estimating test error.\nEstimates can be used to select the best model and to give an idea of the test error of the final chosen model.\nThe idea is to randomly divide the data into \\(K\\) equal-sized parts. We leave out part \\(k\\), fit the model to the other \\(K-1\\) parts (combined), and then obtain predictions for the left-out \\(k\\)-th part.\nThis is done in turn for each part \\(k = 1, 2, \\ldots, K\\), and then the results are combined."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-detail",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-detail",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "K-Fold Cross-Validation in Detail",
+    "text": "K-Fold Cross-Validation in Detail\nDivide data into \\(K\\) roughly equal-sized parts (\\(K = 5\\) here)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-detail-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-detail-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "K-Fold Cross-Validation in Detail",
+    "text": "K-Fold Cross-Validation in Detail\nDivide data into \\(K\\) roughly equal-sized parts (\\(K = 3\\) here).\n\n\n\n\nWiki"
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-algebra",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#k-fold-cross-validation-in-algebra",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "K-Fold Cross-Validation: in algebra",
+    "text": "K-Fold Cross-Validation: in algebra\n\nLet the \\(K\\) parts be \\(C_1, C_2, \\ldots, C_K\\), where \\(C_k\\) denotes the indices of the observations in part \\(k\\). There are \\(n_k\\) observations in part \\(k\\): if \\(N\\) is a multiple of \\(K\\), then \\(n_k = n / K\\).\nCompute the cross-validations error rate:\n\n\n\\[\n  \\text{CV}_{(K)} = \\sum_{k=1}^{K} \\frac{n_k}{n} \\text{MSE}_k\n\\]\nwhere \\(\\text{MSE}_k = \\frac{\\sum_{i \\in C_k} (y_i - \\hat{y}_i)^2}{n_k}\\), and \\(\\hat{y}_i\\) is the fit for observation \\(i\\), obtained from the data with part \\(k\\) removed.\n\nSpecial case: Setting \\(K = n\\) yields \\(n\\)-fold or leave-one-out cross-validation (LOOCV)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#leave-one-out-cross-validation-loocv",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#leave-one-out-cross-validation-loocv",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Leave-One-Out Cross-Validation (LOOCV)",
+    "text": "Leave-One-Out Cross-Validation (LOOCV)\n\n\n\n\nWiki"
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#a-nice-special-case",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#a-nice-special-case",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "A Nice Special Case!",
+    "text": "A Nice Special Case!\nWith least-squares linear or polynomial regression, an amazing shortcut makes the cost of LOOCV the same as that of a single model fit! The following formula holds:\n\\[\n  \\text{CV}_{(n)} = \\frac{1}{n} \\sum_{i=1}^{n} \\left( \\frac{y_i - \\hat{y}_i}{1 - h_i} \\right)^2,\n\\]\nwhere \\(\\hat{y}_i\\) is the \\(i\\)-th fitted value from the original least-squares fit, and \\(h_i\\) is the leverage (diagonal of the “hat” matrix; see book for details). This is like the ordinary MSE, except the \\(i\\)-th residual is divided by \\(1 - h_i\\).\n\nLOOCV is sometimes useful, but typically doesn’t shake up the data enough. The estimates from each fold are highly correlated, and hence their average can have high variance.\nA better choice is \\(K = 5\\) or \\(K = 10\\)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-auto-data-revisited",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-auto-data-revisited",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example: Auto Data Revisited",
+    "text": "Example: Auto Data Revisited\n\n\nLeft plot: Similar to the two halve validation;\nRight plot: Tenfold cross validation. With 10 different partitions of the data to train and test the model we see there is not much variability. The results are consistent, in contrast to the result when we divided into two parts."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#true-and-estimated-test-mse-for-the-simulated-data",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#true-and-estimated-test-mse-for-the-simulated-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "True and Estimated Test MSE for the Simulated Data",
+    "text": "True and Estimated Test MSE for the Simulated Data\n\n\n\n\n\n\n\n\n\n\n\nThe plot presents the cross-validation estimates and true test error rates that result from applying smoothing splines to the simulated data sets illustrated in Figures 2.9–2.11 of Chapter 2 of the book.\nThe true test MSE is displayed in blue.\nThe black dashed and orange solid lines respectively show the estimated LOOCV and 10-fold CV estimates.\nIn all three plots, the two cross-validation estimates are very similar.\nRight-hand panel: the true test MSE and the cross-validation curves are almost identical.\nCenter panel: the two sets of curves are similar at the lower degrees of flexibility, while the CV curves overestimate the test set MSE for higher degrees of flexibility.\nLeft-hand panel: the CV curves have the correct general shape, but they underestimate the true test MSE."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#potential-issues-with-cross-validation",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#potential-issues-with-cross-validation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Potential Issues with Cross-Validation",
+    "text": "Potential Issues with Cross-Validation\n\nSince each training set is only \\(\\frac{K - 1}{K}\\) as big as the original training set, the estimates of prediction error will typically be biased upward. Why?\nThis bias is minimized when \\(K = n\\) (LOOCV), but this estimate has high variance, as noted earlier.\n\\(K = 5\\) or \\(10\\) provides a good compromise for this bias-variance tradeoff."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#cross-validation-for-classification-problems-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#cross-validation-for-classification-problems-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Cross-Validation for Classification Problems",
+    "text": "Cross-Validation for Classification Problems\n\nWe divide the data into \\(K\\) roughly equal-sized parts \\(C_1, C_2, \\ldots, C_K\\). \\(C_k\\) denotes the indices of the observations in part \\(k\\). There are \\(n_k\\) observations in part \\(k\\): if \\(n\\) is a multiple of \\(K\\), then \\(n_k = n / K\\).\n\nCompute the cross-validation misclassification error:\n\n\n\\[\n  \\text{CV}_K = \\sum_{k=1}^{K} \\frac{n_k}{n} \\text{Err}_k\n\\]\nwhere \\(\\text{Err}_k = \\frac{\\sum_{i \\in C_k} I(y_i \\neq \\hat{y}_i)}{n_k}\\).\n\nThe estimated standard deviation of \\(\\text{CV}_K\\) is:\n\n\n\n\\[\n  \\widehat{\\text{SE}}(\\text{CV}_K) = \\sqrt{\\frac{1}{K} \\sum_{k=1}^{K} \\frac{(\\text{Err}_k - \\overline{\\text{Err}_k})^2}{K - 1}}\n\\]\n\nThis is a useful estimate, but strictly speaking, not quite valid. Why not?\n\nWe compute the standard errors assuming these were independent observations, but they are not strictly independent as they share some training samples. So there’s some correlation between them."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-setting",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-setting",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Setting",
+    "text": "The Setting\n\nHigh‐dimensional data: We have 50 samples (observations) but 5000 predictors (features). In many modern applications—such as genomics—it is typical to have many more predictors than observations.\nGoal: Two‐class classification\nFeature selection (Step 1): We first look at the correlation of each of the 5000 predictors with the class labels, and we pick the 100 “best” predictors—the ones that exhibit the largest correlation with the class labels.\nModel fitting (Step 2): Once those top 100 are chosen, we fit a classifier (e.g., logistic regression) using only those top 100 predictors.\nThe question is how to estimate the true test error of this two‐step procedure."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-tempting-but-wrong-approach",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-tempting-but-wrong-approach",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Tempting (but Wrong) Approach",
+    "text": "The Tempting (but Wrong) Approach\nA common mistake is to ignore Step 1 when doing cross‐validation and to apply cross‐validation only to Step 2. That is, one might simply take the already‐selected 100 features and then do, say, 10‐fold cross‐validation on the logistic regression.\n\nWhy people do this: It seems natural to say, “Now that we have our 100 features, let’s cross‐validate the classifier we fit with these 100 features.”\nWhat goes wrong: By the time you pick those 100 “best” features, the data set has already “seen” all the labels in the process of ranking and filtering. This filtering step is actually part of training, because it used the outcome labels to choose features.\n\n\nSkipping Step 1 in the cross‐validation will invariably produce an overly optimistic (often wildly optimistic) estimate of test error."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#why-it-is-wrong-data-leakage",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#why-it-is-wrong-data-leakage",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Why It Is Wrong: Data Leakage",
+    "text": "Why It Is Wrong: Data Leakage\n\nData leakage: The crucial point is that feature selection (filtering) depends on the relationship between each feature and the class labels. Hence, it is not “just a preprocessing step”—it is using the label information. Thus, Step 1 is part of the model‐building process.\nOverfitting by cherry‐picking: With thousands of predictors, even if none is truly predictive, by sheer chance some predictors will appear correlated with the class labels in the sample. Selecting only the strongest correlations can give the illusion that the model has learned meaningful structure, when in fact it is just capturing random noise.\nAn extreme illustration: If you simulate data where the class labels are purely random (true error = 50%), but you pick the top 100 out of 5000 or 5 million random features, then do cross‐validation only after you have chosen those top 100, you can easily see cross‐validation estimates near 0% error—clearly a false, biased result."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-correct-right-way-to-apply-crossvalidation",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-correct-right-way-to-apply-crossvalidation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Correct (Right) Way to Apply Cross‐Validation",
+    "text": "The Correct (Right) Way to Apply Cross‐Validation\n\nThe key principle is that any step that uses the outcome labels must occur inside the cross‐validation loop. Concretely:\n\nSplit the data into training/validation folds (e.g., 10‐fold CV).\nFor each fold:\n\nTreat that fold as a hold‐out set.\n\nOn the remaining training folds, perform the entire procedure:\n\nFeature selection (filtering to the top 100 based on correlation with the class labels in the training folds only).\n\nFit the classifier (e.g., logistic regression) to those top 100 features in those training folds.\n\n\nFinally, evaluate the trained model on the hold‐out fold—with only the 100 features selected from the training folds.\n\nRepeat for each fold, then average the error rates (or other metrics).\n\n\nBy doing this, each hold‐out fold is kept separate from both feature selection and model training. This ensures that Step 1 (feature selection) is “relearned” anew in each training subset, just as Step 2 (the classifier) is. As a result, the cross‐validation error you compute properly reflects how the entire procedure—from filtering out thousands of features down to fitting the logistic model—would perform on truly unseen data."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#summary",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#summary",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\nWrong: Select your 100 predictors once using all the data, then cross‐validate only the final classifier. This leads to overly optimistic, biased estimates of test error because it ignores that you used the labels in selecting those 100 predictors.\nRight: Wrap the entire two‐step process (selection and model fitting) inside the cross‐validation loop. Each fold’s feature‐selection step must be done without knowledge of the hold‐out fold’s labels.\n\n\nFollowing this correct approach is essential whenever one performs early filtering, variable selection, hyperparameter tuning, or any other step that uses the outcome labels. Such steps must be regarded as part of the training process and repeated inside each cross‐validation iteration."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-bootstrap",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-bootstrap",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Bootstrap",
+    "text": "The Bootstrap\n\nThe bootstrap is a flexible and powerful statistical tool that can be used to quantify the uncertainty associated with a given estimator or statistical learning method.\nFor example, it can provide an estimate of the standard error of a coefficient, or a confidence interval for that coefficient."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#where-does-the-name-come-from",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#where-does-the-name-come-from",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Where Does the Name Come From?",
+    "text": "Where Does the Name Come From?\n\nThe use of the term bootstrap derives from the phrase to pull oneself up by one’s bootstraps, widely thought to be based on one of the eighteenth-century The Surprising Adventures of Baron Munchausen by Rudolph Erich Raspe:\n\nThe Baron had fallen to the bottom of a deep lake. Just when it looked like all was lost, he thought to pick himself up by his own bootstraps.\n\nIt is not the same as the term bootstrap used in computer science, meaning to “boot” a computer from a set of core instructions, though the derivation is similar."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example",
+    "text": "Example\n\nSuppose that we wish to invest a fixed sum of money in two financial assets that yield returns of \\(X\\) and \\(Y\\), respectively, where \\(X\\) and \\(Y\\) are random quantities.\nWe will invest a fraction \\(\\alpha\\) of our money in \\(X\\), and will invest the remaining \\(1 - \\alpha\\) in \\(Y\\).\nWe wish to choose \\(\\alpha\\) to minimize the total risk, or variance, of our investment. In other words, we want to minimize \\(\\text{Var}(\\alpha X + (1 - \\alpha) Y).\\)\nOne can show that the value that minimizes the risk is given by:\n\n\n\\[\n  \\alpha = \\frac{\\sigma_Y^2 - \\sigma_{XY}}{\\sigma_X^2 + \\sigma_Y^2 - 2\\sigma_{XY}},\n\\]\nwhere \\(\\sigma_X^2 = \\text{Var}(X)\\), \\(\\sigma_Y^2 = \\text{Var}(Y)\\), and \\(\\sigma_{XY} = \\text{Cov}(X, Y)\\)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example Continued",
+    "text": "Example Continued\n\nBut the values of \\(\\sigma_X^2\\), \\(\\sigma_Y^2\\), and \\(\\sigma_{XY}\\) are unknown.\nWe can compute estimates for these quantities, \\(\\hat{\\sigma}_X^2\\), \\(\\hat{\\sigma}_Y^2\\), and \\(\\hat{\\sigma}_{XY}\\), using a data set that contains measurements for \\(X\\) and \\(Y\\).\nWe can then estimate the value of \\(\\alpha\\) that minimizes the variance of our investment using:\n\n\n\\[\n  \\hat{\\alpha} = \\frac{\\hat{\\sigma}_Y^2 - \\hat{\\sigma}_{XY}}{\\hat{\\sigma}_X^2 + \\hat{\\sigma}_Y^2 - 2\\hat{\\sigma}_{XY}}.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example Continued",
+    "text": "Example Continued\n\n\n\n\n\n\n\n\n\n\nEach panel displays 100 simulated returns for investments X and Y. From left to right and top to bottom, the resulting estimates for \\(\\alpha\\), the fraction to minimize the total risk, are 0.576, 0.532, 0.657, and 0.651."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-2",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example Continued",
+    "text": "Example Continued\n\n\nTo estimate the standard deviation of \\(\\hat{\\alpha}\\), we repeated the process of simulating 100 paired observations of \\(X\\) and \\(Y\\), and estimating \\(\\alpha\\) 1,000 times.\nWe thereby obtained 1,000 estimates for \\(\\alpha\\), which we can call \\(\\hat{\\alpha}_1, \\hat{\\alpha}_2, \\ldots, \\hat{\\alpha}_{1000}\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe left-hand panel of the Figure displays a histogram of the resulting estimates.\nFor these simulations, the parameters were set to \\(\\sigma_X^2 = 1, \\, \\sigma_Y^2 = 1.25, \\, \\sigma_{XY} = 0.5,\\) and so we know that the true value of \\(\\alpha\\) is 0.6 (indicated by the red line)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-3",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-continued-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example Continued",
+    "text": "Example Continued\nThe mean over all 1,000 estimates for \\(\\alpha\\) is:\n\\[\n  \\bar{\\alpha} = \\frac{1}{1000} \\sum_{r=1}^{1000} \\hat{\\alpha}_r = 0.5996,\n\\]\nvery close to \\(\\alpha = 0.6\\), and the standard deviation of the estimates is:\n\n\\[\n  \\sqrt{\\frac{1}{1000 - 1} \\sum_{r=1}^{1000} (\\hat{\\alpha}_r - \\bar{\\alpha})^2} = 0.083.\n\\]\n\nThis gives us a very good idea of the accuracy of \\(\\hat{\\alpha}\\): \\(\\text{SE}(\\hat{\\alpha}) \\approx 0.083\\).\nSo roughly speaking, for a random sample from the population, we would expect \\(\\hat{\\alpha}\\) to differ from \\(\\alpha\\) by approximately 0.08, on average."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-results",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-results",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example Results",
+    "text": "Example Results\n\nLeft: A histogram of the estimates of \\(\\alpha\\) obtained by generating 1,000 simulated data sets from the true population.\nCenter: A histogram of the estimates of \\(\\alpha\\) obtained from 1,000 bootstrap samples from a single data set.\nRight: The estimates of \\(\\alpha\\) displayed in the left and center panels are shown as boxplots.\n\nIn each panel, the pink line indicates the true value of \\(\\alpha\\)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#now-back-to-the-real-world",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#now-back-to-the-real-world",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Now Back to the Real World",
+    "text": "Now Back to the Real World\n\nThe procedure outlined above cannot be applied, because for real data we cannot generate new samples from the original population.\nHowever, the bootstrap approach allows us to use a computer to mimic the process of obtaining new data sets, so that we can estimate the variability of our estimate without generating additional samples.\nRather than repeatedly obtaining independent data sets from the population, we instead obtain distinct data sets by repeatedly sampling observations from the original data set with replacement.\nEach of these “bootstrap data sets” is created by sampling with replacement, and is the same size as our original dataset. As a result, some observations may appear more than once in a given bootstrap data set and some not at all."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-with-just-3-observations",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#example-with-just-3-observations",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Example with Just 3 Observations",
+    "text": "Example with Just 3 Observations\n\n\nA graphical illustration of the bootstrap approach on a small sample containing \\(n = 3\\) observations.\nEach bootstrap data set contains \\(n\\) observations, sampled with replacement from the original data set.\nEach bootstrap data set is used to obtain an estimate of \\(\\alpha\\)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#bootstrap-standard-error",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#bootstrap-standard-error",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Bootstrap Standard Error",
+    "text": "Bootstrap Standard Error\n\nDenoting the first bootstrap data set by \\(Z^{*1}\\), we use \\(Z^{*1}\\) to produce a new bootstrap estimate for \\(\\alpha\\), which we call \\(\\hat{\\alpha}^{*1}\\).\nThis procedure is repeated \\(B\\) times for some large value of \\(B\\) (say 100 or 1000), in order to produce \\(B\\) different bootstrap data sets, \\(Z^{*1}, Z^{*2}, \\ldots, Z^{*B}\\), and \\(B\\) corresponding \\(\\alpha\\) estimates, \\(\\hat{\\alpha}^{*1}, \\hat{\\alpha}^{*2}, \\ldots, \\hat{\\alpha}^{*B}\\).\nWe estimate the standard error of these bootstrap estimates using the formula:\n\n\n\\[\nSE_B(\\hat{\\alpha}) = \\sqrt{\\frac{1}{B - 1} \\sum_{r=1}^B (\\hat{\\alpha}^{*r} - \\bar{\\alpha}^{*})^2}.\n\\]\n\nThis serves as an estimate of the standard error of \\(\\hat{\\alpha}\\) estimated from the original data set. See center and right panels of Figure on slide 29. Bootstrap results are in blue.\nFor this example \\(SE_B(\\hat{\\alpha}) = 0.087\\)."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#a-general-picture-for-the-bootstrap",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#a-general-picture-for-the-bootstrap",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "A General Picture for the Bootstrap",
+    "text": "A General Picture for the Bootstrap\n\n\n\n\n\nReal World\n\nPopulation \\(P\\)\n\nWe imagine there is a true, unknown population (or data‐generating process).\n\nIn practice, we typically do not have direct access to all of \\(P\\).\n\nRandom Sampling\n\nWe draw a finite sample \\(Z = (z_1, z_2, \\dots, z_n)\\) from the population \\(P\\).\n\nThis sample \\(Z\\) is our observed dataset (often called the “training data” in applied work).\n\nEstimate \\(f(Z)\\)\n\nFrom this observed data \\(Z\\), we compute a statistic or estimate, denoted \\(f(Z)\\).\n\nExamples might include a mean, a regression coefficient, or (in the investment example) an optimal allocation parameter \\(\\alpha\\).\n\n\nIn short, the Real World side shows how our single dataset \\(Z\\) arrives by randomly sampling from the true population \\(P\\).\n\nBootstrap World\n\nEstimated Population \\(\\hat{P}\\)\n\nBecause we usually cannot sample repeatedly from the real population \\(P\\), the bootstrap creates a stand‐in population \\(\\hat{P}\\). We ‘replace’ the population by our sample.\n\\(\\hat{P}\\) is the empirical distribution function of the observed data \\(Z\\). Informally, it assigns probability \\(\\tfrac{1}{n}\\) to each observed point in \\(Z\\).\n\nRandom Sampling from \\(\\hat{P}\\)\n\nTo mimic drawing new data from the real population, we instead draw (with replacement) from \\(\\hat{P}\\).\n\nThis produces a bootstrap dataset \\(Z^* = (z_1^*, z_2^*, \\dots, z_n^*)\\). Each \\(z_i^*\\) is sampled (with replacement) from among the original observed points \\(\\{z_1, \\dots, z_n\\}\\).\n\nBootstrap Estimate \\(f(Z^*)\\)\n\nWe compute the same statistic (or estimator) on each bootstrap sample, giving \\(f(Z^*)\\).\n\nBy repeating this bootstrap sampling many times, we obtain a distribution of estimates \\(\\{f(Z^*_1), f(Z^*_2), \\dots\\}\\). This approximates how \\(f(Z)\\) would vary if we could repeatedly resample from the true population."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-bootstrap-in-general",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#the-bootstrap-in-general",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Bootstrap in General",
+    "text": "The Bootstrap in General\n\nIn more complex data situations, figuring out the appropriate way to generate bootstrap samples can require some thought.\nFor example, if the data is a time series, we can’t simply sample the observations with replacement (why not?).\n\nThe main reason we typically cannot simply resample individual points with replacement in a time series is that time‐ordered data exhibits serial dependence. That is, adjacent observations (e.g., today’s stock price and yesterday’s stock price) are correlated in ways that we lose if we treat all observations as independent units and shuffle them arbitrarily.\nA simple i.i.d. bootstrap would ignore the natural ordering of the data points (and the correlations it encodes), thereby violating a crucial assumption about the structure of time‐series data.\n\nWe can instead create blocks of consecutive observations and sample those with replacements. Then we paste together sampled blocks to obtain a bootstrap dataset."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#other-uses-of-the-bootstrap",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#other-uses-of-the-bootstrap",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Other Uses of the Bootstrap",
+    "text": "Other Uses of the Bootstrap\n\nPrimarily used to obtain standard errors of an estimate.\nAlso provides approximate confidence intervals for a population parameter. For example, looking at the histogram in the middle panel of the figure on slide 29, the 5% and 95% quantiles of the 1,000 values is (0.43, 0.72).\nThis represents an approximate 90% confidence interval for the true α. How do we interpret this confidence interval?\nThe above interval is called a Bootstrap Percentile confidence interval. It is the simplest method (among many approaches) for obtaining a confidence interval from the bootstrap."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#can-the-bootstrap-estimate-prediction-error-1",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#can-the-bootstrap-estimate-prediction-error-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Can the Bootstrap Estimate Prediction Error?",
+    "text": "Can the Bootstrap Estimate Prediction Error?\n\nIn cross-validation, each of the \\(K\\) validation folds is distinct from the other \\(K-1\\) folds used for training: there is no overlap. This is crucial for its success. Why?\n\nThere is a clear separation, no overlap, between the train and the test sets.\n\nTo estimate prediction error using the bootstrap, we could think about using each bootstrap dataset as our training sample, and the original sample as our validation sample.\nBut each bootstrap sample has significant overlap with the original data. About two-thirds of the original data points appear in each bootstrap sample.\nThis will cause the bootstrap to seriously underestimate the true prediction error.\nThe other way around— with the original sample as the training sample, and the bootstrap dataset as the validation sample— is worse!"
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#removing-the-overlap",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#removing-the-overlap",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Removing the Overlap",
+    "text": "Removing the Overlap\n\nCan partly fix this problem by only using predictions for those observations that did not (by chance) occur in the current bootstrap sample.\nBut the method gets complicated, and in the end, cross-validation provides a simpler, more attractive approach for estimating prediction error."
+  },
+  {
+    "objectID": "lecture_slides/04_resampling_methods/04_resampling_methods.html#summary-2",
+    "href": "lecture_slides/04_resampling_methods/04_resampling_methods.html#summary-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\nResampling Methods\n\nCross-validation and Bootstrap allow evaluation of model performance using existing data.\nThey provide estimates of:\n\nTest-set prediction error\nStandard deviation and bias of parameter estimates.\n\n\nTraining vs Test Error\n\nTraining error decreases with model complexity.\nTest error decreases, then increases due to bias-variance tradeoff:\n\nHigh Bias: Simple models underfit the data.\nHigh Variance: Complex models overfit the training data.\n\nOptimal complexity minimizes test error.\n\n\nValidation-Set Approach\n\nDivides data into training and validation sets.\nValidation error provides an estimate of test error but:\n\nCan vary based on data split.\nMay overestimate test error due to smaller training sets.\n\n\nCross-Validation\n\nK-Fold Cross-Validation:\n\nDivides data into \\(K\\) folds for iterative training and testing.\nBalances bias and variance (e.g., \\(K = 5\\) or \\(10\\)).\n\nLeave-One-Out Cross-Validation (LOOCV):\n\nUses one data point as validation in each iteration.\nLow bias but high variance.\n\n\nBootstrap\n\nEstimates variability and uncertainty of parameter estimates.\nGenerates multiple samples with replacement from the dataset.\nProvides approximate confidence intervals and standard errors."
   }
 ]
