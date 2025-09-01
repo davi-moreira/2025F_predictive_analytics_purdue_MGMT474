@@ -75,7 +75,7 @@ knitr::include_graphics("figs/davi_moreira_photo.JPG")
 :::
 
 ::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
--   Clinical Assistant Professor in the Management Department at Purdue University;
+-   Clinical Assistant Professor in the Quantitative Methods Department at the Mitch. Daniels School of Business at Purdue University;
 
 <br>
 
