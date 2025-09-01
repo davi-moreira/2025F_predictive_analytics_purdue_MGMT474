@@ -1,371 +1,151 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Professor: Davi Moreira">
-
-<title> MGMT 47400: Predictive Analytics  – MGMT 47400: Predictive Analytics</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<html lang="en"><head>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-278f079c28f28dbf8752571db94a6592.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
-<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
+  <meta name="author" content="Professor: Davi Moreira">
+  <title>MGMT 47400: Predictive Analytics –  MGMT 47400: Predictive Analytics </title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
     }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5b60505eb0a2c59e7e66c4d06532a844.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-sidebar docked slimcontent">
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
+  <p class="subtitle"><span style="font-size: 150%;"> Classification </span></p>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      <div class="sidebar-tools-main">
-    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Professor: Davi Moreira 
 </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Schedule and Material</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a>
-  <ul class="collapse">
-  <li><a href="#what-is-a-classification-problem" id="toc-what-is-a-classification-problem" class="nav-link" data-scroll-target="#what-is-a-classification-problem">What is a classification problem?</a></li>
-  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
-  <li><a href="#example-credit-card-default" id="toc-example-credit-card-default" class="nav-link" data-scroll-target="#example-credit-card-default">Example: Credit Card Default</a></li>
-  <li><a href="#can-we-use-linear-regression" id="toc-can-we-use-linear-regression" class="nav-link" data-scroll-target="#can-we-use-linear-regression">Can we use Linear Regression?</a></li>
-  <li><a href="#linear-versus-logistic-regression-probability-of-default" id="toc-linear-versus-logistic-regression-probability-of-default" class="nav-link" data-scroll-target="#linear-versus-logistic-regression-probability-of-default">Linear versus Logistic Regression: Probability of Default</a></li>
-  <li><a href="#linear-regression-continued" id="toc-linear-regression-continued" class="nav-link" data-scroll-target="#linear-regression-continued">Linear Regression continued</a></li>
-  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
-  <li><a href="#logistic-regression-transformation" id="toc-logistic-regression-transformation" class="nav-link" data-scroll-target="#logistic-regression-transformation">Logistic Regression Transformation</a></li>
-  <li><a href="#logistic-regression-transformation-1" id="toc-logistic-regression-transformation-1" class="nav-link" data-scroll-target="#logistic-regression-transformation-1">Logistic Regression Transformation</a></li>
-  <li><a href="#logistic-regression-transformation-2" id="toc-logistic-regression-transformation-2" class="nav-link" data-scroll-target="#logistic-regression-transformation-2">Logistic Regression Transformation</a></li>
-  <li><a href="#logistic-regression-transformation-3" id="toc-logistic-regression-transformation-3" class="nav-link" data-scroll-target="#logistic-regression-transformation-3">Logistic Regression Transformation</a></li>
-  </ul></li>
-  <li><a href="#linear-versus-logistic-regression" id="toc-linear-versus-logistic-regression" class="nav-link" data-scroll-target="#linear-versus-logistic-regression">Linear versus Logistic Regression</a>
-  <ul class="collapse">
-  <li><a href="#linear-versus-logistic-regression-1" id="toc-linear-versus-logistic-regression-1" class="nav-link" data-scroll-target="#linear-versus-logistic-regression-1">Linear versus Logistic Regression</a></li>
-  <li><a href="#maximum-likelihood" id="toc-maximum-likelihood" class="nav-link" data-scroll-target="#maximum-likelihood">Maximum Likelihood</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-coin-flipping" id="toc-maximum-likelihood-estimation-mle-example-coin-flipping" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-coin-flipping">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-coin-flipping-1" id="toc-maximum-likelihood-estimation-mle-example-coin-flipping-1" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-coin-flipping-1">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-coin-flipping-2" id="toc-maximum-likelihood-estimation-mle-example-coin-flipping-2" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-coin-flipping-2">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-coin-flipping-3" id="toc-maximum-likelihood-estimation-mle-example-coin-flipping-3" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-coin-flipping-3">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution" id="toc-maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1" id="toc-maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2" id="toc-maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</a></li>
-  </ul></li>
-  <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions">Making Predictions</a>
-  <ul class="collapse">
-  <li><a href="#making-predictions-1" id="toc-making-predictions-1" class="nav-link" data-scroll-target="#making-predictions-1">Making Predictions</a></li>
-  <li><a href="#logistic-regression-with-student-predictor" id="toc-logistic-regression-with-student-predictor" class="nav-link" data-scroll-target="#logistic-regression-with-student-predictor">Logistic Regression with Student Predictor</a></li>
-  <li><a href="#logistic-regression-with-several-variables" id="toc-logistic-regression-with-several-variables" class="nav-link" data-scroll-target="#logistic-regression-with-several-variables">Logistic Regression with Several Variables</a></li>
-  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding">Confounding</a></li>
-  <li><a href="#confounding-1" id="toc-confounding-1" class="nav-link" data-scroll-target="#confounding-1">Confounding</a></li>
-  </ul></li>
-  <li><a href="#multinomial-logistic-regression" id="toc-multinomial-logistic-regression" class="nav-link" data-scroll-target="#multinomial-logistic-regression">Multinomial Logistic Regression</a>
-  <ul class="collapse">
-  <li><a href="#multinomial-logistic-regression-1" id="toc-multinomial-logistic-regression-1" class="nav-link" data-scroll-target="#multinomial-logistic-regression-1">Multinomial Logistic Regression</a></li>
-  <li><a href="#what-is-the-softmax-function" id="toc-what-is-the-softmax-function" class="nav-link" data-scroll-target="#what-is-the-softmax-function">What is the Softmax Function?</a></li>
-  <li><a href="#example-of-softmax-in-action" id="toc-example-of-softmax-in-action" class="nav-link" data-scroll-target="#example-of-softmax-in-action">Example of Softmax in Action</a></li>
-  </ul></li>
-  <li><a href="#discriminant-analysis" id="toc-discriminant-analysis" class="nav-link" data-scroll-target="#discriminant-analysis">Discriminant Analysis</a>
-  <ul class="collapse">
-  <li><a href="#discriminant-analysis-1" id="toc-discriminant-analysis-1" class="nav-link" data-scroll-target="#discriminant-analysis-1">Discriminant Analysis</a></li>
-  <li><a href="#bayes-theorem-for-classification" id="toc-bayes-theorem-for-classification" class="nav-link" data-scroll-target="#bayes-theorem-for-classification">Bayes Theorem for Classification</a></li>
-  <li><a href="#bayes-theorem-explanation" id="toc-bayes-theorem-explanation" class="nav-link" data-scroll-target="#bayes-theorem-explanation">Bayes’ Theorem: Explanation</a></li>
-  <li><a href="#understanding-conditional-probability" id="toc-understanding-conditional-probability" class="nav-link" data-scroll-target="#understanding-conditional-probability">Understanding Conditional Probability</a></li>
-  <li><a href="#what-is-joint-probability" id="toc-what-is-joint-probability" class="nav-link" data-scroll-target="#what-is-joint-probability">What is Joint Probability?</a></li>
-  <li><a href="#symmetry-in-joint-events" id="toc-symmetry-in-joint-events" class="nav-link" data-scroll-target="#symmetry-in-joint-events">Symmetry in Joint Events</a></li>
-  <li><a href="#deriving-bayes-theorem" id="toc-deriving-bayes-theorem" class="nav-link" data-scroll-target="#deriving-bayes-theorem">Deriving Bayes’ Theorem</a></li>
-  <li><a href="#why-bayes-theorem-matters" id="toc-why-bayes-theorem-matters" class="nav-link" data-scroll-target="#why-bayes-theorem-matters">Why Bayes’ Theorem Matters?</a></li>
-  <li><a href="#classify-to-the-highest-density" id="toc-classify-to-the-highest-density" class="nav-link" data-scroll-target="#classify-to-the-highest-density">Classify to the Highest Density</a></li>
-  <li><a href="#why-discriminant-analysis" id="toc-why-discriminant-analysis" class="nav-link" data-scroll-target="#why-discriminant-analysis">Why Discriminant Analysis?</a></li>
-  <li><a href="#linear-discriminant-analysis-when-p-1" id="toc-linear-discriminant-analysis-when-p-1" class="nav-link" data-scroll-target="#linear-discriminant-analysis-when-p-1">Linear Discriminant Analysis when <span class="math inline">\(p = 1\)</span></a></li>
-  <li><a href="#discriminant-functions" id="toc-discriminant-functions" class="nav-link" data-scroll-target="#discriminant-functions">Discriminant Functions</a></li>
-  <li><a href="#example-estimating-parameters-for-discriminant-analysis" id="toc-example-estimating-parameters-for-discriminant-analysis" class="nav-link" data-scroll-target="#example-estimating-parameters-for-discriminant-analysis">Example: Estimating Parameters for Discriminant Analysis</a></li>
-  <li><a href="#estimating-the-parameters" id="toc-estimating-the-parameters" class="nav-link" data-scroll-target="#estimating-the-parameters">Estimating the Parameters</a></li>
-  </ul></li>
-  <li><a href="#linear-discriminant-analysis-when-p-1-1" id="toc-linear-discriminant-analysis-when-p-1-1" class="nav-link" data-scroll-target="#linear-discriminant-analysis-when-p-1-1">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></a>
-  <ul class="collapse">
-  <li><a href="#linear-discriminant-analysis-when-p-1-2" id="toc-linear-discriminant-analysis-when-p-1-2" class="nav-link" data-scroll-target="#linear-discriminant-analysis-when-p-1-2">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></a></li>
-  <li><a href="#covariance-matrix" id="toc-covariance-matrix" class="nav-link" data-scroll-target="#covariance-matrix">Covariance Matrix</a></li>
-  <li><a href="#linear-discriminant-analysis-when-p-1-3" id="toc-linear-discriminant-analysis-when-p-1-3" class="nav-link" data-scroll-target="#linear-discriminant-analysis-when-p-1-3">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></a></li>
-  <li><a href="#linear-discriminant-analysis-when-p-1-4" id="toc-linear-discriminant-analysis-when-p-1-4" class="nav-link" data-scroll-target="#linear-discriminant-analysis-when-p-1-4">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></a></li>
-  <li><a href="#illustration-p-2-and-k-3-classes" id="toc-illustration-p-2-and-k-3-classes" class="nav-link" data-scroll-target="#illustration-p-2-and-k-3-classes">Illustration: <span class="math inline">\(p = 2\)</span> and <span class="math inline">\(K = 3\)</span> classes</a></li>
-  </ul></li>
-  <li><a href="#example-fishers-iris-data" id="toc-example-fishers-iris-data" class="nav-link" data-scroll-target="#example-fishers-iris-data">Example: Fisher’s Iris Data</a>
-  <ul class="collapse">
-  <li><a href="#example-fishers-iris-data-1" id="toc-example-fishers-iris-data-1" class="nav-link" data-scroll-target="#example-fishers-iris-data-1">Example: Fisher’s Iris Data</a></li>
-  <li><a href="#example-fishers-discriminant-plot" id="toc-example-fishers-discriminant-plot" class="nav-link" data-scroll-target="#example-fishers-discriminant-plot">Example: Fisher’s Discriminant Plot</a></li>
-  <li><a href="#from-delta_kx-to-probabilities" id="toc-from-delta_kx-to-probabilities" class="nav-link" data-scroll-target="#from-delta_kx-to-probabilities">From <span class="math inline">\(\delta_k(x)\)</span> to Probabilities</a></li>
-  <li><a href="#lda-on-credit-data" id="toc-lda-on-credit-data" class="nav-link" data-scroll-target="#lda-on-credit-data">LDA on Credit Data</a></li>
-  </ul></li>
-  <li><a href="#types-of-errors" id="toc-types-of-errors" class="nav-link" data-scroll-target="#types-of-errors">Types of errors</a>
-  <ul class="collapse">
-  <li><a href="#types-of-errors-1" id="toc-types-of-errors-1" class="nav-link" data-scroll-target="#types-of-errors-1">Types of errors</a></li>
-  <li><a href="#varying-the-threshold" id="toc-varying-the-threshold" class="nav-link" data-scroll-target="#varying-the-threshold">Varying the <em>threshold</em></a></li>
-  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve">ROC Curve</a></li>
-  </ul></li>
-  <li><a href="#other-forms-of-discriminant-analysis" id="toc-other-forms-of-discriminant-analysis" class="nav-link" data-scroll-target="#other-forms-of-discriminant-analysis">Other Forms of Discriminant Analysis</a>
-  <ul class="collapse">
-  <li><a href="#other-forms-of-discriminant-analysis-1" id="toc-other-forms-of-discriminant-analysis-1" class="nav-link" data-scroll-target="#other-forms-of-discriminant-analysis-1">Other Forms of Discriminant Analysis</a></li>
-  <li><a href="#quadratic-discriminant-analysis" id="toc-quadratic-discriminant-analysis" class="nav-link" data-scroll-target="#quadratic-discriminant-analysis">Quadratic Discriminant Analysis</a></li>
-  <li><a href="#assess-the-covariance-matrices" id="toc-assess-the-covariance-matrices" class="nav-link" data-scroll-target="#assess-the-covariance-matrices">Assess the Covariance Matrices</a></li>
-  <li><a href="#logistic-regression-versus-lda" id="toc-logistic-regression-versus-lda" class="nav-link" data-scroll-target="#logistic-regression-versus-lda">Logistic Regression versus LDA</a></li>
-  </ul></li>
-  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes">Naive Bayes</a>
-  <ul class="collapse">
-  <li><a href="#naive-bayes-1" id="toc-naive-bayes-1" class="nav-link" data-scroll-target="#naive-bayes-1">Naive Bayes</a></li>
-  <li><a href="#diagonal-covariance-matrix" id="toc-diagonal-covariance-matrix" class="nav-link" data-scroll-target="#diagonal-covariance-matrix">Diagonal Covariance Matrix</a></li>
-  <li><a href="#generative-models-and-naïve-bayes" id="toc-generative-models-and-naïve-bayes" class="nav-link" data-scroll-target="#generative-models-and-naïve-bayes">Generative Models and Naïve Bayes</a></li>
-  <li><a href="#generative-models-and-naïve-bayes-1" id="toc-generative-models-and-naïve-bayes-1" class="nav-link" data-scroll-target="#generative-models-and-naïve-bayes-1">Generative Models and Naïve Bayes</a></li>
-  <li><a href="#naïve-bayes-details" id="toc-naïve-bayes-details" class="nav-link" data-scroll-target="#naïve-bayes-details">Naïve Bayes — Details</a></li>
-  <li><a href="#naïve-bayes-toy-example" id="toc-naïve-bayes-toy-example" class="nav-link" data-scroll-target="#naïve-bayes-toy-example">Naïve Bayes — Toy Example</a></li>
-  <li><a href="#naïve-bayes-toy-example-1" id="toc-naïve-bayes-toy-example-1" class="nav-link" data-scroll-target="#naïve-bayes-toy-example-1">Naïve Bayes — Toy Example</a></li>
-  <li><a href="#naïve-bayes-and-gams" id="toc-naïve-bayes-and-gams" class="nav-link" data-scroll-target="#naïve-bayes-and-gams">Naïve Bayes and GAMs</a></li>
-  <li><a href="#naïve-bayes-and-gams-details" id="toc-naïve-bayes-and-gams-details" class="nav-link" data-scroll-target="#naïve-bayes-and-gams-details">Naïve Bayes and GAMs: details</a></li>
-  <li><a href="#naïve-bayes-and-gams-details-1" id="toc-naïve-bayes-and-gams-details-1" class="nav-link" data-scroll-target="#naïve-bayes-and-gams-details-1">Naïve Bayes and GAMs: details</a></li>
-  <li><a href="#naïve-bayes-and-gams-details-2" id="toc-naïve-bayes-and-gams-details-2" class="nav-link" data-scroll-target="#naïve-bayes-and-gams-details-2">Naïve Bayes and GAMs: details</a></li>
-  <li><a href="#naïve-bayes-and-gams-details-3" id="toc-naïve-bayes-and-gams-details-3" class="nav-link" data-scroll-target="#naïve-bayes-and-gams-details-3">Naïve Bayes and GAMs: details</a></li>
-  <li><a href="#naïve-bayes-and-gams-details-4" id="toc-naïve-bayes-and-gams-details-4" class="nav-link" data-scroll-target="#naïve-bayes-and-gams-details-4">Naïve Bayes and GAMs: details</a></li>
-  </ul></li>
-  <li><a href="#generalized-linear-models" id="toc-generalized-linear-models" class="nav-link" data-scroll-target="#generalized-linear-models">Generalized Linear Models</a>
-  <ul class="collapse">
-  <li><a href="#generalized-linear-models-1" id="toc-generalized-linear-models-1" class="nav-link" data-scroll-target="#generalized-linear-models-1">Generalized Linear Models</a></li>
-  <li><a href="#example-bikeshare-data" id="toc-example-bikeshare-data" class="nav-link" data-scroll-target="#example-bikeshare-data">Example: Bikeshare Data</a></li>
-  <li><a href="#example-meanvariance-relationship" id="toc-example-meanvariance-relationship" class="nav-link" data-scroll-target="#example-meanvariance-relationship">Example: Mean/Variance Relationship</a></li>
-  <li><a href="#poisson-regression-model" id="toc-poisson-regression-model" class="nav-link" data-scroll-target="#poisson-regression-model">Poisson Regression Model</a></li>
-  <li><a href="#example-poisson-regression-on-bikeshare-data" id="toc-example-poisson-regression-on-bikeshare-data" class="nav-link" data-scroll-target="#example-poisson-regression-on-bikeshare-data">Example: Poisson Regression on Bikeshare Data</a></li>
-  <li><a href="#generalized-linear-models-2" id="toc-generalized-linear-models-2" class="nav-link" data-scroll-target="#generalized-linear-models-2">Generalized Linear Models</a></li>
-  </ul></li>
-  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a>
-  <ul class="collapse">
-  <li><a href="#confusion-matrix" id="toc-confusion-matrix" class="nav-link" data-scroll-target="#confusion-matrix">Confusion Matrix</a></li>
-  <li><a href="#confusion-matrix-1" id="toc-confusion-matrix-1" class="nav-link" data-scroll-target="#confusion-matrix-1">Confusion Matrix</a></li>
-  <li><a href="#accuracy" id="toc-accuracy" class="nav-link" data-scroll-target="#accuracy">Accuracy</a></li>
-  <li><a href="#recall-sensitivity" id="toc-recall-sensitivity" class="nav-link" data-scroll-target="#recall-sensitivity">Recall (Sensitivity)</a></li>
-  <li><a href="#specificity" id="toc-specificity" class="nav-link" data-scroll-target="#specificity">Specificity</a></li>
-  <li><a href="#precision" id="toc-precision" class="nav-link" data-scroll-target="#precision">Precision</a></li>
-  <li><a href="#f1-score" id="toc-f1-score" class="nav-link" data-scroll-target="#f1-score">F1-Score</a></li>
-  </ul></li>
-  <li><a href="#roc-curve-auc" id="toc-roc-curve-auc" class="nav-link" data-scroll-target="#roc-curve-auc">ROC Curve &amp; AUC</a>
-  <ul class="collapse">
-  <li><a href="#roc-curve-auc-1" id="toc-roc-curve-auc-1" class="nav-link" data-scroll-target="#roc-curve-auc-1">ROC Curve &amp; AUC</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
-  <ul class="collapse">
-  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
-  </ul></li>
-  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank you!</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03_classification.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span style="font-size: 100%;"> MGMT 47400: Predictive Analytics </span></h1>
-<p class="subtitle lead"><span style="font-size: 150%;"> Classification </span></p>
+</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Professor: Davi Moreira </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="overview" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<div class="nonincremental">
+</section>
+<section id="overview" class="slide level2 center">
+<h2>Overview</h2>
+<div>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <ul>
@@ -383,18 +163,20 @@ window.Quarto = {
 <li>Naive Bayes</li>
 <li>Generalized Linear Models</li>
 </ul>
-</div>
-</div>
+</div></div>
 </div>
 <p><br></p>
 
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<aside><div>
 <p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
-</div></div></section>
-<section id="motivation" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Motivation</h1>
-<section id="what-is-a-classification-problem" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-classification-problem">What is a classification problem?</h2>
+</div></aside></section>
+<section>
+<section id="motivation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Motivation</h1>
+
+</section>
+<section id="what-is-a-classification-problem" class="slide level2 center">
+<h2>What is a classification problem?</h2>
 <center>
 <p><br></p>
 <p><img src="https://raw.githubusercontent.com/davi-moreira/naive_bayes/main/figs/boxes.gif" width="800"></p>
@@ -402,32 +184,32 @@ window.Quarto = {
 <p>Classification involves categorizing data into predefined classes or groups based on their features.</p>
 </center>
 </section>
-<section id="classification" class="level2">
-<h2 class="anchored" data-anchor-id="classification">Classification</h2>
+<section id="classification" class="slide level2 center">
+<h2>Classification</h2>
 <ul>
-<li><p><strong>Qualitative variables</strong> take values in an unordered set <span class="math inline">\(C\)</span>, such as:</p>
+<li class="fragment"><p><strong>Qualitative variables</strong> take values in an unordered set <span class="math inline">\(C\)</span>, such as:</p>
 <ul>
-<li><span class="math inline">\(\text{eye color} \in \{\text{brown}, \text{blue}, \text{green}\}\)</span></li>
-<li><span class="math inline">\(\text{email} \in \{\text{spam}, \text{ham}\}\)</span></li>
+<li class="fragment"><span class="math inline">\(\text{eye color} \in \{\text{brown}, \text{blue}, \text{green}\}\)</span></li>
+<li class="fragment"><span class="math inline">\(\text{email} \in \{\text{spam}, \text{ham}\}\)</span></li>
 </ul></li>
-<li><p>Given a feature vector <span class="math inline">\(X\)</span> and a qualitative response <span class="math inline">\(Y\)</span> taking values in the set <span class="math inline">\(C\)</span>, the classification task is to build a function <span class="math inline">\(C(X)\)</span> that takes as input the feature vector <span class="math inline">\(X\)</span> and predicts its value for <span class="math inline">\(Y\)</span>; i.e.&nbsp;<span class="math inline">\(C(X) \in C\)</span>.</p></li>
-<li><p>Often, we are more interested in estimating the <strong>probabilities</strong> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(C\)</span>.</p>
+<li class="fragment"><p>Given a feature vector <span class="math inline">\(X\)</span> and a qualitative response <span class="math inline">\(Y\)</span> taking values in the set <span class="math inline">\(C\)</span>, the classification task is to build a function <span class="math inline">\(C(X)\)</span> that takes as input the feature vector <span class="math inline">\(X\)</span> and predicts its value for <span class="math inline">\(Y\)</span>; i.e.&nbsp;<span class="math inline">\(C(X) \in C\)</span>.</p></li>
+<li class="fragment"><p>Often, we are more interested in estimating the <strong>probabilities</strong> that <span class="math inline">\(X\)</span> belongs to each category in <span class="math inline">\(C\)</span>.</p>
 <ul>
-<li>For example, it is more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification as fraudulent or not.</li>
+<li class="fragment">For example, it is more valuable to have an estimate of the probability that an insurance claim is fraudulent, than a classification as fraudulent or not.</li>
 </ul></li>
 </ul>
 </section>
-<section id="example-credit-card-default" class="level2">
-<h2 class="anchored" data-anchor-id="example-credit-card-default">Example: Credit Card Default</h2>
-<div class="nonincremental">
+<section id="example-credit-card-default" class="slide level2 center">
+<h2>Example: Credit Card Default</h2>
+<div>
 <div style="font-size: 80%;">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_1a-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_1a-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
@@ -438,21 +220,20 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_1b-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_1b-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Boxplots comparing balance and income for default (“Yes”) vs.&nbsp;no default (“No”).</p>
 </div>
-</div>
-</div>
+</div></div>
 </div>
 </div>
 </section>
-<section id="can-we-use-linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="can-we-use-linear-regression">Can we use Linear Regression?</h2>
+<section id="can-we-use-linear-regression" class="slide level2 center">
+<h2>Can we use Linear Regression?</h2>
 <p>Suppose for the <strong>Default</strong> classification task that we code:</p>
 <p><span class="math display">\[
 Y =
@@ -463,22 +244,22 @@ Y =
 \]</span></p>
 <p>Can we simply perform a linear regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> and classify as <strong>Yes</strong> if <span class="math inline">\(\hat{Y} &gt; 0.5\)</span>?</p>
 <ul>
-<li>In this case of a binary outcome, <strong>linear regression</strong> does a good job as a classifier and is equivalent to <strong>linear discriminant analysis</strong>, which we discuss later.</li>
-<li>Since in the population <span class="math inline">\(E(Y|X = x) = \Pr(Y = 1|X = x)\)</span>, we might think that regression is perfect for this task.</li>
-<li>However, <strong>linear regression</strong> might produce probabilities less than zero or greater than one. <strong>Logistic regression</strong> is more appropriate.</li>
+<li class="fragment">In this case of a binary outcome, <strong>linear regression</strong> does a good job as a classifier and is equivalent to <strong>linear discriminant analysis</strong>, which we discuss later.</li>
+<li class="fragment">Since in the population <span class="math inline">\(E(Y|X = x) = \Pr(Y = 1|X = x)\)</span>, we might think that regression is perfect for this task.</li>
+<li class="fragment">However, <strong>linear regression</strong> might produce probabilities less than zero or greater than one. <strong>Logistic regression</strong> is more appropriate.</li>
 </ul>
 </section>
-<section id="linear-versus-logistic-regression-probability-of-default" class="level2">
-<h2 class="anchored" data-anchor-id="linear-versus-logistic-regression-probability-of-default">Linear versus Logistic Regression: Probability of Default</h2>
+<section id="linear-versus-logistic-regression-probability-of-default" class="slide level2 center">
+<h2>Linear versus Logistic Regression: Probability of Default</h2>
 <p><br></p>
-<div class="nonincremental">
+<div>
 <div style="font-size: 90%;">
 <p><strong>The orange marks</strong> indicate the response <span class="math inline">\(Y\)</span>, either 0 or 1.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+<figure>
+<p><img data-src="figs/4_2-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
 </figure>
 </div>
 </div>
@@ -492,15 +273,14 @@ Y =
 <center>
 <strong>Logistic regression</strong> seems well-suited to the task.
 </center>
-</div>
-</div>
+</div></div>
 </div>
 </div>
 </section>
-<section id="linear-regression-continued" class="level2">
-<h2 class="anchored" data-anchor-id="linear-regression-continued">Linear Regression continued</h2>
+<section id="linear-regression-continued" class="slide level2 center">
+<h2>Linear Regression continued</h2>
 <p><br></p>
-<div class="nonincremental">
+<div>
 <div style="font-size: 90%;">
 <p>Now suppose we have a response variable with three possible values. A patient presents at the emergency room, and we must classify them according to their symptoms.</p>
 <p><span class="math display">\[
@@ -516,8 +296,8 @@ Y =
 </div>
 </div>
 </section>
-<section id="logistic-regression" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h2>
+<section id="logistic-regression" class="slide level2 center">
+<h2>Logistic Regression</h2>
 <p>Let’s write <span class="math inline">\(p(X) = \Pr(Y = 1|X)\)</span> for short and consider using <strong>balance</strong> to predict <strong>default</strong>. Logistic regression uses the form:</p>
 <p><span class="math display">\[
 p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
@@ -532,9 +312,9 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 <p>This monotone transformation is called the <strong>log odds</strong> or <strong>logit</strong> transformation of <span class="math inline">\(p(X)\)</span>. (By <strong>log</strong>, we mean <strong>natural log</strong>: <span class="math inline">\(\ln\)</span>.)</p>
 </div>
 </section>
-<section id="logistic-regression-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-transformation">Logistic Regression Transformation</h2>
-<div class="nonincremental">
+<section id="logistic-regression-transformation" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
 <div style="font-size: 80%;">
 <p><strong>Step 1: Express</strong> <span class="math inline">\(1 - p(X)\)</span></p>
 <p><br></p>
@@ -549,9 +329,9 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 </div>
 </div>
 </section>
-<section id="logistic-regression-transformation-1" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-transformation-1">Logistic Regression Transformation</h2>
-<div class="nonincremental">
+<section id="logistic-regression-transformation-1" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
 <div style="font-size: 80%;">
 <p><strong>Step 2: Compute the Odds</strong></p>
 <p><br></p>
@@ -572,9 +352,9 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 </div>
 </div>
 </section>
-<section id="logistic-regression-transformation-2" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-transformation-2">Logistic Regression Transformation</h2>
-<div class="nonincremental">
+<section id="logistic-regression-transformation-2" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
 <div style="font-size: 80%;">
 <p><strong>Step 3: Take the Log of the Odds</strong></p>
 <p><br></p>
@@ -589,9 +369,9 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 </div>
 </div>
 </section>
-<section id="logistic-regression-transformation-3" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-transformation-3">Logistic Regression Transformation</h2>
-<div class="nonincremental">
+<section id="logistic-regression-transformation-3" class="slide level2 center">
+<h2>Logistic Regression Transformation</h2>
+<div>
 <div style="font-size: 80%;">
 <p><strong>Conclusion</strong></p>
 <p><br></p>
@@ -601,19 +381,21 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 \]</span></p>
 </div>
 </div>
+</section></section>
+<section>
+<section id="linear-versus-logistic-regression" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Linear versus Logistic Regression</h1>
+
 </section>
-</section>
-<section id="linear-versus-logistic-regression" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Linear versus Logistic Regression</h1>
-<section id="linear-versus-logistic-regression-1" class="level2">
-<h2 class="anchored" data-anchor-id="linear-versus-logistic-regression-1">Linear versus Logistic Regression</h2>
-<div class="nonincremental">
+<section id="linear-versus-logistic-regression-1" class="slide level2 center">
+<h2>Linear versus Logistic Regression</h2>
+<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_2-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
@@ -622,9 +404,9 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 </div>
 </div>
 </section>
-<section id="maximum-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood">Maximum Likelihood</h2>
-<div class="nonincremental">
+<section id="maximum-likelihood" class="slide level2 center">
+<h2>Maximum Likelihood</h2>
+<div>
 <div style="font-size: 80%;">
 <p>We use <strong>maximum likelihood</strong> to estimate the parameters.</p>
 <p><span class="math display">\[
@@ -642,8 +424,8 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
 </div>
 </div>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-coin-flipping" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-coin-flipping">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
 <p>Suppose you are flipping a coin, and you observe 5 heads out of 10 flips. The coin’s bias (the probability of heads) is <span class="math inline">\(p\)</span>, and you want to estimate <span class="math inline">\(p\)</span>.</p>
 <p>The probability of observing a single outcome (heads or tails) follows the <strong>Bernoulli distribution</strong>:</p>
 <p><span class="math display">\[
@@ -658,16 +440,16 @@ L(p) = P(\text{data} \mid p) = \prod_{i=1}^{10} p^{x_i}(1-p)^{1-x_i}.
 L(p) = p^5 (1-p)^5.
 \]</span></p>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-coin-flipping-1" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-coin-flipping-1">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-1" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
 <p><strong>Simplify with the Log-Likelihood</strong></p>
 <p>Since multiplying probabilities can result in very small numbers, we take the <strong>logarithm</strong> of the likelihood (log-likelihood). The logarithm simplifies the product into a sum:</p>
 <p><span class="math display">\[
 \ell(p) = \log L(p) = \log \left(p^5 (1-p)^5\right) = 5\log(p) + 5\log(1-p).
 \]</span></p>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-coin-flipping-2" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-coin-flipping-2">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-2" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
 <p><strong>Maximize the Log-Likelihood</strong></p>
 <p>To find the value of <span class="math inline">\(p\)</span> that maximizes <span class="math inline">\(\ell(p)\)</span>, take the <strong>derivative</strong> of the log-likelihood with respect to <span class="math inline">\(p\)</span> and set it to zero:</p>
 <p><span class="math display">\[
@@ -682,15 +464,15 @@ L(p) = p^5 (1-p)^5.
 1 - p = p \quad \Rightarrow \quad 1 = 2p \quad \Rightarrow \quad p = 0.5.
 \]</span></p>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-coin-flipping-3" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-coin-flipping-3">Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
+<section id="maximum-likelihood-estimation-mle-example-coin-flipping-3" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Coin Flipping</h2>
 <p>To confirm that <span class="math inline">\(p = 0.5\)</span> is the maximum, you can check the second derivative of the log-likelihood (concavity) or use numerical methods.</p>
 <p>In our example, <span class="math inline">\(p = 0.5\)</span> makes sense intuitively because the data (5 heads out of 10 flips) suggests the coin is unbiased.</p>
 <p>The <strong>maximum likelihood estimate</strong> of <span class="math inline">\(p\)</span> is <span class="math inline">\(0.5\)</span>. The MLE method finds the parameter values that make the observed data most likely, given the assumed probability model.</p>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
-<div class="nonincremental">
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<div>
 <div style="font-size: 95%;">
 <p><strong>Assumptions:</strong></p>
 <ul>
@@ -705,8 +487,8 @@ L(p) = p^5 (1-p)^5.
 </div>
 </div>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-1" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
 <p>The likelihood for <span class="math inline">\(n\)</span> independent observations is:</p>
 <p><span class="math display">\[
 L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
@@ -720,9 +502,9 @@ L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
 \ell(\mu) = -\frac{n}{2} \log(2\pi) - \frac{1}{2} \sum_{i=1}^n (x_i - \mu)^2
 \]</span></p>
 </section>
-<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2" class="level2">
-<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2">Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
-<div class="nonincremental">
+<section id="maximum-likelihood-estimation-mle-example-estimating-the-mean-of-a-normal-distribution-2" class="slide level2 center">
+<h2>Maximum Likelihood Estimation (MLE) Example: Estimating the Mean of a Normal Distribution</h2>
+<div>
 <div style="font-size: 80%;">
 <p>Differentiate with respect to <span class="math inline">\(\mu\)</span>:</p>
 <p><span class="math display">\[
@@ -741,15 +523,17 @@ L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
 \]</span></p>
 </div>
 </div>
+</section></section>
+<section>
+<section id="making-predictions" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Making Predictions</h1>
+
 </section>
-</section>
-<section id="making-predictions" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Making Predictions</h1>
-<section id="making-predictions-1" class="level2">
-<h2 class="anchored" data-anchor-id="making-predictions-1">Making Predictions</h2>
+<section id="making-predictions-1" class="slide level2 center">
+<h2>Making Predictions</h2>
 <p>Most statistical packages can fit linear logistic regression models by maximum likelihood.</p>
 <p><strong>Logistic Regression Coefficients</strong></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -787,11 +571,11 @@ L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
 \]</span></p>
 </div>
 </section>
-<section id="logistic-regression-with-student-predictor" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-with-student-predictor">Logistic Regression with Student Predictor</h2>
+<section id="logistic-regression-with-student-predictor" class="slide level2 center">
+<h2>Logistic Regression with Student Predictor</h2>
 <p>Let’s do it again, using <strong>student</strong> as the predictor.</p>
 <p><strong>Logistic Regression Coefficients</strong></p>
-<table class="caption-top table">
+<table class="caption-top">
 <colgroup>
 <col style="width: 27%">
 <col style="width: 19%">
@@ -835,8 +619,8 @@ L(\mu) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}} e^{-\frac{(x_i - \mu)^2}{2}}
 \]</span></p>
 </div>
 </section>
-<section id="logistic-regression-with-several-variables" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-with-several-variables">Logistic Regression with Several Variables</h2>
+<section id="logistic-regression-with-several-variables" class="slide level2 center">
+<h2>Logistic Regression with Several Variables</h2>
 <p><span class="math display">\[
 \log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
 \]</span></p>
@@ -845,7 +629,7 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}{1 + e^{\beta_0 + 
 \]</span></p>
 <div class="fragment">
 <p><strong>Logistic Regression Coefficients</strong></p>
-<table class="caption-top table">
+<table class="caption-top">
 <colgroup>
 <col style="width: 27%">
 <col style="width: 19%">
@@ -896,12 +680,12 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}{1 + e^{\beta_0 + 
 <p>Why is the coefficient for <strong>student</strong> negative, while it was positive before?</p>
 </div>
 </section>
-<section id="confounding" class="level2">
-<h2 class="anchored" data-anchor-id="confounding">Confounding</h2>
+<section id="confounding" class="slide level2 center">
+<h2>Confounding</h2>
 <center>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/animation_control.gif" class="img-fluid figure-img" style="width:40.0%"></p>
+<figure>
+<p><img data-src="figs/animation_control.gif" style="width:40.0%"></p>
 <figcaption>Relationship between Y and X controlled for W</figcaption>
 </figure>
 </div>
@@ -910,21 +694,13 @@ p(X) = \frac{e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}{1 + e^{\beta_0 + 
 </div>
 </center>
 </section>
-<section id="confounding-1" class="level2">
-<h2 class="anchored" data-anchor-id="confounding-1">Confounding</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Students tend to have higher balances than non-students, so their marginal default rate is higher than for non-students.</p></li>
-<li><p>But for each level of balance, students default less than non-students.</p></li>
-<li><p>Multiple logistic regression can tease this out.</p></li>
+<section id="confounding-1" class="slide level2 center">
+<h2>Confounding</h2>
+
+<img data-src="figs/4_3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Students tend to have higher balances than non-students, so their marginal default rate is higher than for non-students.</p></li>
+<li class="fragment"><p>But for each level of balance, students default less than non-students.</p></li>
+<li class="fragment"><p>Multiple logistic regression can tease this out.</p></li>
 </ul>
 <!---
 
@@ -1012,26 +788,28 @@ Here there is a linear function for **each** class.
 Multiclass logistic regression is also referred to as **multinomial regression**.
 
 --->
+</section></section>
+<section>
+<section id="multinomial-logistic-regression" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Multinomial Logistic Regression</h1>
+
 </section>
-</section>
-<section id="multinomial-logistic-regression" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Multinomial Logistic Regression</h1>
-<section id="multinomial-logistic-regression-1" class="level2">
-<h2 class="anchored" data-anchor-id="multinomial-logistic-regression-1">Multinomial Logistic Regression</h2>
+<section id="multinomial-logistic-regression-1" class="slide level2 center">
+<h2>Multinomial Logistic Regression</h2>
 <p>Logistic regression is frequently used when the response is binary, or <span class="math inline">\(K = 2\)</span> classes. We need a modification when there are <span class="math inline">\(K &gt; 2\)</span> classes. E.g. <strong>stroke</strong>, <strong>drug overdose</strong>, and <strong>epileptic seizure</strong> for the emergency room example.</p>
 <p>The simplest representation uses different linear functions for each class, combined with the <em>softmax</em> function to form probabilities:</p>
 <p><span class="math display">\[
 \Pr(Y = k | X = x) = \text{Softmax}(z_k) = \frac{e^{\beta_{k0} + \beta_{k1}x_1 + \cdots + \beta_{kp}x_p}}{\sum_{l=1}^{K} e^{\beta_{l0} + \beta_{l1}x_1 + \cdots + \beta_{lp}x_p}}.
 \]</span></p>
 <ul>
-<li>We really only need <span class="math inline">\(K - 1\)</span> functions (see the book for details).</li>
-<li>We fit by maximizing the <em>multinomial</em> log-likelihood (<em>cross-entropy</em>) — a generalization of the binomial.</li>
-<li>An example will given later in the course, when we fit the 10-class model to the <strong>MNIST digit dataset</strong>.</li>
+<li class="fragment">We really only need <span class="math inline">\(K - 1\)</span> functions (see the book for details).</li>
+<li class="fragment">We fit by maximizing the <em>multinomial</em> log-likelihood (<em>cross-entropy</em>) — a generalization of the binomial.</li>
+<li class="fragment">An example will given later in the course, when we fit the 10-class model to the <strong>MNIST digit dataset</strong>.</li>
 </ul>
 </section>
-<section id="what-is-the-softmax-function" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-softmax-function">What is the Softmax Function?</h2>
-<div class="nonincremental">
+<section id="what-is-the-softmax-function" class="slide level2 center">
+<h2>What is the Softmax Function?</h2>
+<div>
 <div style="font-size: 80%;">
 <p>The <strong>softmax function</strong> is used in multinomial logistic regression to convert raw scores (<strong>logits</strong>) into probabilities for multiple classes.</p>
 <div class="columns">
@@ -1060,8 +838,7 @@ z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
 <li><span class="math inline">\(e^{z_k}\)</span>: Exponentiated score for class <span class="math inline">\(k\)</span>, ensuring all values are positive.</li>
 </ul>
 </div>
-</div>
-</div>
+</div></div>
 <div class="fragment">
 <p><strong>Key Features of the Softmax Function</strong></p>
 <ol type="1">
@@ -1073,9 +850,9 @@ z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
 </div>
 </div>
 </section>
-<section id="example-of-softmax-in-action" class="level2">
-<h2 class="anchored" data-anchor-id="example-of-softmax-in-action">Example of Softmax in Action</h2>
-<div class="nonincremental">
+<section id="example-of-softmax-in-action" class="slide level2 center">
+<h2>Example of Softmax in Action</h2>
+<div>
 <div style="font-size: 70%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1118,23 +895,24 @@ z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
 <li><p>It ensures a probabilistic interpretation while maintaining normalization across all classes.</p></li>
 </ul>
 </div>
+</div></div>
 </div>
 </div>
-</div>
-</div>
+</section></section>
+<section>
+<section id="discriminant-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Discriminant Analysis</h1>
+
 </section>
-</section>
-<section id="discriminant-analysis" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Discriminant Analysis</h1>
-<section id="discriminant-analysis-1" class="level2">
-<h2 class="anchored" data-anchor-id="discriminant-analysis-1">Discriminant Analysis</h2>
+<section id="discriminant-analysis-1" class="slide level2 center">
+<h2>Discriminant Analysis</h2>
 <p><br></p>
 <p>Here the approach is to model the distribution of <span class="math inline">\(X\)</span> in each of the classes separately, and then use <strong>Bayes theorem</strong> to flip things around and obtain <span class="math inline">\(\Pr(Y \mid X)\)</span>.</p>
 <p>When we use normal (Gaussian) distributions for each class, this leads to <strong>linear</strong> or <strong>quadratic discriminant analysis</strong>.</p>
 <p>However, this approach is quite general, and other distributions can be used as well. We will focus on normal distributions as input for <span class="math inline">\(f_k(x)\)</span>.</p>
 </section>
-<section id="bayes-theorem-for-classification" class="level2">
-<h2 class="anchored" data-anchor-id="bayes-theorem-for-classification">Bayes Theorem for Classification</h2>
+<section id="bayes-theorem-for-classification" class="slide level2 center">
+<h2>Bayes Theorem for Classification</h2>
 <p>Thomas Bayes was a famous mathematician whose name represents a big subfield of statistical and probabilistic modeling. Here we focus on a simple result, known as <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes theorem</a>:</p>
 <p><span class="math display">\[
 \Pr(Y = k \mid X = x) = \frac{\Pr(X = x \mid Y = k) \cdot \Pr(Y = k)}{\Pr(X = x)}
@@ -1144,25 +922,25 @@ z_k = \beta_{k0} + \beta_{k1}x_1 + \beta_{k2}x_2 + \cdots + \beta_{kp}x_p
 \Pr(Y = k \mid X = x) = \frac{\pi_k f_k(x)}{\sum_{\ell=1}^K \pi_\ell f_\ell(x)}, \quad \text{where}
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(f_k(x) = \Pr(X = x \mid Y = k)\)</span> is the <strong>density</strong> for <span class="math inline">\(X\)</span> in class <span class="math inline">\(k\)</span>. Here we will use normal densities for these, separately in each class.</p></li>
-<li><p><span class="math inline">\(\pi_k = \Pr(Y = k)\)</span> is the marginal or <strong>prior</strong> probability for class <span class="math inline">\(k\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(f_k(x) = \Pr(X = x \mid Y = k)\)</span> is the <strong>density</strong> for <span class="math inline">\(X\)</span> in class <span class="math inline">\(k\)</span>. Here we will use normal densities for these, separately in each class.</p></li>
+<li class="fragment"><p><span class="math inline">\(\pi_k = \Pr(Y = k)\)</span> is the marginal or <strong>prior</strong> probability for class <span class="math inline">\(k\)</span>.</p></li>
 </ul>
 </section>
-<section id="bayes-theorem-explanation" class="level2">
-<h2 class="anchored" data-anchor-id="bayes-theorem-explanation">Bayes’ Theorem: Explanation</h2>
+<section id="bayes-theorem-explanation" class="slide level2 center">
+<h2>Bayes’ Theorem: Explanation</h2>
 <p>It describes the probability of an event, based on prior knowledge of conditions that might be related to the event.</p>
 <p><span class="math display">\[
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(P(A|B)\)</span>: <strong>Posterior probability</strong> - Probability of event <span class="math inline">\(A\)</span> occurring given that <span class="math inline">\(B\)</span> is true — updated probability after the evidence is considered.</p></li>
-<li><p><span class="math inline">\(P(A)\)</span>: <strong>Prior probability</strong> - Initial probability of event <span class="math inline">\(A\)</span> — the probability before the evidence is considered.</p></li>
-<li><p><span class="math inline">\(P(B|A)\)</span>: <strong>Likelihood</strong> - Probability of observing event <span class="math inline">\(B\)</span> given that <span class="math inline">\(A\)</span> is true.</p></li>
-<li><p><span class="math inline">\(P(B)\)</span>: <strong>Marginal probability</strong> - Total probability of the evidence, event <span class="math inline">\(B\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(A|B)\)</span>: <strong>Posterior probability</strong> - Probability of event <span class="math inline">\(A\)</span> occurring given that <span class="math inline">\(B\)</span> is true — updated probability after the evidence is considered.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(A)\)</span>: <strong>Prior probability</strong> - Initial probability of event <span class="math inline">\(A\)</span> — the probability before the evidence is considered.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(B|A)\)</span>: <strong>Likelihood</strong> - Probability of observing event <span class="math inline">\(B\)</span> given that <span class="math inline">\(A\)</span> is true.</p></li>
+<li class="fragment"><p><span class="math inline">\(P(B)\)</span>: <strong>Marginal probability</strong> - Total probability of the evidence, event <span class="math inline">\(B\)</span>.</p></li>
 </ul>
 </section>
-<section id="understanding-conditional-probability" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-conditional-probability">Understanding Conditional Probability</h2>
+<section id="understanding-conditional-probability" class="slide level2 center">
+<h2>Understanding Conditional Probability</h2>
 <p>Conditional probability is the probability of an event occurring given that another event has already occurred.</p>
 <p><strong>Definition</strong>:</p>
 <p><span class="math display">\[
@@ -1170,11 +948,11 @@ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
 \]</span></p>
 <p>is the probability of event <span class="math inline">\(A\)</span> occurring given that <span class="math inline">\(B\)</span> is true.</p>
 <ul>
-<li><strong>Interpretation</strong>: How likely is <span class="math inline">\(A\)</span> if we know that <span class="math inline">\(B\)</span> happens?</li>
+<li class="fragment"><strong>Interpretation</strong>: How likely is <span class="math inline">\(A\)</span> if we know that <span class="math inline">\(B\)</span> happens?</li>
 </ul>
 </section>
-<section id="what-is-joint-probability" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-joint-probability">What is Joint Probability?</h2>
+<section id="what-is-joint-probability" class="slide level2 center">
+<h2>What is Joint Probability?</h2>
 <p>Joint probability refers to the probability of two events occurring together.</p>
 <p><strong>Definition</strong>: <span class="math inline">\(P(A \cap B)\)</span> is the probability that both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur.</p>
 <div class="fragment">
@@ -1188,8 +966,8 @@ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
 <p>This formula is crucial for understanding Bayes’ Theorem.</p>
 </div>
 </section>
-<section id="symmetry-in-joint-events" class="level2">
-<h2 class="anchored" data-anchor-id="symmetry-in-joint-events">Symmetry in Joint Events</h2>
+<section id="symmetry-in-joint-events" class="slide level2 center">
+<h2>Symmetry in Joint Events</h2>
 <p>Joint probability is symmetric, meaning:</p>
 <p><span class="math display">\[
 P(A \cap B) = P(B \cap A)
@@ -1200,9 +978,9 @@ P(A \cap B) = P(B|A) \cdot P(A)
 \]</span></p>
 <p>This symmetry is the key to deriving Bayes’ Theorem.</p>
 </section>
-<section id="deriving-bayes-theorem" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-bayes-theorem">Deriving Bayes’ Theorem</h2>
-<div class="nonincremental">
+<section id="deriving-bayes-theorem" class="slide level2 center">
+<h2>Deriving Bayes’ Theorem</h2>
+<div>
 <div style="font-size: 60%;">
 <p>Given that the definition of Conditional Probability is:</p>
 <p><span class="math display">\[
@@ -1243,9 +1021,9 @@ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
 </div>
 </div>
 </section>
-<section id="why-bayes-theorem-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-bayes-theorem-matters">Why Bayes’ Theorem Matters?</h2>
-<div class="nonincremental">
+<section id="why-bayes-theorem-matters" class="slide level2 center">
+<h2>Why Bayes’ Theorem Matters?</h2>
+<div>
 <div style="font-size: 80%;">
 <p>Bayes’ Theorem is a foundational principle in probability theory and statistics, enabling:</p>
 <ul>
@@ -1262,32 +1040,24 @@ From medical diagnosis to spam filtering, Bayes’ Theorem is pivotal in areas r
 </div>
 </div>
 </section>
-<section id="classify-to-the-highest-density" class="level2">
-<h2 class="anchored" data-anchor-id="classify-to-the-highest-density">Classify to the Highest Density</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_3_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Left-hand plot: single variable X and <span class="math inline">\(\pi_k f_k(x)\)</span> in the vertical axis for both classes <span class="math inline">\(k\)</span> equals 1 and <span class="math inline">\(k\)</span> equals 2. In this case the the pies are the same for both, so anything to the left of zero we classify as as green and anything to the right we classify as as purple.</p></li>
-<li><p>Right-hand plot: here we have different priors. The probability of <span class="math inline">\(k = 2\)</span> is 0.7 and and of of <span class="math inline">\(k= 1\)</span> is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.</p></li>
+<section id="classify-to-the-highest-density" class="slide level2 center">
+<h2>Classify to the Highest Density</h2>
+
+<img data-src="figs/4_3_3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-hand plot: single variable X and <span class="math inline">\(\pi_k f_k(x)\)</span> in the vertical axis for both classes <span class="math inline">\(k\)</span> equals 1 and <span class="math inline">\(k\)</span> equals 2. In this case the the pies are the same for both, so anything to the left of zero we classify as as green and anything to the right we classify as as purple.</p></li>
+<li class="fragment"><p>Right-hand plot: here we have different priors. The probability of <span class="math inline">\(k = 2\)</span> is 0.7 and and of of <span class="math inline">\(k= 1\)</span> is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.</p></li>
 </ul>
 </section>
-<section id="why-discriminant-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="why-discriminant-analysis">Why Discriminant Analysis?</h2>
+<section id="why-discriminant-analysis" class="slide level2 center">
+<h2>Why Discriminant Analysis?</h2>
 <ul>
-<li><p>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</p></li>
-<li><p>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</p></li>
-<li><p>Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.</p></li>
+<li class="fragment"><p>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</p></li>
+<li class="fragment"><p>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</p></li>
+<li class="fragment"><p>Linear discriminant analysis is popular when we have more than two response classes, because it also provides low-dimensional views of the data.</p></li>
 </ul>
 </section>
-<section id="linear-discriminant-analysis-when-p-1" class="level2">
-<h2 class="anchored" data-anchor-id="linear-discriminant-analysis-when-p-1">Linear Discriminant Analysis when <span class="math inline">\(p = 1\)</span></h2>
+<section id="linear-discriminant-analysis-when-p-1" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p = 1\)</span></h2>
 <p>The Gaussian density has the form:</p>
 <p><span class="math display">\[
 f_k(x) = \frac{1}{\sqrt{2\pi\sigma_k}} e^{-\frac{1}{2} \left( \frac{x - \mu_k}{\sigma_k} \right)^2}
@@ -1301,8 +1071,8 @@ p_k(x) = \frac{\pi_k \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{1}{2} \left( \frac{x 
 <p>Happily, there are simplifications and cancellations.</p>
 </div>
 </section>
-<section id="discriminant-functions" class="level2">
-<h2 class="anchored" data-anchor-id="discriminant-functions">Discriminant Functions</h2>
+<section id="discriminant-functions" class="slide level2 center">
+<h2>Discriminant Functions</h2>
 <p>To classify one observation at the value <span class="math inline">\(X = x\)</span> into a class, we need to see which of the <span class="math inline">\(p_k(x)\)</span> is largest. Taking logs, and discarding terms that do not depend on <span class="math inline">\(k\)</span>, we see that this is equivalent to assigning <span class="math inline">\(x\)</span> to the class with the largest <strong>discriminant score</strong>:</p>
 <p><span class="math display">\[
 \delta_k(x) = x \cdot \frac{\mu_k}{\sigma^2} - \frac{\mu_k^2}{2\sigma^2} + \log(\pi_k)
@@ -1315,26 +1085,18 @@ x = \frac{\mu_1 + \mu_2}{2}.
 \]</span></p>
 </div>
 </section>
-<section id="example-estimating-parameters-for-discriminant-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="example-estimating-parameters-for-discriminant-analysis">Example: Estimating Parameters for Discriminant Analysis</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Left-Panel: Synthetic population data with <span class="math inline">\(\mu_1 = -1.5\)</span>, <span class="math inline">\(\mu_2 = 1.5\)</span>, <span class="math inline">\(\pi_1 = \pi_2 = 0.5\)</span>, and <span class="math inline">\(\sigma^2 = 1\)</span>.</p></li>
-<li><p>Typically, we don’t know these parameters; we just have the training data. In that case, we simply estimate the parameters and plug them into the rule.</p></li>
-<li><p>Right-Panel: histograms of the sample. We see that the estimation provided a decision boundary (black solid line) pretty close to the correct one, the one of the population.</p></li>
+<section id="example-estimating-parameters-for-discriminant-analysis" class="slide level2 center">
+<h2>Example: Estimating Parameters for Discriminant Analysis</h2>
+
+<img data-src="figs/4_4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-Panel: Synthetic population data with <span class="math inline">\(\mu_1 = -1.5\)</span>, <span class="math inline">\(\mu_2 = 1.5\)</span>, <span class="math inline">\(\pi_1 = \pi_2 = 0.5\)</span>, and <span class="math inline">\(\sigma^2 = 1\)</span>.</p></li>
+<li class="fragment"><p>Typically, we don’t know these parameters; we just have the training data. In that case, we simply estimate the parameters and plug them into the rule.</p></li>
+<li class="fragment"><p>Right-Panel: histograms of the sample. We see that the estimation provided a decision boundary (black solid line) pretty close to the correct one, the one of the population.</p></li>
 </ul>
 </section>
-<section id="estimating-the-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="estimating-the-parameters">Estimating the Parameters</h2>
-<div class="nonincremental">
+<section id="estimating-the-parameters" class="slide level2 center">
+<h2>Estimating the Parameters</h2>
+<div>
 <div style="font-size: 80%;">
 <p>The prior is the number in each class divided by the total number:</p>
 <p><span class="math display">\[
@@ -1354,19 +1116,21 @@ x = \frac{\mu_1 + \mu_2}{2}.
 <p>where <span class="math inline">\(\hat{\sigma}_k^2 = \frac{1}{n_k - 1} \sum_{i: y_i = k} (x_i - \hat{\mu}_k)^2\)</span> is the usual formula for the estimated variance in the <span class="math inline">\(k\)</span>-th class.</p>
 </div>
 </div>
+</section></section>
+<section>
+<section id="linear-discriminant-analysis-when-p-1-1" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h1>
+
 </section>
-</section>
-<section id="linear-discriminant-analysis-when-p-1-1" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h1>
-<section id="linear-discriminant-analysis-when-p-1-2" class="level2">
-<h2 class="anchored" data-anchor-id="linear-discriminant-analysis-when-p-1-2">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
-<div class="nonincremental">
+<section id="linear-discriminant-analysis-when-p-1-2" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
 </figure>
 </div>
 </div>
@@ -1377,9 +1141,9 @@ x = \frac{\mu_1 + \mu_2}{2}.
 </div>
 </div>
 </section>
-<section id="covariance-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="covariance-matrix">Covariance Matrix</h2>
-<div class="nonincremental">
+<section id="covariance-matrix" class="slide level2 center">
+<h2>Covariance Matrix</h2>
+<div>
 <div style="font-size: 80%;">
 <p>The <strong>covariance matrix</strong> is a square matrix that summarizes the covariance (a measure of how much two random variables vary together) between multiple variables in a dataset.</p>
 <p><strong>Definition:</strong></p>
@@ -1405,15 +1169,15 @@ x = \frac{\mu_1 + \mu_2}{2}.
 </div>
 </div>
 </section>
-<section id="linear-discriminant-analysis-when-p-1-3" class="level2">
-<h2 class="anchored" data-anchor-id="linear-discriminant-analysis-when-p-1-3">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
-<div class="nonincremental">
+<section id="linear-discriminant-analysis-when-p-1-3" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
@@ -1424,15 +1188,15 @@ x = \frac{\mu_1 + \mu_2}{2}.
 </div>
 </div>
 </section>
-<section id="linear-discriminant-analysis-when-p-1-4" class="level2">
-<h2 class="anchored" data-anchor-id="linear-discriminant-analysis-when-p-1-4">Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
-<div class="nonincremental">
+<section id="linear-discriminant-analysis-when-p-1-4" class="slide level2 center">
+<h2>Linear Discriminant Analysis when <span class="math inline">\(p &gt; 1\)</span></h2>
+<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_5-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
@@ -1443,78 +1207,63 @@ x = \frac{\mu_1 + \mu_2}{2}.
 </div>
 </div>
 </section>
-<section id="illustration-p-2-and-k-3-classes" class="level2">
-<h2 class="anchored" data-anchor-id="illustration-p-2-and-k-3-classes">Illustration: <span class="math inline">\(p = 2\)</span> and <span class="math inline">\(K = 3\)</span> classes</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Left-panel: The circle presents the countor of the density of a particular level of probability for the blue, green, and the orange class. Here <span class="math inline">\(\pi_1 = \pi_2 = \pi_3 = \frac{1}{3}\)</span>. The dashed lines are known as the <strong>Bayes decision boundaries</strong>. They are the “True” decision boundaries, were they known, they would yield the fewest misclassification errors, among all possible classifiers.</p></li>
-<li><p>Right-panel: We compute the mean for <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.</p></li>
+<section id="illustration-p-2-and-k-3-classes" class="slide level2 center">
+<h2>Illustration: <span class="math inline">\(p = 2\)</span> and <span class="math inline">\(K = 3\)</span> classes</h2>
+
+<img data-src="figs/4_6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment"><p>Left-panel: The circle presents the countor of the density of a particular level of probability for the blue, green, and the orange class. Here <span class="math inline">\(\pi_1 = \pi_2 = \pi_3 = \frac{1}{3}\)</span>. The dashed lines are known as the <strong>Bayes decision boundaries</strong>. They are the “True” decision boundaries, were they known, they would yield the fewest misclassification errors, among all possible classifiers.</p></li>
+<li class="fragment"><p>Right-panel: We compute the mean for <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.</p></li>
 </ul>
+</section></section>
+<section>
+<section id="example-fishers-iris-data" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Example: Fisher’s Iris Data</h1>
+
 </section>
-</section>
-<section id="example-fishers-iris-data" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Example: Fisher’s Iris Data</h1>
-<section id="example-fishers-iris-data-1" class="level2">
-<h2 class="anchored" data-anchor-id="example-fishers-iris-data-1">Example: Fisher’s Iris Data</h2>
+<section id="example-fishers-iris-data-1" class="slide level2 center">
+<h2>Example: Fisher’s Iris Data</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_6_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+<figure>
+<p><img data-src="figs/4_6_1-1.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong>4 variables</strong></li>
-<li><strong>3 species</strong></li>
-<li><strong>50 samples/class</strong>
+<li class="fragment"><strong>4 variables</strong></li>
+<li class="fragment"><strong>3 species</strong></li>
+<li class="fragment"><strong>50 samples/class</strong>
 <ul>
-<li>🟦 Setosa</li>
-<li>🟧 Versicolor</li>
-<li>🟩 Virginica</li>
+<li class="fragment">🟦 Setosa</li>
+<li class="fragment">🟧 Versicolor</li>
+<li class="fragment">🟩 Virginica</li>
 </ul></li>
-<li><strong>LDA classifies all but 3 of the 150 training samples correctly.</strong></li>
+<li class="fragment"><strong>LDA classifies all but 3 of the 150 training samples correctly.</strong></li>
 </ul>
-</div>
-</div>
+</div></div>
 </section>
-<section id="example-fishers-discriminant-plot" class="level2">
-<h2 class="anchored" data-anchor-id="example-fishers-discriminant-plot">Example: Fisher’s Discriminant Plot</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_6_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="example-fishers-discriminant-plot" class="slide level2 center">
+<h2>Example: Fisher’s Discriminant Plot</h2>
+
+<img data-src="figs/4_6_2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">Discriminant variables 1 and 2 are <strong>linear combinations</strong> of the original variables.</li>
+<li class="fragment">LDA classifies points based on their <strong>proximity to centroids</strong> in discriminant space.</li>
+<li class="fragment">The centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).</li>
+<li class="fragment">For <span class="math inline">\(K\)</span> classes:
 <ul>
-<li>Discriminant variables 1 and 2 are <strong>linear combinations</strong> of the original variables.</li>
-<li>LDA classifies points based on their <strong>proximity to centroids</strong> in discriminant space.</li>
-<li>The centroids lie in a subspace of the multi-dimensional space (e.g., a plane within 4D space).</li>
-<li>For <span class="math inline">\(K\)</span> classes:
-<ul>
-<li>LDA can be visualized in <span class="math inline">\(K - 1\)</span>-dimensional space.</li>
-<li>For <span class="math inline">\(K &gt; 3\)</span>, the “best” 2D plane can be chosen for visualization.</li>
+<li class="fragment">LDA can be visualized in <span class="math inline">\(K - 1\)</span>-dimensional space.</li>
+<li class="fragment">For <span class="math inline">\(K &gt; 3\)</span>, the “best” 2D plane can be chosen for visualization.</li>
 </ul></li>
 </ul>
 </section>
-<section id="from-delta_kx-to-probabilities" class="level2">
-<h2 class="anchored" data-anchor-id="from-delta_kx-to-probabilities">From <span class="math inline">\(\delta_k(x)\)</span> to Probabilities</h2>
-<div class="nonincremental">
+<section id="from-delta_kx-to-probabilities" class="slide level2 center">
+<h2>From <span class="math inline">\(\delta_k(x)\)</span> to Probabilities</h2>
+<div>
 <div style="font-size: 90%;">
 <ul>
 <li>Once we have estimates of the Discriminat Functions, <span class="math inline">\(\hat{\delta}_k(x)\)</span>, we can turn these into estimates for class probabilities:</li>
@@ -1529,34 +1278,13 @@ x = \frac{\mu_1 + \mu_2}{2}.
 </div>
 </div>
 </section>
-<section id="lda-on-credit-data" class="level2">
-<h2 class="anchored" data-anchor-id="lda-on-credit-data">LDA on Credit Data</h2>
-<div class="nonincremental">
+<section id="lda-on-credit-data" class="slide level2 center">
+<h2>LDA on Credit Data</h2>
+<div>
 <div style="font-size: 80%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the knitr package</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the data frame for the table with bold first column</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at"> </span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"No"</span>, </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Yes"</span>, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Total"</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">True Default Status: No</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">9644</span>, <span class="dv">23</span>, <span class="dv">9667</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">True Default Status: Yes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">252</span>, <span class="dv">81</span>, <span class="dv">333</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Total</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">9896</span>, <span class="dv">104</span>, <span class="dv">10000</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the table</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(table_data, <span class="st">"html"</span>, <span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">align =</span> <span class="st">"c"</span>, </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Predicted Default Status"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Total"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"True Default Status"</span> <span class="ot">=</span> <span class="dv">3</span>), <span class="at">italic =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">italic =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Make headers bold and italic</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="table caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -1615,13 +1343,15 @@ True Default Status
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="types-of-errors" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Types of errors</h1>
+
 </section>
-</section>
-<section id="types-of-errors" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Types of errors</h1>
-<section id="types-of-errors-1" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-errors-1">Types of errors</h2>
-<div class="nonincremental">
+<section id="types-of-errors-1" class="slide level2 center">
+<h2>Types of errors</h2>
+<div>
 <div style="font-size: 80%;">
 <p><strong>False positive rate:</strong> The fraction of negative examples that are classified as positive — <strong>0.2% in example</strong>.</p>
 <p><strong>False negative rate:</strong> The fraction of positive examples that are classified as negative — <strong>75.7% in example</strong>.</p>
@@ -1637,40 +1367,26 @@ True Default Status
 </div>
 </div>
 </section>
-<section id="varying-the-threshold" class="level2">
-<h2 class="anchored" data-anchor-id="varying-the-threshold">Varying the <em>threshold</em></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_7_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less.</p>
+<section id="varying-the-threshold" class="slide level2 center">
+<h2>Varying the <em>threshold</em></h2>
+
+<img data-src="figs/4_7_1-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"><p>In order to reduce the false negative rate, we may want to reduce the threshold to 0.1 or less.</p>
 <p><br></p>
 </section>
-<section id="roc-curve" class="level2">
-<h2 class="anchored" data-anchor-id="roc-curve">ROC Curve</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><em>ROC plot</em></a> displays both simultaneously.</p>
+<section id="roc-curve" class="slide level2 center">
+<h2>ROC Curve</h2>
+
+<img data-src="figs/4_8-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><p>The <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><em>ROC plot</em></a> displays both simultaneously.</p>
 <p>Sometimes we use the <em>AUC</em> or <em>area under the curve</em> to summarize the overall performance. Higher <em>AUC</em> is good.</p>
 <p><br></p>
+</section></section>
+<section>
+<section id="other-forms-of-discriminant-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Other Forms of Discriminant Analysis</h1>
+
 </section>
-</section>
-<section id="other-forms-of-discriminant-analysis" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Other Forms of Discriminant Analysis</h1>
-<section id="other-forms-of-discriminant-analysis-1" class="level2">
-<h2 class="anchored" data-anchor-id="other-forms-of-discriminant-analysis-1">Other Forms of Discriminant Analysis</h2>
+<section id="other-forms-of-discriminant-analysis-1" class="slide level2 center">
+<h2>Other Forms of Discriminant Analysis</h2>
 <div style="font-size: 80%;">
 <p>When <span class="math inline">\(f_k(x)\)</span> are Gaussian densities, with the same covariance matrix <span class="math inline">\(\Sigma\)</span> in each class, this leads to <strong>linear discriminant analysis</strong>.</p>
 <p><span class="math display">\[
@@ -1678,20 +1394,20 @@ True Default Status
 \]</span></p>
 <p>By altering the forms for <span class="math inline">\(f_k(x)\)</span>, we get different classifiers:</p>
 <ul>
-<li>With Gaussians but different <span class="math inline">\(\Sigma_k\)</span> in each class, we get <strong>quadratic discriminant analysis</strong>.</li>
-<li>With <span class="math inline">\(f_k(x) = \prod_{j=1}^{p} f_{jk}(x_j)\)</span> (conditional independence model) in each class, we get <strong>naive Bayes</strong>. For Gaussians, this means <span class="math inline">\(\Sigma_k\)</span> are diagonal.</li>
-<li>Many other forms, by proposing specific density models for <span class="math inline">\(f_k(x)\)</span>, including <strong>nonparametric approaches</strong>.</li>
+<li class="fragment">With Gaussians but different <span class="math inline">\(\Sigma_k\)</span> in each class, we get <strong>quadratic discriminant analysis</strong>.</li>
+<li class="fragment">With <span class="math inline">\(f_k(x) = \prod_{j=1}^{p} f_{jk}(x_j)\)</span> (conditional independence model) in each class, we get <strong>naive Bayes</strong>. For Gaussians, this means <span class="math inline">\(\Sigma_k\)</span> are diagonal.</li>
+<li class="fragment">Many other forms, by proposing specific density models for <span class="math inline">\(f_k(x)\)</span>, including <strong>nonparametric approaches</strong>.</li>
 </ul>
 </div>
 </section>
-<section id="quadratic-discriminant-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="quadratic-discriminant-analysis">Quadratic Discriminant Analysis</h2>
+<section id="quadratic-discriminant-analysis" class="slide level2 center">
+<h2>Quadratic Discriminant Analysis</h2>
 <div style="font-size: 70%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<figure>
+<p><img data-src="figs/4_9-1.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
@@ -1702,27 +1418,27 @@ True Default Status
 <p>In the Left-plot we see a case when the true boundary should be linear. In the Right-plot, covariances were different in the true data. It is possible to see that the bayes decision boundary is curved and the quadratic discriminant analysis is also curved whereas the linear discriminant analysis gives a different boundary.</p>
 <p>Whether each class has the same or different covariance matrices significantly impacts how boundaries between the classes are defined. The <strong>covariance matrix</strong> describes the spread or variability of data points within each class and how the features in that class relate to each other.</p>
 <ul>
-<li><strong>Key Insight</strong>: If <span class="math inline">\(\Sigma_k\)</span> are different for each class, the <strong>quadratic terms</strong> matter significantly.</li>
-<li>QDA allows for <strong>non-linear decision boundaries</strong> due to unique covariance matrices for each class.</li>
-<li>Example: Suppose we are classifying plants based on two features (e.g., height and leaf width). If one type of plant has a tall and narrow spread of data, while another type has a short and wide spread, QDA can handle these differences and draw curved boundaries to separate the groups.</li>
+<li class="fragment"><strong>Key Insight</strong>: If <span class="math inline">\(\Sigma_k\)</span> are different for each class, the <strong>quadratic terms</strong> matter significantly.</li>
+<li class="fragment">QDA allows for <strong>non-linear decision boundaries</strong> due to unique covariance matrices for each class.</li>
+<li class="fragment">Example: Suppose we are classifying plants based on two features (e.g., height and leaf width). If one type of plant has a tall and narrow spread of data, while another type has a short and wide spread, QDA can handle these differences and draw curved boundaries to separate the groups.</li>
 </ul>
 </div>
 </section>
-<section id="assess-the-covariance-matrices" class="level2">
-<h2 class="anchored" data-anchor-id="assess-the-covariance-matrices">Assess the Covariance Matrices</h2>
+<section id="assess-the-covariance-matrices" class="slide level2 center">
+<h2>Assess the Covariance Matrices</h2>
 <div style="font-size: 90%;">
 <p>LDA assumes the covariance matrices of all classes are the same, while QDA allows each class to have its own. To determine which assumption is better:</p>
 <ol type="1">
-<li><strong>Hypothesys test</strong>: we can perform a Test for Equality of Covariance Matrices (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Box%27s_M_test">Box’s M Test</a>). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.</li>
-<li><strong>Visual Inspection</strong>: Plot the data in two dimensions (e.g., using scatterplots). Check if the spread, shape, or orientation of data points differs significantly between classes. If they are similar, LDA might work well. If they are visibly different, QDA is likely better.</li>
-<li><strong>Compare Model Performance</strong>: run both models and choose the model that performs better on unseen data (test set).</li>
-<li><strong>Consider the Number of Features and Data Size</strong>: LDA performs well with smaller datasets because it estimates a single covariance matrix across all classes (fewer parameters). QDA requires a larger dataset because it estimates a separate covariance matrix for each class (more parameters).</li>
-<li><strong>Domain Knowledge</strong>: Use your understanding of the data to decide.</li>
+<li class="fragment"><strong>Hypothesys test</strong>: we can perform a Test for Equality of Covariance Matrices (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Box%27s_M_test">Box’s M Test</a>). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.</li>
+<li class="fragment"><strong>Visual Inspection</strong>: Plot the data in two dimensions (e.g., using scatterplots). Check if the spread, shape, or orientation of data points differs significantly between classes. If they are similar, LDA might work well. If they are visibly different, QDA is likely better.</li>
+<li class="fragment"><strong>Compare Model Performance</strong>: run both models and choose the model that performs better on unseen data (test set).</li>
+<li class="fragment"><strong>Consider the Number of Features and Data Size</strong>: LDA performs well with smaller datasets because it estimates a single covariance matrix across all classes (fewer parameters). QDA requires a larger dataset because it estimates a separate covariance matrix for each class (more parameters).</li>
+<li class="fragment"><strong>Domain Knowledge</strong>: Use your understanding of the data to decide.</li>
 </ol>
 </div>
 </section>
-<section id="logistic-regression-versus-lda" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression-versus-lda">Logistic Regression versus LDA</h2>
+<section id="logistic-regression-versus-lda" class="slide level2 center">
+<h2>Logistic Regression versus LDA</h2>
 <div style="font-size: 80%;">
 <p>For a two-class problem, one can show that for LDA:</p>
 <p><span class="math display">\[
@@ -1731,21 +1447,23 @@ True Default Status
 <p>if we take the log odds, <span class="math inline">\(\log \left( \frac{p_1(x)}{1 - p_1(x)}\right)\)</span>, which is the log of the probability for class 1 versus the probability for class two, we endup with a linear function of <span class="math inline">\(x\)</span>, <span class="math inline">\(c_0 + c_1 x_1 + \dots + c_p x_p\)</span>. So it has the same form as logistic regression.</p>
 <p>The difference lies in how the parameters are estimated.</p>
 <ul>
-<li><p>Logistic regression uses the conditional likelihood based on <span class="math inline">\(\text{Pr}(Y|X)\)</span>. In Machine Learning, it is known as <em>discriminative learning</em>.</p></li>
-<li><p>LDA uses the full likelihood based on the joint distributions of <span class="math inline">\(x's\)</span> and <span class="math inline">\(y's\)</span>, <span class="math inline">\(\text{Pr}(X, Y)\)</span>, whereas logistic regression was only using the distribution of <span class="math inline">\(y's\)</span>. It is known as <em>generative learning</em>.</p></li>
-<li><p>Despite these differences, in practice, the results are often very similar.</p>
+<li class="fragment"><p>Logistic regression uses the conditional likelihood based on <span class="math inline">\(\text{Pr}(Y|X)\)</span>. In Machine Learning, it is known as <em>discriminative learning</em>.</p></li>
+<li class="fragment"><p>LDA uses the full likelihood based on the joint distributions of <span class="math inline">\(x's\)</span> and <span class="math inline">\(y's\)</span>, <span class="math inline">\(\text{Pr}(X, Y)\)</span>, whereas logistic regression was only using the distribution of <span class="math inline">\(y's\)</span>. It is known as <em>generative learning</em>.</p></li>
+<li class="fragment"><p>Despite these differences, in practice, the results are often very similar.</p>
 <ul>
-<li>Logistic regression can also fit quadratic boundaries like QDA by explicitly including quadratic terms in the model.</li>
+<li class="fragment">Logistic regression can also fit quadratic boundaries like QDA by explicitly including quadratic terms in the model.</li>
 </ul></li>
 </ul>
 </div>
+</section></section>
+<section>
+<section id="naive-bayes" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Naive Bayes</h1>
+
 </section>
-</section>
-<section id="naive-bayes" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Naive Bayes</h1>
-<section id="naive-bayes-1" class="level2">
-<h2 class="anchored" data-anchor-id="naive-bayes-1">Naive Bayes</h2>
-<div class="nonincremental">
+<section id="naive-bayes-1" class="slide level2 center">
+<h2>Naive Bayes</h2>
+<div>
 <div style="font-size: 70%;">
 <ul>
 <li>Assumes features are independent in each class.</li>
@@ -1772,9 +1490,9 @@ True Default Status
 </div>
 </div>
 </section>
-<section id="diagonal-covariance-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="diagonal-covariance-matrix">Diagonal Covariance Matrix</h2>
-<div class="nonincremental">
+<section id="diagonal-covariance-matrix" class="slide level2 center">
+<h2>Diagonal Covariance Matrix</h2>
+<div>
 <div style="font-size: 80%;">
 <p>A <strong>diagonal covariance matrix</strong> is a special case of the covariance matrix where all off-diagonal elements are zero. This implies that the variables are uncorrelated.</p>
 <p><strong>General Form:</strong></p>
@@ -1798,9 +1516,9 @@ True Default Status
 </div>
 </div>
 </section>
-<section id="generative-models-and-naïve-bayes" class="level2">
-<h2 class="anchored" data-anchor-id="generative-models-and-naïve-bayes">Generative Models and Naïve Bayes</h2>
-<div class="nonincremental">
+<section id="generative-models-and-naïve-bayes" class="slide level2 center">
+<h2>Generative Models and Naïve Bayes</h2>
+<div>
 <div style="font-size: 80%;">
 <ul>
 <li><p>Logistic regression models <span class="math inline">\(\Pr(Y = k | X = x)\)</span> directly, via the logistic function. Similarly, the multinomial logistic regression uses the softmax function. These all model the <em>conditional distribution</em> of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>.</p></li>
@@ -1816,9 +1534,9 @@ True Default Status
 </div>
 </div>
 </section>
-<section id="generative-models-and-naïve-bayes-1" class="level2">
-<h2 class="anchored" data-anchor-id="generative-models-and-naïve-bayes-1">Generative Models and Naïve Bayes</h2>
-<div class="nonincremental">
+<section id="generative-models-and-naïve-bayes-1" class="slide level2 center">
+<h2>Generative Models and Naïve Bayes</h2>
+<div>
 <div style="font-size: 80%;">
 <ul>
 <li>Linear and quadratic discriminant analysis derive from generative models, where <span class="math inline">\(f_k(x)\)</span> are Gaussian.</li>
@@ -1838,33 +1556,33 @@ f_k(x) = f_{k1}(x_1) \times f_{k2}(x_2) \times \cdots \times f_{kp}(x_p)
 </div>
 </div>
 </section>
-<section id="naïve-bayes-details" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-details">Naïve Bayes — Details</h2>
+<section id="naïve-bayes-details" class="slide level2 center">
+<h2>Naïve Bayes — Details</h2>
 <p><strong>Why the independence assumption?</strong></p>
 <ul>
-<li><p>Difficult to specify and model high-dimensional densities.<br>
+<li class="fragment"><p>Difficult to specify and model high-dimensional densities.<br>
 Much easier to specify one-dimensional densities.</p></li>
-<li><p>Can handle <em>mixed</em> features:</p>
+<li class="fragment"><p>Can handle <em>mixed</em> features:</p>
 <ul>
-<li>If feature <span class="math inline">\(j\)</span> is quantitative, can model as univariate Gaussian, for example: <span class="math inline">\(X_j \mid Y = k \sim N(\mu_{jk}, \sigma_{jk}^2).\)</span> We estimate <span class="math inline">\(\mu_{jk}\)</span> and <span class="math inline">\(\sigma_{jk}^2\)</span> from the data, and then plug into Gaussian density formula for <span class="math inline">\(f_{jk}(x_j)\)</span>.</li>
-<li>Alternatively, can use a <em>histogram</em> estimate of the density, and directly estimate <span class="math inline">\(f_{jk}(x_j)\)</span> by the proportion of observations in the bin into which <span class="math inline">\(x_j\)</span> falls.</li>
-<li>If feature <span class="math inline">\(j\)</span> is qualitative, can simply model the proportion in each category.</li>
+<li class="fragment">If feature <span class="math inline">\(j\)</span> is quantitative, can model as univariate Gaussian, for example: <span class="math inline">\(X_j \mid Y = k \sim N(\mu_{jk}, \sigma_{jk}^2).\)</span> We estimate <span class="math inline">\(\mu_{jk}\)</span> and <span class="math inline">\(\sigma_{jk}^2\)</span> from the data, and then plug into Gaussian density formula for <span class="math inline">\(f_{jk}(x_j)\)</span>.</li>
+<li class="fragment">Alternatively, can use a <em>histogram</em> estimate of the density, and directly estimate <span class="math inline">\(f_{jk}(x_j)\)</span> by the proportion of observations in the bin into which <span class="math inline">\(x_j\)</span> falls.</li>
+<li class="fragment">If feature <span class="math inline">\(j\)</span> is qualitative, can simply model the proportion in each category.</li>
 </ul></li>
-<li><p>Somewhat unrealistic but extremely useful in many cases.<br>
+<li class="fragment"><p>Somewhat unrealistic but extremely useful in many cases.<br>
 Despite its simplicity, often shows good classification performance due to reduced variance.</p></li>
 </ul>
 </section>
-<section id="naïve-bayes-toy-example" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-toy-example">Naïve Bayes — Toy Example</h2>
-<div class="nonincremental">
+<section id="naïve-bayes-toy-example" class="slide level2 center">
+<h2>Naïve Bayes — Toy Example</h2>
+<div>
 <div style="font-size: 60%;">
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_10_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure>
+<p><img data-src="figs/4_10_1-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -1891,8 +1609,7 @@ Despite its simplicity, often shows good classification performance due to reduc
 <p><span class="math inline">\(\hat{f}_{22}(1.5) = 0.130 \\\)</span></p>
 <p><span class="math inline">\(\hat{f}_{23}(1) = 0.616 \\\)</span></p>
 </div>
-</div>
-</div>
+</div></div>
 <!---
 <center>
 $Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
@@ -1902,9 +1619,9 @@ $Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
 </div>
 </div>
 </section>
-<section id="naïve-bayes-toy-example-1" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-toy-example-1">Naïve Bayes — Toy Example</h2>
-<div class="nonincremental">
+<section id="naïve-bayes-toy-example-1" class="slide level2 center">
+<h2>Naïve Bayes — Toy Example</h2>
+<div>
 <div style="font-size: 60%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1957,14 +1674,13 @@ $Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
 <li><p><strong>Classification</strong>: The observation <span class="math inline">\(x^*\)</span> is classified as the class with the highest posterior probability (<span class="math inline">\(Y = 1\)</span>).</p></li>
 </ol>
 </div>
-</div>
-</div>
+</div></div>
 </div>
 </div>
 </section>
-<section id="naïve-bayes-and-gams" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams">Naïve Bayes and GAMs</h2>
-<div class="nonincremental">
+<section id="naïve-bayes-and-gams" class="slide level2 center">
+<h2>Naïve Bayes and GAMs</h2>
+<div>
 <div style="font-size: 80%;">
 <p>Naïve Bayes classifier can be understood as a special case of a GAM.</p>
 <p><span class="math display">\[
@@ -1986,8 +1702,8 @@ $Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
 </div>
 </div>
 </section>
-<section id="naïve-bayes-and-gams-details" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams-details">Naïve Bayes and GAMs: details</h2>
+<section id="naïve-bayes-and-gams-details" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
 <p><strong>Log-Odds of Posterior Probabilities</strong></p>
 <p>The Naïve Bayes classifier starts with the <strong>log-odds</strong> of the posterior probabilities:</p>
 <p><span class="math display">\[
@@ -1995,20 +1711,20 @@ $Pr(Y=1 \mid X = x^*) = 0.944$ and $Pr(Y=2 \mid X = x^*) = 0.056$
 \]</span></p>
 <p>This is the log of the ratio of the probabilities of class <span class="math inline">\(k\)</span> and a reference class <span class="math inline">\(K\)</span>, given the feature vector <span class="math inline">\(X = x\)</span>.</p>
 </section>
-<section id="naïve-bayes-and-gams-details-1" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams-details-1">Naïve Bayes and GAMs: details</h2>
+<section id="naïve-bayes-and-gams-details-1" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
 <p><strong>Bayes’ Theorem</strong></p>
 <p>Using Bayes’ theorem, the posterior probabilities can be expressed as:</p>
 <p><span class="math display">\[
 \log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = \log \left( \frac{\pi_k f_k(x)}{\pi_K f_K(x)} \right)
 \]</span></p>
 <ul>
-<li><span class="math inline">\(\pi_k\)</span>: Prior probability of class <span class="math inline">\(k\)</span>.</li>
-<li><span class="math inline">\(f_k(x)\)</span>: Class-conditional density for class <span class="math inline">\(k\)</span>.</li>
+<li class="fragment"><span class="math inline">\(\pi_k\)</span>: Prior probability of class <span class="math inline">\(k\)</span>.</li>
+<li class="fragment"><span class="math inline">\(f_k(x)\)</span>: Class-conditional density for class <span class="math inline">\(k\)</span>.</li>
 </ul>
 </section>
-<section id="naïve-bayes-and-gams-details-2" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams-details-2">Naïve Bayes and GAMs: details</h2>
+<section id="naïve-bayes-and-gams-details-2" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
 <p><strong>Naïve Bayes Assumption</strong></p>
 <p>The Naïve Bayes assumption states that features are <strong>conditionally independent</strong> given the class:</p>
 <p><span class="math display">\[
@@ -2019,8 +1735,8 @@ f_k(x) = \prod_{j=1}^p f_{kj}(x_j)
 \log \left( \frac{\pi_k f_k(x)}{\pi_K f_K(x)} \right) = \log \left( \frac{\pi_k \prod_{j=1}^p f_{kj}(x_j)}{\pi_K \prod_{j=1}^p f_{Kj}(x_j)} \right)
 \]</span></p>
 </section>
-<section id="naïve-bayes-and-gams-details-3" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams-details-3">Naïve Bayes and GAMs: details</h2>
+<section id="naïve-bayes-and-gams-details-3" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
 <p><strong>Separate the Terms</strong></p>
 <p>The terms can now be separated:</p>
 <p><span class="math display">\[
@@ -2028,12 +1744,12 @@ f_k(x) = \prod_{j=1}^p f_{kj}(x_j)
 = \log \left( \frac{\pi_k}{\pi_K} \right) + \sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)
 \]</span></p>
 <ul>
-<li><span class="math inline">\(\log \left( \frac{\pi_k}{\pi_K} \right)\)</span>: Influence of prior probabilities.</li>
-<li><span class="math inline">\(\sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)\)</span>: Contribution from each feature.</li>
+<li class="fragment"><span class="math inline">\(\log \left( \frac{\pi_k}{\pi_K} \right)\)</span>: Influence of prior probabilities.</li>
+<li class="fragment"><span class="math inline">\(\sum_{j=1}^p \log \left( \frac{f_{kj}(x_j)}{f_{Kj}(x_j)} \right)\)</span>: Contribution from each feature.</li>
 </ul>
 </section>
-<section id="naïve-bayes-and-gams-details-4" class="level2">
-<h2 class="anchored" data-anchor-id="naïve-bayes-and-gams-details-4">Naïve Bayes and GAMs: details</h2>
+<section id="naïve-bayes-and-gams-details-4" class="slide level2 center">
+<h2>Naïve Bayes and GAMs: details</h2>
 <p><strong>Additive Form</strong></p>
 <p>Define:</p>
 <p><span class="math display">\[
@@ -2043,25 +1759,27 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = a_k + \sum_{j=1}^p g_{kj}(x_j)
 \]</span></p>
+</section></section>
+<section>
+<section id="generalized-linear-models" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Generalized Linear Models</h1>
+
 </section>
-</section>
-<section id="generalized-linear-models" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Generalized Linear Models</h1>
-<section id="generalized-linear-models-1" class="level2">
-<h2 class="anchored" data-anchor-id="generalized-linear-models-1">Generalized Linear Models</h2>
+<section id="generalized-linear-models-1" class="slide level2 center">
+<h2>Generalized Linear Models</h2>
 <ul>
-<li><strong>Linear regression</strong> is used for quantitative responses.</li>
-<li><strong>Linear logistic regression</strong> is the counterpart for a binary response and models the logit of the probability as a linear model.</li>
-<li>Other response types exist, such as non-negative responses, skewed distributions, and more.</li>
-<li><em>Generalized linear models</em> provide a unified framework for dealing with many different response types.</li>
+<li class="fragment"><strong>Linear regression</strong> is used for quantitative responses.</li>
+<li class="fragment"><strong>Linear logistic regression</strong> is the counterpart for a binary response and models the logit of the probability as a linear model.</li>
+<li class="fragment">Other response types exist, such as non-negative responses, skewed distributions, and more.</li>
+<li class="fragment"><em>Generalized linear models</em> provide a unified framework for dealing with many different response types.</li>
 </ul>
 </section>
-<section id="example-bikeshare-data" class="level2">
-<h2 class="anchored" data-anchor-id="example-bikeshare-data">Example: Bikeshare Data</h2>
-<div class="nonincremental">
+<section id="example-bikeshare-data" class="slide level2 center">
+<h2>Example: Bikeshare Data</h2>
+<div>
 <div style="font-size: 65%;">
 <p>Linear regression with response <strong>bikers</strong>: number of hourly users in the bikeshare program in Washington, DC.</p>
-<table class="caption-top table">
+<table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 16%">
@@ -2126,8 +1844,8 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figure>
+<p><img data-src="figs/4_13-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
 </figure>
 </div>
 </div>
@@ -2136,25 +1854,17 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 <p><br></p>
 </section>
-<section id="example-meanvariance-relationship" class="level2">
-<h2 class="anchored" data-anchor-id="example-meanvariance-relationship">Example: Mean/Variance Relationship</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Left plot: we see that the variance mostly increases with the mean.</li>
-<li>10% of a linear model predictions are negative! (not shown here.). However, we know that the response variable, <code>bikers</code>, is always positive.</li>
-<li>Taking <code>log(bikers)</code> alleviates this, but is not a good solution. It has its own problems: e.g.&nbsp;predictions are on the wrong scale, and some counts are zero!</li>
+<section id="example-meanvariance-relationship" class="slide level2 center">
+<h2>Example: Mean/Variance Relationship</h2>
+
+<img data-src="figs/4_14-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:65.0%"><ul>
+<li class="fragment">Left plot: we see that the variance mostly increases with the mean.</li>
+<li class="fragment">10% of a linear model predictions are negative! (not shown here.). However, we know that the response variable, <code>bikers</code>, is always positive.</li>
+<li class="fragment">Taking <code>log(bikers)</code> alleviates this, but is not a good solution. It has its own problems: e.g.&nbsp;predictions are on the wrong scale, and some counts are zero!</li>
 </ul>
 </section>
-<section id="poisson-regression-model" class="level2">
-<h2 class="anchored" data-anchor-id="poisson-regression-model">Poisson Regression Model</h2>
+<section id="poisson-regression-model" class="slide level2 center">
+<h2>Poisson Regression Model</h2>
 <p><strong>Poisson distribution</strong> is useful for modeling counts:</p>
 <p><span class="math display">\[
   Pr(Y = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \, \text{for } k = 0, 1, 2, \ldots
@@ -2170,11 +1880,11 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 \]</span></p>
 <p><strong>Automatic positivity</strong>: The model ensures that predictions are non-negative by construction.</p>
 </section>
-<section id="example-poisson-regression-on-bikeshare-data" class="level2">
-<h2 class="anchored" data-anchor-id="example-poisson-regression-on-bikeshare-data">Example: Poisson Regression on Bikeshare Data</h2>
-<div class="nonincremental">
+<section id="example-poisson-regression-on-bikeshare-data" class="slide level2 center">
+<h2>Example: Poisson Regression on Bikeshare Data</h2>
+<div>
 <div style="font-size: 65%;">
-<table class="caption-top table">
+<table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 24%">
 <col style="width: 18%">
@@ -2239,8 +1949,8 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/4_15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<figure>
+<p><img data-src="figs/4_15-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -2250,9 +1960,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="generalized-linear-models-2" class="level2">
-<h2 class="anchored" data-anchor-id="generalized-linear-models-2">Generalized Linear Models</h2>
-<div class="nonincremental">
+<section id="generalized-linear-models-2" class="slide level2 center">
+<h2>Generalized Linear Models</h2>
+<div>
 <div style="font-size: 90%;">
 <ul>
 <li>We have covered three GLMs: <strong>Gaussian</strong>, <strong>binomial</strong>, and <strong>Poisson</strong>.</li>
@@ -2269,17 +1979,19 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </ul>
 </div>
 </div>
+</section></section>
+<section>
+<section id="model-evaluation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Model Evaluation</h1>
+
 </section>
-</section>
-<section id="model-evaluation" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Model Evaluation</h1>
-<section id="confusion-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h2>
-<div class="nonincremental">
+<section id="confusion-matrix" class="slide level2 center">
+<h2>Confusion Matrix</h2>
+<div>
 <div style="font-size: 80%;">
 <p>The confusion matrix provides a summary of prediction results. It compares the predicted and actual classes, offering insights into the model’s classification performance.</p>
 <div class="center">
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2304,12 +2016,12 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="confusion-matrix-1" class="level2">
-<h2 class="anchored" data-anchor-id="confusion-matrix-1">Confusion Matrix</h2>
-<div class="nonincremental">
+<section id="confusion-matrix-1" class="slide level2 center">
+<h2>Confusion Matrix</h2>
+<div>
 <div style="font-size: 75%;">
 <p>Key metrics derived from the confusion matrix include:</p>
-<table class="caption-top table">
+<table class="caption-top">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 81%">
@@ -2346,9 +2058,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="accuracy" class="level2">
-<h2 class="anchored" data-anchor-id="accuracy">Accuracy</h2>
-<div class="nonincremental">
+<section id="accuracy" class="slide level2 center">
+<h2>Accuracy</h2>
+<div>
 <div style="font-size: 80%;">
 <div style="display: flex; align-items: center; gap: 2em;">
 <div class="column" style="flex: 1;">
@@ -2356,7 +2068,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <strong>Confusion Matrix</strong>
 </center>
 <p><br></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2377,8 +2089,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </tr>
 </tbody>
 </table>
-</div>
-<div class="column" style="flex: 1;">
+</div><div class="column" style="flex: 1;">
 <center>
 <strong>Formula</strong>
 </center>
@@ -2386,8 +2097,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
 \]</span></p>
-</div>
-</div>
+</div></div>
 <p><br></p>
 <div class="fragment">
 <ul>
@@ -2399,9 +2109,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="recall-sensitivity" class="level2">
-<h2 class="anchored" data-anchor-id="recall-sensitivity">Recall (Sensitivity)</h2>
-<div class="nonincremental">
+<section id="recall-sensitivity" class="slide level2 center">
+<h2>Recall (Sensitivity)</h2>
+<div>
 <div style="font-size: 80%;">
 <div style="display: flex; align-items: center; gap: 2em;">
 <div class="column" style="flex: 1;">
@@ -2409,7 +2119,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <strong>Confusion Matrix</strong>
 </center>
 <p><br></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2430,8 +2140,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </tr>
 </tbody>
 </table>
-</div>
-<div class="column" style="flex: 1;">
+</div><div class="column" style="flex: 1;">
 <center>
 <strong>Formula</strong>
 </center>
@@ -2439,8 +2148,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
 \]</span></p>
-</div>
-</div>
+</div></div>
 <p><br></p>
 <div class="fragment">
 <ul>
@@ -2452,9 +2160,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="specificity" class="level2">
-<h2 class="anchored" data-anchor-id="specificity">Specificity</h2>
-<div class="nonincremental">
+<section id="specificity" class="slide level2 center">
+<h2>Specificity</h2>
+<div>
 <div style="font-size: 80%;">
 <div style="display: flex; align-items: center; gap: 2em;">
 <div class="column" style="flex: 1;">
@@ -2462,7 +2170,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <strong>Confusion Matrix</strong>
 </center>
 <p><br></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2483,8 +2191,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </tr>
 </tbody>
 </table>
-</div>
-<div class="column" style="flex: 1;">
+</div><div class="column" style="flex: 1;">
 <center>
 <strong>Formula</strong>
 </center>
@@ -2492,8 +2199,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \text{Specificity} = \frac{\text{TN}}{\text{TN} + \text{FP}}
 \]</span></p>
-</div>
-</div>
+</div></div>
 <p><br></p>
 <div class="fragment">
 <ul>
@@ -2505,9 +2211,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="precision" class="level2">
-<h2 class="anchored" data-anchor-id="precision">Precision</h2>
-<div class="nonincremental">
+<section id="precision" class="slide level2 center">
+<h2>Precision</h2>
+<div>
 <div style="font-size: 80%;">
 <div style="display: flex; align-items: center; gap: 2em;">
 <div class="column" style="flex: 1;">
@@ -2515,7 +2221,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <strong>Confusion Matrix</strong>
 </center>
 <p><br></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2536,8 +2242,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </tr>
 </tbody>
 </table>
-</div>
-<div class="column" style="flex: 1;">
+</div><div class="column" style="flex: 1;">
 <center>
 <strong>Formula</strong>
 </center>
@@ -2545,8 +2250,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}
 \]</span></p>
-</div>
-</div>
+</div></div>
 <p><br></p>
 <div class="fragment">
 <ul>
@@ -2558,9 +2262,9 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </section>
-<section id="f1-score" class="level2">
-<h2 class="anchored" data-anchor-id="f1-score">F1-Score</h2>
-<div class="nonincremental">
+<section id="f1-score" class="slide level2 center">
+<h2>F1-Score</h2>
+<div>
 <div style="font-size: 80%;">
 <div style="display: flex; align-items: center; gap: 2em;">
 <div class="column" style="flex: 1;">
@@ -2568,7 +2272,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <strong>Confusion Matrix</strong>
 </center>
 <p><br></p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th></th>
@@ -2589,8 +2293,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </tr>
 </tbody>
 </table>
-</div>
-<div class="column" style="flex: 1;">
+</div><div class="column" style="flex: 1;">
 <center>
 <strong>Formula</strong>
 </center>
@@ -2598,8 +2301,7 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <p><span class="math display">\[
 \text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
 \]</span></p>
-</div>
-</div>
+</div></div>
 <p><br></p>
 <div class="fragment">
 <ul>
@@ -2610,13 +2312,15 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="roc-curve-auc" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>ROC Curve &amp; AUC</h1>
+
 </section>
-</section>
-<section id="roc-curve-auc" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">ROC Curve &amp; AUC</h1>
-<section id="roc-curve-auc-1" class="level2">
-<h2 class="anchored" data-anchor-id="roc-curve-auc-1">ROC Curve &amp; AUC</h2>
-<div class="nonincremental">
+<section id="roc-curve-auc-1" class="slide level2 center">
+<h2>ROC Curve &amp; AUC</h2>
+<div>
 <div style="font-size: 80%;">
 <p>The ROC (Receiver Operating Characteristic) curve is a graphical representation that illustrates the trade-off between the true positive rate (Sensitivity) and the false positive rate (1 - Specificity) across various threshold values. The AUC (Area Under the Curve) summarizes the ROC curve into a single value, indicating the model’s overall performance.</p>
 <ul>
@@ -2628,13 +2332,15 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 </ul>
 </div>
 </div>
+</section></section>
+<section>
+<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Summary</h1>
+
 </section>
-</section>
-<section id="summary" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Summary</h1>
-<section id="summary-1" class="level2">
-<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
-<div class="nonincremental">
+<section id="summary-1" class="slide level2 center">
+<h2>Summary</h2>
+<div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div style="font-size: 80%;">
@@ -2660,438 +2366,454 @@ a_k = \log \left( \frac{\pi_k}{\pi_K} \right), \quad g_{kj}(x_j) = \log \left( \
 <li><strong>Generalized Linear Models (GLMs)</strong>: Extend regression to different types of responses with appropriate link and variance functions.</li>
 </ul>
 </div>
+</div></div>
 </div>
-</div>
-</div>
-</section>
-</section>
-<section id="thank-you" class="level1" data-background-color="#cfb991">
-<h1 data-background-color="#cfb991">Thank you!</h1>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
 
 
 </section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Predictive Analytics</p>
+</div>
+</div></div>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
         }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
       }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
       });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
-
-
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
 
 </body></html>
