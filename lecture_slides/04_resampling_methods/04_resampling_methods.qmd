@@ -50,6 +50,71 @@ html-math-method:
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 :::
 
+## Recap
+
+<br>
+
+::::::: {style="font-size: 80%;"}
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%"}
+
+<details>
+<summary><strong>Why is linear regression generally not suitable for estimating probabilities in a classification task, even for binary outcomes?</strong></summary>
+<p style="font-size:80%;">Linear regression can produce predictions that fall outside the [0, 1] range, which are not valid probabilities. Logistic regression, on the other hand, uses a link function that ensures its output always lies between 0 and 1, making it appropriate for probability estimation.</p>
+</details>
+
+<details>
+<summary><strong>What is the core principle of Maximum Likelihood Estimation (MLE)?
+</strong></summary>
+<p style="font-size:80%;">MLE is a method used to estimate the parameters of a statistical model by finding the parameter values that maximize the likelihood function. This means choosing the parameters that make the observed data most probable under the assumed model.</p>
+</details>
+
+<details>
+<summary><strong>What is the softmax function, and why is it essential in multinomial logistic regression?
+</strong></summary>
+<p style="font-size:80%;">The softmax function converts a vector of raw scores (logits) into a probability distribution over multiple classes. It is essential because it ensures that the output probabilities for all classes sum to 1, making it suitable for multiclass classification tasks where the response has more than two categories.</p>
+</details>
+
+<details>
+<summary><strong>What is the difference between a discriminative model and a generative model in classification?
+</strong></summary>
+<p style="font-size:80%;">A discriminative model (e.g., Logistic Regression) directly models the conditional probability $Pr(Y|X)$. A generative model (e.g., LDA, Naïve Bayes) models the class-conditional distribution $Pr(X|Y)$ and the prior $Pr(Y)$, then uses Bayes' theorem to derive $Pr(Y|X)$.</p>
+</details>
+
+:::
+::: {.column width="50%"}
+
+
+<details>
+<summary><strong>Under what key assumption is Linear Discriminant Analysis (LDA) applied, and how does this affect its decision boundaries?</strong></summary>
+<p style="font-size:80%;">LDA assumes that the class-conditional distributions of the predictors are Gaussian and share a common covariance matrix across all classes. This assumption leads to decision boundaries that are linear.</p>
+</details>
+
+<details>
+<summary><strong>When would Quadratic Discriminant Analysis (QDA) be preferred over LDA, and what is the main reason for this preference?</strong></summary>
+<p style="font-size:70%;">QDA is preferred over LDA when the class-conditional covariance matrices are significantly different for each class. This allows QDA to capture more complex relationships in the data, resulting in quadratic (curved) decision boundaries, albeit with potentially higher variance due to more parameters.</p>
+</details>
+
+<details>
+<summary><strong>What is the "Naïve" assumption in Naïve Bayes classification, and why is it often made despite its potential inaccuracy?</strong></summary>
+<p style="font-size:70%;">The "Naïve" assumption is that the features are conditionally independent given the class. This assumption is often made because it greatly simplifies the modeling of high-dimensional densities by allowing one-dimensional densities to be multiplied, making the model computationally efficient and robust even when the assumption is not perfectly met.</p>
+</details>
+
+
+<details>
+<summary><strong>What is the ROC curve and how to interpret it?</strong></summary>
+<p style="font-size:70%;">The ROC curve plots True Positive Rate versus False Positive Rate as you vary the score threshold; curves closer to the upper-left are better, the diagonal is random. AUC summarizes ranking quality (0.5=random, 1=perfect) and equals the probability a random positive scores above a random negative. Pick the operating threshold by costs and class mix (optimal ROC slope $=\frac{C_{FP}\pi_-}{C_{FN}\pi_+}$); if costs are similar, maximize Youden’s $J=\text{TPR}-\text{FPR}$. Use PR curves when positives are rare and precision matters, and remember ROC/AUC don’t assess calibration—pair with reliability metrics.
+</p>
+</details>
+
+:::
+:::::
+::::::
+
+:::::::
+
 # Motivation {background-color="#cfb991"}
 
 ## Prediction

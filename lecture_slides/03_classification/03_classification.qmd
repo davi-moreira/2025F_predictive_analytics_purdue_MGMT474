@@ -818,6 +818,7 @@ $$
 
 <br>
 
+:::::::::: {style="font-size: 90%;"}
 ::: nonincremental
 ::: columns
 ::: column
@@ -846,11 +847,12 @@ $$
 - Apply **Bayes’ theorem** to “flip” into posteriors:
   $$
   p_k(x)=\Pr(Y=k\mid X=x)=
-  \frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}. \tag{4.15}
+  \frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}
   $$
 :::
 :::
 :::
+::::::::::
 
 ## Three Generative Classifiers (at a glance)
 
