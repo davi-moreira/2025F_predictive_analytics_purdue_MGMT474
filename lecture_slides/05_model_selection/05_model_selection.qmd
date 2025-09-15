@@ -57,7 +57,6 @@ html-math-method:
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 :::
 
-
 # Linear Model Selection and Regularization {background-color="#cfb991"}
 
 ## Linear Model Selection and Regularization
@@ -198,7 +197,7 @@ $$
 The first four selected models for best subset selection and forward stepwise selection on the Credit data set.
 
 | \# Variables | Best subset | Forward stepwise |
-|------------------|-------------------------|-----------------------------|
+|-------------------|-------------------------|-----------------------------|
 | One | *rating* | *rating* |
 | Two | *rating, income* | *rating, income* |
 | Three | *rating, income, student* | *rating, income, student* |
