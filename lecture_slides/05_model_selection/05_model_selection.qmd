@@ -197,7 +197,7 @@ $$
 The first four selected models for best subset selection and forward stepwise selection on the Credit data set.
 
 | \# Variables | Best subset | Forward stepwise |
-|-------------------|-------------------------|-----------------------------|
+|------------------------|------------------------|------------------------|
 | One | *rating* | *rating* |
 | Two | *rating, income* | *rating, income* |
 | Three | *rating, income, student* | *rating, income, student* |
@@ -1141,7 +1141,7 @@ Principal Components Regression (PCR) reduces dimensionality by finding principa
     2.  **Shrinkage Methods**: Regularizes coefficients to reduce variance and improve model performance (e.g., Ridge, Lasso).
     3.  **Dimension Reduction**: Reduces the number of predictors using linear combinations (e.g., PCA, PLS).
 -   **Model Selection Criteria**:
-    -   Use metrics like \$C_p \$, AIC, BIC, and Adjusted \$R\^2 \$to balance model fit and complexity.
+    -   Use metrics like $C_p$, AIC, BIC, and Adjusted $R^2$to balance model fit and complexity.
     -   **Cross-validation** is essential for estimating test error and selecting tuning parameters.
 -   **Bias-Variance Tradeoff**:
     -   Shrinkage methods improve prediction accuracy by reducing variance while maintaining bias.

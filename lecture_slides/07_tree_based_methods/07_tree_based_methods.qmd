@@ -152,12 +152,14 @@ knitr::include_graphics("figs/8_1-1.png")
 
 -   These categories closely match—though not exactly—the three regions we initially identified.
 
--   By systematically applying these splits, **decision trees segment data into meaningful, homogeneous groups**. 
-- The final tree has two internal nodes and three terminal nodes (**leaves**). The number in each leaf is the mean of the response for the observations that fall there.
+-   By systematically applying these splits, **decision trees segment data into meaningful, homogeneous groups**.
+
+-   The final tree has two internal nodes and three terminal nodes (**leaves**). The number in each leaf is the mean of the response for the observations that fall there.
 :::
 :::::
 ::::::
 
+```{=html}
 <!---
 
 ## Details of previous figure
@@ -166,6 +168,7 @@ knitr::include_graphics("figs/8_1-1.png")
 
 -   At a given internal node, the label (of the form $X_j < t_k$) indicates the left-hand branch emanating from that split, and the right-hand branch corresponds to $X_j \geq t_k$. For instance, the split at the top of the tree results in two large branches. The left-hand branch corresponds to $\text{Years} < 4.5$, and the right-hand branch corresponds to $\text{Years} \geq 4.5$.
 --->
+```
 
 ## Results
 

@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Professor: Davi Moreira">
   <title>MGMT 47400: Predictive Analytics –  MGMT 47400: Predictive Analytics </title>
@@ -29,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5b60505eb0a2c59e7e66c4d06532a844.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c812a774c17cd743a31b19f8745c44ab.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -143,7 +143,6 @@ Professor: Davi Moreira
 </section>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
-<div>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <ul>
@@ -167,7 +166,6 @@ Professor: Davi Moreira
 <li>Partial Least Squares (PLS)</li>
 </ul>
 </div></div>
-</div>
 <p><br></p>
 
 <aside><div>
@@ -254,7 +252,6 @@ Y = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p + \epsilon.
 </section>
 <section id="extensions-to-other-models" class="slide level2 center">
 <h2>Extensions to other models</h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
 <li><p>The same ideas apply to other types of models, such as logistic regression.</p></li>
@@ -269,7 +266,6 @@ D = -2 \cdot \log L_{\text{max}}
 <li><span class="math inline">\(\log L_{\text{max}}\)</span> is the maximized log-likelihood of the model.</li>
 </ul>
 <p>This formula allows the deviance to serve as a measure of goodness of fit, analogous to the residual sum of squares (RSS) in linear regression, but applicable to a broader class of models.</p>
-</div>
 </div>
 </section></section>
 <section>
@@ -295,7 +291,6 @@ D = -2 \cdot \log L_{\text{max}}
 </section>
 <section id="forward-stepwise-selection-in-detail" class="slide level2 center">
 <h2>Forward Stepwise Selection: In Detail</h2>
-<div>
 <div style="font-size: 80%;">
 <ol type="1">
 <li><p>Let <span class="math inline">\(\mathcal{M}_0\)</span> denote the <em>null model</em>, which contains no predictors.</p></li>
@@ -317,16 +312,15 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 <li><p>It is not guaranteed to find the best possible model out of all <span class="math inline">\(2^p\)</span> models containing subsets of the <span class="math inline">\(p\)</span> predictors.</p></li>
 </ul>
 </div>
-</div>
 </section>
 <section id="credit-data-example" class="slide level2 center">
 <h2>Credit data example</h2>
 <p>The first four selected models for best subset selection and forward stepwise selection on the Credit data set.</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 34%">
-<col style="width: 39%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -363,7 +357,6 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 </section>
 <section id="summary-forward-stepwise-selection" class="slide level2 center">
 <h2>Summary: Forward Stepwise Selection</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Stepwise selection is a computationally efficient alternative to best subset selection in model building, especially with large predictor sets.</p>
 <div class="columns">
@@ -390,7 +383,6 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 <li><p><strong>Correlation Effects</strong>: The discrepancies between the two methods arise from correlations among predictors, showcasing the intricate dynamics of variable selection in regression modeling.</p></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section>
@@ -427,7 +419,6 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 </section>
 <section id="summary-backward-stepwise-selection" class="slide level2 center">
 <h2>Summary: Backward Stepwise Selection</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Backward stepwise selection removes predictors from a full model to improve efficiency in model selection, contrasting with forward stepwise selection.</p>
 <div class="columns">
@@ -454,7 +445,6 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 <li><p><strong>Outcome Consistency</strong>: While backward stepwise may not find the absolute best model, it can produce models that perform well on unseen data, demonstrating its practical utility in predictive modeling.</p></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section>
@@ -494,7 +484,6 @@ p + (p - 1) + (p - 2) + \dots + 1 = \frac{p(p + 1)}{2}
 </section>
 <section id="mallows-c_p" class="slide level2 center">
 <h2>Mallows’ <span class="math inline">\(C_p\)</span></h2>
-<div>
 <div style="font-size: 80%;">
 <p>Mallows’ <span class="math inline">\(C_p\)</span> balances <strong>model fit</strong> and <strong>model complexity</strong>:</p>
 <p><span class="math display">\[
@@ -516,7 +505,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li>The penalty term <span class="math inline">\(2d\hat{\sigma}^2\)</span> discourages overfitting.</li>
 </ul>
 <p><strong>Decision</strong>: The lowest, the better!</p>
-</div>
 </div>
 </section>
 <section id="aic" class="slide level2 center">
@@ -560,7 +548,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-c_p-aic-bic-and-adjusted-r-squared" class="slide level2 center">
 <h2>Summary: <span class="math inline">\(C_p\)</span>, AIC, BIC, and adjusted R-squared</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Estimating test error for models involves adjusting training error or using direct methods like cross-validation. Tools like CP, AIC, BIC, and adjusted R-squared help select optimal models.</p>
 <div class="columns">
@@ -587,7 +574,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li><p><strong>Simplicity Preference</strong>: Favoring simpler models with fewer predictors can lead to better generalization and reduced risk of overfitting, aligning with the principle of Occam’s Razor in statistical modeling.</p></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section>
@@ -631,7 +617,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-validation-and-cross-validation" class="slide level2 center">
 <h2>Summary: Validation and Cross-validation</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Validation and cross-validation help select the best model size by estimating prediction error without needing sigma squared or the number of parameters.</p>
 <div class="columns">
@@ -659,7 +644,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ul>
 </div></div>
 </div>
-</div>
 </section></section>
 <section>
 <section id="shrinkage-methods" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -681,7 +665,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="ridge-regression-1" class="slide level2 center">
 <h2>Ridge regression</h2>
-<div>
 <p>Recall that the least squares fitting procedure estimates <span class="math inline">\(\beta_0, \beta_1, \ldots, \beta_p\)</span> using the values that minimize</p>
 <p><span class="math display">\[
     \text{RSS} = \sum_{i=1}^n \left( y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij} \right)^2.
@@ -697,7 +680,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <ul>
 <li>Shrinkage penalty: <span class="math inline">\(\lambda \sum_{j=1}^p \beta_j^2\)</span> penalizes coefficients that get too large. The model will pay a price according to the number of non-zero coefficients.</li>
 </ul>
-</div>
 </section>
 <section id="ridge-regression-2" class="slide level2 center">
 <h2>Ridge regression</h2>
@@ -756,7 +738,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-shrinkage-methods" class="slide level2 center">
 <h2>Summary: Shrinkage methods</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Shrinkage methods like Ridge regression and Lasso use penalties to shrink coefficients towards zero, improving model performance, especially with large datasets.</p>
 <div class="columns">
@@ -784,7 +765,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ul>
 </div></div>
 </div>
-</div>
 </section></section>
 <section>
 <section id="the-lasso" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -793,7 +773,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="the-lasso-1" class="slide level2 center">
 <h2>The Lasso</h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
 <li><p>Ridge regression does have one obvious disadvantage: unlike subset selection, which will generally select models that involve just a subset of the variables, ridge regression will include all <span class="math inline">\(p\)</span> predictors in the final model.</p></li>
@@ -805,7 +784,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <ul>
 <li>In statistical parlance, the lasso uses the sum of absolute values, an <span class="math inline">\(\ell_1\)</span> (pronounced “ell 1”) penalty, instead of an <span class="math inline">\(\ell_2\)</span> penalty. The <span class="math inline">\(\ell_1\)</span> norm of a coefficient vector <span class="math inline">\(\beta\)</span> is given by <span class="math inline">\(\|\beta\|_1 = \sum |\beta_j|\)</span>.</li>
 </ul>
-</div>
 </div>
 </section>
 <section id="the-lasso-2" class="slide level2 center">
@@ -870,7 +848,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-lasso" class="slide level2 center">
 <h2>Summary: Lasso</h2>
-<div>
 <div style="font-size: 60%;">
 <p>The Lasso regression technique improves upon ridge regression by both shrinking coefficients and performing variable selection, setting some coefficients to zero.</p>
 <div class="columns">
@@ -897,7 +874,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li><p><strong>Model Performance</strong>: The effectiveness of Lasso and ridge regression varies based on the underlying data structure. Lasso performs better with sparse true models, while ridge regression may be more effective when many predictors are significant.</p></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section>
@@ -929,7 +905,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-selecting-the-tuning-parameter-lambda" class="slide level2 center">
 <h2>Summary: Selecting the tuning parameter (lambda)</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Selecting the tuning parameter (lambda) for ridge regression and lasso is crucial, as it significantly influences model performance. Cross-validation is an effective method for this selection.</p>
 <div class="columns">
@@ -956,7 +931,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ul>
 </div></div>
 </div>
-</div>
 </section></section>
 <section>
 <section id="dimension-reduction-methods" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -972,7 +946,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="dimension-reduction-methods-details" class="slide level2 center">
 <h2>Dimension Reduction Methods: Details</h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
 <li>Let <span class="math inline">\(Z_1, Z_2, \ldots, Z_M\)</span> represent <span class="math inline">\(M &lt; p\)</span> <em>linear combinations</em> of our original <span class="math inline">\(p\)</span> predictors. That is,</li>
@@ -992,11 +965,9 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li>Note that in model (2), the regression coefficients are given by <span class="math inline">\(\theta_0, \theta_1, \ldots, \theta_M\)</span>. If the constants <span class="math inline">\(\phi_{m1}, \ldots, \phi_{mp}\)</span> are chosen wisely, then such dimension reduction approaches can often outperform OLS regression.</li>
 </ul>
 </div>
-</div>
 </section>
 <section id="dimension-reduction-methods-2" class="slide level2 center">
 <h2>Dimension Reduction Methods</h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
 <li>Notice that from definition (1),</li>
@@ -1013,11 +984,9 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li><p>Can win in the bias-variance tradeoff.</p></li>
 </ul>
 </div>
-</div>
 </section>
 <section id="summary-dimension-reduction" class="slide level2 center">
 <h2>Summary: Dimension reduction</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Dimension reduction transforms original predictors into fewer linear combinations, improving model fitting while maintaining low bias and variance.</p>
 <div class="columns">
@@ -1044,7 +1013,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li><p><strong>Innovation in Coefficient Form</strong>: The requirement for coefficients to adopt a specific structure in dimension reduction can provide insights into the relationships among predictors, enhancing model interpretability and utility.</p></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section>
@@ -1075,7 +1043,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="pictures-of-pca-1" class="slide level2 center">
 <h2>Pictures of PCA</h2>
-<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1091,7 +1058,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 <li><p><strong>Left:</strong> The first principal component, chosen to minimize the sum of the squared perpendicular distances to each point, is shown in green. These distances are represented using the black dashed line segments.</p></li>
 <li><p><strong>Right:</strong> The left-hand panel has been rotated so that the first principal component lies on the x-axis.</p></li>
 </ul>
-</div>
 </div>
 </section>
 <section id="pictures-of-pca-2" class="slide level2 center">
@@ -1164,7 +1130,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-principal-components-regression-pcr" class="slide level2 center">
 <h2>Summary: Principal Components Regression (PCR)</h2>
-<div>
 <div style="font-size: 60%;">
 <p>Principal Components Regression (PCR) reduces dimensionality by finding principal components and using them in least squares regression for efficient modeling.</p>
 <div class="columns">
@@ -1192,7 +1157,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ul>
 </div></div>
 </div>
-</div>
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1201,7 +1165,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </section>
 <section id="summary-1" class="slide level2 center">
 <h2>Summary</h2>
-<div>
 <div style="font-size: 70%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1215,7 +1178,7 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ol></li>
 <li><strong>Model Selection Criteria</strong>:
 <ul>
-<li>Use metrics like $C_p $, AIC, BIC, and Adjusted $R^2 $to balance model fit and complexity.</li>
+<li>Use metrics like <span class="math inline">\(C_p\)</span>, AIC, BIC, and Adjusted <span class="math inline">\(R^2\)</span>to balance model fit and complexity.</li>
 <li><strong>Cross-validation</strong> is essential for estimating test error and selecting tuning parameters.</li>
 </ul></li>
 <li><strong>Bias-Variance Tradeoff</strong>:
@@ -1252,7 +1215,6 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
 </ul></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1516,190 +1478,172 @@ C_p = \frac{1}{n} \left( \text{RSS} + 2d\hat{\sigma}^2 \right)
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
