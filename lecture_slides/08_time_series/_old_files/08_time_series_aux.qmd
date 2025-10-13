@@ -1,0 +1,280 @@
+---
+title: "Time Series for Predictive Analytics: An End-to-End Workflow"
+subtitle: "MGMT 47400 – Daniels School of Business"
+author: "Dr. Davi Moreira"
+institute: "Purdue University – Daniels School of Business"
+date: "Updated: 2025-10-11"
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-line-numbers: true
+    incremental: true
+    footer: 'MGMT 47400 • Time Series for Prediction'
+editor: visual
+---
+
+## Agenda
+
+1.  Problem framing & data hygiene for temporal prediction
+2.  Baselines & decomposition
+3.  Stationarity, ACF/PACF, and differencing
+4.  Classical models (ARIMA/SARIMA/SARIMAX) for numeric targets
+5.  Time-aware validation: holdout by time, rolling-origin, `TimeSeriesSplit`, and gaps
+6.  Feature engineering for ML forecasters
+7.  ML pipelines for forecasting (Ridge/Lasso, RF, GBM, XGBoost) with leak-safe CV
+8.  Multi-step forecast strategies (recursive, direct, multi-output)
+9.  Uncertainty quantification and prediction intervals
+10. Time-ordered classification (categorical targets): labeling, splits, metrics, calibration
+11. Monitoring across vintages & model governance
+12. References & further reading
+
+------------------------------------------------------------------------
+
+## 1) Problem framing
+
+-   **Goal**: Predict an outcome measured over time.
+    -   Numeric response (forecasting): $y_t \in \mathbb{R}$
+    -   Categorical response (time-ordered classification): $y_t \in {0,1,\dots}$
+-   **Data structure**: time index $t$, optional exogenous regressors $\mathbf{x}\_t$.
+-   **Key risks**: data leakage (look-ahead, future-derived features), temporal dependence, non-stationarity.
+
+**Leakage taxonomy** (examples): - Using $y\_{t+1}$ or features computed with future windows to predict $y_t$. - Global standardization fitted on full history; must fit only on training window. - Target leakage via engineered features that use labels from the future.
+
+> Guiding rule: *Any transform, selection, or encoding must be learned only on training data from past to present.*
+
+------------------------------------------------------------------------
+
+## 2) Baselines & decomposition
+
+-   **Naïve**: $\hat{y}\_{t+h\|t} = y_t$
+-   **Seasonal naïve** (period (m)): $\hat{y}*{t+h\|t} = y*{t+h-m\lfloor (h-1)/m \rfloor}$
+-   **Drift**: $\hat{y}*{t+h\|t} = y_t +* \frac{h}{t-t_0}(y_t - y{t_0})$
+
+**Decomposition**: $y_t = \text{Trend}\_t + \text{Seasonal}\_t + \text{Remainder}\_t$
+
+``` python
+#| label: fig-decompose
+#| echo: true
+#| fig-cap: STL decomposition (example)
+import pandas as pd, numpy as np
+from statsmodels.tsa.seasonal import STL
+y = pd.Series(..., index=...)  # supply your series
+res = STL(y, period=12).fit()
+res.plot()
+```
+
+------------------------------------------------------------------------
+
+## 3) Stationarity & correlation structure
+
+-   **Weak stationarity**: $\mathbb{E}$$y_t$$=\mu$, $\mathrm{Var}(y_t)=\sigma^2$, $\mathrm{Cov}(y_t,y\_{t+k})=\gamma\_k$
+-   **ACF**: $\rho\_k = \gamma\_k/\gamma\_0$
+-   **Differencing**: $\nabla y_t = y_t - y\_{t-1}$, seasonal $\nabla*m y_t = y_t - y\*{t-m}$
+
+``` python
+#| label: fig-acf-pacf
+#| echo: true
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+import matplotlib.pyplot as plt
+fig1 = plot_acf(y.dropna(), lags=48)
+fig2 = plot_pacf(y.dropna(), lags=48)
+plt.show()
+```
+
+------------------------------------------------------------------------
+
+## 4) Classical models for numeric targets
+
+### ARIMA ((p,d,q))
+
+-   Difference (d) times, then model: $$ \phi(B)(1-B)^d y_t = \theta(B)\varepsilon\_t, \quad \varepsilon\_t \sim \text{i.i.d.}(0,\sigma^2) $$ where $\phi(B)=1-\phi\_1B-\cdots-\phi\_pB^p$, $\theta(B)=1+\theta\_1B+\cdots+\theta\_qB^q$.
+
+### Seasonal ARIMA ((p,d,q)\times(P,D,Q)\_m)
+
+$$(1-B)^d (1-B^m)^D \phi(B)\Phi(B^m) y_t = \theta(B)\Theta(B^m)\varepsilon\_t.$$
+
+### SARIMAX (with exogenous regressors)
+
+$$(1-B)^d (1-B^m)^D \phi(B)\Phi(B^m) y_t = \theta(B)\Theta(B^m)\varepsilon\_t + \mathbf{x}\_t^\top \beta.$$
+
+``` python
+#| echo: true
+import statsmodels.api as sm
+endog = y
+exog  = ...  # pd.DataFrame of aligned regressors
+model = sm.tsa.statespace.SARIMAX(endog, exog=exog, order=(p,d,q),
+                                  seasonal_order=(P,D,Q,m), enforce_stationarity=False,
+                                  enforce_invertibility=False)
+res = model.fit()
+forecast = res.get_forecast(steps=H, exog=exog_future).predicted_mean
+```
+
+**Diagnostics**: standardized residuals, Ljung–Box, ACF of residuals, normality check.
+
+------------------------------------------------------------------------
+
+## 5) Time-aware validation (direct estimation of test error)
+
+Why random K-fold is invalid: violates temporal order and leaks future into training.
+
+**Schemes**: - **Temporal holdout**: train on $$$t_0, t_1$$), test on ((t_1, t_2$$). - **Rolling-origin (expanding)**: - Fold (k): train $$$t_0, t_k$$), test ((t_k, t\_{k+1}$$) - **Sliding window** (fixed-length training window). - **Blocked CV with gap**: leave a gap (g) between train and test to avoid leakage via feature lags/rolling stats. - **`TimeSeriesSplit`** (scikit-learn): configurable splits; emulate gap by trimming edges.
+
+``` python
+#| echo: true
+from sklearn.model_selection import TimeSeriesSplit
+import numpy as np
+
+tscv = TimeSeriesSplit(n_splits=5, test_size=24)  # e.g., 24 periods per fold
+for k, (tr, te) in enumerate(tscv.split(np.arange(len(y)))):
+    # fit model on y.iloc[tr], evaluate on y.iloc[te]
+    ...
+```
+
+**Metrics** (numeric): RMSE, MAE, sMAPE, MASE.\
+**Metrics** (categorical): ROC-AUC, PR-AUC, Brier score, log loss, calibration.
+
+------------------------------------------------------------------------
+
+## 6) Feature engineering for ML forecasters
+
+-   Lags: $y\_{t-1},\dots,y\_{t-K}$, and lagged exogenous $x\_{t-j}$.
+-   Rolling stats: mean/median/std/min/max, EWMA.
+-   Calendar features: DOW, month, quarter, holidays; Fourier terms for seasonality.
+-   Interactions and regimes (e.g., promo × season).
+-   **Rule**: compute features using only past data in each training fold.
+
+``` python
+#| echo: true
+import pandas as pd
+def make_features(df, target_col, lags=(1,3,6,12), roll_windows=(3,6,12)):
+    out = df.copy()
+    for L in lags:
+        out[f"{target_col}_lag{L}"] = out[target_col].shift(L)
+    for W in roll_windows:
+        out[f"{target_col}_rollmean{W}"] = out[target_col].shift(1).rolling(W).mean()
+        out[f"{target_col}_rollstd{W}"]  = out[target_col].shift(1).rolling(W).std()
+    # Fourier terms (seasonality m)
+    import numpy as np
+    m = 12
+    for k in range(1, 3):
+        out[f"fourier_sin_{k}"] = np.sin(2*np.pi*k*np.arange(len(out))/m)
+        out[f"fourier_cos_{k}"] = np.cos(2*np.pi*k*np.arange(len(out))/m)
+    return out
+```
+
+------------------------------------------------------------------------
+
+## 7) ML pipelines with leak-safe CV
+
+``` python
+#| echo: true
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import Ridge, Lasso
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+import numpy as np, pandas as pd
+
+num_features = [...]  # numerical exog not derived from future
+cat_features = [...]  # categorical exog
+
+pre = ColumnTransformer([
+    ("num", StandardScaler(with_mean=True, with_std=True), num_features),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), cat_features),
+])
+
+model = Ridge(alpha=1.0)
+pipe = Pipeline([("prep", pre), ("est", model)])
+```
+
+**Walk-forward evaluator** (reusable):
+
+``` python
+#| echo: true
+def walk_forward_eval(X, y, splits, estimator, metrics):
+    records = []
+    for k, (tr, te) in enumerate(splits):
+        est = estimator  # clone if needed
+        est.fit(X.iloc[tr], y.iloc[tr])
+        pred = est.predict(X.iloc[te])
+        rec = {"fold": k}
+        for name, fn in metrics.items():
+            rec[name] = fn(y.iloc[te], pred)
+        records.append(rec)
+    return pd.DataFrame(records).assign(mean=lambda d: d.drop(columns=["fold"]).mean(axis=1))
+```
+
+------------------------------------------------------------------------
+
+## 8) Multi-step strategies
+
+-   **Recursive**: fit 1-step model; iterate predictions to reach horizon (H).
+-   **Direct**: fit (H) separate models for each step (h).
+-   **Multi-output**: fit one model that predicts ((y\_{t+1},\dots,y\_{t+H})).
+
+Trade-offs: - Recursive propagates error; direct can be data-hungry; multi-output captures cross-horizon structure.
+
+------------------------------------------------------------------------
+
+## 9) Uncertainty & intervals
+
+-   **Parametric intervals** (ARIMA/SARIMAX state-space uncertainty).
+-   **Quantile regression** (predict $\hat{q}*{*\alpha}(y{t+h}))).
+-   **Conformal prediction** with rolling splits: valid, distribution-free intervals under exchangeability assumptions adapted per split.
+
+------------------------------------------------------------------------
+
+## 10) Time-ordered classification
+
+**Example label**: churn in next (k) periods: $y_t=\mathbb{1}{ \text{event in }(t,t+k$$}$.\
+**Splits**: forward-chaining; optional gap to avoid leakage from label construction.\
+**Metrics**: ROC-AUC, PR-AUC; **Calibration**: reliability curves, Brier score.
+
+``` python
+#| echo: true
+from sklearn.calibration import CalibrationDisplay
+from sklearn.metrics import roc_auc_score, average_precision_score, brier_score_loss
+# y_prob = clf.predict_proba(X_test)[:,1]
+# CalibrationDisplay.from_predictions(y_test, y_prob, n_bins=10)
+```
+
+------------------------------------------------------------------------
+
+## 11) Monitoring & model governance
+
+-   Backtest stability across vintages.
+-   Drift checks (level, variance, seasonality pattern).
+-   Recalibration windows; re-tuning cadence.
+-   Champion–challenger with rolling evaluation dashboards.
+
+------------------------------------------------------------------------
+
+## References
+
+-   Hyndman & Athanasopoulos, *Forecasting: Principles and Practice (Python edition)*, OTexts (online).
+-   Bianchi, *Time Series Analysis with Python* (online book + notebooks).
+-   statsmodels documentation: ARIMA/SARIMAX, seasonal decomposition.
+-   scikit-learn: `TimeSeriesSplit`, model selection, calibration.
+-   sktime: forecasting/classification unified framework.
+-   Nixtla: StatsForecast, MLForecast.
+-   Lazzeri, *Machine Learning for Time Series Forecasting with Python* (Wiley).
+-   Auffarth, *Machine Learning for Time-Series with Python* (Packt).
+-   Shmueli & Berger, *Practical Time Series Forecasting with Python*.
+-   Manning/Peixeiro, *Time Series Forecasting in Python*.
+
+------------------------------------------------------------------------
+
+## Appendix: Core formulas
+
+-   **MA(q)**: $y_t = \mu + \varepsilon\_t + \theta*1\varepsilon{t-1} + \cdots + \theta*q \varepsilon{t-q}$
+-   **AR(p)**: $y_t = \phi\_0 + \phi*1 y*{t-1} +* \cdots + \phi*p y{t-p} + \varepsilon\_t$
+-   **ARIMA(p,d,q)** and **SARIMAX** as defined above.
+-   **sMAPE**: $\displaystyle \text{sMAPE}=\frac{100\%}{n}\sum\_t \frac{|y_t-\hat{y}_t|}{(|y_t|+|\hat{y}_t|)/2}$
+-   **MASE**: $\displaystyle \text{MASE} = \frac{\frac{1}{n}\sum_t |y_t-\hat{y}_t|}{\frac{1}{n-m}\sum_{t=m+1}^{n} |y_t - y_{t-m}|}$
+-   **Brier score**: $\text{BS}=\frac{1}{n}\sum\_t (y_t-\hat{p}\_t)^2$

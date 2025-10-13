@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to time series analysis – MGMT 47400: Predictive Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-79df7ed5347781c1339259261daa236f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Introduction to time series analysis</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/mgmt_474_ai_logo_02-modified.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule and Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-time-series" id="toc-what-is-a-time-series" class="nav-link" data-scroll-target="#what-is-a-time-series">What is a time series?</a></li>
+  <li><a href="#what-data-are-represented-as-time-series" id="toc-what-data-are-represented-as-time-series" class="nav-link" data-scroll-target="#what-data-are-represented-as-time-series">What data are represented as time series?</a></li>
+  <li><a href="#time-series-analysis" id="toc-time-series-analysis" class="nav-link" data-scroll-target="#time-series-analysis">Time series analysis</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  </ul></li>
+  <li><a href="#time-series-components" id="toc-time-series-components" class="nav-link" data-scroll-target="#time-series-components">Time series components</a>
+  <ul class="collapse">
+  <li><a href="#trend" id="toc-trend" class="nav-link" data-scroll-target="#trend">Trend</a></li>
+  <li><a href="#seasonality" id="toc-seasonality" class="nav-link" data-scroll-target="#seasonality">Seasonality</a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
+  </ul></li>
+  <li><a href="#decomposition-models" id="toc-decomposition-models" class="nav-link" data-scroll-target="#decomposition-models">Decomposition Models</a>
+  <ul class="collapse">
+  <li><a href="#additive-model" id="toc-additive-model" class="nav-link" data-scroll-target="#additive-model">Additive model</a></li>
+  <li><a href="#multiplicative-model" id="toc-multiplicative-model" class="nav-link" data-scroll-target="#multiplicative-model">Multiplicative Model</a></li>
+  <li><a href="#pseudoadditive-model" id="toc-pseudoadditive-model" class="nav-link" data-scroll-target="#pseudoadditive-model">Pseudoadditive Model</a></li>
+  </ul></li>
+  <li><a href="#time-series-decomposition" id="toc-time-series-decomposition" class="nav-link" data-scroll-target="#time-series-decomposition">Time Series Decomposition</a>
+  <ul class="collapse">
+  <li><a href="#additive-decomposition" id="toc-additive-decomposition" class="nav-link" data-scroll-target="#additive-decomposition">Additive Decomposition</a></li>
+  <li><a href="#multiplicative-decomposition" id="toc-multiplicative-decomposition" class="nav-link" data-scroll-target="#multiplicative-decomposition">Multiplicative Decomposition</a></li>
+  <li><a href="#locally-estimated-scatterplot-smoothing-loess" id="toc-locally-estimated-scatterplot-smoothing-loess" class="nav-link" data-scroll-target="#locally-estimated-scatterplot-smoothing-loess">Locally estimated scatterplot smoothing (LOESS)</a></li>
+  <li><a href="#which-method-to-use" id="toc-which-method-to-use" class="nav-link" data-scroll-target="#which-method-to-use">Which method to use?</a></li>
+  </ul></li>
+  <li><a href="#identify-the-dominant-periodfrequency" id="toc-identify-the-dominant-periodfrequency" class="nav-link" data-scroll-target="#identify-the-dominant-periodfrequency">Identify the dominant period/frequency</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to time series analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="media/cover.png" style="width: 40%; display: block; margin: auto;"></p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lecture we will cover the following topics:</p>
+<ul>
+<li>Definition of time series data.</li>
+<li>Introduction to time series analysis and application examples.</li>
+<li>The main components of a time series.</li>
+<li>Time series decomposition.</li>
+</ul>
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;skip&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Imports</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.seasonal <span class="im">import</span> seasonal_decompose, STL</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.fft <span class="im">import</span> fft</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)  <span class="co"># for reproducibility</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="basics" class="level2">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<section id="what-is-a-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-time-series">What is a time series?</h3>
+<ul>
+<li>A time series is a sequence of data points organized in time order.</li>
+<li>Usually, the time signal is sampled at equally spaced points in time.</li>
+<li>These can be represented as the sequence of the sampled values.</li>
+<li>We refer to this setting as <em>discrete</em> time.</li>
+</ul>
+<p><img src="media/ts_equal.png" style="width: 50%; display: block; margin: auto;"></p>
+<ul>
+<li>Irregularly sampled time signals can still be represented as a time series.</li>
+<li>It is necessary to encode this additional information into an additional data structure.</li>
+<li>We refer to this setting as <em>continuous</em> time.</li>
+</ul>
+<p><img src="media/ts_unequal.png" style="width: 50%; display: block; margin: auto;"></p>
+<ul>
+<li>This setting is less common. We focus on discrete time.</li>
+</ul>
+</section>
+<section id="what-data-are-represented-as-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="what-data-are-represented-as-time-series">What data are represented as time series?</h3>
+<ul>
+<li>Time series are found in a myriad of natural phenomena, industrial and engineering applications, business, human activities, and so on.</li>
+</ul>
+<p><img src="media/passengers.png" style="width: 70%; display: block; margin: auto;"></p>
+<p><img src="media/co2.png" style="width: 70%; display: block; margin: auto;"></p>
+<p><img src="media/sunspots.png" style="width: 70%; display: block; margin: auto;"></p>
+<p><img src="media/electricity.png" style="width: 70%; display: block; margin: auto;"></p>
+<p><img src="media/water_temps.png" style="width: 70%; display: block; margin: auto;"></p>
+<ul>
+<li>Other examples include data from:
+<ul>
+<li>Finance: stock prices, asset prices, macroeconomic factors.</li>
+<li>E-Commerce: page views, new users, searches.</li>
+<li>Business: transactions, revenue, inventory levels.</li>
+<li>Natural language: machine translation, chatbots.</li>
+</ul></li>
+</ul>
+</section>
+<section id="time-series-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-analysis">Time series analysis</h3>
+<p>The main pruposes of time series analysis are: 1. To <strong>understand</strong> and characterize the underlying process that generates the observed data. 2. To <strong>forecast</strong> the evolution of the process, i.e., predict the next observed values.</p>
+<ul>
+<li>There are two main different perspectives to look at a time series.</li>
+<li>Each perspective leads to different time series analysis approaches</li>
+</ul>
+<section id="statistics-perspective" class="level4">
+<h4 class="anchored" data-anchor-id="statistics-perspective">Statistics perspective</h4>
+<ul>
+<li>A time series is a sequence of <em>random variables</em> that have some correlation or other distributional relationship between them.</li>
+</ul>
+<p><img src="media/random_var.png" style="width: 40%; display: block; margin: auto;"></p>
+<ul>
+<li>The sequence is a realization (observed values) of a stochastic process.</li>
+<li>Statistical time series approaches focus on finding the parameters of the stochastic process that most likely produced the observed time series.</li>
+</ul>
+</section>
+<section id="dynamical-system-perspective" class="level4">
+<h4 class="anchored" data-anchor-id="dynamical-system-perspective">Dynamical system perspective</h4>
+<ul>
+<li>This perspective assumes that there is a system governed by unknown variables <span class="math inline">\(\{x_1, x_2, x_3, \dots ,x_𝑁\}\)</span>.</li>
+<li>Generally, we only observe one time series <span class="math inline">\(y\)</span> generated by the system.</li>
+<li>What can <span class="math inline">\(y\)</span> be?
+<ul>
+<li>One of the system variables.</li>
+<li>A function <span class="math inline">\(f\)</span> of system variables.</li>
+</ul></li>
+<li>The objective of the analysis is to reconstruct the dynamics of the entire system from <span class="math inline">\(y\)</span>.</li>
+</ul>
+<p><img src="media/partial.png" style="width: 40%; display: block; margin: auto;"></p>
+</section>
+</section>
+<section id="applications" class="level3">
+<h3 class="anchored" data-anchor-id="applications">Applications</h3>
+<p>Time series analysis is applied in many real world applications, including - Economic forecasting - Stock market analysis - Demand planning and forecasting - Anomaly detection - … And much more</p>
+<p><strong>Economic Forecasting</strong></p>
+<ul>
+<li>Time series analysis is used in macroeconomic predictions.</li>
+<li>World Trade Organization does time series forecasting to predict levels of international trade [<a href="https://www.econ-jobs.com/research/36056-Forecasting-international-trade-A-time-series-approach.pdf">source</a>].</li>
+<li>Federal Reserve uses time series forecasts of the economy to set interest rates [<a href="https://www.federalreserve.gov/pubs/feds/2009/200910/200910pap.pdf">source</a>].</li>
+</ul>
+<p><img src="media/economic.png" style="width: 50%; display: block; margin: auto;"></p>
+<p><strong>Demand forecasting</strong></p>
+<ul>
+<li>Time series analysis is used to predict demand at different levels of granularity.</li>
+<li>Amazon and other e commerce companies use time series modeling to predict demand at a product geography level [<a href="https://www.theverge.com/2014/1/18/5320636/amazon-plans-to-ship-your-packages-before-you-even-buy-them">source</a>].</li>
+<li>Helps meet customer needs (fast shipping) and reduce inventory waste</li>
+</ul>
+<p><img src="media/ecommerce.png" style="width: 50%; display: block; margin: auto;"></p>
+<p><strong>Anomaly detection</strong></p>
+<ul>
+<li>Used to detect anomalous behaviors in the underlying system by looking at unusual patterns in the time series.</li>
+<li>Widely used in manufacturing to detect defects and target preventive maintenance [<a href="https://papers.phmsociety.org/index.php/phme/article/view/1256/phmec_20_1256">source</a>].</li>
+<li>With new IoT devices, anomaly detection is being used in machinery heavy industries, such as petroleum and gas [<a href="https://arxiv.org/abs/1607.02480">source</a>].</li>
+</ul>
+<p><img src="media/anomaly.png" style="width: 50%; display: block; margin: auto;"></p>
+<hr>
+</section>
+</section>
+<section id="time-series-components" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-components">Time series components</h2>
+<ul>
+<li>A time series is often assumed to be composed of three components:
+<ul>
+<li><em>Trend</em>: the long-term direction.</li>
+<li><em>Seasonality</em>: the periodic behavior.</li>
+<li><em>Residuals</em>: the irregular fluctuations.</li>
+</ul></li>
+</ul>
+<section id="trend" class="level3">
+<h3 class="anchored" data-anchor-id="trend">Trend</h3>
+<ul>
+<li>Trend captures the general direction of the time series.</li>
+<li>For example, increasing number of passengers over the years despite seasonal fluctuations.</li>
+<li>Trend can be increasing, decreasing, or constant.</li>
+<li>It can increase/decrease in different ways over time (linearly, exponentially, etc…).</li>
+</ul>
+<p><img src="media/passengers_trend.png" style="width: 70%; display: block; margin: auto;"></p>
+<ul>
+<li>Let’s create a trend from scratch to understand how it looks like.</li>
+</ul>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(<span class="dv">144</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> time <span class="op">*</span> <span class="fl">2.65</span> <span class="op">+</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, trend, color<span class="op">=</span><span class="st">'tab:red'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Trend vs Time"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="seasonality" class="level3">
+<h3 class="anchored" data-anchor-id="seasonality">Seasonality</h3>
+<ul>
+<li>Periodic fluctuations in time series data that occur at regular intervals due to seasonal factors.</li>
+<li>It is characterized by consistent and predictable patterns over a specific period (e.g., daily, monthly, quarterly, yearly).</li>
+</ul>
+<p>It can be driven by many factors. - Naturally occurring events such as weather fluctuations caused by time of year. - Business or administrative procedures, such as start and end of a school year. - Social or cultural behavior, e.g., holidays or religious observances.</p>
+<ul>
+<li>Let’s generate the seasonal component.</li>
+</ul>
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>seasonal <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> np.sin( time <span class="op">*</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, seasonal, color<span class="op">=</span><span class="st">'tab:orange'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Seasonality vs Time"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="residuals" class="level3">
+<h3 class="anchored" data-anchor-id="residuals">Residuals</h3>
+<ul>
+<li>Residuals are the random fluctuations left over after trend and seasonality are removed from the original time series.</li>
+<li>One should not see a trend or seasonal pattern in the residuals.</li>
+<li>They represent short term, rather unpredictable fluctuations.</li>
+</ul>
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, residuals, color<span class="op">=</span><span class="st">'tab:green'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Residuals vs Time"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="decomposition-models" class="level2">
+<h2 class="anchored" data-anchor-id="decomposition-models">Decomposition Models</h2>
+<ul>
+<li>Time series components can be decomposed with the following models:
+<ol type="1">
+<li>Additive decomposition</li>
+<li>Multiplicative decomposition</li>
+<li>Pseudoadditive decomposition</li>
+</ol></li>
+</ul>
+<section id="additive-model" class="level3">
+<h3 class="anchored" data-anchor-id="additive-model">Additive model</h3>
+<ul>
+<li>Additive models assume that the observed time series is the sum of its components:</li>
+</ul>
+<p><span class="math display">\[X(t) = T(t) + S(t) + R(t)\]</span></p>
+<ul>
+<li>where
+<ul>
+<li><span class="math inline">\(X(t)\)</span> is the time series<br>
+</li>
+<li><span class="math inline">\(T(t)\)</span> is the trend<br>
+</li>
+<li><span class="math inline">\(S(t)\)</span> is the seasonality<br>
+</li>
+<li><span class="math inline">\(R(t)\)</span> is the residual<br>
+</li>
+</ul></li>
+<li>Additive models are used when the magnitudes of the seasonal and residual values do not depend on the level of the trend.</li>
+</ul>
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>additive <span class="op">=</span> trend <span class="op">+</span> seasonal <span class="op">+</span> residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, additive, <span class="st">'tab:blue'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Additive Time Series"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplicative-model" class="level3">
+<h3 class="anchored" data-anchor-id="multiplicative-model">Multiplicative Model</h3>
+<ul>
+<li>Assumes that the observed time series is the product of its components:</li>
+</ul>
+<p><span class="math display">\[X(t) = T(t) \cdot S(t) \cdot R(t)\]</span></p>
+<ul>
+<li>It is possible to transform a multiplicative model to an additive one by applying a log transformation:</li>
+</ul>
+<p><span class="math display">\[\log \left( T(t) \cdot S(t) \cdot R(t) \right) = \log(T(t)) + \log(S(t)) + \log(R(t))\]</span></p>
+<ul>
+<li>Multiplicative models are used when the magnitudes of seasonal and residual values depends on trend.</li>
+</ul>
+<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>multiplicative <span class="op">=</span> trend <span class="op">*</span> seasonal <span class="co"># we do not include residuals to make the pattern more clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, multiplicative, <span class="st">'tab:blue'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Multiplicative Time Series"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pseudoadditive-model" class="level3">
+<h3 class="anchored" data-anchor-id="pseudoadditive-model">Pseudoadditive Model</h3>
+<ul>
+<li>Pseudoadditive models combine elements of the additive and multiplicative models.</li>
+<li>Useful when:
+<ul>
+<li>Time series values are close to or equal to zero. Multiplicative models struggle with zero values, but you still need to model multiplicative seasonality.</li>
+<li>Some features are multiplicative (e.g., seasonal effects) and other are additive (e.g., residuals).</li>
+<li>Complex seasonal patterns or data that do not completely align with additive or multiplicative model.</li>
+</ul></li>
+<li>For example, this model is particularly relevant for modeling series that:
+<ul>
+<li>are extremely weather-dependent,</li>
+<li>have sharply pronounced seasonal fluctuations and trend-cycle movements.</li>
+</ul></li>
+<li>Formulation:</li>
+</ul>
+<p><span class="math display">\[X(t) = T(t) + T(t)\cdot(S(t) - 1) + T(t)\cdot(R(t) - 1) = T(t)\cdot(S(t) + R(t) -1)\]</span></p>
+<div id="cell-48" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pseudoadditive <span class="op">=</span> trend <span class="op">*</span> (seasonal <span class="op">+</span> residuals <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-49" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ax.plot(time, pseudoadditive, <span class="st">'tab:blue'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Months"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Passengers"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Pseudoadditive Time Series"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="time-series-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-decomposition">Time Series Decomposition</h2>
+<ul>
+<li><p>Now let’s reverse directions.</p></li>
+<li><p>We have additive and multiplicative data.</p></li>
+<li><p>Let’s decompose them into their three components.</p></li>
+<li><p>A very simple, yet often useful, approach is to estimate a <em>linear</em> trend.</p></li>
+<li><p>A <em>detrended</em> time series is obtained by subtracting the linear trend from the data.</p></li>
+<li><p>The linear trend is computed as a 1st order polynomial.</p></li>
+</ul>
+<div id="cell-54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(np.arange(<span class="bu">len</span>(additive)), additive, <span class="dv">1</span>) <span class="co"># estimate line coefficient</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> np.arange(<span class="bu">len</span>(additive)) <span class="op">*</span> slope <span class="op">+</span> intercept <span class="co"># linear trend</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>detrended <span class="op">=</span> additive <span class="op">-</span> trend <span class="co"># remove the trend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-55" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.plot(additive, label<span class="op">=</span><span class="st">'Original'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(trend, label<span class="op">=</span><span class="st">'Trend'</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.plot(detrended, label<span class="op">=</span><span class="st">'Detrended'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Next, we will use <code>seasonal_decompose</code> (more information <a href="http://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.seasonal_decompose.html">here</a>) to isolate the main time series components.</li>
+<li>This is a simple method that requires us to specify the type of model (additive or multiplicative) and the main period.</li>
+</ul>
+<section id="additive-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="additive-decomposition">Additive Decomposition</h3>
+<ul>
+<li>We need to specify an integer that represents the main seasonality of the data.</li>
+<li>By looking at the seasonal component, we see that the period is <em>approximately</em> <span class="math inline">\(12\)</span> time steps long.</li>
+<li>So, we set <code>period=12</code>.</li>
+</ul>
+<div id="cell-58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>additive_decomposition <span class="op">=</span> seasonal_decompose(x<span class="op">=</span>additive, model<span class="op">=</span><span class="st">'additive'</span>, period<span class="op">=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-59" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utility function to make the plots</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seas_decomp_plots(original, decomposition):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    _, axes <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">False</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].plot(original, label<span class="op">=</span><span class="st">'Original'</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].plot(decomposition.trend, label<span class="op">=</span><span class="st">'Trend'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].plot(decomposition.seasonal, label<span class="op">=</span><span class="st">'Seasonality'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">3</span>].plot(decomposition.resid, label<span class="op">=</span><span class="st">'Residuals'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">3</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-60" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>seas_decomp_plots(additive, additive_decomposition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>The blue line in each plot representes the decomposition.</p></li>
+<li><p>There is a legend in the upper left corner of each plot to let you know what each plot represents.</p></li>
+<li><p>You can see the decomposition is not perfect with regards to seasonality and residuals, but it’s pretty close.</p></li>
+<li><p>You may notice both <em>trend</em> and <em>residuals</em> are missing data towards the beginning and end.</p></li>
+<li><p>This has to do with how trend is calculated (beyond the scope of this lesson).</p></li>
+<li><p>The residuals are missing simply because <span class="math inline">\(R_{t} = Y_{t} - T_{t} - S_{t}\)</span>, so missing trend values mean missing residual values as well.</p></li>
+<li><p>In other words, there is nothing wrong with these graphs.</p></li>
+</ul>
+</section>
+<section id="multiplicative-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="multiplicative-decomposition">Multiplicative Decomposition</h3>
+<ul>
+<li>We use the same function as before, but on the <code>multiplicative</code> time series.</li>
+<li>Since we know this is a multiplicative time series, we declare <code>model='multiplicative'</code> in <code>seasonal_decompose</code>.</li>
+</ul>
+<div id="cell-64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>multiplicative_decomposition <span class="op">=</span> seasonal_decompose(x<span class="op">=</span>multiplicative, model<span class="op">=</span><span class="st">'multiplicative'</span>, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                                                  period<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>seas_decomp_plots(multiplicative, multiplicative_decomposition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Again, the decomposition does a relatively good job picking up the overall trend and seasonality.</li>
+<li>We can see the shapes follow the patterns we expect.</li>
+</ul>
+</section>
+<section id="locally-estimated-scatterplot-smoothing-loess" class="level3">
+<h3 class="anchored" data-anchor-id="locally-estimated-scatterplot-smoothing-loess">Locally estimated scatterplot smoothing (LOESS)</h3>
+<ul>
+<li>Next, we try a second method called <code>STL</code> (Seasonal and Trend decomposition using LOESS).</li>
+<li>We start with the additive model.</li>
+</ul>
+<div id="cell-67" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>stl_decomposition <span class="op">=</span> STL(endog<span class="op">=</span>additive, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>).fit()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>seas_decomp_plots(additive, stl_decomposition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>The STL decomposition does a very good job on the <code>additive</code> time series.</li>
+<li>Next, we try with the <code>multiplicative</code> one.</li>
+</ul>
+<div id="cell-69" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>stl_decomposition <span class="op">=</span> STL(endog<span class="op">=</span>multiplicative, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>).fit()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>seas_decomp_plots(multiplicative, stl_decomposition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>This decomposition is not as good as the previous one.</li>
+</ul>
+</section>
+<section id="which-method-to-use" class="level3">
+<h3 class="anchored" data-anchor-id="which-method-to-use">Which method to use?</h3>
+<p>Use <code>seasonal_decompose</code> when:</p>
+<ul>
+<li>Your time series data has a clear and stable seasonal pattern and trend.</li>
+<li>You prefer a simpler model with fewer parameters to adjust.</li>
+<li>The seasonal amplitude is constant over time (suggesting an additive model) or varies proportionally with the trend (suggesting a multiplicative model).</li>
+</ul>
+<p>Use <code>STL</code> when:</p>
+<ul>
+<li>Your time series exhibits complex seasonality that may change over time.</li>
+<li>You need to handle outliers effectively without them distorting the trend and seasonal components.</li>
+<li>You are dealing with non-linear trends and seasonality, and you need more control over the decomposition process.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="identify-the-dominant-periodfrequency" class="level2">
+<h2 class="anchored" data-anchor-id="identify-the-dominant-periodfrequency">Identify the dominant period/frequency</h2>
+<ul>
+<li><code>seasonal_decompose</code> expects the dominant period as a parameter.</li>
+<li>In this example, we generated the <code>seasonal</code> component by hand as follows:</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>seasonal <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> np.sin( time <span class="op">*</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>We said that the period was <em>approximately</em> <span class="math inline">\(12\)</span>.</p></li>
+<li><p>But, in general, how do we find it out 🤔?</p></li>
+<li><p>You can use one of the following techniques:</p>
+<ul>
+<li>Plot the data and try to figure out after how many steps the cycle repeats.</li>
+<li>Do an Autocorrelation Plot (more on this later).</li>
+<li>Use the Fast Fourier Transform on a signal <em>without</em> trend.</li>
+</ul></li>
+<li><p>We will look more into FFT later on.</p></li>
+<li><p>For now, you can use the following function to compute the dominant period in the data.</p></li>
+</ul>
+<div id="cell-77" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fft_analysis(signal):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Linear detrending</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    slope, intercept <span class="op">=</span> np.polyfit(np.arange(<span class="bu">len</span>(signal)), signal, <span class="dv">1</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    trend <span class="op">=</span> np.arange(<span class="bu">len</span>(signal)) <span class="op">*</span> slope <span class="op">+</span> intercept </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    detrended <span class="op">=</span> signal <span class="op">-</span> trend </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    fft_values <span class="op">=</span> fft(detrended)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    frequencies <span class="op">=</span> np.fft.fftfreq(<span class="bu">len</span>(fft_values))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove negative frequencies and sort</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    positive_frequencies <span class="op">=</span> frequencies[frequencies <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    magnitudes <span class="op">=</span> np.<span class="bu">abs</span>(fft_values)[frequencies <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Identify dominant frequency</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    dominant_frequency <span class="op">=</span> positive_frequencies[np.argmax(magnitudes)]</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dominant Frequency: </span><span class="sc">{</span>dominant_frequency<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert frequency to period (e.g., days, weeks, months, etc.)</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    dominant_period <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> dominant_frequency</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dominant Period: </span><span class="sc">{</span>dominant_period<span class="sc">:.2f}</span><span class="ss"> time units"</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dominant_period, positive_frequencies, magnitudes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-78" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>period, freqs, magnitudes <span class="op">=</span> fft_analysis(seasonal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dominant Frequency: 0.076
+Dominant Period: 13.09 time units</code></pre>
+</div>
+</div>
+<div id="cell-79" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}" data-tags="[&quot;hide-input&quot;]" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the spectrum</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.stem(freqs, magnitudes)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency Spectrum'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Magnitude'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_to_time_series_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>It turns out that the main seasonality was not exactly <span class="math inline">\(12\)</span>.</li>
+<li>If we want to generate a periodic signal with seasonality <span class="math inline">\(12\)</span>, we have to do as follows.</li>
+</ul>
+<div id="cell-81" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>seasonal_12 <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>time<span class="op">/</span><span class="dv">12</span>)<span class="op">*</span><span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-82" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fft_analysis(seasonal_12)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dominant Frequency: 0.083
+Dominant Period: 12.00 time units</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this lecture we covered the following topics. - The definition of a time series and examples of time series from the real world. - The definition of time series analysis and examples of its application in different fields. - A practical understanding of the three components of time series data. - The additive, multiplicative, and pseudo-additive models. - Standard approaches to decompose a time series in its constituent parts.</p>
+<hr>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<ul>
+<li>Consider as the seasonal component the periodic signal with period 12</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(<span class="dv">144</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>seasonal_12 <span class="op">=</span> <span class="dv">20</span> <span class="op">+</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>time<span class="op">/</span><span class="dv">12</span>)<span class="op">*</span><span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use <code>seasonal_12</code> and the <code>trend</code> and <code>residual</code> components below to define and plot the additive and the multiplicative models</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> time <span class="op">*</span> <span class="fl">2.65</span> <span class="op">+</span> <span class="dv">100</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Perform the seasonal decomposition with <code>seasonal_decompose</code> and <code>STL</code> on the new signals and compare the results with the ones obtained in class, where we used an approximate period.</li>
+</ul>
+</section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>Load the two different time series as follows.</p>
+<div id="cell-88" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ts_A <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"AirPassengers"</span>, <span class="st">"datasets"</span>).data[<span class="st">"value"</span>].values</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ts_A))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ts_B <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"CO2"</span>, <span class="st">"datasets"</span>).data[<span class="st">"value"</span>].values</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(ts_B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>144
+468</code></pre>
+</div>
+</div>
+<ul>
+<li>Plot the two time series.</li>
+<li>Determine if the time series looks additive or multiplicative models.</li>
+<li>Determine the main period of the seasonal component in the two time series.</li>
+</ul>
+</section>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<ul>
+<li>Decompose <code>ts_A</code> and <code>ts_B</code> using <code>seasonal_decompose</code> and <code>STL</code>.</li>
+<li>Comment on the results you obtain. from statsmodels.tsa.seasonal import seasonal_decompose, STL</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
