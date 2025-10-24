@@ -1126,6 +1126,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ## Presenting your Poster
 
+:::::: {style="font-size: 80%;"}
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
@@ -1156,6 +1157,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
     -   Prevent you or someone else blocking the poster
 
     -   [Follow the dress code: Business professional!](https://www.purdue.edu/undergrad-research/conferences/fall/photo-gallery.php){target="_blank"}
+        - [Need help with the dress code? Check the CCO Career Closet.](https://www.cco.purdue.edu/Students/WhatWeOffer?tab=CareerCloset&_gl=1*3evodk*_gcl_au*MjA2MDIzNjMzNC4xNzM5OTExMTIw*_ga*MTg1MjMxMzI3Mi4xNzIxNjU2OTMy*_ga_PF1CYQ27F6*MTc0Mzc5MzI4OC4yLjEuMTc0Mzc5NDA4NS4wLjAuMA..){target="_blank"} 
 :::
 :::::
 ::::::
@@ -1167,6 +1169,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 :::
 ::::
 :::::
+::::::
 
 # Summary {background-color="#cfb991"}
 
