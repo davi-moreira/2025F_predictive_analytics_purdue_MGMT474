@@ -695,7 +695,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 <center>
 
-![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="55%"}
+![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="53%"}
 
 </center>
 
@@ -749,7 +749,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -799,7 +799,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -839,7 +839,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -879,7 +879,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -927,7 +927,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -1003,7 +1003,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -1045,7 +1045,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -1081,7 +1081,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -1118,7 +1118,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
@@ -1162,7 +1162,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 \*This rubric is used by URC conference judges to evaluate live presentations. For our course, poster submissions will be assessed using a separate rubric. Please refer to the Poster First Draft and Final Poster Submission Milestones for the specific evaluation criteria.
 :::
 ::::
