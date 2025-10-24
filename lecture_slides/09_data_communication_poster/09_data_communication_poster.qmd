@@ -691,15 +691,16 @@ knitr::include_graphics("figs/storyboard_template.png")
 
 ## Planning Your Poster: Template and Rubric
 
+::::: nonincremental
+
 <center>
 
-![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="70%"}
+![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="55%"}
 
 </center>
 
-::::: nonincremental
 :::: aside
-::: {style="font-size: 80%;"}
+::: {style="font-size: 70%;"}
 -   *Check my [personal webpage](https://davi-moreira.github.io/applied_projects.html){target="_blank"} to see other posters and projects I have mentored. It is highly recommended!*
 
 -   *Thanks to [Professor Matthew A. Lanham](https://matthewalanham.github.io/experiential-learning.html){target="_blank"} for sharing the original version of this template.*
@@ -710,6 +711,7 @@ knitr::include_graphics("figs/storyboard_template.png")
 :::::
 
 <br>
+
 
 ## Planning Your Poster: Visual Hierarchy
 
