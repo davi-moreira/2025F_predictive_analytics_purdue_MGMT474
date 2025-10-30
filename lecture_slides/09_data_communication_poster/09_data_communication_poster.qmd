@@ -692,10 +692,9 @@ knitr::include_graphics("figs/storyboard_template.png")
 ## Planning Your Poster: Template and Rubric
 
 ::::: nonincremental
-
 <center>
 
-![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"} and [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}](figs/poster_template.png){width="53%"}
+![[Template](https://github.com/davi-moreira/2025F_predictive_analytics_purdue_MGMT474/raw/refs/heads/main/docs/lecture_slides/09_data_communication_poster/2025F_mgmt474_poster_template.pptx.zip){target="_blank"}, [Rubric\*](https://www.purdue.edu/undergrad-research/conferences/spring/Rubric_Poster.pdf){target="_blank"}, and [Video](https://www.youtube.com/watch?v=ReN-QcVTZ1o){target="_blank"}](figs/poster_template.png){width="53%"}
 
 </center>
 
@@ -711,7 +710,6 @@ knitr::include_graphics("figs/storyboard_template.png")
 :::::
 
 <br>
-
 
 ## Planning Your Poster: Visual Hierarchy
 
@@ -1126,7 +1124,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 
 ## Presenting your Poster
 
-:::::: {style="font-size: 80%;"}
+:::::::::: {style="font-size: 80%;"}
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
@@ -1157,7 +1155,8 @@ Show each step as a **section** in your poster or as **bullet points** under Met
     -   Prevent you or someone else blocking the poster
 
     -   [Follow the dress code: Business professional!](https://www.purdue.edu/undergrad-research/conferences/fall/photo-gallery.php){target="_blank"}
-        - [Need help with the dress code? Check the CCO Career Closet.](https://www.cco.purdue.edu/Students/WhatWeOffer?tab=CareerCloset&_gl=1*3evodk*_gcl_au*MjA2MDIzNjMzNC4xNzM5OTExMTIw*_ga*MTg1MjMxMzI3Mi4xNzIxNjU2OTMy*_ga_PF1CYQ27F6*MTc0Mzc5MzI4OC4yLjEuMTc0Mzc5NDA4NS4wLjAuMA..){target="_blank"} 
+
+        -   [Need help with the dress code? Check the CCO Career Closet.](https://www.cco.purdue.edu/Students/WhatWeOffer?tab=CareerCloset&_gl=1*3evodk*_gcl_au*MjA2MDIzNjMzNC4xNzM5OTExMTIw*_ga*MTg1MjMxMzI3Mi4xNzIxNjU2OTMy*_ga_PF1CYQ27F6*MTc0Mzc5MzI4OC4yLjEuMTc0Mzc5NDA4NS4wLjAuMA..){target="_blank"}
 :::
 :::::
 ::::::
@@ -1169,7 +1168,7 @@ Show each step as a **section** in your poster or as **bullet points** under Met
 :::
 ::::
 :::::
-::::::
+::::::::::
 
 # Summary {background-color="#cfb991"}
 
