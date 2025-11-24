@@ -50,22 +50,22 @@
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#overview",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#overview",
     "title": " MGMT 47400: Predictive Analytics ",
-    "section": "",
-    "text": "Deep Learning\nPyTorch vs. TensorFlow\nPyTorch\nNeural Networks\nSingle Layer Neural Network\nFitting Neural Networks\n\n\n\nConvolutional Neural Network — CNN\nDocument Classification\nRecurrent Neural Networks - RNN\nRNN for Document Classification\nRNN for Time Series Forecasting\nWhen to Use Deep Learning\n\n\n\n\n\n\n\nThis lecture content is inspired by and replicates the material from An Introduction to Statistical Learning."
+    "section": "Overview",
+    "text": "Overview\n\n\n\nDeep Learning\nPyTorch vs. TensorFlow\nPyTorch\nNeural Networks\nSingle Layer Neural Network\nFitting Neural Networks\n\n\n\nConvolutional Neural Network — CNN\nDocument Classification\nRecurrent Neural Networks - RNN\nRNN for Document Classification\nRNN for Time Series Forecasting\nWhen to Use Deep Learning\n\n\n\n\n\nThis lecture content is inspired by and replicates the material from An Introduction to Statistical Learning."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#deep-learning-1",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#deep-learning-1",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Deep Learning",
-    "text": "Deep Learning\n\n\n\n\n\nEarly Rise (1980s)\n\nNeural networks first gained popularity.\n\nHigh levels of excitement, with dedicated conferences (e.g., NeurIPS, Snowbird).\n\n1990s Shift\n\nEmergence of other methods (SVMs, Random Forests, Boosting).\n\nNeural networks receded into the background.\n\nResurgence (2010)\n\nRebranded and refined under the banner of Deep Learning.\n\nBy the 2020s, became extremely successful and widely adopted.\n\nKey Drivers of Success\n\nRapid increases in computing power (GPUs, parallel computing).\n\nAvailability of large-scale datasets.\n\nUser-friendly deep learning libraries (e.g., TensorFlow, PyTorch).\n\n\n\n\nMuch of the credit goes to three pioneers and their students:\n\nYann LeCun, Geoffrey Hinton, and Yoshua Bengio,\nwho received the 2019 ACM Turing Award for their work in Neural Networks."
+    "text": "Deep Learning\n\n\n\n\nEarly Rise (1980s)\n\nNeural networks first gained popularity.\n\nHigh levels of excitement, with dedicated conferences (e.g., NeurIPS, Snowbird).\n\n1990s Shift\n\nEmergence of other methods (SVMs, Random Forests, Boosting).\n\nNeural networks receded into the background.\n\nResurgence (2010)\n\nRebranded and refined under the banner of Deep Learning.\n\nBy the 2020s, became extremely successful and widely adopted.\n\nKey Drivers of Success\n\nRapid increases in computing power (GPUs, parallel computing).\n\nAvailability of large-scale datasets.\n\nUser-friendly deep learning libraries (e.g., TensorFlow, PyTorch).\n\n\n\n\nMuch of the credit goes to three pioneers and their students:\n\nYann LeCun, Geoffrey Hinton, and Yoshua Bengio,\nwho received the 2019 ACM Turing Award for their work in Neural Networks."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#ai-visionaries-interviews",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#ai-visionaries-interviews",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "AI Visionaries: Interviews",
-    "text": "AI Visionaries: Interviews\n\n\n\n\n\n\n\n\n Yann LeCunThe Future of AIDec 16, 2023 \n\n\n\n\n\n\n Geoffrey Hinton60 Minutes InterviewOct 9, 2023 \n\n\n\n\n\n\n Yoshua BengioPath to Human-Level AIApr 24, 2024"
+    "text": "AI Visionaries: Interviews\n\n\n\n\n\n\n\n\n Yann LeCunThe Future of AIDec 16, 2023 \n\n\n\n\n\n\n\n Geoffrey Hinton60 Minutes InterviewOct 9, 2023 \n\n\n\n\n\n\n\n Yoshua BengioPath to Human-Level AIApr 24, 2024"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#what-are-deep-learning-frameworks",
@@ -79,7 +79,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#pytorch-and-tensor-flow",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "PyTorch and Tensor Flow",
-    "text": "PyTorch and Tensor Flow\n\n\n\n\nWhat is PyTorch?\n\nDeveloped primarily by Facebook (Meta) and released on September 2016.\nEmphasizes a dynamic computation graph (eager execution).\nHighly “Pythonic”: feels natural for Python developers.\nStrong community presence in academia and research.\n\n\n\n\nWhy is PyTorch Necessary?\n\nEase of Use & Debugging\n\nEvaluate expressions immediately without building a separate graph.\n\nMore intuitive for experimenting with complex, innovative models.\n\nResearch Focus\n\nQuickly prototype new ideas and iterate.\n\nActive Ecosystem\n\nLibraries like torchvision, torchaudio, and others for specialized tasks.\n\n\n\n\n\n\nHow to begin\n\nhttps://pytorch.org/tutorials/beginner/basics/intro.html.\nThere is also a YouTube Series (PyTorch Beginner Series) also here (Introduction to PyTorch)\n\n\n\n\n\n\nWhat is TensorFlow?\n\nDeveloped primarily by Google and released in November 2015.\nHistorically used a static graph approach (with an “eager mode” added later).\nComes with extensive tools for deployment (mobile, web, and production).\nLarge ecosystem with well-integrated components (e.g., TensorBoard, TFX, TensorFlow Lite).\n\n\n\n\n\nWhy is TensorFlow Necessary?\n\nProduction-Ready\n\nStrong support for model serving at scale in enterprise environments.\n\nComprehensive Ecosystem\n\nVisualization (TensorBoard), data processing (TFX), and model deployment pipelines.\n\n\nCross-Platform & Hardware Support\n\nEasily deploy models to cloud infrastructures, mobile devices, and specialized hardware (TPUs).\n\n\n\n\n\n\nHow to begin\n\nhttps://www.tensorflow.org/tutorials. There is also a Quick Start!"
+    "text": "PyTorch and Tensor Flow\n\n\n\nWhat is PyTorch?\n\nDeveloped primarily by Facebook (Meta) and released on September 2016.\nEmphasizes a dynamic computation graph (eager execution).\nHighly “Pythonic”: feels natural for Python developers.\nStrong community presence in academia and research.\n\n\nWhy is PyTorch Necessary?\n\nEase of Use & Debugging\n\nEvaluate expressions immediately without building a separate graph.\n\nMore intuitive for experimenting with complex, innovative models.\n\nResearch Focus\n\nQuickly prototype new ideas and iterate.\n\nActive Ecosystem\n\nLibraries like torchvision, torchaudio, and others for specialized tasks.\n\n\n\n\nHow to begin\n\nhttps://pytorch.org/tutorials/beginner/basics/intro.html.\nThere is also a YouTube Series (PyTorch Beginner Series) also here (Introduction to PyTorch)\n\n\n\n\nWhat is TensorFlow?\n\nDeveloped primarily by Google and released in November 2015.\nHistorically used a static graph approach (with an “eager mode” added later).\nComes with extensive tools for deployment (mobile, web, and production).\nLarge ecosystem with well-integrated components (e.g., TensorBoard, TFX, TensorFlow Lite).\n\n\n\nWhy is TensorFlow Necessary?\n\nProduction-Ready\n\nStrong support for model serving at scale in enterprise environments.\n\nComprehensive Ecosystem\n\nVisualization (TensorBoard), data processing (TFX), and model deployment pipelines.\n\n\nCross-Platform & Hardware Support\n\nEasily deploy models to cloud infrastructures, mobile devices, and specialized hardware (TPUs).\n\n\n\n\nHow to begin\n\nhttps://www.tensorflow.org/tutorials. There is also a Quick Start!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#key-differences",
@@ -100,14 +100,14 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#comparison-of-advantages-and-disadvantages",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Comparison of Advantages and Disadvantages",
-    "text": "Comparison of Advantages and Disadvantages\n\n\n\n\n\n\n\n\n\nPyTorch\nTensorFlow\n\n\n\n\nAdvantages\n- Intuitive, Pythonic Syntax: Feels like standard Python, reducing friction for experimentation  - Dynamic Graph Execution: Simplifies debugging and model design  - Research & Academia Favorite: widely used in cutting-edge papers\n- Static Graph Optimization: Graph-based execution can be highly optimized for speed and memory usage  - Extensive Production Ecosystem: Includes TensorFlow Serving, TensorFlow Lite, TFX for data pipelines  - Large Corporate Adoption: Backed by Google, widely used in enterprise settings\n\n\nDisadvantages\n- Deployment Maturity: Production tooling and ecosystem are improving but still behind TensorFlow  - Smaller Enterprise Adoption: Historically overshadowed by TensorFlow’s widespread adoption\n- Learning Curve: The graph-based approach can be challenging for newcomers  - Historically Less Intuitive: Older APIs and tutorials can be confusing, though Eager Mode improves usability"
+    "text": "Comparison of Advantages and Disadvantages\n\n\n\n\n\n\n\n\n\n\nPyTorch\nTensorFlow\n\n\n\n\nAdvantages\n- Intuitive, Pythonic Syntax: Feels like standard Python, reducing friction for experimentation  - Dynamic Graph Execution: Simplifies debugging and model design  - Research & Academia Favorite: widely used in cutting-edge papers\n- Static Graph Optimization: Graph-based execution can be highly optimized for speed and memory usage  - Extensive Production Ecosystem: Includes TensorFlow Serving, TensorFlow Lite, TFX for data pipelines  - Large Corporate Adoption: Backed by Google, widely used in enterprise settings\n\n\nDisadvantages\n- Deployment Maturity: Production tooling and ecosystem are improving but still behind TensorFlow  - Smaller Enterprise Adoption: Historically overshadowed by TensorFlow’s widespread adoption\n- Learning Curve: The graph-based approach can be challenging for newcomers  - Historically Less Intuitive: Older APIs and tutorials can be confusing, though Eager Mode improves usability"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#recommendations",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#recommendations",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Recommendations",
-    "text": "Recommendations\n\n\n\nChoose PyTorch if:\n\nYour focus is on rapid experimentation and academic research\nYou prioritize a Pythonic workflow and easy debugging\nYou prefer a dynamic graph approach (about it).\nYou are working on cutting-edge models with high flexibility\nYou value seamless interaction with Python libraries\n\n\n\n\nChoose TensorFlow if:\n\nYou need robust production and deployment pipelines\nYou plan to integrate with Google Cloud services\nYou require support for mobile/edge devices (e.g., TensorFlow Lite)\nYou benefit from static graph optimization for performance\nYou want an end-to-end ecosystem (TFX, TensorBoard, Serving)"
+    "text": "Recommendations\n\n\nChoose PyTorch if:\n\nYour focus is on rapid experimentation and academic research\nYou prioritize a Pythonic workflow and easy debugging\nYou prefer a dynamic graph approach (about it).\nYou are working on cutting-edge models with high flexibility\nYou value seamless interaction with Python libraries\n\n\nChoose TensorFlow if:\n\nYou need robust production and deployment pipelines\nYou plan to integrate with Google Cloud services\nYou require support for mobile/edge devices (e.g., TensorFlow Lite)\nYou benefit from static graph optimization for performance\nYou want an end-to-end ecosystem (TFX, TensorBoard, Serving)"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#tensors-in-pytorch",
@@ -310,7 +310,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#non-convex-functions-and-gradient-descent",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Non Convex Functions and Gradient Descent",
-    "text": "Non Convex Functions and Gradient Descent\nLet \\(R(\\theta) = \\frac{1}{2} \\sum_{i=1}^n (y_i - f_\\theta(x_i))^2\\) with \\(\\theta = (\\{w_k\\}_{1}^K, \\beta)\\).\n\n\n\n\n\n\n\n\n\n\nStart with a guess \\(\\theta^0\\) for all the parameters in \\(\\theta\\), and set \\(t = 0\\).\nIterate until the objective \\(R(\\theta)\\) fails to decrease:\n\nFind a vector \\(\\delta\\) that reflects a small change in \\(\\theta\\), such that \\(\\theta^{t+1} = \\theta^t + \\delta\\) reduces the objective; i.e., \\(R(\\theta^{t+1}) &lt; R(\\theta^t)\\).\nSet \\(t \\gets t + 1\\)."
+    "text": "Non Convex Functions and Gradient Descent\nLet \\(R(\\theta) = \\frac{1}{2} \\sum_{i=1}^n (y_i - f_\\theta(x_i))^2\\) with \\(\\theta = (\\{w_k\\}_{1}^K, \\beta)\\).\n\n\nStart with a guess \\(\\theta^0\\) for all the parameters in \\(\\theta\\), and set \\(t = 0\\).\nIterate until the objective \\(R(\\theta)\\) fails to decrease:\n\nFind a vector \\(\\delta\\) that reflects a small change in \\(\\theta\\), such that \\(\\theta^{t+1} = \\theta^t + \\delta\\) reduces the objective; i.e., \\(R(\\theta^{t+1}) &lt; R(\\theta^t)\\).\nSet \\(t \\gets t + 1\\)."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#gradient-descent-continued",
@@ -338,21 +338,21 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#dropout-learning",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Dropout Learning",
-    "text": "Dropout Learning\n\n\n\n\n\n\n\n\n\n\nAt each Stochastic Gradient Descent (SGD) update, randomly remove units with probability \\(\\phi\\), and scale up the weights of those retained by \\(1/(1-\\phi)\\) to compensate.\nIn simple scenarios like linear regression, a version of this process can be shown to be equivalent to ridge regularization.\nAs in ridge, the other units stand in for those temporarily removed, and their weights are drawn closer together.\nSimilar to randomly omitting variables when growing trees in random forests."
+    "text": "Dropout Learning\n\n\nAt each Stochastic Gradient Descent (SGD) update, randomly remove units with probability \\(\\phi\\), and scale up the weights of those retained by \\(1/(1-\\phi)\\) to compensate.\nIn simple scenarios like linear regression, a version of this process can be shown to be equivalent to ridge regularization.\nAs in ridge, the other units stand in for those temporarily removed, and their weights are drawn closer together.\nSimilar to randomly omitting variables when growing trees in random forests."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#ridge-and-data-augmentation",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#ridge-and-data-augmentation",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Ridge and Data Augmentation",
-    "text": "Ridge and Data Augmentation\n\n\n\n\n\n\n\n\n\n\nMake many copies of each \\((x_i, y_i)\\) and add a small amount of Gaussian noise to the \\(x_i\\) — a little cloud around each observation — but leave the copies of \\(y_i\\) alone!\nThis makes the fit robust to small perturbations in \\(x_i\\), and is equivalent to ridge regularization in an OLS setting."
+    "text": "Ridge and Data Augmentation\n\n\nMake many copies of each \\((x_i, y_i)\\) and add a small amount of Gaussian noise to the \\(x_i\\) — a little cloud around each observation — but leave the copies of \\(y_i\\) alone!\nThis makes the fit robust to small perturbations in \\(x_i\\), and is equivalent to ridge regularization in an OLS setting."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#data-augmentation-on-the-fly",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#data-augmentation-on-the-fly",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Data Augmentation on the Fly",
-    "text": "Data Augmentation on the Fly\n\n\n\n\n\n\n\n\n\n\nData augmentation is especially effective with SGD, here demonstrated for a CNN and image classification.\nNatural transformations are made of each training image when it is sampled by SGD, thus ultimately making a cloud of images around each original training image.\nThe label is left unchanged — in each case still tiger.\nImproves performance of CNN and is similar to ridge."
+    "text": "Data Augmentation on the Fly\n\n\nData augmentation is especially effective with SGD, here demonstrated for a CNN and image classification.\nNatural transformations are made of each training image when it is sampled by SGD, thus ultimately making a cloud of images around each original training image.\nThe label is left unchanged — in each case still tiger.\nImproves performance of CNN and is similar to ridge."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#double-descent",
@@ -366,14 +366,14 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#the-double-descent-error-curve",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "The Double-Descent Error Curve",
-    "text": "The Double-Descent Error Curve\n\n\n\n\n\n\n\n\n\n\nWhen \\(d \\leq 20\\), model is OLS, and we see usual bias-variance trade-off.\nWhen \\(d &gt; 20\\), we revert to minimum-norm. As \\(d\\) increases above 20, \\(\\sum_{j=1}^d \\hat{\\beta}_j^2\\) decreases since it is easier to achieve zero error, and hence less wiggly solutions."
+    "text": "The Double-Descent Error Curve\n\n\nWhen \\(d \\leq 20\\), model is OLS, and we see usual bias-variance trade-off.\nWhen \\(d &gt; 20\\), we revert to minimum-norm. As \\(d\\) increases above 20, \\(\\sum_{j=1}^d \\hat{\\beta}_j^2\\) decreases since it is easier to achieve zero error, and hence less wiggly solutions."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#less-wiggly-solutions",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#less-wiggly-solutions",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Less Wiggly Solutions",
-    "text": "Less Wiggly Solutions\n\n\n\n\n\n\n\n\n\n\nTo achieve a zero-residual solution with \\(d = 20\\) is a real stretch!\nEasier for larger \\(d\\)."
+    "text": "Less Wiggly Solutions\n\n\nTo achieve a zero-residual solution with \\(d = 20\\) is a real stretch!\nEasier for larger \\(d\\)."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#some-facts",
@@ -394,14 +394,14 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#the-cifar100-database",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "The CIFAR100 Database",
-    "text": "The CIFAR100 Database\n\n\n\n\n\n\n\n\n\n\n\nThe figure shows 75 images drawn from the CIFAR100 database.\nThis database consists of 60,000 images labeled according to 20 superclasses (e.g. aquatic mammals), with five classes per superclass (beaver, dolphin, otter, seal, whale).\nEach image has a resolution of 32 × 32 pixels, with three eight-bit numbers per pixel representing red, green, and blue. The numbers for each image are organized in a three-dimensional array called a feature map.\nThe first two axes are spatial (both 32-dimensional), and the third is the channel axis, representing the three (blue, green or red) colors.\nThere is a designated training set of 50,000 images, and a test set of 10,000."
+    "text": "The CIFAR100 Database\n\n\n\nThe figure shows 75 images drawn from the CIFAR100 database.\nThis database consists of 60,000 images labeled according to 20 superclasses (e.g. aquatic mammals), with five classes per superclass (beaver, dolphin, otter, seal, whale).\nEach image has a resolution of 32 × 32 pixels, with three eight-bit numbers per pixel representing red, green, and blue. The numbers for each image are organized in a three-dimensional array called a feature map.\nThe first two axes are spatial (both 32-dimensional), and the third is the channel axis, representing the three (blue, green or red) colors.\nThere is a designated training set of 50,000 images, and a test set of 10,000."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#the-convolutional-network-hierarchy",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#the-convolutional-network-hierarchy",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "The Convolutional Network Hierarchy",
-    "text": "The Convolutional Network Hierarchy\n\n\n\n\n\n\n\n\n\n\n\nCNNs mimic, to some degree, how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.\nThe network first identifies low-level features in the input image, such as small edges or patches of color.\nThese low-level features are then combined to form higher-level features, such as parts of ears or eyes. Eventually, the presence or absence of these higher-level features contributes to the probability of any given output class.\nThis hierarchical construction is achieved by combining two specialized types of hidden layers: convolution layers and pooling layers:\nConvolution layers search for instances of small patterns in the image.\nPooling layers downsample these results to select a prominent subset.\nTo achieve state-of-the-art results, contemporary neural network architectures often use many convolution and pooling layers."
+    "text": "The Convolutional Network Hierarchy\n\n\n\nCNNs mimic, to some degree, how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.\nThe network first identifies low-level features in the input image, such as small edges or patches of color.\nThese low-level features are then combined to form higher-level features, such as parts of ears or eyes. Eventually, the presence or absence of these higher-level features contributes to the probability of any given output class.\nThis hierarchical construction is achieved by combining two specialized types of hidden layers: convolution layers and pooling layers:\nConvolution layers search for instances of small patterns in the image.\nPooling layers downsample these results to select a prominent subset.\nTo achieve state-of-the-art results, contemporary neural network architectures often use many convolution and pooling layers."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#convolution-layer",
@@ -429,21 +429,21 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#architecture-of-a-cnn",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Architecture of a CNN",
-    "text": "Architecture of a CNN\n\n\n\n\n\n\n\n\n\n\nMany convolve + pool layers.\nFilters are typically small, e.g., each channel \\(3 \\times 3\\).\nEach filter creates a new channel in the convolution layer.\nAs pooling reduces size, the number of filters/channels is typically increased.\nNumber of layers can be very large.\nE.g., resnet50 trained on imagenet 1000-class image database has 50 layers!"
+    "text": "Architecture of a CNN\n\n\nMany convolve + pool layers.\nFilters are typically small, e.g., each channel \\(3 \\times 3\\).\nEach filter creates a new channel in the convolution layer.\nAs pooling reduces size, the number of filters/channels is typically increased.\nNumber of layers can be very large.\nE.g., resnet50 trained on imagenet 1000-class image database has 50 layers!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#data-augmentation",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#data-augmentation",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Data Augmentation",
-    "text": "Data Augmentation\n\n\n\n\n\n\n\n\n\n\n\nAn additional important trick used with image modeling is data augmentation.\nEssentially, each training image is replicated many times, with each replicate randomly distorted in a natural way such that human recognition is unaffected.\nTypical distortions are zoom, horizontal and vertical shift, shear, small rotations, and in this case horizontal flips.\nAt face value this is a way of increasing the training set considerably with somewhat different examples, and thus protects against overfitting.\nIn fact we can see this as a form of regularization: we build a cloud of images around each original image, all with the same label."
+    "text": "Data Augmentation\n\n\n\nAn additional important trick used with image modeling is data augmentation.\nEssentially, each training image is replicated many times, with each replicate randomly distorted in a natural way such that human recognition is unaffected.\nTypical distortions are zoom, horizontal and vertical shift, shear, small rotations, and in this case horizontal flips.\nAt face value this is a way of increasing the training set considerably with somewhat different examples, and thus protects against overfitting.\nIn fact we can see this as a form of regularization: we build a cloud of images around each original image, all with the same label."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#cnn-example-pretrained-networks-to-classify-images",
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#cnn-example-pretrained-networks-to-classify-images",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "CNN Example: Pretrained Networks to Classify Images",
-    "text": "CNN Example: Pretrained Networks to Classify Images\n\n\n\n\n\n\n\n\n\nHere we use the 50-layer resnet50 network trained on the 1000-class imagenet corpus to classify some photographs.\n\n\nLet’s code!"
+    "text": "CNN Example: Pretrained Networks to Classify Images\n\nHere we use the 50-layer resnet50 network trained on the 1000-class imagenet corpus to classify some photographs.\n\n\nLet’s code!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#document-classification-imdb-movie-reviews",
@@ -464,7 +464,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#document-classification-example-lasso-versus-neural-network-imdb-reviews",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Document Classification Example: Lasso versus Neural Network — IMDB Reviews",
-    "text": "Document Classification Example: Lasso versus Neural Network — IMDB Reviews\n\n\n\n\n\n\n\n\n\n\n\nSimpler lasso logistic regression model works as well as neural network in this case.\n\n\n\nLet’s code!"
+    "text": "Document Classification Example: Lasso versus Neural Network — IMDB Reviews\n\n\n\nSimpler lasso logistic regression model works as well as neural network in this case.\n\n\n\nLet’s code!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#recurrent-neural-networks---rnn-1",
@@ -478,7 +478,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#simple-recurrent-neural-network-architecture",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Simple Recurrent Neural Network Architecture",
-    "text": "Simple Recurrent Neural Network Architecture\n\n\n\n\n\n\n\n\n\n\nThe hidden layer is a sequence of vectors \\(A_\\ell\\), receiving as input \\(X_\\ell\\) as well as \\(A_{\\ell-1}\\). \\(A_\\ell\\) produces an output \\(O_\\ell\\).\nThe same weights \\(\\mathbf{W}\\), \\(\\mathbf{U}\\), and \\(\\mathbf{B}\\) are used at each step in the sequence — hence the term recurrent.\nThe \\(A_\\ell\\) sequence represents an evolving model for the response that is updated as each element \\(X_\\ell\\) is processed."
+    "text": "Simple Recurrent Neural Network Architecture\n\n\nThe hidden layer is a sequence of vectors \\(A_\\ell\\), receiving as input \\(X_\\ell\\) as well as \\(A_{\\ell-1}\\). \\(A_\\ell\\) produces an output \\(O_\\ell\\).\nThe same weights \\(\\mathbf{W}\\), \\(\\mathbf{U}\\), and \\(\\mathbf{B}\\) are used at each step in the sequence — hence the term recurrent.\nThe \\(A_\\ell\\) sequence represents an evolving model for the response that is updated as each element \\(X_\\ell\\) is processed."
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#rnn-in-detail",
@@ -513,7 +513,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#autocorrelation",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Autocorrelation",
-    "text": "Autocorrelation\n\n\n\n\n\n\n\n\n\n\nThe autocorrelation at lag \\(\\ell\\) is the correlation of all pairs \\((v_t, v_{t-\\ell})\\) that are \\(\\ell\\) trading days apart.\nThese sizable correlations give us confidence that past values will be helpful in predicting the future.\nThis is a curious prediction problem: the response \\(v_t\\) is also a feature \\(v_{t-\\ell}\\)!"
+    "text": "Autocorrelation\n\n\nThe autocorrelation at lag \\(\\ell\\) is the correlation of all pairs \\((v_t, v_{t-\\ell})\\) that are \\(\\ell\\) trading days apart.\nThese sizable correlations give us confidence that past values will be helpful in predicting the future.\nThis is a curious prediction problem: the response \\(v_t\\) is also a feature \\(v_{t-\\ell}\\)!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#rnn-forecaster",
@@ -527,7 +527,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#rnn-results-for-nyse-data",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "RNN Results for NYSE Data",
-    "text": "RNN Results for NYSE Data\n\n\n\n\n\n\n\n\n\nThe figure shows predictions and truth for the test period.\n\\[\nR^2 = 0.42 \\text{ for RNN}\n\\]\n\\(R^2 = 0.18\\) for the naive approach — uses yesterday’s value of Log trading volume to predict that of today.\n\n\nLet’s code!"
+    "text": "RNN Results for NYSE Data\n\nThe figure shows predictions and truth for the test period.\n\\[\nR^2 = 0.42 \\text{ for RNN}\n\\]\n\\(R^2 = 0.18\\) for the naive approach — uses yesterday’s value of Log trading volume to predict that of today.\n\n\nLet’s code!"
   },
   {
     "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#autoregression-forecaster",
@@ -576,7 +576,7 @@
     "href": "lecture_slides/10_deep_learning/11_deep_learning.html#summary",
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Summary",
-    "text": "Summary\n\n\n\n\n\nDeep Learning Renaissance\n\nNeural networks first rose to prominence in the 1980s, waned in the 1990s, then surged again around 2010.\nAdvances in computing (GPUs) and availability of massive labeled datasets propelled deep learning success.\n\nFrameworks (PyTorch vs. TensorFlow)\n\nPyTorch is known for its dynamic graph and Pythonic syntax; widely used in research.\nTensorFlow has an extensive production ecosystem, ideal for enterprise and deployment.\n\nEssential Concepts\n\nAutomatic differentiation, gradient descent, and backpropagation are at the core of training neural networks.\n\n\n\n\n\n\nCNNs and RNNs\n\nCNNs excel in image classification by learning local patterns via convolution and pooling layers.\n\nRNNs (and variants like LSTM, GRU) handle sequential data for tasks like language modeling and time-series forecasting.\n\nWhen to Use Deep Learning\n\nWorks best on large datasets with high signal-to-noise ratio (e.g., image, text).\n\nSimpler models often perform well on noisier tasks or smaller datasets.\n\nOver-parameterization can still generalize due to “double-descent” effects.\n\nPractical Tips\n\nUse regularization (dropout, data augmentation, weight decay) to mitigate overfitting.\n\nMonitor convergence with appropriate learning rates and consider mini-batch stochastic gradient descent."
+    "text": "Summary\n\n\n\n\nDeep Learning Renaissance\n\nNeural networks first rose to prominence in the 1980s, waned in the 1990s, then surged again around 2010.\nAdvances in computing (GPUs) and availability of massive labeled datasets propelled deep learning success.\n\nFrameworks (PyTorch vs. TensorFlow)\n\nPyTorch is known for its dynamic graph and Pythonic syntax; widely used in research.\nTensorFlow has an extensive production ecosystem, ideal for enterprise and deployment.\n\nEssential Concepts\n\nAutomatic differentiation, gradient descent, and backpropagation are at the core of training neural networks.\n\n\n\n\n\n\nCNNs and RNNs\n\nCNNs excel in image classification by learning local patterns via convolution and pooling layers.\n\nRNNs (and variants like LSTM, GRU) handle sequential data for tasks like language modeling and time-series forecasting.\n\nWhen to Use Deep Learning\n\nWorks best on large datasets with high signal-to-noise ratio (e.g., image, text).\n\nSimpler models often perform well on noisier tasks or smaller datasets.\n\nOver-parameterization can still generalize due to “double-descent” effects.\n\nPractical Tips\n\nUse regularization (dropout, data augmentation, weight decay) to mitigate overfitting.\n\nMonitor convergence with appropriate learning rates and consider mini-batch stochastic gradient descent."
   },
   {
     "objectID": "syllabus.html#course-description-and-objectives",
@@ -653,7 +653,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Week\nTopic\nReadings ISLP\nMaterial*\nSupplementary Materials\n\n\n\n\nWeek 1\nSyllabus, Logistics, and Introduction.\nCh. 1; Ch. 2;\nslidespodcast**video**book lab\n- Video: Statistical Learning: 2.1 Introduction to Regression Models- Video: Statistical Learning: 2.2 Dimensionality and Structured Models- Video: Statistical Learning: 2.3 Model Selection and Bias Variance Tradeoff- Video: Statistical Learning: 2.4 Classification- Video: Statistical Learning: 2.Py Data Types, Arrays, and Basics - 2023- Video: Statistical Learning: 2.Py.3 Graphics - 2023- Video: Statistical Learning: 2.Py Indexing and Dataframes - 2023\n\n\nWeek 2\nLinear Regression\nCh. 3.\nslidespodcastvideonotebookbook lab\n- Video: Statistical Learning: 3.1 Simple linear regression- Video: Statistical Learning: 3.2 Hypothesis Testing and Confidence Intervals- Video: Statistical Learning: 3.3 Multiple Linear Regression- Video: Statistical Learning: 3.4 Some important questions- Video: Statistical Learning: 3.5 Extensions of the Linear Model- Video: Statistical Learning: 3.Py Linear Regression and statsmodels Package - 2023- Video: Statistical Learning: 3.Py Multiple Linear Regression Package - 2023- Video: Statistical Learning: 3.Py Interactions, Qualitative Predictors and Other Details I 2023\n\n\nWeek 3\nClassification\nCh. 4\nslidespodcastvideonotebookbook lab\n- Video: Statistical Learning: 4.1 Introduction to Classification Problems- Video: Statistical Learning: 4.2 Logistic Regression- Video: Statistical Learning: 4.3 Multivariate Logistic Regression- Video: Statistical Learning: 4.4 Logistic Regression Case Control Sampling and Multiclass- Video: Statistical Learning: 4.5 Discriminant Analysis- Video: Statistical Learning: 4.6 Gaussian Discriminant Analysis (One Variable)- Video: Statistical Learning: 4.7 Gaussian Discriminant Analysis (Many Variables)- Video: Statistical Learning: 4.8 Generalized Linear Models- Video: Statistical Learning: 4.9 Quadratic Discriminant Analysis and Naive Bayes- Video: Statistical Learning: 4.Py Logistic Regression I 2023- Video: Statistical Learning: 4.Py Linear Discriminant Analysis (LDA) I 2023- Video: Statistical Learning: 4.Py K-Nearest Neighbors (KNN) I 2023\n\n\nWeek 4\nResampling Methods\nCh. 5\nslidespodcastvideobook lab\n- Video: Statistical Learning: 5.1 Cross Validation- Video: Statistical Learning: 5.2 K-fold Cross Validation- Video: Statistical Learning: 5.3 Cross Validation the wrong and right way- Video: Statistical Learning: 5.4 The Bootstrap- Video: Statistical Learning: 5.5 More on the Bootstrap- Video: Statistical Learning: 5.Py Cross-Validation I 2023- Video: Statistical Learning: 5.Py Bootstrap I 2023- Book Chapter: Modern Dive -Bootstrapping and Confidence Intervals\n\n\nWeek 5\nLinear Model Selection & Regularization\nCh. 6\nslidespodcastvideobook lab\n- Video: Statistical Learning: 6.1 Introduction and Best Subset Selection- Video: Statistical Learning: 6.2 Stepwise Selection- Video: Statistical Learning: 6.3 Backward stepwise selection- Video: Statistical Learning: 6.4 Estimating test error- Video: Statistical Learning: 6.5 Validation and cross validation- Video: Statistical Learning: 6.6 Shrinkage methods and ridge regression- Video: Statistical Learning: 6.7 The Lasso- Video: Statistical Learning: 6.8 Tuning parameter selection- Video: Statistical Learning: 6.9 Dimension Reduction Methods- Video: Statistical Learning: 6.10 Principal Components Regression and Partial Least Squares- Video: Statistical Learning: 6.Py Stepwise Regression I 2023- Video: Statistical Learning: 6.Py Ridge Regression and the Lasso I 2023\n\n\nWeek 6\nBeyond Linearity\nCh. 7\nslidespodcastvideobook lab\n- Video: Statistical Learning: 7.1 Polynomials and Step Functions- Video: Statistical Learning: 7.2 Piecewise Polynomials and Splines- Video: Statistical Learning: 7.3 Smoothing Splines- Video: Statistical Learning: 7.4 Generalized Additive Models and Local Regression- Video: Statistical Learning: 7.Py Polynomial Regressions and Step Functions I 2023- Video: Statistical Learning: 7.Py Splines I 2023- Video: Statistical Learning: 7.Py Generalized Additive Models (GAMs) I 2023\n\n\nWeek 7\nTree-Based Methods\nCh. 8\nslidespodcastvideobook lab\n- Video: Statistical Learning: 8.1 Tree based methods- Video: Statistical Learning: 8.2 More details on Trees- Video: Statistical Learning: 8.3 Classification Trees- Video: Statistical Learning: 8.4 Bagging- Video: Statistical Learning: 8.5 Boosting- Video: Statistical Learning: 8.6 Bayesian Additive Regression Trees- Video: Statistical Learning: 8.Py Tree-Based Methods I 2023\n\n\nWeek 8\nTime Series\nLecture Material\nnotebookdatapodcastvideo\n- Book: Forecasting: Principles and Practice, the Pythonic Way- Videos: Forecasting: Principles and Practice - with R- Videos: Forecasting: Principles and Practice - with R- Book: Time series analysis with Python- PyTorch Forecasting Library- sktime Library- prophet Library- statsmodels Library- scikit-learn Library: Cross Calidation of Time Series Data- prophet Library\n\n\nWeek 9\nFinal Project\n.\n.\n.\n\n\nWeek 10\nElements of Data Communication\n.\nslidespodcastvideo\nPoster TemplateConference RubricVideo: Creating a Professional Poster\n\n\nWeek 11\nFinal Project\n.\n.\n.\n\n\nWeek 12\nFinal Project\n.\n.\n.\n\n\nWeek 13\nFinal Project\n.\n.\n.\n\n\nWeek 14\nDeep Learning\nCh. 10\nslidespodcast - TBPvideo TBPbook labcourse lab\n- Video: Statistical Learning: 10.1 Introduction to Neural Networks- Video: Statistical Learning: 10.2 Convolutional Neural Networks- Video: Statistical Learning: 10.3 Document Classification- Video: Statistical Learning: 10.4 Recurrent Neural Networks- Video: Statistical Learning: 10.6 Fitting Neural Networks- Video: Statistical Learning: 10.7 Interpolation and Double Descent- Video: Statistical Learning: 10.Py Single Layer Model: Hitters Data I 2023- Video: Statistical Learning: 10.Py Multilayer Model: MNIST Digit Data I 2023- Video: Statistical Learning: 10.Py Convolutional Neural Network: CIFAR Image Data I 2023- Video: Statistical Learning: 10.Py Document Classification and Recurrent Neural Networks I 2023\n\n\nWeek 15\nDeep Learning\nCh. 10\n.\n.\n\n\nWeek 16\nSpecial Topic: LLM\n.\nslides - TBPpodcast - TBPvideo TBPlab - TBP\n.\n\n\n\n* The majority of the course slides and labs are based on the ISLP book, “An Introduction to Statistical Learning with Applications in Python” by James, G., Witten, D., Hastie, T., and Tibshirani, R., and have been adapted to suit the specific needs of our course. ** This material was generated with Google NotebookLM based on the slides I prepared for the Predictive Analytics course.",
+    "text": "Week\nTopic\nReadings ISLP\nMaterial*\nSupplementary Materials\n\n\n\n\nWeek 1\nSyllabus, Logistics, and Introduction.\nCh. 1; Ch. 2;\nslidespodcast**video**book lab\n- Video: Statistical Learning: 2.1 Introduction to Regression Models- Video: Statistical Learning: 2.2 Dimensionality and Structured Models- Video: Statistical Learning: 2.3 Model Selection and Bias Variance Tradeoff- Video: Statistical Learning: 2.4 Classification- Video: Statistical Learning: 2.Py Data Types, Arrays, and Basics - 2023- Video: Statistical Learning: 2.Py.3 Graphics - 2023- Video: Statistical Learning: 2.Py Indexing and Dataframes - 2023\n\n\nWeek 2\nLinear Regression\nCh. 3.\nslidespodcastvideonotebookbook lab\n- Video: Statistical Learning: 3.1 Simple linear regression- Video: Statistical Learning: 3.2 Hypothesis Testing and Confidence Intervals- Video: Statistical Learning: 3.3 Multiple Linear Regression- Video: Statistical Learning: 3.4 Some important questions- Video: Statistical Learning: 3.5 Extensions of the Linear Model- Video: Statistical Learning: 3.Py Linear Regression and statsmodels Package - 2023- Video: Statistical Learning: 3.Py Multiple Linear Regression Package - 2023- Video: Statistical Learning: 3.Py Interactions, Qualitative Predictors and Other Details I 2023\n\n\nWeek 3\nClassification\nCh. 4\nslidespodcastvideonotebookbook lab\n- Video: Statistical Learning: 4.1 Introduction to Classification Problems- Video: Statistical Learning: 4.2 Logistic Regression- Video: Statistical Learning: 4.3 Multivariate Logistic Regression- Video: Statistical Learning: 4.4 Logistic Regression Case Control Sampling and Multiclass- Video: Statistical Learning: 4.5 Discriminant Analysis- Video: Statistical Learning: 4.6 Gaussian Discriminant Analysis (One Variable)- Video: Statistical Learning: 4.7 Gaussian Discriminant Analysis (Many Variables)- Video: Statistical Learning: 4.8 Generalized Linear Models- Video: Statistical Learning: 4.9 Quadratic Discriminant Analysis and Naive Bayes- Video: Statistical Learning: 4.Py Logistic Regression I 2023- Video: Statistical Learning: 4.Py Linear Discriminant Analysis (LDA) I 2023- Video: Statistical Learning: 4.Py K-Nearest Neighbors (KNN) I 2023\n\n\nWeek 4\nResampling Methods\nCh. 5\nslidespodcastvideobook lab\n- Video: Statistical Learning: 5.1 Cross Validation- Video: Statistical Learning: 5.2 K-fold Cross Validation- Video: Statistical Learning: 5.3 Cross Validation the wrong and right way- Video: Statistical Learning: 5.4 The Bootstrap- Video: Statistical Learning: 5.5 More on the Bootstrap- Video: Statistical Learning: 5.Py Cross-Validation I 2023- Video: Statistical Learning: 5.Py Bootstrap I 2023- Book Chapter: Modern Dive -Bootstrapping and Confidence Intervals\n\n\nWeek 5\nLinear Model Selection & Regularization\nCh. 6\nslidespodcastvideobook lab\n- Video: Statistical Learning: 6.1 Introduction and Best Subset Selection- Video: Statistical Learning: 6.2 Stepwise Selection- Video: Statistical Learning: 6.3 Backward stepwise selection- Video: Statistical Learning: 6.4 Estimating test error- Video: Statistical Learning: 6.5 Validation and cross validation- Video: Statistical Learning: 6.6 Shrinkage methods and ridge regression- Video: Statistical Learning: 6.7 The Lasso- Video: Statistical Learning: 6.8 Tuning parameter selection- Video: Statistical Learning: 6.9 Dimension Reduction Methods- Video: Statistical Learning: 6.10 Principal Components Regression and Partial Least Squares- Video: Statistical Learning: 6.Py Stepwise Regression I 2023- Video: Statistical Learning: 6.Py Ridge Regression and the Lasso I 2023\n\n\nWeek 6\nBeyond Linearity\nCh. 7\nslidespodcastvideobook lab\n- Video: Statistical Learning: 7.1 Polynomials and Step Functions- Video: Statistical Learning: 7.2 Piecewise Polynomials and Splines- Video: Statistical Learning: 7.3 Smoothing Splines- Video: Statistical Learning: 7.4 Generalized Additive Models and Local Regression- Video: Statistical Learning: 7.Py Polynomial Regressions and Step Functions I 2023- Video: Statistical Learning: 7.Py Splines I 2023- Video: Statistical Learning: 7.Py Generalized Additive Models (GAMs) I 2023\n\n\nWeek 7\nTree-Based Methods\nCh. 8\nslidespodcastvideobook lab\n- Video: Statistical Learning: 8.1 Tree based methods- Video: Statistical Learning: 8.2 More details on Trees- Video: Statistical Learning: 8.3 Classification Trees- Video: Statistical Learning: 8.4 Bagging- Video: Statistical Learning: 8.5 Boosting- Video: Statistical Learning: 8.6 Bayesian Additive Regression Trees- Video: Statistical Learning: 8.Py Tree-Based Methods I 2023\n\n\nWeek 8\nTime Series\nLecture Material\nnotebookdatapodcastvideo\n- Book: Forecasting: Principles and Practice, the Pythonic Way- Videos: Forecasting: Principles and Practice - with R- Videos: Forecasting: Principles and Practice - with R- Book: Time series analysis with Python- PyTorch Forecasting Library- sktime Library- prophet Library- statsmodels Library- scikit-learn Library: Cross Calidation of Time Series Data- prophet Library\n\n\nWeek 9\nFinal Project\n.\n.\n.\n\n\nWeek 10\nElements of Data Communication\n.\nslidespodcastvideo\nPoster TemplateConference RubricVideo: Creating a Professional Poster\n\n\nWeek 11\nFinal Project\n.\n.\n.\n\n\nWeek 12\nFinal Project\n.\n.\n.\n\n\nWeek 13\nFinal Project\n.\n.\n.\n\n\nWeek 14\nDeep Learning\nCh. 10\nslidespodcastvideobook labcourse lab\n- Video: Statistical Learning: 10.1 Introduction to Neural Networks- Video: Statistical Learning: 10.2 Convolutional Neural Networks- Video: Statistical Learning: 10.3 Document Classification- Video: Statistical Learning: 10.4 Recurrent Neural Networks- Video: Statistical Learning: 10.6 Fitting Neural Networks- Video: Statistical Learning: 10.7 Interpolation and Double Descent- Video: Statistical Learning: 10.Py Single Layer Model: Hitters Data I 2023- Video: Statistical Learning: 10.Py Multilayer Model: MNIST Digit Data I 2023- Video: Statistical Learning: 10.Py Convolutional Neural Network: CIFAR Image Data I 2023- Video: Statistical Learning: 10.Py Document Classification and Recurrent Neural Networks I 2023\n\n\nWeek 15\nDeep Learning\nCh. 10\n.\n.\n\n\nWeek 16\nSpecial Topic: LLM\n.\nslides\n.\n\n\n\n* The majority of the course slides and labs are based on the ISLP book, “An Introduction to Statistical Learning with Applications in Python” by James, G., Witten, D., Hastie, T., and Tibshirani, R., and have been adapted to suit the specific needs of our course. ** This material was generated with Google NotebookLM based on the slides I prepared for the Predictive Analytics course.",
     "crumbs": [
       "Schedule and Material"
     ]
@@ -1147,5 +1147,593 @@
     "title": " MGMT 47400: Predictive Analytics ",
     "section": "Summary",
     "text": "Summary\n\nMain Takeaways from this lecture:\n\n\n\nData Communication Principles:\n\nContext matters: Tailor your analysis to the audience and goal.\nFocus on the story: Highlight insights, not the process.\nBeauty and clarity: Simplify visuals, use appropriate colors, and remove unnecessary elements.\n\nVisualization Best Practices:\n\nUse graphs instead of tables where possible.\nAvoid misleading scales and excessive dimensions.\nPrioritize hierarchy and emphasize key data points.\n\n\n\n\n\nPoster:\n\nSimplicity and clarity win over clutter\nEmphasize the predictive analytics approach and metrics\nEnsure visual impact and logical flow\nPractice delivering a concise overview of your work\n\nFinal Message:\n\nLess is more. Reduce complexity to communicate data effectively.\nAlways keep your audience’s decision-making needs at the forefront."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-large-language-models-llm-1",
+    "href": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-large-language-models-llm-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: Large Language Models (LLM)",
+    "text": "Special Topic: Large Language Models (LLM)\n\n\n\n\n\n\nLarge Language Models explained briefly"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---transformers",
+    "href": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---transformers",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Transformers",
+    "text": "Special Topic: LLM - Transformers\n\n\n\n\n\n\nTransformers, the tech behind LLMs"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---attention",
+    "href": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---attention",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Attention",
+    "text": "Special Topic: LLM - Attention\n\n\n\n\n\n\nAttention in transformers, step-by-step"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---memory",
+    "href": "lecture_slides/10_deep_learning/11_deep_learning.html#special-topic-llm---memory",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Memory",
+    "text": "Special Topic: LLM - Memory\n\n\n\n\n\n\nHow might LLMs store facts"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#overview",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#overview",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Overview",
+    "text": "Overview\n\n\n\nDeep Learning\nPyTorch vs. TensorFlow\nPyTorch\nNeural Networks\nSingle Layer Neural Network\nFitting Neural Networks\n\n\n\nConvolutional Neural Network — CNN\nDocument Classification\nRecurrent Neural Networks - RNN\nRNN for Document Classification\nRNN for Time Series Forecasting\nWhen to Use Deep Learning\n\n\n\n\n\nThis lecture content is inspired by and replicates the material from An Introduction to Statistical Learning."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#deep-learning-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#deep-learning-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Deep Learning",
+    "text": "Deep Learning\n\n\n\n\nEarly Rise (1980s)\n\nNeural networks first gained popularity.\n\nHigh levels of excitement, with dedicated conferences (e.g., NeurIPS, Snowbird).\n\n1990s Shift\n\nEmergence of other methods (SVMs, Random Forests, Boosting).\n\nNeural networks receded into the background.\n\nResurgence (2010)\n\nRebranded and refined under the banner of Deep Learning.\n\nBy the 2020s, became extremely successful and widely adopted.\n\nKey Drivers of Success\n\nRapid increases in computing power (GPUs, parallel computing).\n\nAvailability of large-scale datasets.\n\nUser-friendly deep learning libraries (e.g., TensorFlow, PyTorch).\n\n\n\n\nMuch of the credit goes to three pioneers and their students:\n\nYann LeCun, Geoffrey Hinton, and Yoshua Bengio,\nwho received the 2019 ACM Turing Award for their work in Neural Networks."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#ai-visionaries-interviews",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#ai-visionaries-interviews",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "AI Visionaries: Interviews",
+    "text": "AI Visionaries: Interviews\n\n\n\n\n\n\n\n\n Yann LeCunThe Future of AIDec 16, 2023 \n\n\n\n\n\n\n\n Geoffrey Hinton60 Minutes InterviewOct 9, 2023 \n\n\n\n\n\n\n\n Yoshua BengioPath to Human-Level AIApr 24, 2024"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#what-are-deep-learning-frameworks",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#what-are-deep-learning-frameworks",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "What Are Deep Learning Frameworks?",
+    "text": "What Are Deep Learning Frameworks?\n\nDeep learning frameworks reduce boilerplate code, handle tensor operations efficiently, and make it easier to prototype and iterate on new architectures.\nSoftware libraries designed to streamline the creation, training, and deployment of neural networks.\n\nProvide pre-built functions, automatic differentiation, and GPU/TPU support.\n\nNecessity: They allow researchers and developers to focus on model design rather than low-level implementation details."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#pytorch-and-tensor-flow",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#pytorch-and-tensor-flow",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "PyTorch and Tensor Flow",
+    "text": "PyTorch and Tensor Flow\n\n\n\nWhat is PyTorch?\n\nDeveloped primarily by Facebook (Meta) and released on September 2016.\nEmphasizes a dynamic computation graph (eager execution).\nHighly “Pythonic”: feels natural for Python developers.\nStrong community presence in academia and research.\n\n\nWhy is PyTorch Necessary?\n\nEase of Use & Debugging\n\nEvaluate expressions immediately without building a separate graph.\n\nMore intuitive for experimenting with complex, innovative models.\n\nResearch Focus\n\nQuickly prototype new ideas and iterate.\n\nActive Ecosystem\n\nLibraries like torchvision, torchaudio, and others for specialized tasks.\n\n\n\n\nHow to begin\n\nhttps://pytorch.org/tutorials/beginner/basics/intro.html.\nThere is also a YouTube Series (PyTorch Beginner Series) also here (Introduction to PyTorch)\n\n\n\n\nWhat is TensorFlow?\n\nDeveloped primarily by Google and released in November 2015.\nHistorically used a static graph approach (with an “eager mode” added later).\nComes with extensive tools for deployment (mobile, web, and production).\nLarge ecosystem with well-integrated components (e.g., TensorBoard, TFX, TensorFlow Lite).\n\n\n\nWhy is TensorFlow Necessary?\n\nProduction-Ready\n\nStrong support for model serving at scale in enterprise environments.\n\nComprehensive Ecosystem\n\nVisualization (TensorBoard), data processing (TFX), and model deployment pipelines.\n\n\nCross-Platform & Hardware Support\n\nEasily deploy models to cloud infrastructures, mobile devices, and specialized hardware (TPUs).\n\n\n\n\nHow to begin\n\nhttps://www.tensorflow.org/tutorials. There is also a Quick Start!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#key-differences",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#key-differences",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Key Differences",
+    "text": "Key Differences\n\n\n\n\n\n\n\n\nAspect\nPyTorch\nTensorFlow\n\n\n\n\nComputation Graph\nDynamic graph (eager execution by default).\nHistorically static graph with a build-and-execute phase (now supports eager execution).\n\n\nDebugging & Development Style\nMore straightforward for Python developers, immediate error feedback.\nCan be trickier to debug in graph mode; eager mode helps but is relatively newer.\n\n\nDeployment & Production\nTorchServe and growing enterprise support, but historically overshadowed by TensorFlow’s tools.\nTensorFlow Serving, TensorFlow Lite, and easy Google Cloud integration.\n\n\n\n\nWhile the fundamental math and building blocks are similar, the biggest difference typically lies in how you prototype, debug, and deploy models."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#similarities",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#similarities",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Similarities",
+    "text": "Similarities\n\n\n\n\n\n\n\nSimilarity\nDescription\n\n\n\n\nWide Range of Neural Network Layers\nConvolutional, Recurrent, Transformers, etc. Both frameworks maintain robust libraries for standard and advanced layers.\n\n\nAuto-Differentiation\nNo need to manually compute gradients; backpropagation is handled automatically.\n\n\nGPU Acceleration\nBoth leverage CUDA (NVIDIA GPUs) or other backends to speed up training.\n\n\nRich Communities\nAbundant tutorials, example code, pretrained models, and Q&A forums.\n\n\n\n\nDespite differing philosophies, PyTorch and TensorFlow share many core functionalities and have large, supportive user communities."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#comparison-of-advantages-and-disadvantages",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#comparison-of-advantages-and-disadvantages",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Comparison of Advantages and Disadvantages",
+    "text": "Comparison of Advantages and Disadvantages\n\n\n\n\n\n\n\n\n\n\nPyTorch\nTensorFlow\n\n\n\n\nAdvantages\n- Intuitive, Pythonic Syntax: Feels like standard Python, reducing friction for experimentation  - Dynamic Graph Execution: Simplifies debugging and model design  - Research & Academia Favorite: widely used in cutting-edge papers\n- Static Graph Optimization: Graph-based execution can be highly optimized for speed and memory usage  - Extensive Production Ecosystem: Includes TensorFlow Serving, TensorFlow Lite, TFX for data pipelines  - Large Corporate Adoption: Backed by Google, widely used in enterprise settings\n\n\nDisadvantages\n- Deployment Maturity: Production tooling and ecosystem are improving but still behind TensorFlow  - Smaller Enterprise Adoption: Historically overshadowed by TensorFlow’s widespread adoption\n- Learning Curve: The graph-based approach can be challenging for newcomers  - Historically Less Intuitive: Older APIs and tutorials can be confusing, though Eager Mode improves usability"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#recommendations",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#recommendations",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Recommendations",
+    "text": "Recommendations\n\n\nChoose PyTorch if:\n\nYour focus is on rapid experimentation and academic research\nYou prioritize a Pythonic workflow and easy debugging\nYou prefer a dynamic graph approach (about it).\nYou are working on cutting-edge models with high flexibility\nYou value seamless interaction with Python libraries\n\n\nChoose TensorFlow if:\n\nYou need robust production and deployment pipelines\nYou plan to integrate with Google Cloud services\nYou require support for mobile/edge devices (e.g., TensorFlow Lite)\nYou benefit from static graph optimization for performance\nYou want an end-to-end ecosystem (TFX, TensorBoard, Serving)"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#tensors-in-pytorch",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#tensors-in-pytorch",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Tensors in PyTorch",
+    "text": "Tensors in PyTorch"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#datasets-dataloaders",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#datasets-dataloaders",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Datasets & DataLoaders",
+    "text": "Datasets & DataLoaders"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#datasets-dataloaders-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#datasets-dataloaders-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Datasets & DataLoaders",
+    "text": "Datasets & DataLoaders\n\n\n\nThe code below extracts a single image‑tensor from the training_data used in the tutorial (you can use test_data the same way), prints its basic properties, and visualizes it.\n\n\nimport torch\nimport matplotlib.pyplot as plt\n\n# Choose the index of the image you wish to inspect\nidx = 0  # e.g., the first image; change as desired\n\n# Fetch the sample\nimage_tensor, label = training_data[idx]   # image_tensor is a 1×28×28 tensor\n\n# Inspect the raw tensor values\nprint(\"Shape :\", image_tensor.shape)  # torch.Size([1, 28, 28])\nprint(\"Label :\", label) # integer class id\nprint(\"Tensor (first 5 rows):\\n\", image_tensor[0, :5, :])\n\n# Visualize the image\nplt.imshow(image_tensor.squeeze(), cmap=\"gray\")\nplt.title(f\"Fashion‑MNIST class{label}\")\nplt.axis(\"off\")\nplt.show()\n\n\n\nHow it works\n\nIndex selection – set idx to any integer in range(len(training_data)).\n\nDataset access – indexing the dataset returns (image, label) with the transform already applied (here, ToTensor() scales to [0,1]).\n\nInspection – the printed tensor slice lets you verify pixel values, and plt.imshow renders the sample for visual confirmation.\n\n\nTo see a different image you just need to adjust the index."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#transforms",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#transforms",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Transforms",
+    "text": "Transforms"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe define our neural network by subclassing nn.Module, and initialize the neural network layers in __init__. Every nn.Module subclass implements the operations on input data in the forward method.\n\n\nclass NeuralNetwork(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.flatten = nn.Flatten()\n        self.linear_relu_stack = nn.Sequential(\n            nn.Linear(28*28, 512),\n            nn.ReLU(),\n            nn.Linear(512, 512),\n            nn.ReLU(),\n            nn.Linear(512, 10),\n        )\n\n    def forward(self, x):\n        x = self.flatten(x)\n        logits = self.linear_relu_stack(x)\n        return logits\n\n\nWhat Are We Doing?\nWe are defining a neural network class using PyTorch. This network is designed to work with images, specifically 28×28 grayscale images like those from the FashionMNIST dataset. The network will output 10 values, one for each digit from 0 to 9.\nStep-by-Step Breakdown\n\nclass NeuralNetwork(nn.Module):\n\nWe create a new neural network class called NeuralNetwork. It inherits from PyTorch’s nn.Module, which is the base class for all neural network models.\n\ndef __init__(self): and super().__init__()\n\n__init__ is the constructor. It’s run when we create the model.\nsuper().__init__() tells Python to also run the initialization code from the parent class (nn.Module). This is required for PyTorch to keep track of everything inside the model.\n\nself.flatten = nn.Flatten():\n\nchanges the input from a 2D image (28×28) into a 1D vector (784 values), which is easier for linear layers to handle."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-2",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-2",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe define our neural network by subclassing nn.Module, and initialize the neural network layers in __init__. Every nn.Module subclass implements the operations on input data in the forward method.\n\n\nclass NeuralNetwork(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.flatten = nn.Flatten()\n        self.linear_relu_stack = nn.Sequential(\n            nn.Linear(28*28, 512),\n            nn.ReLU(),\n            nn.Linear(512, 512),\n            nn.ReLU(),\n            nn.Linear(512, 10),\n        )\n\n    def forward(self, x):\n        x = self.flatten(x)\n        logits = self.linear_relu_stack(x)\n        return logits\n\n\nDefine a sequence of layers:\nHere we build the main body of the neural network.\nself.linear_relu_stack = nn.Sequential(\n    nn.Linear(28*28, 512),\n    nn.ReLU(),\n    nn.Linear(512, 512),\n    nn.ReLU(),\n    nn.Linear(512, 10),\n)\nIn most contexts when we say “how many layers?” we refer to the learnable ones. So this network has three fully‑connected (Linear) layers, with ReLU activations in between.\n\nYou can think of the linear layer as a filter that projects the image into a new space with 512 dimensions. These new values are not pixels anymore, but rather abstract features learned by the network."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-3",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-3",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe define our neural network by subclassing nn.Module, and initialize the neural network layers in __init__. Every nn.Module subclass implements the operations on input data in the forward method.\n\n\nclass NeuralNetwork(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.flatten = nn.Flatten()\n        self.linear_relu_stack = nn.Sequential(\n            nn.Linear(28*28, 512),\n            nn.ReLU(),\n            nn.Linear(512, 512),\n            nn.ReLU(),\n            nn.Linear(512, 10),\n        )\n\n    def forward(self, x):\n        x = self.flatten(x)\n        logits = self.linear_relu_stack(x)\n        return logits\n\n\nDefine a sequence of layers:\n\nFirst layer nn.Linear(28*28, 512): takes the 784 values from the image and transforms them into 512 values. A Linear(784, 512) layer performs:\n\nA matrix multiplication between the input vector (length 784) and a weight matrix of size [784 × 512], followed by adding a bias vector of length 512.\nMathematically: \\[\n\\text{output} = x \\cdot W + b\n\\]\nx is the input vector: shape [784]\nW is the weight matrix: shape [784 × 512]\nb is the bias vector: shape [512]\nThe result (output) is a new vector of shape [512]\n\n\n\nEach of the 512 output values is a linear combination of all 784 pixel values in the input image. By default, PyTorch initializes weights using Kaiming Uniform Initialization (a variant of He initialization), which works well with ReLU activation functions."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-4",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-4",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe define our neural network by subclassing nn.Module, and initialize the neural network layers in __init__. Every nn.Module subclass implements the operations on input data in the forward method.\n\n\nclass NeuralNetwork(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.flatten = nn.Flatten()\n        self.linear_relu_stack = nn.Sequential(\n            nn.Linear(28*28, 512),\n            nn.ReLU(),\n            nn.Linear(512, 512),\n            nn.ReLU(),\n            nn.Linear(512, 10),\n        )\n\n    def forward(self, x):\n        x = self.flatten(x)\n        logits = self.linear_relu_stack(x)\n        return logits\n\n\nDefine a sequence of layers:\n\nnn.ReLU(): applies the ReLU activation function, which keeps positive numbers and turns negative numbers into zero. This adds non-linearity to the model.\nSecond layernn.Linear(512, 512): takes those 512 values and again outputs 512 values. This is a hidden layer, helping the model learn more complex patterns.\nnn.ReLU(): Another non-linear transformation.\nThird (Final) layer:nn.Linear(512, 10): takes the 512 values and produces 10 output values.\n\nThese are called logits, and each one corresponds to a digit class (0 to 9)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-5",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-5",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe define our neural network by subclassing nn.Module, and initialize the neural network layers in __init__. Every nn.Module subclass implements the operations on input data in the forward method.\n\n\nclass NeuralNetwork(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.flatten = nn.Flatten()\n        self.linear_relu_stack = nn.Sequential(\n            nn.Linear(28*28, 512),\n            nn.ReLU(),\n            nn.Linear(512, 512),\n            nn.ReLU(),\n            nn.Linear(512, 10),\n        )\n\n    def forward(self, x):\n        x = self.flatten(x)\n        logits = self.linear_relu_stack(x)\n        return logits\n\n\nDefine a sequence of layers:\n\nforward(self, x): This is the forward pass, the function that runs when we send data through the model.\nStep-by-step:\n\n\nx = self.flatten(x): Convert the 28×28 image into a 1D tensor with 784 values.\nlogits = self.linear_relu_stack(x): Pass the input through the series of layers.\nreturn logits: Output the final predictions (raw scores for each class).\n\n\nIn summary this neural network:\n\nTakes an image (28×28) as input,\nFlattens it into a vector,\nPasses it through two fully connected layers with ReLU,\nOutputs a vector of size 10 (one for each digit)"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-6",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-6",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe create an instance of NeuralNetwork, and move it to the device, and print its structure.\n\nmodel = NeuralNetwork().to(device)\nprint(model)\n\nTo use the model, we pass it the input data.\nExample:\n\nX = torch.rand(1, 28, 28, device=device)\nlogits = model(X)\npred_probab = nn.Softmax(dim=1)(logits)\ny_pred = pred_probab.argmax(1)\nprint(f\"Predicted class: {y_pred}\")\n\n# To see the image:\nimport torch\nimport matplotlib.pyplot as plt\n\n# Remove the batch dimension (1, 28, 28) → (28, 28)\nimage = X[0]\n\n# Plot the image\nplt.imshow(image, cmap='gray')  # Use 'gray' colormap for grayscale image\nplt.title(\"Random 28x28 Image\")\nplt.axis('off')\nplt.show()\n\n\n\ntorch.rand(1, 28, 28, device=device): Creates a random image with shape [1, 28, 28]\n\n1 is the batch size (just one image)\n28×28 is the image dimension\ndevice=device ensures the tensor goes to CPU or GPU (wherever the model is)\n\n\n\n\n# To see tensor:\nprint(X)\n\n\n\nLet’s say the tensor shown is:\nX = torch.tensor([[\n    [0.1177, 0.2669, 0.6367, 0.6148, 0.3085, ...],  # row 0\n    [0.8672, 0.3645, 0.4822, 0.9566, 0.8999, ...],  # row 1\n    ...\n]])\n\n\nThis is a 3D tensor of shape [1, 28, 28]:\n\nThe first dimension 1 is the batch size,\nThe next two are height and width of the image.\n\nThe full index of 0.2669 in the 3D tensor is: X[0, 0, 1].\n\n0 → first (and only) image in the batch\n0 → first row of the image\n1 → second column in that row"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-7",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#build-the-neural-network-7",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Build the Neural Network",
+    "text": "Build the Neural Network\n\n\n\nWe create an instance of NeuralNetwork, and move it to the device, and print its structure.\n\nmodel = NeuralNetwork().to(device)\nprint(model)\n\nTo use the model, we pass it the input data.\nExample:\n\nX = torch.rand(1, 28, 28, device=device)\nlogits = model(X)\npred_probab = nn.Softmax(dim=1)(logits)\ny_pred = pred_probab.argmax(1)\nprint(f\"Predicted class: {y_pred}\")\n\n# To see the image:\nimport torch\nimport matplotlib.pyplot as plt\n\n# Remove the batch dimension (1, 28, 28) → (28, 28)\nimage = X[0]\n\n# Plot the image\nplt.imshow(image, cmap='gray')  # Use 'gray' colormap for grayscale image\nplt.title(\"Random 28x28 Image\")\nplt.axis('off')\nplt.show()\n\n\n\nlogits = model(X): This calls the model with input X.\n\nBehind the scenes, it runs model.forward(X)\nOutput: a vector of 10 values (called logits), one for each class (digits 0 through 9)\n\nNote: We do not call model.forward() directly — PyTorch manages hooks and gradients when we use model(X)\npred_probab = nn.Softmax(dim=1)(logits): Applies softmax to the raw output logits\n\nSoftmax turns logits into probabilities (values between 0 and 1 that sum to 1)\ndim=1 means we apply softmax across the 10 output class values (not across the batch)\n\ny_pred = pred_probab.argmax(1): Picks the index of the largest probability, i.e., the predicted class\n\nargmax(1) returns the class with the highest probability from each row (here we have just one row)\n\nprint(f\"Predicted class: {y_pred}\"): Prints the predicted digit class (0 through 9)"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#automatic-differentiation-with-torch.autograd",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#automatic-differentiation-with-torch.autograd",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Automatic Differentiation with torch.autograd",
+    "text": "Automatic Differentiation with torch.autograd"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#optimizing-model-parameters",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#optimizing-model-parameters",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Optimizing Model Parameters",
+    "text": "Optimizing Model Parameters"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#save-and-load-the-model",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#save-and-load-the-model",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Save and Load the Model",
+    "text": "Save and Load the Model"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#introduction-to-pytorch---youtube-series",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#introduction-to-pytorch---youtube-series",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Introduction to PyTorch - YouTube Series",
+    "text": "Introduction to PyTorch - YouTube Series\n\n\n\nPro tip: Use Colab with a GPU runtime to speed up operations Runtime &gt; Change runtime type &gt; GPU"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#neural-networks---video",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#neural-networks---video",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Neural Networks - Video",
+    "text": "Neural Networks - Video\n\n\n\n\n\n\nBut what is a neural network?"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network",
+    "text": "Single Layer Neural Network\n\n\n\n\\[\n\\begin{align*}\nf(X) &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k h_k(X) \\\\\n     &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j \\right).\n\\end{align*}\n\\]\n\nNetwork Diagram of Single Layer Neural Network"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-introduction-and-layers-overview",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-introduction-and-layers-overview",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network: Introduction and Layers Overview",
+    "text": "Single Layer Neural Network: Introduction and Layers Overview\n\n\n\n\\[\n\\begin{align*}\nf(X) &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k h_k(X) \\\\\n     &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j \\right).\n\\end{align*}\n\\]\nNetwork Diagram of Single Layer Neural Network\n\n\n\n\n\n\n\n\n\n\nNeural networks are often displayed using network diagrams, as shown in the figure.\n\nInput Layer (Orange Circles):\n\n\\(X_1, X_2, X_3, X_4\\)\nThese are observed variables from the dataset.\n\nHidden Layer (Blue Circles):\n\n\\(A_1, A_2, A_3, A_4, A_5\\)\nThese are transformations (activations) computed from the inputs.\n\nOutput Layer (Pink Circle):\n\n\\(f(X) \\to Y\\)\n\\(Y\\) is also observed, e.g., a label or continuous response."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-observed-vs.-latent",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-observed-vs.-latent",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network: Observed vs. Latent",
+    "text": "Single Layer Neural Network: Observed vs. Latent\n\n\n\n\\[\n\\begin{align*}\nf(X) &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k h_k(X) \\\\\n     &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j \\right).\n\\end{align*}\n\\]\nNetwork Diagram of Single Layer Neural Network\n\n\n\n\n\n\n\n\n\n\nWhere is the observed data?\n\n\\(X_j\\) are observed (the input features).\n\\(Y\\) is observed (the response or label).\nThe hidden units (\\(A_k\\)) are not observed; they’re learned transformations."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-hidden-layer-as-transformations",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-hidden-layer-as-transformations",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network: Hidden Layer as Transformations",
+    "text": "Single Layer Neural Network: Hidden Layer as Transformations\n\n\n\n\\[\n\\begin{align*}\nf(X) &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k h_k(X) \\\\\n     &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j \\right).\n\\end{align*}\n\\]\nNetwork Diagram of Single Layer Neural Network\n\n\n\n\n\n\n\n\n\n\nIn the hidden layer, each activation \\(A_k\\) is computed as:\n\\[\nA_k = g\\Bigl(w_{k0} + \\sum_{j=1}^4 w_{kj} X_j\\Bigr),\n\\]\n\nIn the formula, these \\(h_k(X)\\) are the same as the activations \\(A_k\\).\n\\(h_k(X)\\) = \\(g(w_{k0} + \\sum_{j=1}^p w_{kj} X_j)\\).\n\\(g(\\cdot)\\) is a nonlinear function (e.g., ReLU, sigmoid, tanh).\n\\(w_{kj}\\) are the weights learned during training.\nEach hidden unit has a different set of weights, hence different transformations."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-training-the-network",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-training-the-network",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network: Training the Network",
+    "text": "Single Layer Neural Network: Training the Network\n\n\n\n\\[\n\\begin{align*}\nf(X) &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k h_k(X) \\\\\n     &= \\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j \\right).\n\\end{align*}\n\\]\nNetwork Diagram of Single Layer Neural Network\n\n\n\n\n\n\n\n\n\n\n\nThe network learns all weights \\(w_{kj}, w_{k0}, \\beta_k, \\beta_0\\) during training.\nObjective: predict \\(Y\\) from \\(X\\) accurately.\nKey insight: Hidden layer learns useful transformations on the fly to help approximate the true function mapping \\(X\\) to \\(Y\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-details",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#single-layer-neural-network-details",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Single Layer Neural Network: Details",
+    "text": "Single Layer Neural Network: Details\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(A_k = h_k(X) = g(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_j)\\) are called the activations in the hidden layer. We can think of it as a non-linear tranformation of a linear function.\n\\(g(z)\\) is called the activation function. Two popular activation functions are: the sigmoid and rectified linear (ReLU).\nActivation functions in hidden layers are typically nonlinear; otherwise, the model collapses to a linear model.\nSo the activations are like derived features — nonlinear transformations of linear combinations of the features.\nThe model is fit by minimizing \\(\\sum_{i=1}^{n} (y_i - f(x_i))^2\\) (e.g., for regression)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#nn-example-mnist-digits",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#nn-example-mnist-digits",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "NN Example: MNIST Digits",
+    "text": "NN Example: MNIST Digits\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHandwritten digits\n\n\\(28 \\times 28\\) grayscale images\n60K train, 10K test images\nFeatures are the 784 pixel grayscale values \\(\\in (0, 255)\\)\nLabels are the digit class \\(0\\text{–}9\\)\n\nGoal: Build a classifier to predict the image class.\nWe build a two-layer network with:\n\n256 units at the first layer,\n128 units at the second layer, and\n10 units at the output layer.\n\nAlong with intercepts (called biases), there are 235,146 parameters (referred to as weights).\n\n\n\nLet’s code!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#gradient-descent---video",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#gradient-descent---video",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Gradient Descent - Video",
+    "text": "Gradient Descent - Video\n\n\n\n\n\n\nGradient descent, how neural networks learn"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#backpropagation-intuition---video",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#backpropagation-intuition---video",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Backpropagation Intuition - Video",
+    "text": "Backpropagation Intuition - Video\n\n\n\n\n\n\nBackpropagation, intuitively"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#backpropagation-calculus---video",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#backpropagation-calculus---video",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Backpropagation Calculus - Video",
+    "text": "Backpropagation Calculus - Video\n\n\n\n\n\n\nBackpropagation calculus"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#fitting-neural-networks-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#fitting-neural-networks-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Fitting Neural Networks",
+    "text": "Fitting Neural Networks\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\min_{\\{w_k\\}_{1}^K, \\beta} \\frac{1}{2} \\sum_{i=1}^n \\left(y_i - f(x_i)\\right)^2, \\quad \\text{where}\n\\]\n\\[\nf(x_i) = \\beta_0 + \\sum_{k=1}^K \\beta_k g\\left(w_{k0} + \\sum_{j=1}^p w_{kj} x_{ij}\\right).\n\\]\nThis problem is difficult because the objective is non-convex.\nDespite this, effective algorithms have evolved that can optimize complex neural network problems efficiently."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#non-convex-functions-and-gradient-descent",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#non-convex-functions-and-gradient-descent",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Non Convex Functions and Gradient Descent",
+    "text": "Non Convex Functions and Gradient Descent\nLet \\(R(\\theta) = \\frac{1}{2} \\sum_{i=1}^n (y_i - f_\\theta(x_i))^2\\) with \\(\\theta = (\\{w_k\\}_{1}^K, \\beta)\\).\n\n\nStart with a guess \\(\\theta^0\\) for all the parameters in \\(\\theta\\), and set \\(t = 0\\).\nIterate until the objective \\(R(\\theta)\\) fails to decrease:\n\nFind a vector \\(\\delta\\) that reflects a small change in \\(\\theta\\), such that \\(\\theta^{t+1} = \\theta^t + \\delta\\) reduces the objective; i.e., \\(R(\\theta^{t+1}) &lt; R(\\theta^t)\\).\nSet \\(t \\gets t + 1\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#gradient-descent-continued",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#gradient-descent-continued",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Gradient Descent Continued",
+    "text": "Gradient Descent Continued\n\nIn this simple example, we reached the global minimum.\nIf we had started a little to the left of \\(\\theta^0\\), we would have gone in the other direction and ended up in a local minimum.\nAlthough \\(\\theta\\) is multi-dimensional, we have depicted the process as one-dimensional. It is much harder to identify whether one is in a local minimum in high dimensions.\nHow to find a direction \\(\\delta\\) that points downhill? We compute the gradient vector: \\[\n\\nabla R(\\theta^t) = \\frac{\\partial R(\\theta)}{\\partial \\theta} \\bigg|_{\\theta = \\theta^t}\n\\]\ni.e., the vector of partial derivatives at the current guess \\(\\theta^t\\).\nThe gradient points uphill, so our update is \\(\\delta = - \\rho \\nabla R(\\theta^t)\\) or \\[\n\\theta^{t+1} \\gets \\theta^t - \\rho \\nabla R(\\theta^t),\n\\] where \\(\\rho\\) is the learning rate (typically small, e.g., \\(\\rho = 0.001\\))."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#gradients-and-backpropagation",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#gradients-and-backpropagation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Gradients and Backpropagation",
+    "text": "Gradients and Backpropagation\n\n\\[\nR(\\theta) = \\sum_{i=1}^n R_i(\\theta) \\text{ is a sum, so gradient is sum of gradients.}\n\\]\n\\[\nR_i(\\theta) = \\frac{1}{2}(y_i - f_\\theta(x_i))^2 = \\frac{1}{2} \\left( y_i - \\beta_0 - \\sum_{k=1}^K \\beta_k g\\left( w_{k0} + \\sum_{j=1}^p w_{kj} x_{ij} \\right) \\right)^2\n\\]\nFor ease of notation, let\n\\[\nz_{ik} = w_{k0} + \\sum_{j=1}^p w_{kj} x_{ij}.\n\\]\nBackpropagation uses the chain rule for differentiation:\n\\[\n\\frac{\\partial R_i(\\theta)}{\\partial \\beta_k} = \\frac{\\partial R_i(\\theta)}{\\partial f_\\theta(x_i)} \\cdot \\frac{\\partial f_\\theta(x_i)}{\\partial \\beta_k}\n= -(y_i - f_\\theta(x_i)) \\cdot g(z_{ik}).\n\\]\n\\[\n\\frac{\\partial R_i(\\theta)}{\\partial w_{kj}} = \\frac{\\partial R_i(\\theta)}{\\partial f_\\theta(x_i)} \\cdot \\frac{\\partial f_\\theta(x_i)}{\\partial g(z_{ik})} \\cdot \\frac{\\partial g(z_{ik})}{\\partial z_{ik}} \\cdot \\frac{\\partial z_{ik}}{\\partial w_{kj}}\n= -(y_i - f_\\theta(x_i)) \\cdot \\beta_k \\cdot g'(z_{ik}) \\cdot x_{ij}.\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#tricks-of-the-trade",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#tricks-of-the-trade",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Tricks of the Trade",
+    "text": "Tricks of the Trade\n\nSlow learning. Gradient descent is slow, and a small learning rate \\(\\rho\\) slows it even further. With early stopping, this is a form of regularization.\nStochastic gradient descent. Rather than compute the gradient using all the data, use a small minibatch drawn at random at each step. E.g. for MNIST data, with \\(n = 60K\\), we use minibatches of 128 observations.\nAn epoch is a count of iterations and amounts to the number of minibatch updates such that \\(n\\) samples in total have been processed; i.e. \\(60K/128 \\approx 469\\) for MNIST.\nRegularization. Ridge and lasso regularization can be used to shrink the weights at each layer. Two other popular forms of regularization are dropout and augmentation, discussed next."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#dropout-learning",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#dropout-learning",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Dropout Learning",
+    "text": "Dropout Learning\n\n\nAt each Stochastic Gradient Descent (SGD) update, randomly remove units with probability \\(\\phi\\), and scale up the weights of those retained by \\(1/(1-\\phi)\\) to compensate.\nIn simple scenarios like linear regression, a version of this process can be shown to be equivalent to ridge regularization.\nAs in ridge, the other units stand in for those temporarily removed, and their weights are drawn closer together.\nSimilar to randomly omitting variables when growing trees in random forests."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#ridge-and-data-augmentation",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#ridge-and-data-augmentation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Ridge and Data Augmentation",
+    "text": "Ridge and Data Augmentation\n\n\nMake many copies of each \\((x_i, y_i)\\) and add a small amount of Gaussian noise to the \\(x_i\\) — a little cloud around each observation — but leave the copies of \\(y_i\\) alone!\nThis makes the fit robust to small perturbations in \\(x_i\\), and is equivalent to ridge regularization in an OLS setting."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#data-augmentation-on-the-fly",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#data-augmentation-on-the-fly",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Data Augmentation on the Fly",
+    "text": "Data Augmentation on the Fly\n\n\nData augmentation is especially effective with SGD, here demonstrated for a CNN and image classification.\nNatural transformations are made of each training image when it is sampled by SGD, thus ultimately making a cloud of images around each original training image.\nThe label is left unchanged — in each case still tiger.\nImproves performance of CNN and is similar to ridge."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#double-descent",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#double-descent",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Double Descent",
+    "text": "Double Descent\n\nWith neural networks, it seems better to have too many hidden units than too few.\nLikewise more hidden layers better than few.\nRunning stochastic gradient descent till zero training error often gives good out-of-sample error.\nIncreasing the number of units or layers and again training till zero error sometimes gives even better out-of-sample error.\nWhat happened to overfitting and the usual bias-variance trade-off?\n\nBelkin, Hsu, Ma, and Mandal (arXiv 2018) Reconciling Modern Machine Learning and the Bias-Variance Trade-off."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#the-double-descent-error-curve",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#the-double-descent-error-curve",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Double-Descent Error Curve",
+    "text": "The Double-Descent Error Curve\n\n\nWhen \\(d \\leq 20\\), model is OLS, and we see usual bias-variance trade-off.\nWhen \\(d &gt; 20\\), we revert to minimum-norm. As \\(d\\) increases above 20, \\(\\sum_{j=1}^d \\hat{\\beta}_j^2\\) decreases since it is easier to achieve zero error, and hence less wiggly solutions."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#less-wiggly-solutions",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#less-wiggly-solutions",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Less Wiggly Solutions",
+    "text": "Less Wiggly Solutions\n\n\nTo achieve a zero-residual solution with \\(d = 20\\) is a real stretch!\nEasier for larger \\(d\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#some-facts",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#some-facts",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Some Facts",
+    "text": "Some Facts\n\nIn a wide linear model (\\(p \\gg n\\)) fit by least squares, SGD with a small step size leads to a minimum norm zero-residual solution.\nStochastic gradient flow — i.e. the entire path of SGD solutions — is somewhat similar to ridge path.\nBy analogy, deep and wide neural networks fit by SGD down to zero training error often give good solutions that generalize well.\nIn particular cases with high signal-to-noise ratio — e.g. image recognition — are less prone to overfitting; the zero-error solution is mostly signal!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#cnn-introduction",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#cnn-introduction",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "CNN: Introduction",
+    "text": "CNN: Introduction\n\nNeural networks rebounded around 2010 with big successes in image classification.\nAround that time, massive databases of labeled images were being accumulated, with ever-increasing numbers of classes."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#the-cifar100-database",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#the-cifar100-database",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The CIFAR100 Database",
+    "text": "The CIFAR100 Database\n\n\n\nThe figure shows 75 images drawn from the CIFAR100 database.\nThis database consists of 60,000 images labeled according to 20 superclasses (e.g. aquatic mammals), with five classes per superclass (beaver, dolphin, otter, seal, whale).\nEach image has a resolution of 32 × 32 pixels, with three eight-bit numbers per pixel representing red, green, and blue. The numbers for each image are organized in a three-dimensional array called a feature map.\nThe first two axes are spatial (both 32-dimensional), and the third is the channel axis, representing the three (blue, green or red) colors.\nThere is a designated training set of 50,000 images, and a test set of 10,000."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#the-convolutional-network-hierarchy",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#the-convolutional-network-hierarchy",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "The Convolutional Network Hierarchy",
+    "text": "The Convolutional Network Hierarchy\n\n\n\nCNNs mimic, to some degree, how humans classify images, by recognizing specific features or patterns anywhere in the image that distinguish each particular object class.\nThe network first identifies low-level features in the input image, such as small edges or patches of color.\nThese low-level features are then combined to form higher-level features, such as parts of ears or eyes. Eventually, the presence or absence of these higher-level features contributes to the probability of any given output class.\nThis hierarchical construction is achieved by combining two specialized types of hidden layers: convolution layers and pooling layers:\nConvolution layers search for instances of small patterns in the image.\nPooling layers downsample these results to select a prominent subset.\nTo achieve state-of-the-art results, contemporary neural network architectures often use many convolution and pooling layers."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#convolution-layer",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#convolution-layer",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Convolution Layer",
+    "text": "Convolution Layer\n\n\nA convolution layer is made up of a large number of convolution filters, each of which is a template that determines whether a particular local feature is present in an image.\nA convolution filter relies on a very simple operation, called a convolution, which basically amounts to repeatedly multiplying matrix elements and then adding the results. \\[\n\\text{Input Image} =\n\\begin{bmatrix}\na & b & c \\\\\nd & e & f \\\\\ng & h & i \\\\\nj & k & l\n\\end{bmatrix}\n\\quad \\text{Convolution Filter} =\n\\begin{bmatrix}\n\\alpha & \\beta \\\\\n\\gamma & \\delta\n\\end{bmatrix}.\n\\]\nWhen we convolve the image with the filter, we get the result: \\[\n\\text{Convolved Image} =\n\\begin{bmatrix}\na\\alpha + b\\beta + d\\gamma + e\\delta & b\\alpha + c\\beta + e\\gamma + f\\delta \\\\\nd\\alpha + e\\beta + g\\gamma + h\\delta & e\\alpha + f\\beta + h\\gamma + i\\delta \\\\\ng\\alpha + h\\beta + j\\gamma + k\\delta & h\\alpha + i\\beta + k\\gamma + l\\delta\n\\end{bmatrix}.\n\\]\nthe convolution filter is applied to every 2 × 2 submatrix of the original image in order to obtain the convolved image.\nIf a 2 × 2 submatrix of the original image resembles the convolution filter, then it will have a large value in the convolved image; otherwise, it will have a small value. Thus, the convolved image highlights regions of the original image that resemble the convolution filter.\nThe filter is itself an image and represents a small shape, edge, etc.\nThe filters are learned during training."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#convolution-example",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#convolution-example",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Convolution Example",
+    "text": "Convolution Example\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe idea of convolution with a filter is to find common patterns that occur in different parts of the image.\nThe two filters shown here highlight vertical and horizontal stripes.\nThe result of the convolution is a new feature map.\nSince images have three color channels, the filter does as well: one filter per channel, and dot-products are summed.\nThe weights in the filters are learned by the network."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#pooling-layer",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#pooling-layer",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Pooling Layer",
+    "text": "Pooling Layer\nA pooling layer provides a way to condense a large image into a smaller summary image.\n\\[\n\\text{Max pool}\n\\begin{bmatrix}\n1 & 2 & 5 & 3 \\\\\n3 & 0 & 1 & 2 \\\\\n2 & 1 & 3 & 4 \\\\\n1 & 1 & 2 & 0\n\\end{bmatrix}\n\\rightarrow\n\\begin{bmatrix}\n3 & 5 \\\\\n2 & 4\n\\end{bmatrix}\n\\]\n\nEach non-overlapping \\(2 \\times 2\\) block is replaced by its maximum.\nThis sharpens the feature identification.\nAllows for locational invariance.\nReduces the dimension by a factor of 4 — i.e., factor of 2 in each dimension."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#architecture-of-a-cnn",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#architecture-of-a-cnn",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Architecture of a CNN",
+    "text": "Architecture of a CNN\n\n\nMany convolve + pool layers.\nFilters are typically small, e.g., each channel \\(3 \\times 3\\).\nEach filter creates a new channel in the convolution layer.\nAs pooling reduces size, the number of filters/channels is typically increased.\nNumber of layers can be very large.\nE.g., resnet50 trained on imagenet 1000-class image database has 50 layers!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#data-augmentation",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#data-augmentation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Data Augmentation",
+    "text": "Data Augmentation\n\n\n\nAn additional important trick used with image modeling is data augmentation.\nEssentially, each training image is replicated many times, with each replicate randomly distorted in a natural way such that human recognition is unaffected.\nTypical distortions are zoom, horizontal and vertical shift, shear, small rotations, and in this case horizontal flips.\nAt face value this is a way of increasing the training set considerably with somewhat different examples, and thus protects against overfitting.\nIn fact we can see this as a form of regularization: we build a cloud of images around each original image, all with the same label."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#cnn-example-pretrained-networks-to-classify-images",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#cnn-example-pretrained-networks-to-classify-images",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "CNN Example: Pretrained Networks to Classify Images",
+    "text": "CNN Example: Pretrained Networks to Classify Images\n\nHere we use the 50-layer resnet50 network trained on the 1000-class imagenet corpus to classify some photographs.\n\n\nLet’s code!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#document-classification-imdb-movie-reviews",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#document-classification-imdb-movie-reviews",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Document Classification: IMDB Movie Reviews",
+    "text": "Document Classification: IMDB Movie Reviews\nThe IMDB corpus consists of user-supplied movie ratings for a large collection of movies. Each has been labeled for sentiment as positive or negative. Here is the beginning of a negative review:\n\nThis has to be one of the worst films of the 1990s. When my friends & I were watching this film (being the target audience it was aimed at) we just sat & watched the first half an hour with our jaws touching the floor at how bad it really was. The rest of the time, everyone else in the theater just started talking to each other, leaving or generally crying into their popcorn …\n\nWe have labeled training and test sets, each consisting of 25,000 reviews, and each balanced with regard to sentiment.\nGoal: We want to build a classifier to predict the sentiment of a review."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#featurization-bag-of-words",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#featurization-bag-of-words",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Featurization: Bag-of-Words",
+    "text": "Featurization: Bag-of-Words\nDocuments have different lengths and consist of sequences of words. How do we create features \\(X\\) to characterize a document?\n\nFrom a dictionary, identify the 10K most frequently occurring words.\nCreate a binary vector of length \\(p = 10K\\) for each document, and score a 1 in every position that the corresponding word occurred.\nWith \\(n\\) documents, we now have an \\(n \\times p\\) sparse feature matrix \\(\\mathbf{X}\\).\nWe compare a lasso logistic regression model to a two-hidden-layer neural network on the next slide. (No convolutions here!)\nBag-of-words are unigrams. We can instead use bigrams (occurrences of adjacent word pairs) and, in general, m-grams."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#document-classification-example-lasso-versus-neural-network-imdb-reviews",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#document-classification-example-lasso-versus-neural-network-imdb-reviews",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Document Classification Example: Lasso versus Neural Network — IMDB Reviews",
+    "text": "Document Classification Example: Lasso versus Neural Network — IMDB Reviews\n\n\n\nSimpler lasso logistic regression model works as well as neural network in this case.\n\n\n\nLet’s code!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#recurrent-neural-networks---rnn-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#recurrent-neural-networks---rnn-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Recurrent Neural Networks - RNN",
+    "text": "Recurrent Neural Networks - RNN\n\nOften data arise as sequences:\n\nDocuments are sequences of words, and their relative positions have meaning.\nTime-series such as weather data or financial indices.\nRecorded speech or music.\n\nRNNs build models that take into account this sequential nature of the data and build a memory of the past.\n\nThe feature for each observation is a sequence of vectors \\(X = \\{X_1, X_2, \\ldots, X_L\\}\\).\nThe target \\(Y\\) is often of the usual kind — e.g., a single variable such as Sentiment, or a one-hot vector for multiclass.\nHowever, \\(Y\\) can also be a sequence, such as the same document in a different language."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#simple-recurrent-neural-network-architecture",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#simple-recurrent-neural-network-architecture",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Simple Recurrent Neural Network Architecture",
+    "text": "Simple Recurrent Neural Network Architecture\n\n\nThe hidden layer is a sequence of vectors \\(A_\\ell\\), receiving as input \\(X_\\ell\\) as well as \\(A_{\\ell-1}\\). \\(A_\\ell\\) produces an output \\(O_\\ell\\).\nThe same weights \\(\\mathbf{W}\\), \\(\\mathbf{U}\\), and \\(\\mathbf{B}\\) are used at each step in the sequence — hence the term recurrent.\nThe \\(A_\\ell\\) sequence represents an evolving model for the response that is updated as each element \\(X_\\ell\\) is processed."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-in-detail",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-in-detail",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "RNN in Detail",
+    "text": "RNN in Detail\n\nSuppose \\(X_\\ell = (X_{\\ell1}, X_{\\ell2}, \\ldots, X_{\\ell p})\\) has \\(p\\) components, and \\(A_\\ell = (A_{\\ell1}, A_{\\ell2}, \\ldots, A_{\\ell K})\\) has \\(K\\) components. Then the computation at the \\(k\\)-th components of hidden unit \\(A_\\ell\\) is:\n\\[\nA_{\\ell k} = g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} X_{\\ell j} + \\sum_{s=1}^{K} u_{ks} A_{\\ell-1,s}\\right)\n\\]\n\\[\nO_\\ell = \\beta_0 + \\sum_{k=1}^{K} \\beta_k A_{\\ell k}\n\\]\nOften we are concerned only with the prediction \\(O_L\\) at the last unit. For squared error loss, and \\(n\\) sequence/response pairs, we would minimize:\n\\[\n\\sum_{i=1}^{n} (y_i - o_{iL})^2 = \\sum_{i=1}^{n} \\left(y_i - \\left(\\beta_0 + \\sum_{k=1}^{K} \\beta_k g\\left(w_{k0} + \\sum_{j=1}^{p} w_{kj} x_{iL,j} + \\sum_{s=1}^{K} u_{ks} a_{i,L-1,s}\\right)\\right)\\right)^2\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-for-document-classification-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-for-document-classification-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "RNN for Document Classification",
+    "text": "RNN for Document Classification\n\nThe document feature is a sequence of words \\(\\{\\mathcal{W}_\\ell\\}_{1}^{L}\\). We typically truncate/pad the documents to the same number \\(L\\) of words (we use \\(L = 500\\)).\nEach word \\(\\mathcal{W}_\\ell\\) is represented as a one-hot encoded binary vector \\(X_\\ell\\) (dummy variable) of length \\(10K\\), with all zeros and a single one in the position for that word in the dictionary.\nThis results in an extremely sparse feature representation and would not work well.\nInstead, we use a lower-dimensional pretrained word embedding matrix \\(\\mathbf{E}\\) (\\(m \\times 10K\\), next slide).\nThis reduces the binary feature vector of length \\(10K\\) to a real feature vector of dimension \\(m \\ll 10K\\) (e.g., \\(m\\) in the low hundreds)."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#word-embedding---rnn-example-imdb-reviews",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#word-embedding---rnn-example-imdb-reviews",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Word Embedding - RNN Example: IMDB Reviews",
+    "text": "Word Embedding - RNN Example: IMDB Reviews\n\nReview:\n\nthis is one of the best films actually the best I have ever seen the film starts one fall day…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmbeddings are pretrained on very large corpora of documents, using methods similar to principal components. word2vec and GloVe are popular.\n\n\n\nLet’s code!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-time-series-forecasting",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-time-series-forecasting",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "RNN: Time Series Forecasting",
+    "text": "RNN: Time Series Forecasting\n\n\n\n\n\n\n\n\n\n\n\n\n\nNew-York Stock Exchange Data\nThree daily time series for the period December 3, 1962, to December 31, 1986 (6,051 trading days):\n\nLog trading volume. This is the fraction of all outstanding shares that are traded on that day, relative to a 100-day moving average of past turnover, on the log scale.\nDow Jones return. This is the difference between the log of the Dow Jones Industrial Index on consecutive trading days.\nLog volatility. This is based on the absolute values of daily price movements.\n\n\nGoal: predict Log trading volume tomorrow, given its observed values up to today, as well as those of Dow Jones return and Log volatility.\nThese data were assembled by LeBaron and Weigend (1998) IEEE Transactions on Neural Networks, 9(1): 213–220."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#autocorrelation",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#autocorrelation",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\n\nThe autocorrelation at lag \\(\\ell\\) is the correlation of all pairs \\((v_t, v_{t-\\ell})\\) that are \\(\\ell\\) trading days apart.\nThese sizable correlations give us confidence that past values will be helpful in predicting the future.\nThis is a curious prediction problem: the response \\(v_t\\) is also a feature \\(v_{t-\\ell}\\)!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-forecaster",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-forecaster",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "RNN Forecaster",
+    "text": "RNN Forecaster\nWe only have one series of data! How do we set up for an RNN?\nWe extract many short mini-series of input sequences \\(\\mathbf{X} = \\{ X_1, X_2, \\ldots, X_L \\}\\) with a predefined length \\(L\\) known as the lag:\n\\[\nX_1 = \\begin{pmatrix}\nv_{t-L} \\\\\nr_{t-L} \\\\\nz_{t-L}\n\\end{pmatrix}, \\quad\nX_2 = \\begin{pmatrix}\nv_{t-L+1} \\\\\nr_{t-L+1} \\\\\nz_{t-L+1}\n\\end{pmatrix}, \\quad\n\\cdots, \\quad\nX_L = \\begin{pmatrix}\nv_{t-1} \\\\\nr_{t-1} \\\\\nz_{t-1}\n\\end{pmatrix}, \\quad \\text{and} \\quad Y = v_t.\n\\]\nSince \\(T = 6,051\\), with \\(L = 5\\), we can create 6,046 such \\((X, Y)\\) pairs.\nWe use the first 4,281 as training data, and the following 1,770 as test data. We fit an RNN with 12 hidden units per lag step (i.e., per \\(A_\\ell\\))."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-results-for-nyse-data",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#rnn-results-for-nyse-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "RNN Results for NYSE Data",
+    "text": "RNN Results for NYSE Data\n\nThe figure shows predictions and truth for the test period.\n\\[\nR^2 = 0.42 \\text{ for RNN}\n\\]\n\\(R^2 = 0.18\\) for the naive approach — uses yesterday’s value of Log trading volume to predict that of today.\n\n\nLet’s code!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#autoregression-forecaster",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#autoregression-forecaster",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Autoregression Forecaster",
+    "text": "Autoregression Forecaster\nThe RNN forecaster is similar in structure to a traditional autoregression procedure.\n\\[\n\\mathbf{y} =\n\\begin{bmatrix}\nv_{L+1} \\\\\nv_{L+2} \\\\\nv_{L+3} \\\\\n\\vdots \\\\\nv_T\n\\end{bmatrix}, \\quad\n\\mathbf{M} =\n\\begin{bmatrix}\n1 & v_L & v_{L-1} & \\cdots & v_1 \\\\\n1 & v_{L+1} & v_L & \\cdots & v_2 \\\\\n1 & v_{L+2} & v_{L+1} & \\cdots & v_3 \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & v_{T-1} & v_{T-2} & \\cdots & v_{T-L}\n\\end{bmatrix}.\n\\]\nFit an OLS regression of \\(\\mathbf{y}\\) on \\(\\mathbf{M}\\), giving:\n\\[\n\\hat{v}_t = \\hat{\\beta}_0 + \\hat{\\beta}_1 v_{t-1} + \\hat{\\beta}_2 v_{t-2} + \\cdots + \\hat{\\beta}_L v_{t-L}.\n\\]\nKnown as an order-\\(L\\) autoregression model or \\(AR(L)\\).\nFor the NYSE data, we can include lagged versions of DJ_return and log_volatility in matrix \\(\\mathbf{M}\\), resulting in \\(3L + 1\\) columns."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#autoregression-results-for-nyse-data",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#autoregression-results-for-nyse-data",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Autoregression Results for NYSE Data",
+    "text": "Autoregression Results for NYSE Data\n\n\\(R^2 = 0.41 \\text{ for } AR(5) \\text{ model (16 parameters)}\\)\n\\(R^2 = 0.42 \\text{ for RNN model (205 parameters)}\\)\n\\(R^2 = 0.42 \\text{ for } AR(5) \\text{ model fit by neural network.}\\)\n\\(R^2 = 0.46 \\text{ for all models if we include } \\textbf{day_of_week} \\text{ of day being predicted.}\\)"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#summary-of-rnns",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#summary-of-rnns",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary of RNNs",
+    "text": "Summary of RNNs\n\nWe have presented the simplest of RNNs. Many more complex variations exist.\nOne variation treats the sequence as a one-dimensional image, and uses CNNs for fitting. For example, a sequence of words using an embedding representation can be viewed as an image, and the CNN convolves by sliding a convolutional filter along the sequence.\nCan have additional hidden layers, where each hidden layer is a sequence, and treats the previous hidden layer as an input sequence.\nCan have output also be a sequence, and input and output share the hidden units. So called seq2seq learning are used for language translation."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#when-to-use-deep-learning-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#when-to-use-deep-learning-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "When to Use Deep Learning",
+    "text": "When to Use Deep Learning\n\n\nCNNs have had enormous successes in image classification and modeling, and are starting to be used in medical diagnosis. Examples include digital mammography, ophthalmology, MRI scans, and digital X-rays.\nRNNs have had big wins in speech modeling, language translation, and forecasting.\n\n\nShould we always use deep learning models?\n\nOften the big successes occur when the signal to noise ratio is high — e.g., image recognition and language translation. Datasets are large, and overfitting is not a big problem.\nFor noisier data, simpler models can often work better:\n\nOn the NYSE data, the AR(5) model is much simpler than an RNN, and performed as well.\nOn the IMDB review data, a linear model fit (e.g. with glmnet) did as well as the neural network, and better than the RNN."
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#flexibility-vs.-interpretability",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#flexibility-vs.-interpretability",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Flexibility vs. Interpretability",
+    "text": "Flexibility vs. Interpretability\n\nTrade-offs between flexibility and interpretability:\n\n\n\n\n\n\n\n\n\nAs the authors suggest, I also endorse the Occam’s razor principle — we prefer simpler models if they work as well. More interpretable!"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-large-language-models-llm-1",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-large-language-models-llm-1",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: Large Language Models (LLM)",
+    "text": "Special Topic: Large Language Models (LLM)\n\n\n\n\n\n\nLarge Language Models explained briefly"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---transformers",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---transformers",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Transformers",
+    "text": "Special Topic: LLM - Transformers\n\n\n\n\n\n\nTransformers, the tech behind LLMs"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---attention",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---attention",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Attention",
+    "text": "Special Topic: LLM - Attention\n\n\n\n\n\n\nAttention in transformers, step-by-step"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---memory",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#special-topic-llm---memory",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Special Topic: LLM - Memory",
+    "text": "Special Topic: LLM - Memory\n\n\n\n\n\n\nHow might LLMs store facts"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#additional-material",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#additional-material",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Additional Material",
+    "text": "Additional Material\n\n3Blue1Brown: Neural Networks\nDeep Learning, by Ian Goodfellow and Yoshua Bengio and Aaron Courvill\nWelch Labs: Neural Networks Demystified\nWelch Labs: Learning To See\nDistill: A Gentle Introduction to Graph Neural Networks\nNeural Networks and Deep Learning, by Michael Nielsen\nCITS4012 Natural Language Processing\nDeep Learning with PyTorch Step-by-Step"
+  },
+  {
+    "objectID": "lecture_slides/10_deep_learning/10_deep_learning.html#summary",
+    "href": "lecture_slides/10_deep_learning/10_deep_learning.html#summary",
+    "title": " MGMT 47400: Predictive Analytics ",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\nDeep Learning Renaissance\n\nNeural networks first rose to prominence in the 1980s, waned in the 1990s, then surged again around 2010.\nAdvances in computing (GPUs) and availability of massive labeled datasets propelled deep learning success.\n\nFrameworks (PyTorch vs. TensorFlow)\n\nPyTorch is known for its dynamic graph and Pythonic syntax; widely used in research.\nTensorFlow has an extensive production ecosystem, ideal for enterprise and deployment.\n\nEssential Concepts\n\nAutomatic differentiation, gradient descent, and backpropagation are at the core of training neural networks.\n\n\n\n\n\n\nCNNs and RNNs\n\nCNNs excel in image classification by learning local patterns via convolution and pooling layers.\n\nRNNs (and variants like LSTM, GRU) handle sequential data for tasks like language modeling and time-series forecasting.\n\nWhen to Use Deep Learning\n\nWorks best on large datasets with high signal-to-noise ratio (e.g., image, text).\n\nSimpler models often perform well on noisier tasks or smaller datasets.\n\nOver-parameterization can still generalize due to “double-descent” effects.\n\nPractical Tips\n\nUse regularization (dropout, data augmentation, weight decay) to mitigate overfitting.\n\nMonitor convergence with appropriate learning rates and consider mini-batch stochastic gradient descent."
   }
 ]
