@@ -29,7 +29,7 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
--   Six General Principals
+-   Six General Principles
 
     1.  Context Matters
     2.  Visualization Derives From Data
@@ -240,7 +240,7 @@ $$
 
 <center>![](figs/limpeza-2.png)</center>
 
-## Cleaning the Grids
+## Cleaning the Gridlines
 
 <br>
 

@@ -59,44 +59,82 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%"}
-
 <details>
+
 <summary><strong>What is the fundamental difference between a regression problem and a classification problem in supervised learning, based on the nature of the outcome variable?</strong></summary>
-<p style="font-size:80%;">Regression predicts a continuous numeric outcome (quantitative response). Classification predicts a discrete category/label (qualitative response, e.g., binary or multiclass).</p>
+
+<p style="font-size:80%;">
+
+Regression predicts a continuous numeric outcome (quantitative response). Classification predicts a discrete category/label (qualitative response, e.g., binary or multiclass).
+
+</p>
+
 </details>
 
 <details>
+
 <summary><strong>Load the `Advertising.csv` and obtain descriptive statistics:</strong></summary>
-<p style="font-size:80%;">`df = pd.read_csv(Advertising.csv)`<br>`df.describe`</p>
+
+<p style="font-size:80%;">
+
+`df = pd.read_csv(Advertising.csv)`<br>`df.describe`
+
+</p>
+
 </details>
 
 <details>
+
 <summary><strong>What is a possible way to check if there is a relationship between predictors and an outcome variable? performance?</strong></summary>
-<p style="font-size:80%;">Regression Models.</p>
-</details>
 
+<p style="font-size:80%;">
+
+Regression Models.
+
+</p>
+
+</details>
 :::
+
 ::: {.column width="50%"}
-
 <details>
+
 <summary><strong>In a regression model, how can we determine the strength of the relationship between predictors and our response variable?</strong></summary>
-<p style="font-size:80%;">Can be assessed by examining the size and statistical significance of the predictors coefficients, the model’s goodness-of-fit, and its predictive performance. Large and statistically significant coefficients (low p-values with narrow confidence intervals) indicate that changes in predictors are strongly associated with changes in the outcome variable. R-squared and adjusted R-squared values quantify how much of the variance in the outcome variable is explained by the predictors.</p>
+
+<p style="font-size:80%;">
+
+Can be assessed by examining the size and statistical significance of the predictors coefficients, the model’s goodness-of-fit, and its predictive performance. Large and statistically significant coefficients (low p-values with narrow confidence intervals) indicate that changes in predictors are strongly associated with changes in the outcome variable. R-squared and adjusted R-squared values quantify how much of the variance in the outcome variable is explained by the predictors.
+
+</p>
+
 </details>
 
 <details>
+
 <summary><strong>How to discover which predictor is associated with the outcome variable?</strong></summary>
-<p style="font-size:80%;">Check coefficients, p-values, and confidence intervals for statistical significance. In multiple regression, standardized coefficients and model fit (R², adjusted R²) indicate relative importance.</p>
+
+<p style="font-size:80%;">
+
+Check coefficients, p-values, and confidence intervals for statistical significance. In multiple regression, standardized coefficients and model fit (R², adjusted R²) indicate relative importance.
+
+</p>
+
 </details>
 
 <details>
-<summary><strong>How can you determine if there is synergy among predictors in terms of the outcome variable?</strong></summary>
-<p style="font-size:70%;">Synergy among predictors can be determined by testing for **interaction effects** in a regression model, where you add product terms (e.g., `TV × Radio`) alongside the main predictors. A significant interaction coefficient indicates that the effect of one predictor on the outcome depends on the level of another, revealing synergy (positive or negative).</p>
-</details>
 
+<summary><strong>How can you determine if there is synergy among predictors in terms of the outcome variable?</strong></summary>
+
+<p style="font-size:70%;">
+
+Synergy among predictors can be determined by testing for **interaction effects** in a regression model, where you add product terms (e.g., `TV × Radio`) alongside the main predictors. A significant interaction coefficient indicates that the effect of one predictor on the outcome depends on the level of another, revealing synergy (positive or negative).
+
+</p>
+
+</details>
 :::
 :::::
 ::::::
-
 
 # Motivation {background-color="#cfb991"}
 
@@ -818,83 +856,79 @@ $$
 
 <br>
 
-:::::::::: {style="font-size: 90%;"}
-::: nonincremental
-::: columns
+::::::: {style="font-size: 90%;"}
+:::::: nonincremental
+::::: columns
 ::: column
-
 **Discriminative (Logistic Regression)**
 
-- Model the **conditional** distribution of the response  
-  $$
-  \Pr(Y=k\mid X=x)
-  $$
-  
-- Learn parameters by maximizing the **(multinomial) log-likelihood** (cross-entropy).
-- Directly outputs class **posterior probabilities**.
+-   Model the **conditional** distribution of the response\
+    $$
+    \Pr(Y=k\mid X=x)
+    $$
 
+-   Learn parameters by maximizing the **(multinomial) log-likelihood** (cross-entropy).
+
+-   Directly outputs class **posterior probabilities**.
 :::
-::: column
 
+::: column
 **Generative (LDA, QDA, NB)**
 
-- Model the **class-conditional** distribution of the predictors  
-  $$
-  f_k(x)\equiv \Pr(X=x\mid Y=k)
-  $$
-  and the **class prior** $\pi_k=\Pr(Y=k)$.
+-   Model the **class-conditional** distribution of the predictors\
+    $$
+    f_k(x)\equiv \Pr(X=x\mid Y=k)
+    $$ and the **class prior** $\pi_k=\Pr(Y=k)$.
 
-- Apply **Bayes’ theorem** to “flip” into posteriors:
-  $$
-  p_k(x)=\Pr(Y=k\mid X=x)=
-  \frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}
-  $$
+-   Apply **Bayes’ theorem** to “flip” into posteriors: $$
+    p_k(x)=\Pr(Y=k\mid X=x)=
+    \frac{\pi_k\,f_k(x)}{\sum_{l=1}^{K}\pi_l\,f_l(x)}
+    $$
 :::
-:::
-:::
-::::::::::
+:::::
+::::::
+:::::::
 
 ## Three Generative Classifiers (at a glance)
 
 <br>
 
-::: nonincremental
-::: columns
+:::::: nonincremental
+::::: columns
 ::: column
 ### Linear Discriminant Analysis (LDA)
-- Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma)$ with **common** $\Sigma$.
-- Leads to **linear** decision boundaries in $x$.
+
+-   Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma)$ with **common** $\Sigma$.
+-   Leads to **linear** decision boundaries in $x$.
 :::
+
 ::: column
 ### Quadratic Discriminant Analysis (QDA)
-- Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma_k)$ with **class-specific** $\Sigma_k$.
-- Leads to **quadratic** decision boundaries; more flexible, higher variance.
+
+-   Assumption: $X\mid Y=k \sim \mathcal{N}(\mu_k,\Sigma_k)$ with **class-specific** $\Sigma_k$.
+-   Leads to **quadratic** decision boundaries; more flexible, higher variance.
 :::
-:::
-:::
+:::::
+::::::
 
 ## Naïve Bayes
 
 ::: nonincremental
-- Assumption: features are **conditionally independent** given $Y$.
-- Density factorization:
-  $$
-  f_k(x)=\prod_{j=1}^p f_{kj}(x_j\mid Y=k).
-  $$
-- Scales well in high dimensions; often competitive even when independence is only approximately true.
+-   Assumption: features are **conditionally independent** given $Y$.
+-   Density factorization: $$
+    f_k(x)=\prod_{j=1}^p f_{kj}(x_j\mid Y=k).
+    $$
+-   Scales well in high dimensions; often competitive even when independence is only approximately true.
 :::
 
 ## Summary
 
 ::: nonincremental
-
-- **Logistic regression**: model $\Pr(Y\mid X)$ directly (**discriminative**).
-- **Generative** route: model $\Pr(X\mid Y)$ and $\Pr(Y)$, then use Bayes Theorem to get posteriors.
-- **Bayes classifier** picks the class with the largest posterior and is optimal if the model is correct.
-- **LDA/QDA/Naïve Bayes** are practical estimators of the Bayes rule under different assumptions on $f_k(x)$.
+-   **Logistic regression**: model $\Pr(Y\mid X)$ directly (**discriminative**).
+-   **Generative** route: model $\Pr(X\mid Y)$ and $\Pr(Y)$, then use Bayes Theorem to get posteriors.
+-   **Bayes classifier** picks the class with the largest posterior and is optimal if the model is correct.
+-   **LDA/QDA/Naïve Bayes** are practical estimators of the Bayes rule under different assumptions on $f_k(x)$.
 :::
-
-
 
 # Discriminant Analysis {background-color="#cfb991"}
 
@@ -1080,7 +1114,6 @@ knitr::include_graphics("figs/4_3_3-1.png")
 
 -   Right-hand plot: here we have different priors. The probability of $k = 2$ is 0.7 and and of of $k= 1$ is 0.3. The decision boundary moved slightly to the left. On the right, we favor the pink class.
 
-
 ## Linear Discriminant Analysis when $p = 1$
 
 The Gaussian density has the form:
@@ -1252,6 +1285,7 @@ knitr::include_graphics("figs/4_6-1.png")
 
 -   Right-panel: We compute the mean for $x_1$ and $x_2$ for the each blue, green, and orange class. After plugging them into the formula, instead of getting the the dotted lines we get the solid black lines.
 
+````{=html}
 <!---
 # Example: Fisher's Iris Data {background-color="#cfb991"}
 
@@ -1289,12 +1323,13 @@ knitr::include_graphics("figs/4_6_2-1.png")
     -   For $K > 3$, the "best" 2D plane can be chosen for visualization.
 
 --->
+````
 
 ## From $\delta_k(x)$ to Probabilities
 
 :::: nonincremental
 ::: {style="font-size: 90%;"}
--   Once we have estimates of the Discriminat Functions, $\hat{\delta}_k(x)$, we can turn these into estimates for class probabilities:
+-   Once we have estimates of the Discriminant Functions, $\hat{\delta}_k(x)$, we can turn these into estimates for class probabilities:
 
 $$
 \hat{\Pr}(Y = k | X = x) = \frac{e^{\hat{\delta}_k(x)}}{\sum_{l=1}^K e^{\hat{\delta}_l(x)}}.
@@ -1427,7 +1462,7 @@ Whether each class has the same or different covariance matrices significantly i
 ::: {style="font-size: 90%;"}
 LDA assumes the covariance matrices of all classes are the same, while QDA allows each class to have its own. To determine which assumption is better:
 
-1.  **Hypothesys test**: we can perform a Test for Equality of Covariance Matrices (e.g. [Box’s M Test](https://en.wikipedia.org/wiki/Box%27s_M_test)). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.
+1.  **Hypothesis test**: we can perform a Test for Equality of Covariance Matrices (e.g. [Box’s M Test](https://en.wikipedia.org/wiki/Box%27s_M_test)). If the covariance matrices are similar (test is not significant): LDA is appropriate. If the covariance matrices differ (test is significant): QDA may be better.
 2.  **Visual Inspection**: Plot the data in two dimensions (e.g., using scatterplots). Check if the spread, shape, or orientation of data points differs significantly between classes. If they are similar, LDA might work well. If they are visibly different, QDA is likely better.
 3.  **Compare Model Performance**: run both models and choose the model that performs better on unseen data (test set).
 4.  **Consider the Number of Features and Data Size**: LDA performs well with smaller datasets because it estimates a single covariance matrix across all classes (fewer parameters). QDA requires a larger dataset because it estimates a separate covariance matrix for each class (more parameters).
@@ -1790,7 +1825,6 @@ $$
 \log \left( \frac{\Pr(Y = k \mid X = x)}{\Pr(Y = K \mid X = x)} \right) = a_k + \sum_{j=1}^p g_{kj}(x_j)
 $$
 
-
 # Generalized Linear Models {background-color="#cfb991"}
 
 ## Generalized Linear Models
@@ -1807,7 +1841,7 @@ $$
 Linear regression with response **bikers**: number of hourly users in the bikeshare program in Washington, DC.
 
 | Predictor                        | Coefficient | Std. error | z-statistic | p-value |
-|------------------------|------------|------------|------------|------------|
+|-------------------|--------------|--------------|--------------|--------------|
 | **Intercept**                    | 73.60       | 5.13       | 14.34       | 0.00    |
 | **workingday**                   | 1.27        | 1.78       | 0.71        | 0.48    |
 | **temp**                         | 157.21      | 10.26      | 15.32       | 0.00    |
@@ -1862,7 +1896,7 @@ $$
 :::: nonincremental
 ::: {style="font-size: 65%;"}
 |                                  | Coefficient | Std. error | z-statistic | p-value |
-|------------------|--------------|--------------|--------------|--------------|
+|---------------|---------------|---------------|---------------|---------------|
 | **Intercept**                    | 4.12        | 0.01       | 683.96      | 0.00    |
 | **workingday**                   | 0.01        | 0.00       | 7.50        | 0.00    |
 | **temp**                         | 0.79        | 0.01       | 68.43       | 0.00    |
@@ -1924,14 +1958,13 @@ The confusion matrix provides a summary of prediction results. It compares the p
 ::: {style="font-size: 75%;"}
 Key metrics derived from the confusion matrix include:
 
-| Metric                | Definition                                                                                       |
-|:----------------------|:--------------------------------------------------------------------------------------------------|
-| Accuracy              | The proportion of correct predictions.                                                            |
-| Sensitivity (Recall)  | The model's ability to identify positive cases.                                                   |
-| Specificity           | The model's ability to identify negative cases.                                                   |
-| Precision             | Among predicted positive cases, the proportion that are truly positive.                           |
-| F1 Score              | The harmonic mean of Precision and Sensitivity, balancing false positives and false negatives.    |
-
+| Metric | Definition |
+|:----------------|:------------------------------------------------------|
+| Accuracy | The proportion of correct predictions. |
+| Sensitivity (Recall) | The model's ability to identify positive cases. |
+| Specificity | The model's ability to identify negative cases. |
+| Precision | Among predicted positive cases, the proportion that are truly positive. |
+| F1 Score | The harmonic mean of Precision and Sensitivity, balancing false positives and false negatives. |
 :::
 ::::
 
@@ -2145,7 +2178,6 @@ The ROC (Receiver Operating Characteristic) curve is a graphical representation 
 :::
 ::::
 
-
 ## ROC Curve
 
 LDA on Credit Data Example:
@@ -2159,8 +2191,6 @@ The [*ROC plot*](https://en.wikipedia.org/wiki/Receiver_operating_characteristic
 Sometimes we use the *AUC* or *area under the curve* to summarize the overall performance. Higher *AUC* is good.
 
 <br>
-
-
 
 # Summary {background-color="#cfb991"}
 

@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Professor: Davi Moreira">
   <title>MGMT 47400: Predictive Analytics –  MGMT 47400: Predictive Analytics </title>
@@ -29,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5b60505eb0a2c59e7e66c4d06532a844.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c812a774c17cd743a31b19f8745c44ab.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -148,7 +148,6 @@ Professor: Davi Moreira
 </section>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
-<div>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <ul>
@@ -170,7 +169,6 @@ Professor: Davi Moreira
 </ul></li>
 </ul>
 </div></div>
-</div>
 <p><br></p>
 <p><em>This lecture content is inspired by and replicates the material from <a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>.</em></p>
 </section></section>
@@ -346,7 +344,6 @@ Professor: Davi Moreira
 </section>
 <section id="spam-detection" class="slide level2 center">
 <h2>Spam Detection</h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
 <li>Data from 4601 emails sent to an individual (named George, at HP Labs, before 2000). Each is labeled as <em>spam</em> or <em>email</em>.</li>
@@ -401,11 +398,9 @@ Professor: Davi Moreira
 </table>
 <p><em>Average percentage of words or characters in an email message equal to the indicated word or character. We have chosen the words and characters showing the largest difference between spam and email.</em></p>
 </div>
-</div>
 </section>
 <section id="zip-code" class="slide level2 center">
 <h2>Zip Code</h2>
-<div>
 <div style="font-size: 80%;">
 <p>Identify the numbers in a handwritten zip code.</p>
 <div class="cell" data-layout-align="center">
@@ -414,7 +409,6 @@ Professor: Davi Moreira
 <figure>
 <p><img data-src="figs/zip_code.png" class="quarto-figure quarto-figure-center" style="width:45.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -451,7 +445,6 @@ Professor: Davi Moreira
 </section>
 <section id="what-is-statistical-learning-1" class="slide level2 center">
 <h2>What is Statistical Learning?</h2>
-<div>
 <div style="font-size: 80%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -471,14 +464,11 @@ Professor: Davi Moreira
 \]</span></p>
 </div>
 </div>
-</div>
 <p><br></p>
 </section>
 <section id="notation" class="slide level2 center">
 <h2>Notation</h2>
-<div>
 <div style="font-size: 80%;">
-<div>
 <ul>
 <li><p><strong>Sales</strong> is a <em>response</em> or <em>target</em> that we wish to predict. We generically refer to the response as <span class="math inline">\(Y\)</span>.</p></li>
 <li><p><strong>TV</strong> is a <em>feature</em>, or <em>input</em>, or <em>predictor</em>; we name it <span class="math inline">\(X_1\)</span>.<br>
@@ -498,8 +488,6 @@ Y = f(X) + \epsilon
 \]</span></p>
 <p>where <span class="math inline">\(\epsilon\)</span> captures measurement errors and other discrepancies.</p>
 </div>
-</div>
-</div>
 </section>
 <section id="what-is-fx-good-for" class="slide level2 center">
 <h2>What is <span class="math inline">\(f(X)\)</span> Good For?</h2>
@@ -514,7 +502,6 @@ Y = f(X) + \epsilon
 </section>
 <section id="is-there-an-ideal-fx" class="slide level2 center">
 <h2>Is There an Ideal <span class="math inline">\(f(X)\)</span>?</h2>
-<div>
 <div style="font-size: 80%;">
 <p>In particular, what is a good value for <span class="math inline">\(f(X)\)</span> at a selected value of <span class="math inline">\(X\)</span>, say <span class="math inline">\(X = 4\)</span>?</p>
 <div class="cell" data-layout-align="center">
@@ -535,14 +522,12 @@ f(4) = E(Y|X=4)
 <p>This ideal <span class="math inline">\(f(x) = E(Y|X=x)\)</span> is called the <strong>regression function</strong>.</p>
 </div>
 </div>
-</div>
 </section>
 <section id="the-regression-function-fx" class="slide level2 center">
 <h2>The Regression Function <span class="math inline">\(f(x)\)</span></h2>
-<div>
 <div style="font-size: 80%;">
 <ul>
-<li><strong>Is also defined for a vector <span class="math inline">\(\mathbf{X}\)</span></strong>.</li>
+<li><strong>Is also defined for a vector</strong> <span class="math inline">\(\mathbf{X}\)</span>.</li>
 </ul>
 <p><span class="math display">\[
 f(\mathbf{x}) = f(x_1, x_2, x_3) = \mathbb{E}[\,Y \mid X_1 = x_1,\, X_2 = x_2,\, X_3 = x_3\,].
@@ -577,7 +562,6 @@ f(\mathbf{x}) = f(x_1, x_2, x_3) = \mathbb{E}[\,Y \mid X_1 = x_1,\, X_2 = x_2,\,
 \]</span></p>
 </div>
 </div>
-</div>
 </section></section>
 <section>
 <section id="supervised-learning" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -586,7 +570,6 @@ f(\mathbf{x}) = f(x_1, x_2, x_3) = \mathbb{E}[\,Y \mid X_1 = x_1,\, X_2 = x_2,\,
 </section>
 <section id="supervised-learning-1" class="slide level2 center">
 <h2>Supervised Learning</h2>
-<div>
 <div class="columns">
 <div class="column" style="font-size: 90%;">
 <ul>
@@ -620,7 +603,6 @@ The algorithm is <em>supervised</em> because the correct answers are known durin
 </ul></li>
 </ul>
 </div></div>
-</div>
 </section></section>
 <section>
 <section id="unsupervised-learning" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -629,7 +611,6 @@ The algorithm is <em>supervised</em> because the correct answers are known durin
 </section>
 <section id="unsupervised-learning-1" class="slide level2 center">
 <h2>Unsupervised Learning</h2>
-<div>
 <div class="columns">
 <div class="column" style="font-size: 90%;">
 <ul>
@@ -667,7 +648,6 @@ The algorithm is <em>unsupervised</em> because no outcome variable guides the le
 </ul></li>
 </ul>
 </div></div>
-</div>
 <!---
 
 ## Starting point
@@ -709,7 +689,7 @@ On the basis of the training data, we would like to:
 
 - It is important to understand the ideas behind the various techniques, in order to know how and when to use them.
 
-- We wil understand the simpler methods first to grasp the more sophisticated ones later.
+- We will understand the simpler methods first to grasp the more sophisticated ones later.
 
 - It is important to accurately assess the performance of a method, to know how well or how badly it is working.
 
@@ -766,7 +746,6 @@ On the basis of the training data, we would like to:
 </section>
 <section id="how-to-estimate-f" class="slide level2 center">
 <h2>How to Estimate <span class="math inline">\(f\)</span></h2>
-<div>
 <ul>
 <li><p>Often, we lack sufficient data points for exact computation of <span class="math inline">\(E(Y|X=x)\)</span>.</p></li>
 <li><p>So, we relax the definition:</p></li>
@@ -775,17 +754,8 @@ On the basis of the training data, we would like to:
 \hat{f}(x) = \text{Ave}(Y|X \in \mathcal{N}(x))
 \]</span></p>
 <p>where <span class="math inline">\(\mathcal{N}(x)\)</span> is a <em>neighborhood</em> of <span class="math inline">\(x\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/2_1_3.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div>
+
+<img data-src="figs/2_1_3.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
 </section>
 <section id="nearest-neighbor-observations" class="slide level2 center">
 <h2>Nearest Neighbor Observations</h2>
@@ -802,7 +772,6 @@ On the basis of the training data, we would like to:
 </section>
 <section id="the-curse-of-dimensionality" class="slide level2 center">
 <h2>The curse of dimensionality</h2>
-<div>
 <div style="font-size: 65%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -843,12 +812,11 @@ On the basis of the training data, we would like to:
 </ul></li>
 </ul>
 <div class="fragment">
-<p><strong>Botton panel</strong>: We see how far we have to go out in one, two, three, five, and ten dimensions in order to capture a certain fraction of the points.</p>
+<p><strong>Bottom panel</strong>: We see how far we have to go out in one, two, three, five, and ten dimensions in order to capture a certain fraction of the points.</p>
 <p><br></p>
 <p><strong>Key Takeaway</strong>: As dimensionality increases, neighborhoods must expand significantly to capture the same fraction of data points, illustrating the <strong>curse of dimensionality</strong>.</p>
 </div>
 </div></div>
-</div>
 </div>
 <p><br></p>
 </section></section>
@@ -871,7 +839,6 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 </section>
 <section id="comparison-of-models" class="slide level2 center">
 <h2>Comparison of Models</h2>
-<div>
 <div class="columns">
 <div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <center>
@@ -910,7 +877,6 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 <p>Quadratic models may fit slightly better than linear models in some cases.</p>
 </div>
 </div></div>
-</div>
 </section>
 <section id="simulated-example" class="slide level2 center">
 <h2>Simulated Example</h2>
@@ -940,7 +906,7 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 </section>
 <section id="overfitting" class="slide level2 center">
 <h2>Overfitting</h2>
-<p>Even more flexible spline regression model <span class="math inline">\(\hat{f}_S(\text{education}, \text{seniority})\)</span> fit to the simulated data. We tunned the parameter all the way down to zero and this surface actually goes through every single data point.</p>
+<p>Even more flexible spline regression model <span class="math inline">\(\hat{f}_S(\text{education}, \text{seniority})\)</span> fit to the simulated data. We tuned the parameter all the way down to zero and this surface actually goes through every single data point.</p>
 
 <img data-src="figs/2_6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p>The fitted model makes no errors on the training data! This is known as <strong>overfitting</strong>.</p>
 <p><br></p>
@@ -992,7 +958,6 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 </section>
 <section id="assessing-model-accuracy-1" class="slide level2 center">
 <h2>Assessing Model Accuracy</h2>
-<div>
 <div style="font-size: 80%;">
 <p>Suppose we fit a model <span class="math inline">\(\hat{f}(x)\)</span> to some training data <span class="math inline">\(Tr = \{x_i, y_i\}_{i=1}^N\)</span>, and we wish to evaluate its performance:</p>
 <ul>
@@ -1011,11 +976,9 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 \]</span></p>
 </div>
 </div>
-</div>
 </section>
 <section id="bias-variance-trade-off" class="slide level2 center">
 <h2>Bias-Variance Trade-off</h2>
-<div>
 <div style="font-size: 80%;">
 <div class="columns">
 <div class="column">
@@ -1062,11 +1025,9 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
    \;+\; \underbrace{\sigma^2}_{\text{irreducible noise}}
 \]</span></p>
 </div>
-</div>
 </section>
 <section id="bias-variance-trade-off-1" class="slide level2 center">
 <h2>Bias-Variance Trade-off</h2>
-<div>
 <div style="font-size: 55%;">
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -1103,7 +1064,7 @@ f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 <p><strong>Key Insight</strong>:</p>
 <p>The green model captures the data points well but risks overfitting, while the orange model is too rigid and misses the underlying structure. The blue model strikes a balance.</p>
 <div class="fragment">
-<p><strong>Botton Panel: Mean Squared Error (MSE)</strong></p>
+<p><strong>Bottom Panel: Mean Squared Error (MSE)</strong></p>
 <ul>
 <li><p><strong>Gray Curve</strong>: Training data MSE.</p>
 <ul>
@@ -1122,11 +1083,9 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 </div>
 </div></div>
 </div>
-</div>
 </section>
 <section id="bias-variance-trade-off-other-examples" class="slide level2 center">
 <h2>Bias-Variance Trade-off: Other Examples</h2>
-<div>
 <div style="font-size: 65%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1157,11 +1116,9 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 </div>
 </div></div>
 </div>
-</div>
 </section>
 <section id="bias-variance-trade-off-2" class="slide level2 center">
 <h2>Bias-Variance Trade-off</h2>
-<div>
 <div style="font-size: 80%;">
 <p>Suppose we have fit a model <span class="math inline">\(\hat{f}(x)\)</span> to some training data <span class="math inline">\(\text{Tr}\)</span>, and let <span class="math inline">\((x_0, y_0)\)</span> be a test observation drawn from the population.</p>
 <p>If the true model is</p>
@@ -1184,11 +1141,9 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 <p>Typically, as the <strong>flexibility</strong> of <span class="math inline">\(\hat{f}\)</span> increases, its variance increases and its bias decreases. Hence, choosing the flexibility based on average test error amounts to a <strong>bias-variance trade-off</strong>.</p>
 <p><br></p>
 </div>
-</div>
 </section>
 <section id="bias-variance-trade-off-of-the-examples" class="slide level2 center">
 <h2>Bias-Variance Trade-off of the Examples</h2>
-<div>
 <div style="font-size: 70%;">
 <p>Below is a schematic illustration of the mean squared error (MSE), bias, and variance curves as a function of the model’s flexibility.</p>
 <div class="column-screen">
@@ -1208,7 +1163,6 @@ There is an optimal model complexity (the “magic point”) where test data MSE
 </ul>
 </div>
 <p>The vertical dotted line in each panel suggests a model flexibility that balances both bias and variance in an “optimal” region for minimizing MSE.</p>
-</div>
 </div>
 <p><br></p>
 <!--- Optei por remover da primeira semana para abordar nas segunda e terceira semandas.
@@ -1247,13 +1201,11 @@ Our goals are to:
 ::: {style="font-size: 80%;"}
 
 
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/2_1_7.png){fig-align='center' width=50%}
 :::
 :::
-
 
 
 Consider a classification problem with $K$ possible classes,  numbered $1, 2, \ldots, K$. Define
@@ -1284,13 +1236,11 @@ $$
 ::: {style="font-size: 80%;"}
 
 
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/2_1_8.png){fig-align='center' width=60%}
 :::
 :::
-
 
 
 Nearest-neighbor averaging can be used as before.  
@@ -1329,13 +1279,11 @@ $$
 Below is an example data set in two dimensions $(X_1, X_2)$. Points shown in **blue** might represent one class, and points in **orange** the other. The dashed boundary suggests a decision boundary formed by a classifier.
 
 
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/2_1_9.png){fig-align='center' width=80%}
 :::
 :::
-
 
 
 <br>
@@ -1346,7 +1294,6 @@ Here is the same data set classified by **k-nearest neighbors** with $k = 10$.
 The black boundary line encloses the region of the feature space predicted as orange vs. blue, showing how the decision boundary has become smoother.
 
 
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/2_15-1.png){fig-align='center' width=80%}
@@ -1354,11 +1301,9 @@ The black boundary line encloses the region of the feature space predicted as or
 :::
 
 
-
 <br>
 
 ## KNN: K = 1 vs. K = 100
-
 
 
 ::: {.cell layout-align="center"}
@@ -1366,7 +1311,6 @@ The black boundary line encloses the region of the feature space predicted as or
 ![](figs/2_16-1.png){fig-align='center' width=80%}
 :::
 :::
-
 
 
 Comparisons of a **very low** value of $k$ (left, $k=1$) versus a **very high** value (right, $k=100$). 
@@ -1387,13 +1331,11 @@ Comparisons of a **very low** value of $k$ (left, $k=1$) versus a **very high** 
 
 
 
-
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
 ![](figs/2_17-1.png){fig-align='center' width=95%}
 :::
 :::
-
 
 
 ::: 
@@ -1427,7 +1369,6 @@ The dashed horizontal line is the bayes error, used as reference for comparison.
 </section>
 <section id="summary-1" class="slide level2 center">
 <h2>Summary</h2>
-<div>
 <div style="font-size: 70%;">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1477,7 +1418,6 @@ The dashed horizontal line is the bayes error, used as reference for comparison.
 </ul></li>
 </ul>
 </div></div>
-</div>
 </div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1741,190 +1681,172 @@ The dashed horizontal line is the bayes error, used as reference for comparison.
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

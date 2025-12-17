@@ -22,7 +22,6 @@ format:
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-  
 ---
 
 # Welcome! {background-color="#cfb991"}
@@ -32,25 +31,23 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-
 -   Introductions
 -   Course Overview and Logistics
 -   Motivation
--   Course Objectives 
-
+-   Course Objectives
 :::
 
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Supervised Learning
 
-- Supervised Learning
-- Unsupervised Learning
-- Statistical Learning Overview
-    
-    - What is Statistical Learning?
-    - Parametric and Structured Models
-    - Assessing Model Accuracy 
-    - Classification Problems 
+-   Unsupervised Learning
 
+-   Statistical Learning Overview
+
+    -   What is Statistical Learning?
+    -   Parametric and Structured Models
+    -   Assessing Model Accuracy
+    -   Classification Problems
 :::
 :::::
 ::::::
@@ -59,7 +56,7 @@ html-math-method:
 
 *This lecture content is inspired by and replicates the material from [An Introduction to Statistical Learning](https://www.statlearning.com/).*
 
-# Introductions  {background-color="#cfb991"}
+# Introductions {background-color="#cfb991"}
 
 ## Instructor
 
@@ -121,17 +118,13 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
-<center>
-**What do you expect to gain from this Predictive Analytics course?**
-</center>
+<center>**What do you expect to gain from this Predictive Analytics course?**</center>
 
 <br>
 
 -   It is your turn! - 10 minutes
 
-
--   Present yourself to your left/right colleague and ask: 
-
+-   Present yourself to your left/right colleague and ask:
 
 -   Collect her/his answer and submit your first Participation Assignment!
 
@@ -139,50 +132,42 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 ## Course Overview and Logistics
 
-::: {style="font-size: 80%;"}
-
-:::: {.columns}
+:::::: {style="font-size: 80%;"}
+::::: columns
 ::: {.column width="50%"}
-
-- **Course Info**:
-  - Brightspace - Official.
-  - [Course Webpage - Supplementary.](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}
-
-- [**Syllabus**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}  
-  - **Class Times & Location:** check the course syllabus.  
-  - **Office Hours:** check the course syllabus for group and individual appointments.
-
-- [**Schedule and Materials**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/schedule.html){target="_blank"}:
-  - Podcast (before class)  
-  - Required Readings (before class)  
-  - Lecture Slides (before class)  
-  - Lecture Video (during class)  
-  - Book labs (during/after class)  
-  - Supplementary Material (after class)
-
+-   **Course Info**:
+    -   Brightspace - Official.
+    -   [Course Webpage - Supplementary.](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}
+-   [**Syllabus**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/){target="_blank"}
+    -   **Class Times & Location:** check the course syllabus.\
+    -   **Office Hours:** check the course syllabus for group and individual appointments.
+-   [**Schedule and Materials**](https://davi-moreira.github.io/2025F_predictive_analytics_purdue_MGMT474/schedule.html){target="_blank"}:
+    -   Podcast (before class)\
+    -   Required Readings (before class)\
+    -   Lecture Slides (before class)\
+    -   Lecture Video (during class)\
+    -   Book labs (during/after class)\
+    -   Supplementary Material (after class)
 :::
 
 ::: {.column width="50%"}
-
-- **Course Tracks**
-  - Standard Track  
-  - External Case Competition (bonus)
-
-- **Assessments**
-  - Attendance  
-  - Participation  
-  - Quizzes  
-  - Homework  
-  - Course Case Competition  
-  - Final Project  
-
+-   **Course Tracks**
+    -   Standard Track\
+    -   External Case Competition (bonus)
+-   **Assessments**
+    -   Attendance\
+    -   Participation\
+    -   Quizzes\
+    -   Homework\
+    -   Course Case Competition\
+    -   Final Project
 :::
-::::
-
-::: 
+:::::
+::::::
 
 # Motivation {background-color="#cfb991"}
 
+```{=html}
 <!---
 
 ## Statistical Learning Problems
@@ -204,15 +189,15 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 - Classify the pixels in a LANDSAT image, by usage.
 
 --->
+```
 
 ## Spam Detection
 
-::: nonincremental
+:::: nonincremental
 ::: {style="font-size: 80%;"}
-
-- Data from 4601 emails sent to an individual (named George, at HP Labs, before 2000). Each is labeled as *spam* or *email*.
-- Goal: build a customized spam filter.
-- Input features: relative frequencies of 57 of the most commonly occurring words and punctuation marks in these email messages.
+-   Data from 4601 emails sent to an individual (named George, at HP Labs, before 2000). Each is labeled as *spam* or *email*.
+-   Goal: build a customized spam filter.
+-   Input features: relative frequencies of 57 of the most commonly occurring words and punctuation marks in these email messages.
 
 | Word   | Spam | Email |
 |--------|------|-------|
@@ -225,23 +210,20 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 | remove | 0.28 | 0.01  |
 
 *Average percentage of words or characters in an email message equal to the indicated word or character. We have chosen the words and characters showing the largest difference between spam and email.*
-
 :::
-:::
+::::
 
 ## Zip Code
 
-::: nonincremental
+:::: nonincremental
 ::: {style="font-size: 80%;"}
-
 Identify the numbers in a handwritten zip code.
 
 ```{r  echo=FALSE, out.width = "45%", fig.align="center"}
 knitr::include_graphics("figs/zip_code.png") 
 ```
-
 :::
-:::
+::::
 
 <br>
 
@@ -263,51 +245,45 @@ knitr::include_graphics("figs/netflix_prize.png")
 
 </center>
 
-
-
 # Statistical Learning Overview {background-color="#cfb991"}
+
 # What is Statistical Learning? {background-color="#cfb991"}
+
 ## What is Statistical Learning?
 
-::: nonincremental
-::: {style="font-size: 80%;"}
-
+::::: nonincremental
+:::: {style="font-size: 80%;"}
 ```{r  echo=FALSE, out.width = "60%", fig.align="center"}
 knitr::include_graphics("figs/2_1-1.png") 
 ```
 
 Shown are **Sales** vs **TV**, **Radio**, and **Newspaper**, with a blue linear-regression line fit separately to each.
 
-Can we predict **Sales** using these three?  
+Can we predict **Sales** using these three?
 
-:::{.fragment}
-
+::: fragment
 Perhaps we can do better using a model:
 
 $$
 \text{Sales} \approx f(\text{TV}, \text{Radio}, \text{Newspaper})
 $$
-
 :::
-:::
-:::
+::::
+:::::
 
 <br>
 
 ## Notation
 
+::::: nonincremental
+:::: {style="font-size: 80%;"}
 ::: nonincremental
-::: {style="font-size: 80%;"}
+-   **Sales** is a *response* or *target* that we wish to predict. We generically refer to the response as $Y$.
 
+-   **TV** is a *feature*, or *input*, or *predictor*; we name it $X_1$.\
+    Likewise, name **Radio** as $X_2$, and so on.
 
-:::{.nonincremental}
-
-- **Sales** is a *response* or *target* that we wish to predict. We generically refer to the response as $Y$.
-
-- **TV** is a *feature*, or *input*, or *predictor*; we name it $X_1$.  
-  Likewise, name **Radio** as $X_2$, and so on.
-
-- The input vector collectively is referred to as:
+-   The input vector collectively is referred to as:
 
 $$
 X = \begin{pmatrix}
@@ -324,38 +300,31 @@ Y = f(X) + \epsilon
 $$
 
 where $\epsilon$ captures measurement errors and other discrepancies.
-
 :::
-
-:::
-:::
-
+::::
+:::::
 
 ## What is $f(X)$ Good For?
 
-- With a good $f$, we can make predictions of $Y$ at new points $X = x$.
+-   With a good $f$, we can make predictions of $Y$ at new points $X = x$.
 
-- Understand which components of $X = (X_1, X_2, \ldots, X_p)$ are important in explaining $Y$, and which are irrelevant.
+-   Understand which components of $X = (X_1, X_2, \ldots, X_p)$ are important in explaining $Y$, and which are irrelevant.
 
-    - Example: *Seniority* and *Years of Education* have a big impact on *Income*, but *Marital Status* typically does not.
-    
-- Depending on the complexity of $f$, understand how each component $X_j$ affects $Y$.
+    -   Example: *Seniority* and *Years of Education* have a big impact on *Income*, but *Marital Status* typically does not.
 
+-   Depending on the complexity of $f$, understand how each component $X_j$ affects $Y$.
 
 ## Is There an Ideal $f(X)$?
 
-::: nonincremental
-::: {style="font-size: 80%;"}
-
-In particular, what is a good value for $f(X)$ at a selected value of $X$, say $X = 4$?  
-
+::::: nonincremental
+:::: {style="font-size: 80%;"}
+In particular, what is a good value for $f(X)$ at a selected value of $X$, say $X = 4$?
 
 ```{r  echo=FALSE, out.width = "60%", fig.align="center"}
 knitr::include_graphics("figs/2_1_2.png") 
 ```
 
-:::{.fragment}
-
+::: fragment
 There can be many $Y$ values at $X=4$. A good value is:
 
 $$
@@ -365,27 +334,22 @@ $$
 where $E(Y|X=4)$ means the *expected value* (average) of $Y$ given $X=4$.
 
 This ideal $f(x) = E(Y|X=x)$ is called the **regression function**.
-
 :::
-
-:::
-:::
+::::
+:::::
 
 ## The Regression Function $f(x)$
 
-::: nonincremental
-::: {style="font-size: 80%;"}
-
-
-- **Is also defined for a vector $\mathbf{X}$**. 
+::::::: nonincremental
+:::::: {style="font-size: 80%;"}
+-   **Is also defined for a vector** $\mathbf{X}$.
 
 $$
 f(\mathbf{x}) = f(x_1, x_2, x_3) = \mathbb{E}[\,Y \mid X_1 = x_1,\, X_2 = x_2,\, X_3 = x_3\,].
 $$
 
-:::{.fragment}
-
-- **Is the ideal or optimal predictor** of $Y$ in terms of mean-squared prediction error:
+::: fragment
+-   **Is the ideal or optimal predictor** of $Y$ in terms of mean-squared prediction error:
 
 $$
   f(x) = \mathbb{E}[Y \mid X = x]
@@ -395,28 +359,23 @@ $$
 $$
 :::
 
-:::{.fragment}
+::: fragment
+-   $\varepsilon = Y - f(x)$ is the **irreducible error**.
 
-- $\varepsilon = Y - f(x)$ is the **irreducible error**.
-
-    - Even if we knew $f(x)$, we would still make prediction errors because at each $X = x$ there is a distribution of possible $Y$ values.
-
+    -   Even if we knew $f(x)$, we would still make prediction errors because at each $X = x$ there is a distribution of possible $Y$ values.
 :::
 
-:::{.fragment}
-
-- For any estimate $\hat{f}(x)$ of $f(x)$, 
+::: fragment
+-   For any estimate $\hat{f}(x)$ of $f(x)$,
 
 $$
     \mathbb{E}\bigl[(Y - \hat{f}(X))^2 \mid X = x\bigr] 
     = \underbrace{[\,f(x) - \hat{f}(x)\,]^2}_{\text{Reducible}} 
       \;+\; \underbrace{\mathrm{Var}(\varepsilon)}_{\text{Irreducible}}.
 $$
-
 :::
-
-:::
-:::
+::::::
+:::::::
 
 # Supervised Learning {background-color="#cfb991"}
 
@@ -425,33 +384,28 @@ $$
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="font-size: 90%;"}
+-   **Definition:**\
+    Learning a mapping from inputs $X$ to an output $Y$ using labeled data.\
+    The algorithm is *supervised* because the correct answers are known during training.
 
-- **Definition:**  
-  Learning a mapping from inputs $X$ to an output $Y$ using labeled data.  
-  The algorithm is *supervised* because the correct answers are known during training.  
+-   **Goal:**
 
-- **Goal:**  
-  - Predict $Y$ for new unseen $X$.  
-  - Minimize prediction error.  
-
+    -   Predict $Y$ for new unseen $X$.\
+    -   Minimize prediction error.
 :::
 
 ::: {.column width="50%" style="font-size: 90%;"}
-
-- **Examples of Methods:**  
-  - Linear Regression, Logistic Regression  
-  - Decision Trees, Random Forests, SVMs  
-  - Neural Networks  
-
-- **Applications:**  
-  - Predicting stock prices  
-  - Diagnosing diseases  
-  - Spam email detection  
-
+-   **Examples of Methods:**
+    -   Linear Regression, Logistic Regression\
+    -   Decision Trees, Random Forests, SVMs\
+    -   Neural Networks
+-   **Applications:**
+    -   Predicting stock prices\
+    -   Diagnosing diseases\
+    -   Spam email detection
 :::
 :::::
 ::::::
-
 
 # Unsupervised Learning {background-color="#cfb991"}
 
@@ -460,37 +414,32 @@ $$
 :::::: nonincremental
 ::::: columns
 ::: {.column width="50%" style="font-size: 90%;"}
+-   **Definition:**\
+    Learning the structure or patterns in data without labeled outputs.\
+    The algorithm is *unsupervised* because no outcome variable guides the learning.
 
-- **Definition:**  
-  Learning the structure or patterns in data without labeled outputs.  
-  The algorithm is *unsupervised* because no outcome variable guides the learning.  
+-   **Goal:**
 
-- **Goal:**  
-  - Discover hidden structures in $X$.  
-  - Group, reduce, or represent data meaningfully.  
-
+    -   Discover hidden structures in $X$.\
+    -   Group, reduce, or represent data meaningfully.
 :::
 
 ::: {.column width="50%" style="font-size: 90%;"}
-
-- **Examples of Methods:**  
-  - Clustering: k-means, hierarchical clustering  
-  - Dimensionality Reduction: PCA, t-SNE  
-
-- **Applications:**  
-  - Customer segmentation  
-  - Market basket analysis  
-  - Reducing dimensionality of large datasets  
-
-- **Characteristics**:  
-  - Difficult to know how well we are doing.  
-  - Different from supervised learning, but can be useful as a pre-processing step for supervised learning.  
-
+-   **Examples of Methods:**
+    -   Clustering: k-means, hierarchical clustering\
+    -   Dimensionality Reduction: PCA, t-SNE
+-   **Applications:**
+    -   Customer segmentation\
+    -   Market basket analysis\
+    -   Reducing dimensionality of large datasets
+-   **Characteristics**:
+    -   Difficult to know how well we are doing.\
+    -   Different from supervised learning, but can be useful as a pre-processing step for supervised learning.
 :::
 :::::
 ::::::
 
-
+```{=html}
 <!---
 
 ## Starting point
@@ -532,7 +481,7 @@ On the basis of the training data, we would like to:
 
 - It is important to understand the ideas behind the various techniques, in order to know how and when to use them.
 
-- We wil understand the simpler methods first to grasp the more sophisticated ones later.
+- We will understand the simpler methods first to grasp the more sophisticated ones later.
 
 - It is important to accurately assess the performance of a method, to know how well or how badly it is working.
 
@@ -563,7 +512,9 @@ On the basis of the training data, we would like to:
 :::
 
 --->
+```
 
+```{=html}
 <!---
 ## Statistical Learning versus Machine Learning
 
@@ -587,15 +538,14 @@ On the basis of the training data, we would like to:
 :::
 :::
 --->
-
+```
 
 ## How to Estimate $f$
 
-:::{.nonincremental}
+::: nonincremental
+-   Often, we lack sufficient data points for exact computation of $E(Y|X=x)$.
 
-- Often, we lack sufficient data points for exact computation of $E(Y|X=x)$.  
-
-- So, we relax the definition:
+-   So, we relax the definition:
 
 $$
 \hat{f}(x) = \text{Ave}(Y|X \in \mathcal{N}(x))
@@ -608,32 +558,28 @@ knitr::include_graphics("figs/2_1_3.png")
 ```
 
 <br>
-
 :::
-
 
 ## Nearest Neighbor Observations
 
-- **Nearest neighbor averaging** can be pretty good for small $p$  — i.e., $p \le 4$ — and large-ish $N$.
+-   **Nearest neighbor averaging** can be pretty good for small $p$ — i.e., $p \le 4$ — and large-ish $N$.
 
-- We will discuss **smoother versions**, such as kernel and spline smoothing, later in the course.
+-   We will discuss **smoother versions**, such as kernel and spline smoothing, later in the course.
 
-- Nearest neighbor methods can be **lousy** when $p$ is large. 
-  
-    - Reason: the *curse of dimensionality*. Nearest neighbors tend to be far away in high dimensions.
+-   Nearest neighbor methods can be **lousy** when $p$ is large.
 
-    - We need to get a **reasonable fraction** of the $N$ values of $y_i$ to average in order to bring the variance down (e.g., 10%).
-  
-    - A 10% neighborhood in high dimensions is **no longer truly local**, so we lose the spirit of estimating $\mathbb{E}[Y \mid X = x]$ via local averaging.
+    -   Reason: the *curse of dimensionality*. Nearest neighbors tend to be far away in high dimensions.
+
+    -   We need to get a **reasonable fraction** of the $N$ values of $y_i$ to average in order to bring the variance down (e.g., 10%).
+
+    -   A 10% neighborhood in high dimensions is **no longer truly local**, so we lose the spirit of estimating $\mathbb{E}[Y \mid X = x]$ via local averaging.
 
 ## The curse of dimensionality
 
-::: nonincremental
-::: {style="font-size: 65%;"}
-
-:::: {.columns}
+:::::::: nonincremental
+::::::: {style="font-size: 65%;"}
+:::::: columns
 ::: {.column width="50%"}
-
 ```{r  echo=FALSE, out.width = "40%", fig.align="center"}
 knitr::include_graphics("figs/2_1_4_1.png") 
 ```
@@ -641,46 +587,36 @@ knitr::include_graphics("figs/2_1_4_1.png")
 ```{r  echo=FALSE, out.width = "40%", fig.align="center"}
 knitr::include_graphics("figs/2_1_4_2.png") 
 ```
-
-
-
 :::
 
-::: {.column width="50%"}
-
-
+:::: {.column width="50%"}
 **Top panel:** $X_1$ and $X_2$ are uniformly distributed with edges minus one to plus one.
 
-- **1-Dimensional Neighborhood**
+-   **1-Dimensional Neighborhood**
 
-    - Focuses only on $X_1$, ignoring $X_2$.
-    - Neighborhood is defined by vertical red dotted lines.
-    - Centered on the target point $(0, 0)$.
-    - Extends symmetrically along $X_1$ until it captures 10% of the data points.
+    -   Focuses only on $X_1$, ignoring $X_2$.
+    -   Neighborhood is defined by vertical red dotted lines.
+    -   Centered on the target point $(0, 0)$.
+    -   Extends symmetrically along $X_1$ until it captures 10% of the data points.
 
-- **2-Dimensional Neighborhood**
+-   **2-Dimensional Neighborhood**
 
-    - Now, Considers both $X_1$ and $X_2$.
-    - Neighborhood is a circular region centered on the same target point $(0, 0)$.
-    - Radius of the circle expands until it encloses 10% of the total data points.
-    - The radius in 2D is much larger than the 1D width due to the need to account for more dimensions.
+    -   Now, Considers both $X_1$ and $X_2$.
+    -   Neighborhood is a circular region centered on the same target point $(0, 0)$.
+    -   Radius of the circle expands until it encloses 10% of the total data points.
+    -   The radius in 2D is much larger than the 1D width due to the need to account for more dimensions.
 
-:::{.fragment}
-
-**Botton panel**: We see how far we have to go out in one, two, three, five, and ten dimensions in order to capture a certain fraction of the points.
+::: fragment
+**Bottom panel**: We see how far we have to go out in one, two, three, five, and ten dimensions in order to capture a certain fraction of the points.
 
 <br>
 
 **Key Takeaway**: As dimensionality increases, neighborhoods must expand significantly to capture the same fraction of data points, illustrating the **curse of dimensionality**.
-
-:::
-
 :::
 ::::
-
-
-:::
-:::
+::::::
+:::::::
+::::::::
 
 <br>
 
@@ -694,21 +630,18 @@ $$
 f_L(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \ldots + \beta_pX_p
 $$
 
-- A linear model is specified in terms of $p+1$ parameters ($\beta_0, \beta_1, \ldots, \beta_p$).
+-   A linear model is specified in terms of $p+1$ parameters ($\beta_0, \beta_1, \ldots, \beta_p$).
 
-- We estimate the parameters by fitting the model to training data.
+-   We estimate the parameters by fitting the model to training data.
 
-- Although it is *almost never correct*, it serves as a good and interpretable approximation to the unknown true function $f(X)$.
+-   Although it is *almost never correct*, it serves as a good and interpretable approximation to the unknown true function $f(X)$.
 
 ## Comparison of Models
 
-:::::: nonincremental
-::::: columns
+::::::: nonincremental
+:::::: columns
 ::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-
-<center>
-**Linear model**
-</center>
+<center>**Linear model**</center>
 
 $$
 \hat{f}_L(X) = \hat{\beta}_0 + \hat{\beta}_1X
@@ -719,16 +652,11 @@ knitr::include_graphics("figs/2_1_5.png")
 ```
 
 The linear model gives a reasonable fit here.
-
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-
-:::{.fragment}
-
-<center>
-**Quadratic model:**
-</center>
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: fragment
+<center>**Quadratic model:**</center>
 
 $$
 \hat{f}_Q(X) = \hat{\beta}_0 + \hat{\beta}_1X + \hat{\beta}_2X^2
@@ -739,12 +667,10 @@ knitr::include_graphics("figs/2_1_6.png")
 ```
 
 Quadratic models may fit slightly better than linear models in some cases.
-
 :::
-:::
-:::::
+::::
 ::::::
-
+:::::::
 
 ## Simulated Example
 
@@ -762,7 +688,6 @@ $f$ is the blue surface.
 
 <br>
 
-
 ## Linear Regression Fit
 
 Linear regression model fit to the simulated data:
@@ -779,7 +704,7 @@ $$
 
 ## Flexible Regression Model Fit
 
-More flexible regression model $\hat{f}_S(\text{education}, \text{seniority})$ fit to the simulated data. 
+More flexible regression model $\hat{f}_S(\text{education}, \text{seniority})$ fit to the simulated data.
 
 ```{r  echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("figs/2_5-1.png") 
@@ -791,7 +716,7 @@ Here we use a technique called a *thin-plate spline* to fit a flexible surface. 
 
 ## Overfitting
 
-Even more flexible spline regression model $\hat{f}_S(\text{education}, \text{seniority})$ fit to the simulated data. We tunned the parameter all the way down to zero and this surface actually goes through every single data point.  
+Even more flexible spline regression model $\hat{f}_S(\text{education}, \text{seniority})$ fit to the simulated data. We tuned the parameter all the way down to zero and this surface actually goes through every single data point.
 
 ```{r  echo=FALSE, out.width = "80%", fig.align="center"}
 knitr::include_graphics("figs/2_6-1.png") 
@@ -803,48 +728,43 @@ The fitted model makes no errors on the training data! This is known as **overfi
 
 ## Some Trade-offs
 
-- **Prediction accuracy versus interpretability**:  
+-   **Prediction accuracy versus interpretability**:
 
-    - Linear models are easy to interpret; thin-plate splines are not.
+    -   Linear models are easy to interpret; thin-plate splines are not.
 
-- **Good fit versus over-fit or under-fit**:  
+-   **Good fit versus over-fit or under-fit**:
 
-    - How do we know when the fit is just right?
+    -   How do we know when the fit is just right?
 
-- **Parsimony versus black-box**:  
+-   **Parsimony versus black-box**:
 
-    - Prefer simpler models involving fewer variables over black-box predictors.
-
+    -   Prefer simpler models involving fewer variables over black-box predictors.
 
 ## Flexibility vs. Interpretability
 
 ::: {style="font-size: 80%;"}
-
-Trade-offs between **flexibility** and **interpretability**:  
+Trade-offs between **flexibility** and **interpretability**:
 
 ```{r  echo=FALSE, out.width = "50%", fig.align="center"}
 knitr::include_graphics("figs/2_7-1.png") 
 ```
 
-- **High interpretability**: Subset selection, Lasso.  
-- **Intermediate**: Least squares, Generalized Additive Models, Trees.  
-- **High flexibility**: Support Vector Machines, Deep Learning.  
-
+-   **High interpretability**: Subset selection, Lasso.\
+-   **Intermediate**: Least squares, Generalized Additive Models, Trees.\
+-   **High flexibility**: Support Vector Machines, Deep Learning.
 
 <br>
-
 :::
 
 # Assessing Model Accuracy {background-color="#cfb991"}
 
 ## Assessing Model Accuracy
 
-::: nonincremental
-::: {style="font-size: 80%;"}
-
+::::: nonincremental
+:::: {style="font-size: 80%;"}
 Suppose we fit a model $\hat{f}(x)$ to some training data $Tr = \{x_i, y_i\}_{i=1}^N$, and we wish to evaluate its performance:
 
-- Compute the average squared prediction error over the training set $Tr$, the Mean Squared Error (MSE):
+-   Compute the average squared prediction error over the training set $Tr$, the Mean Squared Error (MSE):
 
 $$
 \text{MSE}_{Tr} = \text{Ave}_{i \in Tr}[(y_i - \hat{f}(x_i))^2]
@@ -852,66 +772,61 @@ $$
 
 However, this may be biased toward more overfit models.
 
-:::{.fragment}
-
-- Instead, use fresh **test data** $Te = \{x_i, y_i\}_{i=1}^M$:
+::: fragment
+-   Instead, use fresh **test data** $Te = \{x_i, y_i\}_{i=1}^M$:
 
 $$
 \text{MSE}_{Te} = \text{Ave}_{i \in Te}[(y_i - \hat{f}(x_i))^2]
 $$
-
 :::
-:::
-:::
-
+::::
+:::::
 
 ## Bias-Variance Trade-off
 
-::: nonincremental
-::: {style="font-size: 80%;"}
-
-:::: columns
+:::::::: nonincremental
+::::::: {style="font-size: 80%;"}
+::::: columns
 ::: column
 ### Bias *(tends to underfit)*
-- **Definition:** The error introduced by approximating a real-world problem with a simplified model. High bias implies underfitting.  
-- **Implication:** High bias ⇒ the model misses important patterns (systematic error).  
-- **Typical causes:** Too-simple model (e.g., overly rigid assumptions), insufficient features, heavy regularization.
+
+-   **Definition:** The error introduced by approximating a real-world problem with a simplified model. High bias implies underfitting.\
+-   **Implication:** High bias ⇒ the model misses important patterns (systematic error).\
+-   **Typical causes:** Too-simple model (e.g., overly rigid assumptions), insufficient features, heavy regularization.
 :::
 
 ::: column
 ### Variance *(tends to overfit)*
-- **Definition:** The amount by which the model's prediction would change if trained on a different training dataset. High variance implies overfitting.  
-- **Implication:** High variance ⇒ the model is overly sensitive to noise (unstable across samples).  
-- **Typical causes:** Overly flexible model, too many features vs. observations, weak regularization.
+
+-   **Definition:** The amount by which the model's prediction would change if trained on a different training dataset. High variance implies overfitting.\
+-   **Implication:** High variance ⇒ the model is overly sensitive to noise (unstable across samples).\
+-   **Typical causes:** Overly flexible model, too many features vs. observations, weak regularization.
 :::
-::::
+:::::
 
 ::: callout-note
 #### The trade-off we manage
-- Increasing flexibility ↓ **bias** but ↑ **variance**.  
-- Goal: choose complexity that **minimizes expected test error**.
+
+-   Increasing flexibility ↓ **bias** but ↑ **variance**.\
+-   Goal: choose complexity that **minimizes expected test error**.
 :::
 
-**Decomposition of expected test MSE**  
+**Decomposition of expected test MSE**\
 $$
 \mathbb{E}\big[(Y-\hat f(X))^2\big]
    \;=\; \underbrace{\big(\mathrm{Bias}[\hat f(X)]\big)^2}_{\text{misspecification}}
    \;+\; \underbrace{\mathrm{Var}[\hat f(X)]}_{\text{sensitivity}}
    \;+\; \underbrace{\sigma^2}_{\text{irreducible noise}}
 $$
-
-:::
-:::
+:::::::
+::::::::
 
 ## Bias-Variance Trade-off
 
-::: nonincremental
-::: {style="font-size: 55%;"}
-
-
-:::: {.columns}
+:::::::: nonincremental
+::::::: {style="font-size: 55%;"}
+:::::: columns
 ::: {.column width="45%"}
-
 ```{r  echo=FALSE, out.width = "45%", fig.align="center"}
 knitr::include_graphics("figs/2_9-1-1.png") 
 ```
@@ -919,62 +834,53 @@ knitr::include_graphics("figs/2_9-1-1.png")
 ```{r  echo=FALSE, out.width = "45%", fig.align="center"}
 knitr::include_graphics("figs/2_9-1-2.png") 
 ```
-
 :::
 
-::: {.column width="55%"}
-
+:::: {.column width="55%"}
 **Top Panel: Model Fits**
 
-- **Black Curve**: The true generating function, representing the underlying relationship we want to estimate.
+-   **Black Curve**: The true generating function, representing the underlying relationship we want to estimate.
 
-- **Data Points**: Observations generated from the black curve, with added noise (error).
+-   **Data Points**: Observations generated from the black curve, with added noise (error).
 
-- **Fitted Models**:
+-   **Fitted Models**:
 
-    - **Orange Line**: A simple linear model (low flexibility).
-    - **Blue Line**: A moderately flexible model, likely a spline or thin plate spline.
-    - **Green Line**: A highly flexible model that closely fits the data points but may overfit.
+    -   **Orange Line**: A simple linear model (low flexibility).
+    -   **Blue Line**: A moderately flexible model, likely a spline or thin plate spline.
+    -   **Green Line**: A highly flexible model that closely fits the data points but may overfit.
 
-**Key Insight**:  
+**Key Insight**:
 
 The green model captures the data points well but risks overfitting, while the orange model is too rigid and misses the underlying structure. The blue model strikes a balance.
 
-:::{.fragment}
+::: fragment
+**Bottom Panel: Mean Squared Error (MSE)**
 
-**Botton Panel: Mean Squared Error (MSE)**
+-   **Gray Curve**: Training data MSE.
 
-- **Gray Curve**: Training data MSE.
+    -   Decreases consistently as flexibility increases.
+    -   Flexible models fit the training data well, but this does not generalize to test data.
 
-    - Decreases consistently as flexibility increases.
-    - Flexible models fit the training data well, but this does not generalize to test data.
+-   **Red Curve**: Test data MSE across models of increasing flexibility.
 
-- **Red Curve**: Test data MSE across models of increasing flexibility.
-  
-    - Starts high for rigid models (orange line).
-    - Decreases to a minimum (optimal model complexity, blue line).
-    - Increases again for overly flexible models (green line), due to overfitting.
+    -   Starts high for rigid models (orange line).
+    -   Decreases to a minimum (optimal model complexity, blue line).
+    -   Increases again for overly flexible models (green line), due to overfitting.
 
-**Key Takeaway**:  
+**Key Takeaway**:\
 There is an optimal model complexity (the "magic point") where test data MSE is minimized. Beyond this point, models become overly complex and generalization performance deteriorates.
-
-:::
-
 :::
 ::::
-
-:::
-:::
-
+::::::
+:::::::
+::::::::
 
 ## Bias-Variance Trade-off: Other Examples
 
-::: nonincremental
-::: {style="font-size: 65%;"}
-
-:::: {.columns}
+:::::::: nonincremental
+::::::: {style="font-size: 65%;"}
+:::::: columns
 ::: {.column width="50%"}
-
 <br>
 
 Here, the truth is **smoother**, so smoother fits and linear models perform well.
@@ -982,13 +888,10 @@ Here, the truth is **smoother**, so smoother fits and linear models perform well
 ```{r  echo=FALSE, out.width = "95%", fig.align="center"}
 knitr::include_graphics("figs/2_10-1.png") 
 ```
-
-
 :::
-::: {.column width="50%"}
 
-:::{.fragment}
-
+:::: {.column width="50%"}
+::: fragment
 <br>
 
 Here, the truth is **wiggly** and the noise is low. More flexible fits perform the best.
@@ -996,27 +899,19 @@ Here, the truth is **wiggly** and the noise is low. More flexible fits perform t
 ```{r  echo=FALSE, out.width = "95%", fig.align="center"}
 knitr::include_graphics("figs/2_11-1.png") 
 ```
-
-:::
-
-
 :::
 ::::
-
-
-:::
-:::
-
+::::::
+:::::::
+::::::::
 
 ## Bias-Variance Trade-off
 
 :::: nonincremental
 ::: {style="font-size: 80%;"}
+Suppose we have fit a model $\hat{f}(x)$ to some training data $\text{Tr}$, and let $(x_0, y_0)$ be a test observation drawn from the population.
 
-Suppose we have fit a model $\hat{f}(x)$ to some training data $\text{Tr}$, 
-and let $(x_0, y_0)$ be a test observation drawn from the population. 
-
-If the true model is 
+If the true model is
 
 $$
     Y = f(X) + \varepsilon 
@@ -1032,8 +927,7 @@ $$
     + \mathrm{Var}(\varepsilon).
 $$
 
-The expectation averages over the variability of $y_0$ as well as the 
-variability in $\text{Tr}$. Note that
+The expectation averages over the variability of $y_0$ as well as the variability in $\text{Tr}$. Note that
 
 $$
     \mathrm{Bias}\bigl(\hat{f}(x_0)\bigr) 
@@ -1043,41 +937,34 @@ $$
 Typically, as the **flexibility** of $\hat{f}$ increases, its variance increases and its bias decreases. Hence, choosing the flexibility based on average test error amounts to a **bias-variance trade-off**.
 
 <br>
-
-::::
 :::
+::::
 
 ## Bias-Variance Trade-off of the Examples
 
-:::: nonincremental
-::: {style="font-size: 70%;"}
+::::: nonincremental
+:::: {style="font-size: 70%;"}
+Below is a schematic illustration of the mean squared error (MSE), bias, and variance curves as a function of the model’s flexibility.
 
-Below is a schematic illustration of the mean squared error (MSE), bias, 
-and variance curves as a function of the model’s flexibility.
-
-::: {.column-screen}
-
+::: column-screen
 ```{r  echo=FALSE, out.width = "60%", fig.align="center"}
 knitr::include_graphics("figs/2_12-1.png") 
 ```
 
-- **MSE (red curve)** goes down initially (as the model becomes more flexible) 
-  but eventually goes up (as overfitting sets in).
-  
-- **Bias (blue/teal curve)** decreases with increasing flexibility.
+-   **MSE (red curve)** goes down initially (as the model becomes more flexible) but eventually goes up (as overfitting sets in).
 
-- **Variance (orange curve)** increases with increasing flexibility.
+-   **Bias (blue/teal curve)** decreases with increasing flexibility.
 
+-   **Variance (orange curve)** increases with increasing flexibility.
 :::
 
-The vertical dotted line in each panel suggests a model flexibility that balances 
-both bias and variance in an “optimal” region for minimizing MSE.
-
+The vertical dotted line in each panel suggests a model flexibility that balances both bias and variance in an “optimal” region for minimizing MSE.
 ::::
-:::
+:::::
 
 <br>
 
+````{=html}
 <!--- Optei por remover da primeira semana para abordar nas segunda e terceira semandas.
 
 # Classification Problems {background-color="#cfb991"}
@@ -1250,69 +1137,63 @@ The dashed horizontal line is the bayes error, used as reference for comparison.
 <br>
 
 --->
+````
 
 # Summary {background-color="#cfb991"}
 
 ## Summary
 
-:::: nonincremental
-::: {style="font-size: 70%;"}
-
-:::: {.columns}
+::::::: nonincremental
+:::::: {style="font-size: 70%;"}
+::::: columns
 ::: {.column width="50%"}
-
 **Statistical Learning and Predictive Analytics**
 
-- **Goal**: Build models to predict outcomes and understand relationships between inputs (predictors) and responses.
+-   **Goal**: Build models to predict outcomes and understand relationships between inputs (predictors) and responses.
 
-- **Supervised Learning**: Focuses on predicting $Y$ (response) using $X$ (predictors) via models like regression and classification.
+-   **Supervised Learning**: Focuses on predicting $Y$ (response) using $X$ (predictors) via models like regression and classification.
 
-- **Unsupervised Learning**: Focuses on finding patterns in data without predefined responses (e.g., clustering).
+-   **Unsupervised Learning**: Focuses on finding patterns in data without predefined responses (e.g., clustering).
 
 **Bias-Variance Trade-off**
 
-- **Key Trade-off**: Model flexibility affects bias and variance:
+-   **Key Trade-off**: Model flexibility affects bias and variance:
 
-    - **High flexibility** → Low bias but high variance (overfitting).
-     - **Low flexibility** → High bias but low variance (underfitting).
+    -   **High flexibility** → Low bias but high variance (overfitting).
+    -   **Low flexibility** → High bias but low variance (underfitting).
 
-- Goal: Find the optimal flexibility that minimizes test error.
-
+-   Goal: Find the optimal flexibility that minimizes test error.
 :::
 
 ::: {.column width="50%"}
-
 **Techniques and Applications**
 
-- **Parametric Models**:
+-   **Parametric Models**:
 
-    - Simpler and interpretable (e.g., linear regression).
-    - Often used as approximations.
+    -   Simpler and interpretable (e.g., linear regression).
+    -   Often used as approximations.
 
-- **Flexible Models**:
+-   **Flexible Models**:
 
-    - Handle complex patterns (e.g., splines, SVMs, deep learning).
-    - Require careful tuning to avoid overfitting.
+    -   Handle complex patterns (e.g., splines, SVMs, deep learning).
+    -   Require careful tuning to avoid overfitting.
 
 **Practical Considerations**
 
-- **Assessing Model Accuracy**:
+-   **Assessing Model Accuracy**:
 
-    - Use test data to calculate MSE.
-    - Balance between training performance and generalizability.
+    -   Use test data to calculate MSE.
+    -   Balance between training performance and generalizability.
 
 **Key Challenges**
 
-- **Curse of Dimensionality**:
+-   **Curse of Dimensionality**:
 
-    - High-dimensional data affects distance-based methods like KNN.
-    - Larger neighborhoods needed, losing "locality."
-
+    -   High-dimensional data affects distance-based methods like KNN.
+    -   Larger neighborhoods needed, losing "locality."
 :::
-::::
-
-::::
-::: 
-
+:::::
+::::::
+:::::::
 
 # Thank you! {background-color="#cfb991"}

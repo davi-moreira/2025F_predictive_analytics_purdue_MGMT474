@@ -114,7 +114,7 @@ $$
 
     -   In the figure, we have computed the fit and pointwise standard errors on a grid of values for $x_0$. We show $\hat{f}(x_0) \pm 2 \cdot \text{se}[\hat{f}(x_0)]$.
 
--   How to choose $d$, the polinomial degree? We either fix the degree $d$ at some reasonably low value or use cross-validation to choose $d$.
+-   How to choose $d$, the polynomial degree? We either fix the degree $d$ at some reasonably low value or use cross-validation to choose $d$.
 ::::
 
 ## Polynomial Regression: Details
@@ -301,7 +301,7 @@ Essentially, below the smallest knot, the model is a simple linear function of $
 :::::::
 ::::::::
 
-## Lienar Splines: Example
+## Linear Splines: Example
 
 ::::::::::::: {style="font-size: 70%;"}
 To illustrate a linear spline with **one knot** at $x = 50$, suppose we have a response variable $y$ (e.g., a person’s yearly wage) and a single predictor $x$ (e.g., age):
